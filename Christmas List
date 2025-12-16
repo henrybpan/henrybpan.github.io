@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas Wishlist - Henry B. Pan</title>
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+      background: #fdfdfd;
+      color: #708090;
+      margin: 0;
+      padding: 1rem 2rem 2rem 144px;
+      text-align: left;
+      max-width: 800px;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 1rem 2rem 2rem;
+        max-width: none;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      nav a {
+        margin: 0 0.8rem 0.3rem 0;
+        display: inline-block;
+      }
+      
+      .wishlist-item {
+        flex-direction: column;
+      }
+      
+      .wishlist-item img {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    /* Very small screens */
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem 0.5rem 2rem 1rem;
+      }
+      
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      nav a {
+        font-size: 0.9rem;
+      }
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+      font-size: 3rem;
+    }
+
+    /* Navigation links */
+    nav {
+      margin-bottom: 1rem;
+    }
+    nav a {
+      display: inline-block;
+      margin: 0 1rem 0 0;
+      text-decoration: underline;
+      color: #708090;
+      font-size: 1.1rem;
+    }
+    nav a:hover { color: #505a66; }
+
+    /* Separator line */
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #dcdcdc;
+      width: 40%;
+      margin: 0.8rem 0;
+    }
+
+    /* Wishlist items */
+    .wishlist-container {
+      margin-top: 2rem;
+    }
+
+    .wishlist-item {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      align-items: flex-start;
+    }
+
+    .wishlist-item img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border: 1px solid #dcdcdc;
+    }
+
+    .wishlist-item-details {
+      flex: 1;
+    }
+
+    .wishlist-item-details h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.3rem;
+    }
+
+    .wishlist-item-details h2 a {
+      color: #708090;
+      text-decoration: underline;
+    }
+
+    .wishlist-item-details h2 a:hover {
+      color: #505a66;
+    }
+
+    .wishlist-item-price {
+      font-size: 1.1rem;
+      color: #505a66;
+      margin-bottom: 0.8rem;
+      font-weight: bold;
+    }
+
+    .wishlist-item-description {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #708090;
+    }
+  </style>
+</head>
+<body>
+  <h1>Christmas Wishlist</h1>
+
+  <!-- Navigation Links -->
+  <nav>
+    <a href="index.html">Return to Home</a>
+    <a href="essays.html">Essays</a>
+    <a href="things-ive-read.html">Things I've Read</a>
+  </nav>
+
+  <hr>
+
+  <!-- Wishlist Items -->
+  <div class="wishlist-container">
+    
+    <!-- Canon PowerShot S95 -->
+    <div class="wishlist-item">
+      <img src="https://i.ebayimg.com/images/g/m2gAAOSwhjNnlyJn/s-l1600.webp" alt="Canon PowerShot S95">
+      <div class="wishlist-item-details">
+        <h2><a href="https://www.ebay.com/itm/205827353485?chn=ps&mkevt=1&mkcid=28&google_free_listing_action=view_item&srsltid=AfmBOoqAgAStVFRO5uZCygMhtqSb9gqtrCDDpFfkJMEJOg196mOl6gVZ2B4" target="_blank">Canon PowerShot S95</a></h2>
+        <div class="wishlist-item-price">~$150-200</div>
+        <div class="wishlist-item-description">
+          A compact digital camera perfect for capturing everyday moments with high quality. The S95 has excellent manual controls and produces beautiful images with great color and depth.
+        </div>
+      </div>
+    </div>
+
+    <!-- ESV Bible -->
+    <div class="wishlist-item">
+      <img src="https://m.media-amazon.com/images/I/71V7eB8BhBL._SY522_.jpg" alt="ESV Bible">
+      <div class="wishlist-item-details">
+        <h2><a href="https://amzn.to/4aYoqVA" target="_blank">ESV Bible</a></h2>
+        <div class="wishlist-item-price">Price varies</div>
+        <div class="wishlist-item-description">
+          A faithful and accurate translation of Scripture that I'd love to have for daily reading and study.
+        </div>
+      </div>
+    </div>
+
+    <!-- $100M Offers -->
+    <div class="wishlist-item">
+      <img src="https://m.media-amazon.com/images/I/41PEC3OFk1L._SY445_SX342_.jpg" alt="$100M Offers">
+      <div class="wishlist-item-details">
+        <h2><a href="https://amzn.to/48D8O8E" target="_blank">$100M Offers by Alex Hormozi</a></h2>
+        <div class="wishlist-item-price">~$30</div>
+        <div class="wishlist-item-description">
+          A comprehensive guide on creating irresistible offers that will help me understand business and value creation better.
+        </div>
+      </div>
+    </div>
+
+    <!-- $100M Money Models -->
+    <div class="wishlist-item">
+      <img src="https://m.media-amazon.com/images/I/41xzO33DEDL._SY445_SX342_.jpg" alt="$100M Money Models">
+      <div class="wishlist-item-details">
+        <h2><a href="https://amzn.to/4aS0xz4" target="_blank">$100M Money Models by Alex Hormozi</a></h2>
+        <div class="wishlist-item-price">~$40</div>
+        <div class="wishlist-item-description">
+          Insights into different business models and how to think about building sustainable revenue streams.
+        </div>
+      </div>
+    </div>
+
+    <!-- $100M Leads -->
+    <div class="wishlist-item">
+      <img src="https://m.media-amazon.com/images/I/41FQecSdlCL._SY445_SX342_.jpg" alt="$100M Leads">
+      <div class="wishlist-item-details">
+        <h2><a href="https://amzn.to/4adyBFD" target="_blank">$100M Leads by Alex Hormozi</a></h2>
+        <div class="wishlist-item-price">~$35</div>
+        <div class="wishlist-item-description">
+          A practical guide to getting customers and growing an audience, which directly applies to my content creation journey.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
