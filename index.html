@@ -1,664 +1,291 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Your First 10K Followers in 180 Days - Henry Pan</title>
-    <link rel="icon" type="image/png" href="https://i.imgur.com/tlVAs3Q.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/tlVAs3Q.png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Your First 10K Followers in 180 Days - Henry Pan</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fff;
-        }
+<link rel="icon" type="image/png" href="https://i.imgur.com/tlVAs3Q.png">
 
-        /* Fixed Logo in Corner */
-        .corner-logo {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            width: 66px;
-            height: 66px;
-            z-index: 1000;
-            background: rgba(26, 15, 10, 0.9);
-            padding: 11px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .corner-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #333;
+    background: #fff;
+    line-height: 1.6;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+/* ---------- GLOBAL ---------- */
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1a0f0a 0%, #2d1810 100%);
-            color: #fff;
-            padding: 80px 20px 60px;
-            text-align: center;
-        }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-        .logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 30px;
-            display: none;
-        }
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a0f0a;
+    margin-bottom: 20px;
+}
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .hero .subheadline {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            opacity: 0.95;
-            font-weight: 400;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+.cta-button {
+    display: inline-block;
+    background: #d4b896;
+    color: #1a0f0a;
+    padding: 18px 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
 
-        .hero .targeting {
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            font-style: italic;
-        }
+/* ---------- FIXED LOGO ---------- */
 
-        .cta-button {
-            display: inline-block;
-            background: #d4b896;
-            color: #1a0f0a;
-            padding: 18px 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+.corner-logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 66px;
+    height: 66px;
+    padding: 11px;
+    background: rgba(26, 15, 10, 0.9);
+    border-radius: 10px;
+    z-index: 1000;
+}
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 184, 150, 0.4);
-            background: #e5c9a7;
-        }
+.corner-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
-        /* VSL Section */
-        .vsl-section {
-            padding: 80px 20px;
-            background: #f8f9fa;
-            text-align: center;
-        }
+/* ---------- HERO ---------- */
 
-        .vsl-placeholder {
-            max-width: 900px;
-            margin: 0 auto 40px;
-            background: #e9ecef;
-            padding: 150px 40px;
-            border-radius: 10px;
-            border: 3px dashed #d4b896;
-        }
+.hero {
+    background: linear-gradient(135deg, #1a0f0a, #2d1810);
+    color: #fff;
+    text-align: center;
+    padding: 90px 20px 70px;
+}
 
-        .vsl-placeholder h3 {
-            font-size: 2.5rem;
-            color: #1a0f0a;
-            font-weight: 700;
-        }
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    max-width: 900px;
+    margin: 0 auto 20px;
+}
 
-        /* Pain Points Section */
-        .pain-points {
-            padding: 80px 20px;
-            background: #fff;
-        }
+.hero p {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    font-size: 1.2rem;
+}
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #1a0f0a;
-            margin-bottom: 20px;
-        }
+/* ---------- RESULTS / TESTIMONIALS ---------- */
 
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 50px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+.results {
+    padding: 80px 20px;
+    background: #f8f9fa;
+}
 
-        .pain-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto 50px;
-        }
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto 50px;
+}
 
-        .pain-card {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 10px;
-            border-left: 5px solid #d4b896;
-        }
+.result-card {
+    background: #fff;
+    padding: 35px 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        .pain-card h3 {
-            font-size: 1.3rem;
-            color: #1a0f0a;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
+.result-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #eee;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #666;
+}
 
-        .pain-card p {
-            color: #555;
-            font-size: 1.05rem;
-        }
+.result-stat {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    color: #1a0f0a;
+}
 
-        /* Results Section */
-        .results {
-            padding: 80px 20px;
-            background: #f8f9fa;
-        }
+.result-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
 
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            max-width: 1100px;
-            margin: 0 auto 50px;
-        }
+.result-handle {
+    color: #d4b896;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
 
-        .result-card {
-            background: #fff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(10, 76, 125, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
+/* ---------- VIDEO / PLACEHOLDER ---------- */
 
-        .result-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(212, 184, 150, 0.3);
-        }
+.result-testimonial {
+    width: 100%;
+    max-width: 315px;
+    aspect-ratio: 9 / 16;
+    background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 20px;
+}
 
-        .result-image {
-            width: 120px;
-            height: 120px;
-            background: #f8f9fa;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            color: #666;
-            border: 3px solid #d4b896;
-        }
+.result-testimonial iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
 
-        .result-stat {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #1a0f0a;
-            margin-bottom: 10px;
-        }
+.result-testimonial.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 0.9rem;
+    background: #f1f1f1;
+}
 
-        .result-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #333;
-        }
+/* ---------- RESPONSIVE ---------- */
 
-        .result-testimonial {
-            background: #f8f9fa;
-            padding: 0;
-            border-radius: 10px;
-            font-style: italic;
-            color: #555;
-            margin-top: 20px;
-            min-height: 315px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        /* What You Get Section */
-        .what-you-get {
-            padding: 80px 20px;
-            background: #fff;
-        }
-
-        .deliverables-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto 50px;
-        }
-
-        .deliverable-card {
-            background: linear-gradient(135deg, #1a0f0a 0%, #2d1810 100%);
-            color: #fff;
-            padding: 35px;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px solid #d4b896;
-        }
-
-        .deliverable-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .deliverable-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .deliverable-card p {
-            font-size: 1.05rem;
-            opacity: 0.95;
-        }
-
-        /* Guarantee Section */
-        .guarantee {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #1a0f0a 0%, #2d1810 100%);
-            color: #fff;
-            text-align: center;
-        }
-
-        .guarantee-box {
-            max-width: 800px;
-            margin: 0 auto 40px;
-            background: rgba(212, 184, 150, 0.1);
-            padding: 40px;
-            border-radius: 15px;
-            border: 2px solid #d4b896;
-        }
-
-        .guarantee h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .guarantee p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .price {
-            font-size: 3rem;
-            font-weight: 800;
-            margin: 30px 0 20px;
-        }
-
-        .price-subtext {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        /* Story Section */
-        .story {
-            padding: 80px 20px;
-            background: #f8f9fa;
-        }
-
-        .story-content {
-            max-width: 800px;
-            margin: 0 auto 40px;
-            font-size: 1.2rem;
-            line-height: 1.9;
-            color: #444;
-            text-align: center;
-        }
-
-        .story-content p {
-            margin-bottom: 20px;
-        }
-
-        .story-highlight {
-            font-weight: 700;
-            color: #d4b896;
-            font-size: 1.3rem;
-        }
-
-        /* Final CTA Section */
-        .final-cta {
-            padding: 80px 20px;
-            background: #fff;
-            text-align: center;
-        }
-
-        .final-cta h2 {
-            font-size: 2.5rem;
-            color: #1a0f0a;
-            margin-bottom: 30px;
-            font-weight: 800;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero .subheadline {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .vsl-placeholder {
-                padding: 100px 20px;
-            }
-
-            .vsl-placeholder h3 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+</style>
 </head>
+
 <body>
-    <!-- Fixed Corner Logo -->
-    <div class="corner-logo">
-        <img src="https://i.imgur.com/tlVAs3Q.png" alt="HP Logo">
+
+<div class="corner-logo">
+    <img src="https://i.imgur.com/tlVAs3Q.png" alt="Logo">
+</div>
+
+<section class="hero">
+    <div class="container">
+        <h1>Get Your First 10K Followers in 180 Days</h1>
+        <p>Build a personal brand without burning out or posting nonstop.</p>
+        <button class="cta-button">Apply Now</button>
     </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            
-            <h1>Get Your First 10K Followers in 180 Days Without Spending 8 Hours a Day Creating Content</h1>
-            
-            <p class="subheadline">Master the art of storytelling, build unshakeable confidence on camera, and create a loyal following that actually cares about YOU—not just your content</p>
-            
-            <p class="targeting">For aspiring creators ready to build their personal brand and unlock doors they never imagined possible</p>
-            
-            <button class="cta-button" onclick="openTypeform()">Apply Now</button>
-        </div>
-    </section>
+<section class="results">
+    <div class="container">
 
-    <!-- VSL Section -->
-    <section class="vsl-section">
-        <div class="container">
-            <div class="vsl-placeholder">
-                <h3>VSL COMING SOON</h3>
-            </div>
-            <button class="cta-button" onclick="openTypeform()">I'm Ready to Grow</button>
-        </div>
-    </section>
+        <h2 class="section-title">Current Client Results</h2>
+        <p class="section-subtitle">Consistent structure. Scales infinitely.</p>
 
-    <!-- Pain Points Section -->
-    <section class="pain-points">
-        <div class="container">
-            <h2 class="section-title">Does This Sound Like You?</h2>
-            <p class="section-subtitle">You're not alone. These are the exact struggles that keep most creators stuck at zero.</p>
-            
-            <div class="pain-grid">
-                <div class="pain-card">
-                    <h3>😰 Can't Write Hooks</h3>
-                    <p>You struggle to write hooks that actually stop the scroll and get people to watch your content</p>
-                </div>
-                
-                <div class="pain-card">
-                    <h3>📖 Lost in Your Story</h3>
-                    <p>You don't know how to tell your own story authentically without feeling fake or cringy</p>
-                </div>
-                
-                <div class="pain-card">
-                    <h3>🎥 No Camera Presence</h3>
-                    <p>You lack camera presence and constantly stumble over your words when recording</p>
-                </div>
-                
-                <div class="pain-card">
-                    <h3>💡 Out of Ideas</h3>
-                    <p>You're constantly running out of content ideas and don't have a system or series that works</p>
-                </div>
-                
-                <div class="pain-card">
-                    <h3>📉 Zero Engagement</h3>
-                    <p>You're posting but getting zero engagement, zero growth, and it feels like you're screaming into the void</p>
-                </div>
-                
-                <div class="pain-card">
-                    <h3>📝 Can't Script Videos</h3>
-                    <p>You don't know how to script your videos in a way that keeps people watching until the end</p>
-                </div>
-            </div>
-            
-            <div style="text-align: center;">
-                <button class="cta-button" onclick="openTypeform()">I Want to Fix This</button>
-            </div>
-        </div>
-    </section>
+        <div class="results-grid">
 
-    <!-- Results Section -->
-    <section class="results">
-        <div class="container">
-            <h2 class="section-title">Real Results from Real Creators</h2>
-            <p class="section-subtitle">These are just some of the creators I've helped go from stuck to unstoppable</p>
-            
-            <h3 style="text-align: center; font-size: 2rem; color: #1a0f0a; margin-bottom: 40px; font-weight: 700;">Current Client Results</h3>
-            
-            <div class="results-grid">
-                <div class="result-card">
-                    <div class="result-image">[Client Photo]</div>
-                    <div class="result-stat">40 → 2,000</div>
-                    <div class="result-name">Eric</div>
-                    <a href="https://instagram.com/ericwrld" target="_blank" style="color: #d4b896; text-decoration: none; font-weight: 600; margin-bottom: 10px; display: block;">@ericwrld</a>
-                    <p style="color: #666; margin-bottom: 10px;">Grew from 40 to 2,000 followers in just 1 month</p>
-                </div>
-                
-                <div class="result-card">
-                    <div class="result-image">[Client Photo]</div>
-                    <div class="result-stat">500 → 4,000</div>
-                    <div class="result-name">Jacqueline</div>
-                    <a href="https://instagram.com/jaqoea" target="_blank" style="color: #d4b896; text-decoration: none; font-weight: 600; margin-bottom: 10px; display: block;">@jaqoea</a>
-                    <p style="color: #666; margin-bottom: 10px;">Went from 500 to 4,000 followers in 1 month</p>
-                </div>
-                
-                <div class="result-card">
-                    <div class="result-image">[Client Photo]</div>
-                    <div class="result-stat">0 → 1,000</div>
-                    <div class="result-name">Milan</div>
-                    <a href="https://instagram.com/milanthecookie" target="_blank" style="color: #d4b896; text-decoration: none; font-weight: 600; margin-bottom: 10px; display: block;">@milanthecookie</a>
-                    <p style="color: #666; margin-bottom: 10px;">Launched and grew to 1,000 followers in 1 month</p>
-                </div>
+            <div class="result-card">
+                <div class="result-image">Photo</div>
+                <div class="result-stat">40 → 2,000</div>
+                <div class="result-name">Eric</div>
+                <a class="result-handle" href="https://instagram.com/ericwrld" target="_blank">@ericwrld</a>
+                <div class="result-testimonial placeholder">No video yet</div>
             </div>
-            
-            <h3 style="text-align: center; font-size: 2rem; color: #1a0f0a; margin: 60px 0 40px; font-weight: 700;">What Creators Are Saying</h3>
-            
-            <div class="results-grid">
-                    <div class="result-image">[Client Photo]</div>
-                    <div class="result-stat">43.6K Followers</div>
-                    <div class="result-name">Rohan</div>
-                    <a href="https://instagram.com/rohabits" target="_blank" style="color: #d4b896; text-decoration: none; font-weight: 600; margin-bottom: 10px; display: block;">@rohabits</a>
-                    <div class="result-testimonial">
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/Gh4lrDJsA8k" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
-                    </div>
-                </div>
-                
-                <div class="result-card">
-                    <div class="result-image">[Client Photo]</div>
-                    <div class="result-stat">6K Followers</div>
-                    <div class="result-name">Shean</div>
-                    <a href="https://instagram.com/sheancreates" target="_blank" style="color: #d4b896; text-decoration: none; font-weight: 600; margin-bottom: 10px; display: block;">@sheancreates</a>
-                    <div class="result-testimonial">
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/V2MyDG8yhbs" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
-                    </div>
-                </div>
-                
-                <div class="result-card">
-                    <div class="result-image">[Client Photo]</div>
-                    <div class="result-stat">24.6K Followers</div>
-                    <div class="result-name">Sebastian</div>
-                    <a href="https://instagram.com/seb.e.kho" target="_blank" style="color: #d4b896; text-decoration: none; font-weight: 600; margin-bottom: 10px; display: block;">@seb.e.kho</a>
-                    <div class="result-testimonial">
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/jFUyvJJJ0VY" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center;">
-                <button class="cta-button" onclick="openTypeform()">I Want Results Like This</button>
-            </div>
-        </div>
-    </section>
 
-    <!-- What You Get Section -->
-    <section class="what-you-get">
-        <div class="container">
-            <h2 class="section-title">Here's Everything You Get</h2>
-            <p class="section-subtitle">A complete system to transform you from unknown to unforgettable</p>
-            
-            <div class="deliverables-grid">
-                <div class="deliverable-card">
-                    <div class="deliverable-icon">📞</div>
-                    <h3>Weekly Group Calls</h3>
-                    <p>Live coaching sessions every week to keep you accountable and on track</p>
-                </div>
-                
-                <div class="deliverable-card">
-                    <div class="deliverable-icon">🎯</div>
-                    <h3>Monthly 1-on-1s</h3>
-                    <p>Personal check-ins to review your progress, content, and set strategic goals</p>
-                </div>
-                
-                <div class="deliverable-card">
-                    <div class="deliverable-icon">📚</div>
-                    <h3>Complete Course</h3>
-                    <p>Step-by-step curriculum covering hooks, storytelling, on-camera confidence, and content strategy</p>
-                </div>
-                
-                <div class="deliverable-card">
-                    <div class="deliverable-icon">💬</div>
-                    <h3>Private Community</h3>
-                    <p>24/7 access to ask questions, get feedback, and connect with other ambitious creators</p>
-                </div>
+            <div class="result-card">
+                <div class="result-image">Photo</div>
+                <div class="result-stat">500 → 4,000</div>
+                <div class="result-name">Jacqueline</div>
+                <a class="result-handle" href="https://instagram.com/jaqoea" target="_blank">@jaqoea</a>
+                <div class="result-testimonial placeholder">No video yet</div>
             </div>
-            
-            <div style="text-align: center;">
-                <button class="cta-button" onclick="openTypeform()">Get Started Today</button>
-            </div>
-        </div>
-    </section>
 
-    <!-- Guarantee Section -->
-    <section class="guarantee">
-        <div class="container">
-            <div class="guarantee-box">
-                <h2>🎯 The Guarantee</h2>
-                <p>Get your first 10,000 followers in 180 days or stay in the program until you do.</p>
-                <p>That's how confident I am in this system.</p>
-                <p>You either win, or you keep working with me for free until you win.</p>
+            <div class="result-card">
+                <div class="result-image">Photo</div>
+                <div class="result-stat">0 → 1,000</div>
+                <div class="result-name">Milan</div>
+                <a class="result-handle" href="https://instagram.com/milanthecookie" target="_blank">@milanthecookie</a>
+                <div class="result-testimonial placeholder">No video yet</div>
             </div>
-            
-            <div class="price">$4,000</div>
-            <p class="price-subtext">6 months of complete transformation (with the guarantee)</p>
-            
-            <button class="cta-button" onclick="openTypeform()">Claim Your Spot</button>
-        </div>
-    </section>
 
-    <!-- Story Section -->
-    <section class="story">
-        <div class="container">
-            <h2 class="section-title">My Story</h2>
-            
-            <div style="text-align: center; margin-bottom: 40px;">
-                <img src="https://i.postimg.cc/DZ3pLKTQ/henry-headshot.jpg" alt="Henry Pan" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 5px solid #d4b896; box-shadow: 0 5px 20px rgba(212, 184, 150, 0.3);">
-            </div>
-            
-            <div class="story-content">
-                <p>I got rejected from every single one of my dream colleges. I thought I was a failure.</p>
-                
-                <p>Then I discovered content creation and building a personal brand. It was the first thing I felt truly passionate about.</p>
-                
-                <p class="story-highlight">I grew from 0 to 30,000 followers in just 3 months.</p>
-                
-                <p>Now, I help aspiring and ambitious creators unlock their passion for content creation and grow their personal brands. I've been where you are, and I know exactly what it takes to break through.</p>
-            </div>
-            
-            <div style="text-align: center;">
-                <button class="cta-button" onclick="openTypeform()">Work With Me</button>
-            </div>
         </div>
-    </section>
 
-    <!-- Final CTA Section -->
-    <section class="final-cta">
-        <div class="container">
-            <h2>Ready to Build Your Creator Brand?</h2>
-            <p style="font-size: 1.2rem; color: #666; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                10,000 followers. A loyal community. Doors opening you never imagined. It all starts with one decision.
-            </p>
-            <button class="cta-button" onclick="openTypeform()">Apply Now</button>
-        </div>
-    </section>
+        <h2 class="section-title">What Creators Are Saying</h2>
 
-    <!-- Typeform Modal -->
-    <div id="typeform-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; padding: 20px;">
-        <div style="position: relative; width: 100%; height: 100%; max-width: 800px; margin: 0 auto;">
-            <button onclick="closeTypeform()" style="position: absolute; top: 10px; right: 10px; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 24px; cursor: pointer; z-index: 10000;">×</button>
-            <div data-tf-live="01KD9YPWGNRJ35GE1Y4BGWQ7Z0" style="width: 100%; height: 100%;"></div>
+        <div class="results-grid">
+
+            <div class="result-card">
+                <div class="result-image">Photo</div>
+                <div class="result-stat">43.6K Followers</div>
+                <div class="result-name">Rohan</div>
+                <a class="result-handle" href="https://instagram.com/rohabits" target="_blank">@rohabits</a>
+                <div class="result-testimonial">
+                    <iframe src="https://www.youtube.com/embed/Gh4lrDJsA8k" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="result-card">
+                <div class="result-image">Photo</div>
+                <div class="result-stat">6K Followers</div>
+                <div class="result-name">Shean</div>
+                <a class="result-handle" href="https://instagram.com/sheancreates" target="_blank">@sheancreates</a>
+                <div class="result-testimonial">
+                    <iframe src="https://www.youtube.com/embed/V2MyDG8yhbs" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="result-card">
+                <div class="result-image">Photo</div>
+                <div class="result-stat">24.6K Followers</div>
+                <div class="result-name">Sebastian</div>
+                <a class="result-handle" href="https://instagram.com/seb.e.kho" target="_blank">@seb.e.kho</a>
+                <div class="result-testimonial">
+                    <iframe src="https://www.youtube.com/embed/jFUyvJJJ0VY" allowfullscreen></iframe>
+                </div>
+            </div>
+
         </div>
+
     </div>
+</section>
 
-    <script src="//embed.typeform.com/next/embed.js"></script>
-    <script>
-        function openTypeform() {
-            document.getElementById('typeform-modal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeTypeform() {
-            document.getElementById('typeform-modal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal if clicking outside
-        document.getElementById('typeform-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeTypeform();
-            }
-        });
-    </script>
 </body>
 </html>
+```
