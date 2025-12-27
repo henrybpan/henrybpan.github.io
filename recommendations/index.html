@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recommendations - Henry Pan</title>
+
+<link rel="icon" type="image/png" href="https://i.imgur.com/tlVAs3Q.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/tlVAs3Q.png">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #333;
+    background: #fff;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* ---------- FIXED LOGO ---------- */
+
+.corner-logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 66px;
+    height: 66px;
+    padding: 11px;
+    background: rgba(26, 15, 10, 0.9);
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: block;
+    text-decoration: none;
+}
+
+.corner-logo:hover {
+    transform: scale(1.05);
+}
+
+.corner-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ---------- HEADER ---------- */
+
+.header {
+    padding: 120px 20px 60px;
+    text-align: center;
+    background: linear-gradient(135deg, #1a0f0a, #2d1810);
+    color: #fff;
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #d4b896;
+    margin-bottom: 15px;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.85;
+}
+
+/* ---------- CONTENT ---------- */
+
+.content {
+    padding: 80px 20px;
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 50px;
+    margin-bottom: 40px;
+}
+
+.recommendation-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendation-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 3px solid #d4b896;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.recommendation-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recommendation-item h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a0f0a;
+    margin-bottom: 15px;
+}
+
+.recommendation-item .description {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer {
+    padding: 40px 20px;
+    background: #1a0f0a;
+    color: #d4b896;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Fixed Logo -->
+<a href="/home" class="corner-logo">
+    <img src="https://i.imgur.com/tlVAs3Q.png" alt="HP Logo">
+</a>
+
+<!-- Header -->
+<section class="header">
+    <div class="container">
+        <h1>Recommendations</h1>
+        <p>Books, films, music, and things worth your time</p>
+    </div>
+</section>
+
+<!-- Content -->
+<section class="content">
+    <div class="container">
+        
+        <div class="recommendations-grid">
+            
+            <!-- EXAMPLE: Book -->
+            <article class="recommendation-item">
+                <div class="recommendation-image">
+                    [Book Cover]
+                    <!-- <img src="your-image-url.jpg" alt="Book Title"> -->
+                </div>
+                <h2>Atomic Habits</h2>
+                <p class="description">This book changed how I think about building systems. Clear breaks down the science of habit formation in a way that's actually actionable. If you want to make real change, start here.</p>
+            </article>
+
+            <!-- EXAMPLE: Film -->
+            <article class="recommendation-item">
+                <div class="recommendation-image">
+                    [Movie Poster]
+                    <!-- <img src="your-image-url.jpg" alt="Film Title"> -->
+                </div>
+                <h2>Everything Everywhere All at Once</h2>
+                <p class="description">A masterpiece about identity, family, and finding meaning in chaos. Made me think differently about the choices we make and the lives we don't live.</p>
+            </article>
+
+            <!-- EXAMPLE: Music/Album -->
+            <article class="recommendation-item">
+                <div class="recommendation-image">
+                    [Album Cover]
+                    <!-- <img src="your-image-url.jpg" alt="Album Title"> -->
+                </div>
+                <h2>Blonde - Frank Ocean</h2>
+                <p class="description">This album hits different every time. It's raw, vulnerable, and beautifully crafted. Perfect for late-night drives or when you need to feel something.</p>
+            </article>
+
+            <!-- EXAMPLE: Podcast/Tool -->
+            <article class="recommendation-item">
+                <div class="recommendation-image">
+                    [Podcast Art]
+                    <!-- <img src="your-image-url.jpg" alt="Podcast Title"> -->
+                </div>
+                <h2>Notion</h2>
+                <p class="description">The tool that finally made me organized. It's flexible enough to build whatever system you need—whether that's a content calendar, project tracker, or personal wiki.</p>
+            </article>
+
+        </div>
+        
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>© 2025 Henry Pan. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
