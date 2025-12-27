@@ -59,6 +59,14 @@ body {
     border: none;
     cursor: pointer;
     text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 184, 150, 0.4);
+    background: #e5c9a7;
 }
 
 /* ---------- FIXED LOGO ---------- */
@@ -73,6 +81,14 @@ body {
     background: rgba(26, 15, 10, 0.9);
     border-radius: 10px;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.corner-logo:hover {
+    transform: scale(1.05);
 }
 
 .corner-logo img {
@@ -93,14 +109,83 @@ body {
 .hero h1 {
     font-size: 3rem;
     font-weight: 800;
+    line-height: 1.2;
     max-width: 900px;
     margin: 0 auto 20px;
 }
 
-.hero p {
+.hero .subheadline {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    opacity: 0.95;
+    font-weight: 400;
     max-width: 800px;
-    margin: 0 auto 20px;
-    font-size: 1.2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero .targeting {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+/* ---------- VSL SECTION ---------- */
+
+.vsl-section {
+    padding: 80px 20px;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.vsl-placeholder {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    background: #e9ecef;
+    padding: 150px 40px;
+    border-radius: 10px;
+    border: 3px dashed #d4b896;
+}
+
+.vsl-placeholder h3 {
+    font-size: 2.5rem;
+    color: #1a0f0a;
+    font-weight: 700;
+}
+
+/* ---------- PAIN POINTS ---------- */
+
+.pain-points {
+    padding: 80px 20px;
+    background: #fff;
+}
+
+.pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto 50px;
+}
+
+.pain-card {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    border-left: 5px solid #d4b896;
+}
+
+.pain-card h3 {
+    font-size: 1.3rem;
+    color: #1a0f0a;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.pain-card p {
+    color: #555;
+    font-size: 1.05rem;
 }
 
 /* ---------- RESULTS / TESTIMONIALS ---------- */
@@ -127,19 +212,26 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(212, 184, 150, 0.3);
 }
 
 .result-image {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: #eee;
+    background: #f8f9fa;
     margin-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.85rem;
     color: #666;
+    border: 3px solid #d4b896;
 }
 
 .result-stat {
@@ -160,6 +252,7 @@ body {
     font-weight: 600;
     text-decoration: none;
     margin-bottom: 10px;
+    display: block;
 }
 
 /* ---------- VIDEO / PLACEHOLDER ---------- */
@@ -195,64 +288,147 @@ body {
     .hero h1 {
         font-size: 2rem;
     }
+    
+    .hero .subheadline {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .vsl-placeholder {
+        padding: 100px 20px;
+    }
+    
+    .vsl-placeholder h3 {
+        font-size: 1.8rem;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="corner-logo">
+<a href="/home" class="corner-logo" style="text-decoration: none;">
     <img src="https://i.imgur.com/tlVAs3Q.png" alt="Logo">
-</div>
+</a>
 
+<!-- Hero Section -->
 <section class="hero">
     <div class="container">
-        <h1>Get Your First 10K Followers in 180 Days</h1>
-        <p>Build a personal brand without burning out or posting nonstop.</p>
-        <button class="cta-button">Apply Now</button>
+        <h1>Get Your First 10K Followers in 180 Days Without Spending 8 Hours a Day Creating Content</h1>
+        
+        <p class="subheadline">Master the art of storytelling, build unshakeable confidence on camera, and create a loyal following that actually cares about YOU—not just your content</p>
+        
+        <p class="targeting">For aspiring creators ready to build their personal brand and unlock doors they never imagined possible</p>
+        
+        <button class="cta-button" onclick="openTypeform()">Apply Now</button>
     </div>
 </section>
 
+<!-- VSL Section -->
+<section class="vsl-section">
+    <div class="container">
+        <div class="vsl-placeholder">
+            <h3>VSL COMING SOON</h3>
+        </div>
+        <button class="cta-button" onclick="openTypeform()">I'm Ready to Grow</button>
+    </div>
+</section>
+
+<!-- Pain Points Section -->
+<section class="pain-points">
+    <div class="container">
+        <h2 class="section-title">Does This Sound Like You?</h2>
+        <p class="section-subtitle">You're not alone. These are the exact struggles that keep most creators stuck at zero.</p>
+        
+        <div class="pain-grid">
+            <div class="pain-card">
+                <h3>😰 Can't Write Hooks</h3>
+                <p>You struggle to write hooks that actually stop the scroll and get people to watch your content</p>
+            </div>
+            
+            <div class="pain-card">
+                <h3>📖 Lost in Your Story</h3>
+                <p>You don't know how to tell your own story authentically without feeling fake or cringy</p>
+            </div>
+            
+            <div class="pain-card">
+                <h3>🎥 No Camera Presence</h3>
+                <p>You lack camera presence and constantly stumble over your words when recording</p>
+            </div>
+            
+            <div class="pain-card">
+                <h3>💡 Out of Ideas</h3>
+                <p>You're constantly running out of content ideas and don't have a system or series that works</p>
+            </div>
+            
+            <div class="pain-card">
+                <h3>📉 Zero Engagement</h3>
+                <p>You're posting but getting zero engagement, zero growth, and it feels like you're screaming into the void</p>
+            </div>
+            
+            <div class="pain-card">
+                <h3>📝 Can't Script Videos</h3>
+                <p>You don't know how to script your videos in a way that keeps people watching until the end</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <button class="cta-button" onclick="openTypeform()">I Want to Fix This</button>
+        </div>
+    </div>
+</section>
+
+<!-- Results Section -->
 <section class="results">
     <div class="container">
+        <h2 class="section-title">Real Results from Real Creators</h2>
+        <p class="section-subtitle">These are just some of the creators I've helped go from stuck to unstoppable</p>
 
-        <h2 class="section-title">Current Client Results</h2>
-        <p class="section-subtitle">Consistent structure. Scales infinitely.</p>
+        <h3 style="text-align: center; font-size: 2rem; color: #1a0f0a; margin-bottom: 40px; font-weight: 700;">Current Client Results</h3>
 
         <div class="results-grid">
-
             <div class="result-card">
-                <div class="result-image">Photo</div>
+                <div class="result-image">[Client Photo]</div>
                 <div class="result-stat">40 → 2,000</div>
                 <div class="result-name">Eric</div>
                 <a class="result-handle" href="https://instagram.com/ericwrld" target="_blank">@ericwrld</a>
-                <div class="result-testimonial placeholder">No video yet</div>
+                <p style="color: #666; margin-bottom: 10px;">Grew from 40 to 2,000 followers in just 1 month</p>
             </div>
 
             <div class="result-card">
-                <div class="result-image">Photo</div>
+                <div class="result-image">[Client Photo]</div>
                 <div class="result-stat">500 → 4,000</div>
                 <div class="result-name">Jacqueline</div>
                 <a class="result-handle" href="https://instagram.com/jaqoea" target="_blank">@jaqoea</a>
-                <div class="result-testimonial placeholder">No video yet</div>
+                <p style="color: #666; margin-bottom: 10px;">Went from 500 to 4,000 followers in 1 month</p>
             </div>
 
             <div class="result-card">
-                <div class="result-image">Photo</div>
+                <div class="result-image">[Client Photo]</div>
                 <div class="result-stat">0 → 1,000</div>
                 <div class="result-name">Milan</div>
                 <a class="result-handle" href="https://instagram.com/milanthecookie" target="_blank">@milanthecookie</a>
-                <div class="result-testimonial placeholder">No video yet</div>
+                <p style="color: #666; margin-bottom: 10px;">Launched and grew to 1,000 followers in 1 month</p>
             </div>
-
         </div>
 
-        <h2 class="section-title">What Creators Are Saying</h2>
+        <div style="text-align: center; margin: 60px 0 50px;">
+            <button class="cta-button" onclick="openTypeform()">I Want Results Like This</button>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="results">
+    <div class="container">
+        <h3 style="text-align: center; font-size: 2rem; color: #1a0f0a; margin-bottom: 40px; font-weight: 700;">What Creators Are Saying</h3>
 
         <div class="results-grid">
-
             <div class="result-card">
-                <div class="result-image">Photo</div>
+                <div class="result-image">[Client Photo]</div>
                 <div class="result-stat">43.6K Followers</div>
                 <div class="result-name">Rohan</div>
                 <a class="result-handle" href="https://instagram.com/rohabits" target="_blank">@rohabits</a>
@@ -262,7 +438,7 @@ body {
             </div>
 
             <div class="result-card">
-                <div class="result-image">Photo</div>
+                <div class="result-image">[Client Photo]</div>
                 <div class="result-stat">6K Followers</div>
                 <div class="result-name">Shean</div>
                 <a class="result-handle" href="https://instagram.com/sheancreates" target="_blank">@sheancreates</a>
@@ -272,7 +448,7 @@ body {
             </div>
 
             <div class="result-card">
-                <div class="result-image">Photo</div>
+                <div class="result-image">[Client Photo]</div>
                 <div class="result-stat">24.6K Followers</div>
                 <div class="result-name">Sebastian</div>
                 <a class="result-handle" href="https://instagram.com/seb.e.kho" target="_blank">@seb.e.kho</a>
@@ -280,11 +456,41 @@ body {
                     <iframe src="https://www.youtube.com/embed/jFUyvJJJ0VY" allowfullscreen></iframe>
                 </div>
             </div>
-
         </div>
 
+        <div style="text-align: center;">
+            <button class="cta-button" onclick="openTypeform()">Work With Me</button>
+        </div>
     </div>
 </section>
+
+<!-- Typeform Modal -->
+<div id="typeform-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; padding: 20px;">
+    <div style="position: relative; width: 100%; height: 100%; max-width: 800px; margin: 0 auto;">
+        <button onclick="closeTypeform()" style="position: absolute; top: 10px; right: 10px; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 24px; cursor: pointer; z-index: 10000;">×</button>
+        <div data-tf-live="01KD9YPWGNRJ35GE1Y4BGWQ7Z0" style="width: 100%; height: 100%;"></div>
+    </div>
+</div>
+
+<script src="//embed.typeform.com/next/embed.js"></script>
+<script>
+    function openTypeform() {
+        document.getElementById('typeform-modal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeTypeform() {
+        document.getElementById('typeform-modal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal if clicking outside
+    document.getElementById('typeform-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeTypeform();
+        }
+    });
+</script>
 
 </body>
 </html>
