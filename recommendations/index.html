@@ -7,6 +7,10 @@
 
 <link rel="icon" type="image/png" href="https://i.imgur.com/tlVAs3Q.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/tlVAs3Q.png">
+<!-- Google Fonts: TikTok Sans -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -16,7 +20,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-family: 'TikTok Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: #333;
     background: #fff;
     line-height: 1.6;
@@ -76,6 +80,7 @@ body {
 .header p {
     font-size: 1.2rem;
     opacity: 0.85;
+    font-style: italic;
 }
 
 /* ---------- CONTENT ---------- */
@@ -85,30 +90,31 @@ body {
 }
 
 .recommendations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     margin-bottom: 40px;
 }
 
 .recommendation-item {
     display: flex;
-    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start;
 }
 
 .recommendation-image {
-    width: 100%;
-    aspect-ratio: 1 / 1;
+    width: 150px;
+    height: 150px;
+    min-width: 150px;
     background: #f0f0f0;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    border-radius: 8px;
     overflow: hidden;
-    border: 3px solid #d4b896;
+    border: 2px solid #d4b896;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #999;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .recommendation-image img {
@@ -117,11 +123,15 @@ body {
     object-fit: cover;
 }
 
+.recommendation-content {
+    flex: 1;
+}
+
 .recommendation-item h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: #1a0f0a;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .recommendation-item .description {
@@ -151,9 +161,13 @@ body {
         font-size: 2.5rem;
     }
     
-    .recommendations-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+    .recommendation-item {
+        flex-direction: column;
+    }
+    
+    .recommendation-image {
+        width: 100%;
+        height: 150px;
     }
 }
 </style>
@@ -170,7 +184,7 @@ body {
 <section class="header">
     <div class="container">
         <h1>Recommendations</h1>
-        <p>Books, films, music, and things worth your time</p>
+        <p>"Let me put you on twin."</p>
     </div>
 </section>
 
@@ -180,44 +194,48 @@ body {
         
         <div class="recommendations-grid">
             
-            <!-- EXAMPLE: Book -->
+            <!-- The Founders Podcast -->
             <article class="recommendation-item">
                 <div class="recommendation-image">
-                    [Book Cover]
-                    <!-- <img src="your-image-url.jpg" alt="Book Title"> -->
+                    <img src="data:image/png;base64,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" alt="The Founders Podcast">
                 </div>
-                <h2>Atomic Habits</h2>
-                <p class="description">This book changed how I think about building systems. Clear breaks down the science of habit formation in a way that's actually actionable. If you want to make real change, start here.</p>
+                <div class="recommendation-content">
+                    <h2>The Founders Podcast</h2>
+                    <p class="description">If I could only listen to one podcast for the rest of my life it would be this. Micheal Dell, Ken Griffin, and Tiger Woods are among my favorite episodes. More thoughts to come.</p>
+                </div>
             </article>
 
-            <!-- EXAMPLE: Film -->
+            <!-- High Agency by George Mack -->
             <article class="recommendation-item">
                 <div class="recommendation-image">
-                    [Movie Poster]
-                    <!-- <img src="your-image-url.jpg" alt="Film Title"> -->
+                    <img src="https://pbs.twimg.com/profile_images/1304132718029139969/4ki_Rww2_400x400.jpg" alt="High Agency">
                 </div>
-                <h2>Everything Everywhere All at Once</h2>
-                <p class="description">A masterpiece about identity, family, and finding meaning in chaos. Made me think differently about the choices we make and the lives we don't live.</p>
+                <div class="recommendation-content">
+                    <h2>High Agency by George Mack</h2>
+                    <p class="description">This essay changed my life. The concept seems obvious, and is, but it was something that had never been fully articulated to me as a 18 year old. This essay was one of the many factors that ignited my journey in content creation and my overall pursuit of success.</p>
+                </div>
             </article>
 
-            <!-- EXAMPLE: Music/Album -->
+            <!-- Feathered Indians by Tyler Childers -->
             <article class="recommendation-item">
                 <div class="recommendation-image">
-                    [Album Cover]
-                    <!-- <img src="your-image-url.jpg" alt="Album Title"> -->
+                    <img src="https://i.ytimg.com/vi/PCTS3zSos0o/maxresdefault.jpg" alt="Feathered Indians">
                 </div>
-                <h2>Blonde - Frank Ocean</h2>
-                <p class="description">This album hits different every time. It's raw, vulnerable, and beautifully crafted. Perfect for late-night drives or when you need to feel something.</p>
+                <div class="recommendation-content">
+                    <h2>Feathered Indians by Tyler Childers</h2>
+                    <p class="description">While you might have never looked over West Virginia, smoking Spirits on the roof, we will all experience a time where our partner will disapprove of our habits. Hearing Childers's response to his partner's dissaproval makes me imagine what type of person I'd have to meet for me to leave certain things behind.</p>
+                </div>
             </article>
 
-            <!-- EXAMPLE: Podcast/Tool -->
+            <!-- The Lessons of History -->
             <article class="recommendation-item">
                 <div class="recommendation-image">
-                    [Podcast Art]
-                    <!-- <img src="your-image-url.jpg" alt="Podcast Title"> -->
+                    <img src="https://m.media-amazon.com/images/I/91Tv1siYW1L._AC_UF894,1000_QL80_.jpg" alt="The Lessons of History">
                 </div>
-                <h2>Notion</h2>
-                <p class="description">The tool that finally made me organized. It's flexible enough to build whatever system you need—whether that's a content calendar, project tracker, or personal wiki.</p>
+                <div class="recommendation-content">
+                    <h2>The Lessons of History by Will and Ariel Durant</h2>
+                    <p class="description">Thoughts coming soon.</p>
+                </div>
             </article>
 
         </div>
