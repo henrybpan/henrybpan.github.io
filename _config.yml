@@ -1,0 +1,28 @@
+# Jekyll configuration for GitHub Pages
+
+# Site settings
+title: Henry Pan
+description: Different outcomes require different actions.
+url: "https://henrybpan.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+theme: null
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Permalinks
+permalink: pretty
+
+# Collections (if needed in the future)
+# collections:
+#   writings:
+#     output: true
+#     permalink: /writings/:name
