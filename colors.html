@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>henrybpan.com Color Palette</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+            color: #000;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            font-size: 24px;
+            margin: 50px 0 25px 0;
+            color: #000;
+            font-weight: 600;
+        }
+        
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .color-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        
+        .color-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .color-swatch {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .color-info {
+            padding: 20px;
+            background: #fafafa;
+        }
+        
+        .color-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #000;
+        }
+        
+        .color-hex {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .color-rgb {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .usage-section {
+            margin-top: 50px;
+        }
+        
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 25px;
+        }
+        
+        .usage-card {
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .usage-title {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+        
+        .usage-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .usage-list li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 15px;
+        }
+        
+        .usage-list li:before {
+            content: "→ ";
+            color: #C1C8D4;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .example-section {
+            margin-top: 50px;
+            padding: 40px;
+            background: #000;
+            border-radius: 12px;
+            color: white;
+        }
+        
+        .example-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .example-title {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .example-button {
+            background: #C1C8D4;
+            color: #000;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .example-button:hover {
+            background: #D4A574;
+            transform: scale(1.05);
+        }
+        
+        .example-content {
+            color: #f5f5f5;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        .accent-text {
+            color: #C1C8D4;
+            font-weight: 600;
+        }
+        
+        .gold-text {
+            color: #D4A574;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>henrybpan.com Color Palette</h1>
+        <p class="subtitle">Inspired by Caspar David Friedrich's "Wanderer Above the Sea of Fog"</p>
+        
+        <h2>Primary Colors</h2>
+        <div class="palette-grid">
+            <div class="color-card">
+                <div class="color-swatch" style="background: #FFFFFF; color: #000; border: 1px solid #e0e0e0;">
+                    Pure White
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Pure White</div>
+                    <div class="color-hex">#FFFFFF</div>
+                    <div class="color-rgb">RGB(255, 255, 255)</div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #000000; color: #fff;">
+                    Pure Black
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Pure Black</div>
+                    <div class="color-hex">#000000</div>
+                    <div class="color-rgb">RGB(0, 0, 0)</div>
+                </div>
+            </div>
+        </div>
+        
+        <h2>Accent Colors</h2>
+        <div class="palette-grid">
+            <div class="color-card">
+                <div class="color-swatch" style="background: #C1C8D4; color: #000;">
+                    Misty Blue
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Misty Blue</div>
+                    <div class="color-hex">#C1C8D4</div>
+                    <div class="color-rgb">RGB(193, 200, 212)</div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #D4A574; color: #000;">
+                    Antique Gold
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Antique Gold</div>
+                    <div class="color-hex">#D4A574</div>
+                    <div class="color-rgb">RGB(212, 165, 116)</div>
+                </div>
+            </div>
+        </div>
+        
+        <h2>Supporting Shades (Optional)</h2>
+        <div class="palette-grid">
+            <div class="color-card">
+                <div class="color-swatch" style="background: #F5F6F8; color: #000;">
+                    Light Gray
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Light Gray</div>
+                    <div class="color-hex">#F5F6F8</div>
+                    <div class="color-rgb">RGB(245, 246, 248)</div>
+                </div>
+            </div>
+            
+            <div class="color-card">
+                <div class="color-swatch" style="background: #2C2C2C; color: #fff;">
+                    Charcoal
+                </div>
+                <div class="color-info">
+                    <div class="color-name">Charcoal</div>
+                    <div class="color-hex">#2C2C2C</div>
+                    <div class="color-rgb">RGB(44, 44, 44)</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="usage-section">
+            <h2>Usage Guidelines</h2>
+            <div class="usage-grid">
+                <div class="usage-card">
+                    <div class="usage-title">Misty Blue (#C1C8D4)</div>
+                    <ul class="usage-list">
+                        <li>Primary CTA buttons</li>
+                        <li>Links and interactive elements</li>
+                        <li>Section backgrounds</li>
+                        <li>Icon highlights</li>
+                        <li>Hover states</li>
+                    </ul>
+                </div>
+                
+                <div class="usage-card">
+                    <div class="usage-title">Antique Gold (#D4A574)</div>
+                    <ul class="usage-list">
+                        <li>Secondary accents</li>
+                        <li>Premium features highlight</li>
+                        <li>Important badges/tags</li>
+                        <li>Testimonial accents</li>
+                        <li>Active states</li>
+                    </ul>
+                </div>
+                
+                <div class="usage-card">
+                    <div class="usage-title">White & Black</div>
+                    <ul class="usage-list">
+                        <li>Primary text (black)</li>
+                        <li>Main backgrounds (white)</li>
+                        <li>High contrast sections</li>
+                        <li>Navigation elements</li>
+                        <li>Typography hierarchy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="example-section">
+            <div class="example-header">
+                <div class="example-title">Example Section</div>
+                <button class="example-button">Get Started</button>
+            </div>
+            <div class="example-content">
+                <p>This demonstrates how your palette works together. The <span class="accent-text">misty blue</span> creates a calm, sophisticated atmosphere while the <span class="gold-text">antique gold</span> adds warmth and premium feel. The combination evokes the contemplative and elevated mood of the Friedrich painting.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
