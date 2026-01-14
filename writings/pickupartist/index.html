@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pick up artist - Henry Pan</title>
+    <link rel="icon" type="image/png" href="https://imgur.com/a/p3dNYYB">
+    <link rel="apple-touch-icon" href="https://imgur.com/a/p3dNYYB">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --off-white: #fafaf8;
+            --gray: #666;
+            --accent: #d4af37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        ::selection {
+            background: var(--accent);
+            color: var(--off-white);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 248, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        
+        .logo-section img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            font-size: 0.95rem;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Content */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            min-height: 70vh;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--black);
+        }
+        
+        .content h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        
+        .date {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+        }
+        
+        .poem-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: var(--black);
+            white-space: pre-line;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--off-white);
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-left h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .footer-left a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-left a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-right {
+            display: flex;
+            gap: 4rem;
+            justify-content: flex-end;
+        }
+        
+        .footer-column h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-column a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+        }
+        
+        .footer-bottom-left {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .footer-bottom-left a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .footer-bottom-right {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-right {
+                flex-direction: column;
+                gap: 2rem;
+                justify-content: flex-start;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo-section">
+                <img src="https://imgur.com/a/p3dNYYB" alt="HP Logo">
+                <span class="logo-text">HENRYBPAN</span>
+            </a>
+            
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="/about">About</a>
+                    <a href="/writings">Writings</a>
+                    <a href="/coaching">Coaching</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <section class="content">
+        <a href="/writings" class="back-link">← Back to Writings</a>
+        
+        <h1>pick up artist</h1>
+        <p class="date">December 15, 2025</p>
+        
+        <div class="poem-text">And when you look up at me and say
+<i>I hope you aren't just saying this to get in my pants</i>
+I scramble to respond with
+<i>whaaat? nooo ofcoursenotiwouldneverdothat</i>
+But what I really mean is:
+I would never do that because I'd much rather sit
+with you up high on rooftops overlooking
+the snow flittering down on people below.
+I'd much rather read
+quietly in your bedroom
+and listen to the wonderful silence
+sometimes interrupted
+by the turning of a page or
+maybe a tiny gasp of shock from the twist.
+I'd much rather slide
+this poem
+over to you while we
+sit side by side studying sheepishly
+looking at your eyes as they weave left to right over the lines
+silently hoping for a squint of joy.
+I'd much rather hold
+your hand while we walk on the street at night
+fingers frostbitten from winter
+because we refuse to wear gloves lest
+we forget what it's like to feel each others touch.
+I'd much rather share
+a pair of headphones with you
+the wired ones you bought because you were tired of losing the others
+I'd much rather listen
+to whatever new music you found with those headphones
+jam-packed shoulder to shoulder on the subway
+with one bud in your ear and the other in mine
+and nothing but the wire running down the middle between us
+I'd much rather drift asleep on your shoulder
+as we watch a movie because
+we had been talking about our dreams for hours
+and showing my soul makes me drowsy
+but I would never do that because
+you might think I'm trying to get into your pants</div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-left">
+                    <h3>Email</h3>
+                    <a href="mailto:henrypaninquries@gmail.com">henrypaninquries@gmail.com</a>
+                </div>
+                
+                <div class="footer-right">
+                    <div class="footer-column">
+                        <h3>Social</h3>
+                        <ul>
+                            <li><a href="https://instagram.com/henrybpan" target="_blank">Instagram</a></li>
+                            <li><a href="https://tiktok.com/@henrybpan" target="_blank">TikTok</a></li>
+                            <li><a href="https://linkedin.com/in/henrybpan" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://x.com/henrypanonx" target="_blank">X</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Sections</h3>
+                        <ul>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/writings">Writings</a></li>
+                            <li><a href="/recommendations">Recommendations</a></li>
+                            <li><a href="/coaching">Coaching</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>© 2025 Henry Pan</p>
+                    <p style="margin-top: 0.5rem;"><a href="/coaching">Want to work together? →</a></p>
+                </div>
+                <div class="footer-bottom-right">
+                    <p>Currently in: Charlottesville, VA</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
