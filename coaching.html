@@ -15,6 +15,15 @@ title: Get Your First 10K Followers in 180 Days
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap" rel="stylesheet">
 <style>
+:root {
+    --misty-blue: #C1C8D4;
+    --antique-gold: #D4A574;
+    --pure-white: #FFFFFF;
+    --pure-black: #000000;
+    --light-gray: #F5F6F8;
+    --charcoal: #2C2C2C;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -23,8 +32,8 @@ title: Get Your First 10K Followers in 180 Days
 
 body {
     font-family: Tiktok Sans, sans-serif;
-    color: #333;
-    background: #fff;
+    color: var(--pure-black);
+    background: var(--pure-white);
     line-height: 1.6;
 }
 
@@ -40,14 +49,14 @@ body {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 800;
-    color: #1a0f0a;
+    color: var(--pure-black);
     margin-bottom: 20px;
 }
 
 .section-subtitle {
     text-align: center;
     font-size: 1.2rem;
-    color: #666;
+    color: var(--charcoal);
     margin-bottom: 50px;
     max-width: 700px;
     margin-left: auto;
@@ -56,8 +65,8 @@ body {
 
 .cta-button {
     display: inline-block;
-    background: #d4b896;
-    color: #1a0f0a;
+    background: var(--misty-blue);
+    color: var(--pure-white);
     padding: 18px 50px;
     font-size: 1.2rem;
     font-weight: 700;
@@ -71,8 +80,8 @@ body {
 
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(212, 184, 150, 0.4);
-    background: #e5c9a7;
+    box-shadow: 0 6px 20px rgba(193, 200, 212, 0.4);
+    background: #adb5c5;
 }
 
 /* ---------- FIXED LOGO ---------- */
@@ -84,7 +93,7 @@ body {
     width: 66px;
     height: 66px;
     padding: 11px;
-    background: rgba(26, 15, 10, 0.9);
+    background: rgba(44, 44, 44, 0.9);
     border-radius: 10px;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
@@ -106,8 +115,8 @@ body {
 /* ---------- HERO ---------- */
 
 .hero {
-    background: linear-gradient(135deg, #1a0f0a, #2d1810);
-    color: #fff;
+    background: var(--charcoal);
+    color: var(--pure-white);
     text-align: center;
     padding: 90px 20px 70px;
 }
@@ -141,22 +150,22 @@ body {
 
 .vsl-section {
     padding: 80px 20px;
-    background: #f8f9fa;
+    background: var(--light-gray);
     text-align: center;
 }
 
 .vsl-placeholder {
     max-width: 900px;
     margin: 0 auto 40px;
-    background: #e9ecef;
+    background: var(--pure-white);
     padding: 150px 40px;
     border-radius: 10px;
-    border: 3px dashed #d4b896;
+    border: 3px dashed var(--antique-gold);
 }
 
 .vsl-placeholder h3 {
     font-size: 2.5rem;
-    color: #1a0f0a;
+    color: var(--pure-black);
     font-weight: 700;
 }
 
@@ -164,7 +173,7 @@ body {
 
 .pain-points {
     padding: 80px 20px;
-    background: #fff;
+    background: var(--pure-white);
 }
 
 .pain-grid {
@@ -176,21 +185,21 @@ body {
 }
 
 .pain-card {
-    background: #f8f9fa;
+    background: var(--light-gray);
     padding: 30px;
     border-radius: 10px;
-    border-left: 5px solid #d4b896;
+    border-left: 5px solid var(--antique-gold);
 }
 
 .pain-card h3 {
     font-size: 1.3rem;
-    color: #1a0f0a;
+    color: var(--pure-black);
     margin-bottom: 10px;
     font-weight: 700;
 }
 
 .pain-card p {
-    color: #555;
+    color: var(--charcoal);
     font-size: 1.05rem;
 }
 
@@ -198,7 +207,7 @@ body {
 
 .results {
     padding: 80px 20px;
-    background: #f8f9fa;
+    background: var(--light-gray);
 }
 
 .results-grid {
@@ -210,7 +219,7 @@ body {
 }
 
 .result-card {
-    background: #fff;
+    background: var(--pure-white);
     padding: 35px 25px;
     border-radius: 15px;
     text-align: center;
@@ -223,28 +232,28 @@ body {
 
 .result-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(212, 184, 150, 0.3);
+    box-shadow: 0 8px 30px rgba(193, 200, 212, 0.3);
 }
 
 .result-image {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: #f8f9fa;
+    background: var(--light-gray);
     margin-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.85rem;
-    color: #666;
-    border: 3px solid #d4b896;
+    color: var(--charcoal);
+    border: 3px solid var(--antique-gold);
 }
 
 .result-stat {
     font-size: 2rem;
     font-weight: 800;
     margin-bottom: 5px;
-    color: #1a0f0a;
+    color: var(--pure-black);
 }
 
 .result-name {
@@ -254,7 +263,7 @@ body {
 }
 
 .result-handle {
-    color: #d4b896;
+    color: var(--antique-gold);
     font-weight: 600;
     text-decoration: none;
     margin-bottom: 10px;
@@ -283,9 +292,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #777;
+    color: var(--charcoal);
     font-size: 0.9rem;
-    background: #f1f1f1;
+    background: var(--light-gray);
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -391,7 +400,7 @@ body {
         <h2 class="section-title">Real Results from Real Creators</h2>
         <p class="section-subtitle">These are just some of the creators I've helped go from stuck to unstoppable</p>
 
-        <h3 style="text-align: center; font-size: 2rem; color: #1a0f0a; margin-bottom: 40px; font-weight: 700;">Current Client Results</h3>
+        <h3 style="text-align: center; font-size: 2rem; color: var(--pure-black); margin-bottom: 40px; font-weight: 700;">Current Client Results</h3>
 
         <div class="results-grid">
             <div class="result-card">
@@ -399,7 +408,7 @@ body {
                 <div class="result-stat">40 → 2,000</div>
                 <div class="result-name">Eric</div>
                 <a class="result-handle" href="https://instagram.com/ericwrld" target="_blank">@ericwrld</a>
-                <p style="color: #666; margin-bottom: 10px;">Grew from 40 to 2,000 followers in just 1 month</p>
+                <p style="color: var(--charcoal); margin-bottom: 10px;">Grew from 40 to 2,000 followers in just 1 month</p>
             </div>
 
             <div class="result-card">
@@ -407,7 +416,7 @@ body {
                 <div class="result-stat">500 → 4,000</div>
                 <div class="result-name">Jacqueline</div>
                 <a class="result-handle" href="https://instagram.com/jaqoea" target="_blank">@jaqoea</a>
-                <p style="color: #666; margin-bottom: 10px;">Went from 500 to 4,000 followers in 1 month</p>
+                <p style="color: var(--charcoal); margin-bottom: 10px;">Went from 500 to 4,000 followers in 1 month</p>
             </div>
 
             <div class="result-card">
@@ -415,7 +424,7 @@ body {
                 <div class="result-stat">0 → 1,000</div>
                 <div class="result-name">Milan</div>
                 <a class="result-handle" href="https://instagram.com/milanthecookie" target="_blank">@milanthecookie</a>
-                <p style="color: #666; margin-bottom: 10px;">Launched and grew to 1,000 followers in 1 month</p>
+                <p style="color: var(--charcoal); margin-bottom: 10px;">Launched and grew to 1,000 followers in 1 month</p>
             </div>
         </div>
 
@@ -428,7 +437,7 @@ body {
 <!-- Testimonials Section -->
 <section class="results">
     <div class="container">
-        <h3 style="text-align: center; font-size: 2rem; color: #1a0f0a; margin-bottom: 40px; font-weight: 700;">What Creators Are Saying</h3>
+        <h3 style="text-align: center; font-size: 2rem; color: var(--pure-black); margin-bottom: 40px; font-weight: 700;">What Creators Are Saying</h3>
 
         <div class="results-grid">
             <div class="result-card">
