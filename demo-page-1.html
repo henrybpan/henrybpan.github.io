@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Page 1 - Henry Pan</title>
+  <link rel="stylesheet" href="assets/css/loading-bar.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #FFFFFF;
+      color: #000000;
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 600px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #000000;
+    }
+
+    p {
+      font-size: 18px;
+      color: #2C2C2C;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #C1C8D4;
+      color: #000000;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: all 200ms ease;
+      margin: 5px;
+    }
+
+    a:hover {
+      background: #D4A574;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div id="page-loading-overlay" class="loading-overlay" aria-live="polite" aria-busy="false">
+    <div class="loading-content">
+      <h1 class="loading-brand">Henry Pan</h1>
+      <div class="loading-bar-track">
+        <div class="loading-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Demo Page 1</h1>
+    <p>This is a test page to demonstrate the loading bar component. Click the links below to navigate and test the back button functionality.</p>
+    <div>
+      <a href="demo.html">Back to Demo</a>
+      <a href="demo-page-2.html">Go to Page 2</a>
+      <a href="demo-page-3.html">Go to Page 3</a>
+    </div>
+  </div>
+
+  <script src="assets/js/loading-bar.js"></script>
+</body>
+</html>
