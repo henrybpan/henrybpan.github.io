@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/css/loading-bar.css' | relative_url }}">
     <style>
         :root {
             --misty-blue: #C1C8D4;
@@ -489,48 +490,6 @@
             color: var(--light-gray);
         }
 
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--pure-white);
-            z-index: 3000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .loading-screen.active {
-            display: flex;
-            animation: fadeIn 0.3s ease forwards;
-        }
-
-        .loading-screen h2 {
-            font-family: 'Crimson Text', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 600;
-            color: var(--pure-black);
-        }
-
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--light-gray);
-            border-top: 3px solid var(--misty-blue);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         /* Animations */
         @keyframes fadeUp {
             from {
@@ -623,6 +582,9 @@
     </style>
 </head>
 <body>
+    <!-- Page Loading Bar Component -->
+    {% include loading-bar.html %}
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
@@ -645,12 +607,6 @@
             </div>
         </div>
     </nav>
-
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <h2>Henry Pan</h2>
-        <div class="loading-spinner"></div>
-    </div>
 
     <!-- Full Screen Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay">
@@ -745,6 +701,9 @@
         </div>
     </footer>
 
+    <!-- Page Loading Bar JavaScript -->
+    <script src="{{ '/assets/js/loading-bar.js' | relative_url }}"></script>
+
     <script>
         function openMenu() {
             const overlay = document.getElementById('menuOverlay');
@@ -769,32 +728,6 @@
             if (e.key === 'Escape') {
                 closeMenu();
             }
-        });
-
-        // Loading screen for internal navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('a[href^="/"]');
-            const loadingScreen = document.getElementById('loadingScreen');
-
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-
-                    // Don't show loading for external links or anchors
-                    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:')) {
-                        return;
-                    }
-
-                    // Show loading screen
-                    e.preventDefault();
-                    loadingScreen.classList.add('active');
-
-                    // Navigate after brief delay
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 300);
-                });
-            });
         });
     </script>
 </body>
