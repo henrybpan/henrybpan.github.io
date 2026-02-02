@@ -1,509 +1,61 @@
 ---
-layout: none
-title: Get Your First 10K Followers in 180 Days
+layout: default
+title: Coaching
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ page.title }} - Henry Pan</title>
 
-<link rel="icon" type="image/png" href="https://i.imgur.com/LTPgya5.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/LTPgya5.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap" rel="stylesheet">
 <style>
-:root {
-    --misty-blue: #C1C8D4;
-    --antique-gold: #D4A574;
-    --pure-white: #FFFFFF;
-    --pure-black: #000000;
-    --light-gray: #F5F6F8;
-    --charcoal: #2C2C2C;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Tiktok Sans, sans-serif;
-    color: var(--pure-black);
-    background: var(--pure-white);
-    line-height: 1.6;
-}
-
-/* ---------- GLOBAL ---------- */
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--pure-black);
-    margin-bottom: 20px;
-}
-
-.section-subtitle {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--charcoal);
-    margin-bottom: 50px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.cta-button {
-    display: inline-block;
-    background: var(--misty-blue);
-    color: var(--pure-white);
-    padding: 18px 50px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(193, 200, 212, 0.4);
-    background: #adb5c5;
-}
-
-/* ---------- FIXED LOGO ---------- */
-
-.corner-logo {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 66px;
-    height: 66px;
-    padding: 11px;
-    background: rgba(44, 44, 44, 0.9);
-    border-radius: 10px;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    display: block;
-}
-
-.corner-logo:hover {
-    transform: scale(1.05);
-}
-
-.corner-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* ---------- HERO ---------- */
-
-.hero {
-    background: var(--charcoal);
-    color: var(--pure-white);
-    text-align: center;
-    padding: 90px 20px 70px;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1.2;
-    max-width: 900px;
-    margin: 0 auto 20px;
-}
-
-.hero .subheadline {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    opacity: 0.95;
-    font-weight: 400;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero .targeting {
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    opacity: 0.9;
-    font-style: italic;
-}
-
-/* ---------- VSL SECTION ---------- */
-
-.vsl-section {
-    padding: 80px 20px;
-    background: var(--light-gray);
-    text-align: center;
-}
-
-.vsl-placeholder {
-    max-width: 900px;
-    margin: 0 auto 40px;
-    background: var(--pure-white);
-    padding: 150px 40px;
-    border-radius: 10px;
-    border: 3px dashed var(--antique-gold);
-}
-
-.vsl-placeholder h3 {
-    font-size: 2.5rem;
-    color: var(--pure-black);
-    font-weight: 700;
-}
-
-/* ---------- PAIN POINTS ---------- */
-
-.pain-points {
-    padding: 80px 20px;
-    background: var(--pure-white);
-}
-
-.pain-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto 50px;
-}
-
-.pain-card {
-    background: var(--light-gray);
-    padding: 30px;
-    border-radius: 10px;
-    border-left: 5px solid var(--antique-gold);
-}
-
-.pain-card h3 {
-    font-size: 1.3rem;
-    color: var(--pure-black);
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.pain-card p {
-    color: var(--charcoal);
-    font-size: 1.05rem;
-}
-
-/* ---------- RESULTS / TESTIMONIALS ---------- */
-
-.results {
-    padding: 80px 20px;
-    background: var(--light-gray);
-}
-
-.results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    max-width: 1100px;
-    margin: 0 auto 50px;
-}
-
-.result-card {
-    background: var(--pure-white);
-    padding: 35px 25px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s ease;
-}
-
-.result-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(193, 200, 212, 0.3);
-}
-
-.result-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: var(--light-gray);
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    color: var(--charcoal);
-    border: 3px solid var(--antique-gold);
-}
-
-.result-stat {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 5px;
-    color: var(--pure-black);
-}
-
-.result-name {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.result-handle {
-    color: var(--antique-gold);
-    font-weight: 600;
-    text-decoration: none;
-    margin-bottom: 10px;
-    display: block;
-}
-
-/* ---------- VIDEO / PLACEHOLDER ---------- */
-
-.result-testimonial {
-    width: 100%;
-    max-width: 315px;
-    aspect-ratio: 9 / 16;
-    background: #000;
-    border-radius: 15px;
-    overflow: hidden;
-    margin-top: 20px;
-}
-
-.result-testimonial iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.result-testimonial.placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--charcoal);
-    font-size: 0.9rem;
-    background: var(--light-gray);
-}
-
-/* ---------- RESPONSIVE ---------- */
-
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
+    .coming-soon {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 4rem 2rem;
     }
 
-    .hero .subheadline {
-        font-size: 1.1rem;
+    .coming-soon h1 {
+        font-family: 'Crimson Text', serif;
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.01em;
+        opacity: 0;
+        animation: fadeUp 1s ease 0.3s forwards;
     }
 
-    .section-title {
-        font-size: 2rem;
+    .coming-soon p {
+        font-size: 1.2rem;
+        color: var(--charcoal);
+        max-width: 600px;
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+        opacity: 0;
+        animation: fadeUp 1s ease 0.5s forwards;
     }
 
-    .vsl-placeholder {
-        padding: 100px 20px;
+    .instagram-link {
+        display: inline-block;
+        background: var(--charcoal);
+        color: var(--pure-white);
+        padding: 16px 40px;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        opacity: 0;
+        animation: fadeUp 1s ease 0.7s forwards;
     }
 
-    .vsl-placeholder h3 {
-        font-size: 1.8rem;
+    .instagram-link:hover {
+        background: var(--misty-blue);
+        transform: translateY(-2px);
     }
-}
 </style>
-</head>
 
-<body>
-
-<a href="/" class="corner-logo" style="text-decoration: none;">
-    <img src="https://i.imgur.com/LTPgya5.png" alt="Logo">
-</a>
-
-<!-- Hero Section -->
-<section class="hero">
-    <div class="container">
-        <h1>In the next 180 days- Steal the 3 step framework that got me over 30k followers WITHOUT spending dozens of hours creating content</h1>
-
-        <p class="subheadline">Learn how tell your story and grow a loyal audience that follows you for who you are</p>
-
-        <button class="cta-button" onclick="openTypeform()">Apply Now</button>
-    </div>
+<section class="coming-soon">
+    <h1>We're Revamping Our Landing Page</h1>
+    <p>If you have any questions, DM me on Instagram and check out the testimonials on my story highlights.</p>
+    <a href="https://instagram.com/henrybpan" target="_blank" class="instagram-link">DM Me on Instagram</a>
 </section>
-
-<!-- VSL Section -->
-<section class="vsl-section">
-    <div class="container">
-        <div class="vsl-placeholder">
-            <h3>VSL COMING SOON</h3>
-        </div>
-        <button class="cta-button" onclick="openTypeform()">I'm Ready to Grow</button>
-    </div>
-</section>
-
-<!-- Pain Points Section -->
-<section class="pain-points">
-    <div class="container">
-        <h2 class="section-title">Does This Sound Like You?</h2>
-        <p class="section-subtitle">You're not alone. These are the exact struggles that keep most creators stuck at zero.</p>
-
-        <div class="pain-grid">
-            <div class="pain-card">
-                <h3>😰 Can't Write Hooks</h3>
-                <p>You struggle to write hooks that actually stop the scroll and get people to watch your content</p>
-            </div>
-
-            <div class="pain-card">
-                <h3>📖 Lost in Your Story</h3>
-                <p>You don't know how to tell your own story authentically without feeling fake or cringy</p>
-            </div>
-
-            <div class="pain-card">
-                <h3>🎥 No Camera Presence</h3>
-                <p>You lack camera presence and constantly stumble over your words when recording</p>
-            </div>
-
-            <div class="pain-card">
-                <h3>💡 Out of Ideas</h3>
-                <p>You're constantly running out of content ideas and don't have a system or series that works</p>
-            </div>
-
-            <div class="pain-card">
-                <h3>📉 Zero Engagement</h3>
-                <p>You're posting but getting zero engagement, zero growth, and it feels like you're screaming into the void</p>
-            </div>
-
-            <div class="pain-card">
-                <h3>📝 Can't Script Videos</h3>
-                <p>You don't know how to script your videos in a way that keeps people watching until the end</p>
-            </div>
-        </div>
-
-        <div style="text-align: center;">
-            <button class="cta-button" onclick="openTypeform()">I Want to Fix This</button>
-        </div>
-    </div>
-</section>
-
-<!-- Results Section -->
-<section class="results">
-    <div class="container">
-        <h2 class="section-title">Real Results from Real Creators</h2>
-        <p class="section-subtitle">These are just some of the creators I've helped go from stuck to unstoppable</p>
-
-        <h3 style="text-align: center; font-size: 2rem; color: var(--pure-black); margin-bottom: 40px; font-weight: 700;">Current Client Results</h3>
-
-        <div class="results-grid">
-            <div class="result-card">
-                <div class="result-image">[Client Photo]</div>
-                <div class="result-stat">40 → 2,000</div>
-                <div class="result-name">Eric</div>
-                <a class="result-handle" href="https://instagram.com/ericwrld" target="_blank">@ericwrld</a>
-                <p style="color: var(--charcoal); margin-bottom: 10px;">Grew from 40 to 2,000 followers in just 1 month</p>
-            </div>
-
-            <div class="result-card">
-                <div class="result-image">[Client Photo]</div>
-                <div class="result-stat">500 → 4,000</div>
-                <div class="result-name">Jacqueline</div>
-                <a class="result-handle" href="https://instagram.com/jaqoea" target="_blank">@jaqoea</a>
-                <p style="color: var(--charcoal); margin-bottom: 10px;">Went from 500 to 4,000 followers in 1 month</p>
-            </div>
-
-            <div class="result-card">
-                <div class="result-image">[Client Photo]</div>
-                <div class="result-stat">0 → 1,000</div>
-                <div class="result-name">Milan</div>
-                <a class="result-handle" href="https://instagram.com/milanthecookie" target="_blank">@milanthecookie</a>
-                <p style="color: var(--charcoal); margin-bottom: 10px;">Launched and grew to 1,000 followers in 1 month</p>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin: 60px 0 50px;">
-            <button class="cta-button" onclick="openTypeform()">I Want Results Like This</button>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonials Section -->
-<section class="results">
-    <div class="container">
-        <h3 style="text-align: center; font-size: 2rem; color: var(--pure-black); margin-bottom: 40px; font-weight: 700;">What Creators Are Saying</h3>
-
-        <div class="results-grid">
-            <div class="result-card">
-                <div class="result-image">[Client Photo]</div>
-                <div class="result-stat">43.6K Followers</div>
-                <div class="result-name">Rohan</div>
-                <a class="result-handle" href="https://instagram.com/rohabits" target="_blank">@rohabits</a>
-                <div class="result-testimonial">
-                    <iframe src="https://www.youtube.com/embed/Gh4lrDJsA8k" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <div class="result-card">
-                <div class="result-image">[Client Photo]</div>
-                <div class="result-stat">6K Followers</div>
-                <div class="result-name">Shean</div>
-                <a class="result-handle" href="https://instagram.com/sheancreates" target="_blank">@sheancreates</a>
-                <div class="result-testimonial">
-                    <iframe src="https://www.youtube.com/embed/V2MyDG8yhbs" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <div class="result-card">
-                <div class="result-image">[Client Photo]</div>
-                <div class="result-stat">24.6K Followers</div>
-                <div class="result-name">Sebastian</div>
-                <a class="result-handle" href="https://instagram.com/seb.e.kho" target="_blank">@seb.e.kho</a>
-                <div class="result-testimonial">
-                    <iframe src="https://www.youtube.com/embed/jFUyvJJJ0VY" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <div style="text-align: center;">
-            <button class="cta-button" onclick="openTypeform()">Work With Me</button>
-        </div>
-    </div>
-</section>
-
-<!-- Typeform Modal -->
-<div id="typeform-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; padding: 20px;">
-    <div style="position: relative; width: 100%; height: 100%; max-width: 800px; margin: 0 auto;">
-        <button onclick="closeTypeform()" style="position: absolute; top: 10px; right: 10px; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 24px; cursor: pointer; z-index: 10000;">×</button>
-        <div data-tf-live="01KD9YPWGNRJ35GE1Y4BGWQ7Z0" style="width: 100%; height: 100%;"></div>
-    </div>
-</div>
-
-<script src="//embed.typeform.com/next/embed.js"></script>
-<script>
-    function openTypeform() {
-        document.getElementById('typeform-modal').style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeTypeform() {
-        document.getElementById('typeform-modal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    // Close modal if clicking outside
-    document.getElementById('typeform-modal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeTypeform();
-        }
-    });
-</script>
-
-</body>
-</html>
