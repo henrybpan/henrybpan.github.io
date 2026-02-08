@@ -1117,9 +1117,12 @@ img { max-width: 100%; display: block; }
       const maxScroll = docHeight();
       const progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
 
-      // Parallax: move SVG up + perspective shift (looking up → bird's eye)
+      // Parallax: start at base of building, ascend as user scrolls down
+      // translateY goes from -2200 (base visible) to 0 (crown/spire visible)
+      var translateY = (1 - progress) * 2200;
+      // Perspective: looking up at base → bird's eye at top
       var rotateX = 5 - (progress * 14); // 5deg (looking up) to -9deg (looking down)
-      svg.style.transform = 'rotateX(' + rotateX + 'deg) translateY(-' + (progress * 2200) + 'px)';
+      svg.style.transform = 'rotateX(' + rotateX + 'deg) translateY(-' + translateY + 'px)';
 
       // Floor indicator
       const floor = Math.max(1, Math.min(85, Math.round(1 + progress * 84)));

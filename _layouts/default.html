@@ -1,734 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} - Henry Pan</title>
-    <link rel="icon" type="image/png" href="https://i.imgur.com/LTPgya5.png">
-    <link rel="apple-touch-icon" type="image/png" href="https://i.imgur.com/LTPgya5.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ '/assets/css/loading-bar.css' | relative_url }}">
-    <style>
-        :root {
-            --misty-blue: #C1C8D4;
-            --antique-gold: #D4A574;
-            --pure-white: #FFFFFF;
-            --pure-black: #000000;
-            --light-gray: #F5F6F8;
-            --charcoal: #2C2C2C;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--pure-white);
-            color: var(--pure-black);
-            line-height: 1.6;
-        }
-
-        ::selection {
-            background: var(--misty-blue);
-            color: var(--pure-white);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-        }
-
-        .logo-section img {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--pure-black);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-size: 0.95rem;
-            text-decoration: none;
-            color: var(--pure-black);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--misty-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--misty-blue);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hamburger Menu Button (Two Bars) */
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 2px;
-            background: var(--pure-black);
-            transition: all 0.3s ease;
-        }
-
-        /* Full Screen Menu Overlay */
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--pure-white);
-            z-index: 2000;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .menu-overlay.active {
-            display: block;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        .menu-overlay.closing {
-            animation: fadeOut 0.4s ease forwards;
-        }
-
-        .menu-overlay-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .menu-overlay-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 4rem;
-        }
-
-        .menu-close {
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--pure-black);
-            background: none;
-            border: none;
-            padding: 0;
-            line-height: 1;
-            transition: color 0.3s ease;
-        }
-
-        .menu-close:hover {
-            color: var(--misty-blue);
-        }
-
-        .menu-main {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            flex: 1;
-        }
-
-        .menu-left {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .menu-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .menu-list li {
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: slideInLeft 0.5s ease forwards;
-        }
-
-        .menu-list li:nth-child(1) { animation-delay: 0.1s; }
-        .menu-list li:nth-child(2) { animation-delay: 0.15s; }
-        .menu-list li:nth-child(3) { animation-delay: 0.2s; }
-        .menu-list li:nth-child(4) { animation-delay: 0.25s; }
-        .menu-list li:nth-child(5) { animation-delay: 0.3s; }
-
-        .menu-list a {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            text-decoration: none;
-            color: var(--pure-black);
-            font-weight: 500;
-            display: flex;
-            align-items: baseline;
-            gap: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .menu-list a:hover {
-            color: var(--misty-blue);
-        }
-
-        .menu-number {
-            font-size: 1rem;
-            color: var(--charcoal);
-            min-width: 40px;
-        }
-
-        /* Menu Right Side - Contact Info */
-        .menu-right {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-            align-items: flex-end;
-            text-align: right;
-            opacity: 0;
-            animation: slideInRight 0.5s ease 0.3s forwards;
-            justify-content: flex-start;
-        }
-
-        .menu-info-section h3 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-            color: var(--charcoal);
-        }
-
-        .menu-info-section p,
-        .menu-info-section a {
-            font-size: 0.95rem;
-            color: var(--pure-black);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .menu-info-section a:hover {
-            color: var(--misty-blue);
-        }
-
-        .menu-socials {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            align-items: flex-end;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-        }
-
-        .hero h1 {
-            font-family: 'Crimson Text', serif;
-            font-size: clamp(3rem, 10vw, 7rem);
-            font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.02em;
-            opacity: 0;
-            animation: fadeUp 1s ease 0.3s forwards;
-        }
-
-        .hero .subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            color: var(--charcoal);
-            max-width: 700px;
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: fadeUp 1s ease 0.5s forwards;
-        }
-
-        .hero-image {
-            max-width: 700px;
-            width: 100%;
-            opacity: 0;
-            animation: fadeIn 1s ease 0.7s forwards;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        /* Content */
-        .content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 8rem 2rem 4rem;
-            min-height: 70vh;
-        }
-
-        .content h1 {
-            font-family: 'Crimson Text', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            margin-bottom: 3rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-        }
-
-        .content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-        }
-
-        .about-grid {
-            display: grid;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .about-block h3 {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        /* Back Link for Essays */
-        .back-link {
-            display: inline-block;
-            color: var(--misty-blue);
-            text-decoration: none;
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-            transition: color 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: var(--pure-black);
-        }
-
-        .date {
-            font-size: 0.9rem;
-            color: var(--charcoal);
-            margin-bottom: 3rem;
-        }
-
-        .essay-text {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: var(--pure-black);
-            white-space: pre-line;
-        }
-
-        .poem-text {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: var(--pure-black);
-            white-space: pre-line;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--charcoal);
-            color: var(--pure-white);
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-top {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-left h3 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            color: var(--antique-gold);
-        }
-
-        .footer-left a {
-            color: var(--pure-white);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-left a:hover {
-            color: var(--antique-gold);
-        }
-
-        .footer-right {
-            display: flex;
-            gap: 4rem;
-            justify-content: flex-end;
-        }
-
-        .footer-column h3 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            color: var(--antique-gold);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-column a {
-            color: var(--pure-white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-column a:hover {
-            color: var(--antique-gold);
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 2rem;
-        }
-
-        .footer-bottom-left {
-            font-size: 0.9rem;
-            color: var(--light-gray);
-        }
-
-        .footer-bottom-left a {
-            color: var(--antique-gold);
-            text-decoration: none;
-        }
-
-        .footer-bottom-right {
-            font-size: 0.9rem;
-            color: var(--light-gray);
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .menu-main {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .menu-right {
-                align-items: flex-start;
-                text-align: left;
-            }
-
-            .menu-socials {
-                align-items: flex-start;
-            }
-
-            .footer-top {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .footer-right {
-                flex-direction: column;
-                gap: 2rem;
-                justify-content: flex-start;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} — Henry Pan</title>
+  <link rel="icon" type="image/png" href="https://i.imgur.com/LTPgya5.png">
+  <link rel="apple-touch-icon" type="image/png" href="https://i.imgur.com/LTPgya5.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      background: #050507;
+      color: #E8E8EC;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ::selection { background: #D4A574; color: #050507; }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(5,5,7,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: #E8E8EC;
+      transition: color 0.3s;
+    }
+    .nav-logo:hover { color: #D4A574; }
+    .nav-links {
+      display: flex;
+      gap: 2.25rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(232,232,236,0.4);
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: #D4A574; }
+    .nav-links a.active { color: #E8E8EC; }
+
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .menu-toggle span {
+      width: 22px;
+      height: 1.5px;
+      background: #E8E8EC;
+      transition: all 0.3s;
+    }
+
+    /* Mobile overlay */
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #050507;
+      z-index: 2000;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .mobile-overlay.open {
+      display: flex;
+    }
+    .mobile-overlay a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 400;
+      color: rgba(232,232,236,0.6);
+      padding: 0.5rem 0;
+      transition: color 0.3s;
+    }
+    .mobile-overlay a:hover { color: #D4A574; }
+    .mobile-close {
+      position: absolute;
+      top: 1.25rem; right: 2rem;
+      font-size: 1.8rem;
+      color: rgba(232,232,236,0.5);
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: color 0.3s;
+    }
+    .mobile-close:hover { color: #E8E8EC; }
+
+    /* ===== CONTENT ===== */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 10rem 2rem 6rem;
+      min-height: 80vh;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.15s forwards;
+    }
+
+    .content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 400;
+      margin-bottom: 3rem;
+      letter-spacing: -0.01em;
+      color: #E8E8EC;
+    }
+
+    .content p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+      color: rgba(232,232,236,0.75);
+    }
+
+    .content em { color: rgba(232,232,236,0.9); }
+    .content strong { color: #E8E8EC; font-weight: 500; }
+
+    /* Back link */
+    .back-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #D4A574;
+      margin-bottom: 3rem;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: #E8E8EC; }
+
+    /* Date */
+    .date {
+      font-size: 0.8rem;
+      color: rgba(232,232,236,0.35);
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+    }
+
+    /* Listing items (writings, thoughts) */
+    .listing-item {
+      padding-bottom: 2.5rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .listing-item:last-child {
+      border-bottom: none;
+    }
+    .listing-date {
+      font-size: 0.8rem;
+      color: rgba(232,232,236,0.3);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    .listing-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .listing-title a {
+      color: #E8E8EC;
+      transition: color 0.3s;
+    }
+    .listing-title a:hover { color: #D4A574; }
+    .listing-excerpt {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(232,232,236,0.5);
+    }
+
+    /* Recommendation items */
+    .rec-item {
+      margin-bottom: 3rem;
+    }
+    .rec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: #E8E8EC;
+    }
+    .rec-note {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(232,232,236,0.55);
+    }
+
+    /* Essay/poem text */
+    .essay-text {
+      font-size: 1.1rem;
+      line-height: 2;
+      color: rgba(232,232,236,0.8);
+      white-space: pre-line;
+    }
+    .essay-text p {
+      color: rgba(232,232,236,0.8);
+      margin-bottom: 1.5rem;
+    }
+    .essay-text i, .essay-text em {
+      color: rgba(232,232,236,0.9);
+    }
+    .poem-text {
+      font-size: 1.1rem;
+      line-height: 2;
+      color: rgba(232,232,236,0.8);
+      white-space: pre-line;
+    }
+    .poem-text i, .poem-text em {
+      color: rgba(232,232,236,0.9);
+    }
+
+    /* Coming soon */
+    .coming-soon {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+    }
+    .coming-soon h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      color: #E8E8EC;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .coming-soon p {
+      font-size: 1.1rem;
+      color: rgba(232,232,236,0.6);
+      max-width: 500px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.35s forwards;
+    }
+    .coming-soon .cta-link {
+      display: inline-block;
+      padding: 14px 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #050507;
+      background: #D4A574;
+      border-radius: 0;
+      transition: background 0.3s, transform 0.3s;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+    .coming-soon .cta-link:hover {
+      background: #E8E8EC;
+      transform: translateY(-2px);
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(232,232,236,0.25);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: 0.8rem;
+      color: rgba(232,232,236,0.25);
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: #D4A574; }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: flex; }
+      .content { padding: 8rem 1.5rem 4rem; }
+      .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Page Loading Bar Component -->
-    {% include loading-bar.html %}
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="/" class="logo-section">
-                <img src="https://i.imgur.com/LTPgya5.png" alt="HP Logo">
-                <span class="logo-text">HENRYBPAN</span>
-            </a>
-
-            <div class="nav-right">
-                <div class="nav-links">
-                    <a href="/about">About</a>
-                    <a href="/writings">Writings</a>
-                    <a href="/coaching">Coaching</a>
-                </div>
-
-                <div class="menu-toggle" onclick="openMenu()">
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Full Screen Menu Overlay -->
-    <div class="menu-overlay" id="menuOverlay">
-        <div class="menu-overlay-content">
-            <div class="menu-overlay-header">
-                <a href="/" class="logo-section">
-                    <img src="https://i.imgur.com/LTPgya5.png" alt="HP Logo">
-                    <span class="logo-text">HENRYBPAN</span>
-                </a>
-                <button class="menu-close" onclick="closeMenu()">×</button>
-            </div>
-
-            <div class="menu-main">
-                <div class="menu-left">
-                    <ul class="menu-list">
-                        <li><a href="/"><span class="menu-number">01</span> Home</a></li>
-                        <li><a href="/about"><span class="menu-number">02</span> About</a></li>
-                        <li><a href="/writings"><span class="menu-number">03</span> Writings</a></li>
-                        <li><a href="/recommendations"><span class="menu-number">04</span> Recommendations</a></li>
-                        <li><a href="/coaching"><span class="menu-number">05</span> Coaching</a></li>
-                    </ul>
-                </div>
-
-                <div class="menu-right">
-                    <div class="menu-info-section">
-                        <h3>Location</h3>
-                        <p>NoVA | Charlottesville</p>
-                    </div>
-
-                    <div class="menu-info-section">
-                        <h3>Email</h3>
-                        <a href="mailto:henrypaninquries@gmail.com">henrypaninquries@gmail.com</a>
-                    </div>
-
-                    <div class="menu-info-section">
-                        <h3>Social</h3>
-                        <div class="menu-socials">
-                            <a href="https://instagram.com/henrybpan" target="_blank">Instagram</a>
-                            <a href="https://tiktok.com/@henrybpan" target="_blank">TikTok</a>
-                            <a href="https://linkedin.com/in/henrybpan" target="_blank">LinkedIn</a>
-                            <a href="https://x.com/henrypanonx" target="_blank">X</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Henry Pan</a>
+      <div class="nav-links">
+        <a href="/about">About</a>
+        <a href="/thoughts">Thoughts</a>
+        <a href="/writings">Writings</a>
+        <a href="/recommendations">Reading</a>
+        <a href="/coaching">Coaching</a>
+      </div>
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+      </div>
     </div>
+  </nav>
 
-    {{ content }}
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay">
+    <button class="mobile-close" id="mobileClose">&times;</button>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/thoughts">Thoughts</a>
+    <a href="/writings">Writings</a>
+    <a href="/recommendations">Reading</a>
+    <a href="/coaching">Coaching</a>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-left">
-                    <h3>Email</h3>
-                    <a href="mailto:henrypaninquries@gmail.com">henrypaninquries@gmail.com</a>
-                </div>
+  {{ content }}
 
-                <div class="footer-right">
-                    <div class="footer-column">
-                        <h3>Social</h3>
-                        <ul>
-                            <li><a href="https://instagram.com/henrybpan" target="_blank">Instagram</a></li>
-                            <li><a href="https://tiktok.com/@henrybpan" target="_blank">TikTok</a></li>
-                            <li><a href="https://linkedin.com/in/henrybpan" target="_blank">LinkedIn</a></li>
-                            <li><a href="https://x.com/henrypanonx" target="_blank">X</a></li>
-                        </ul>
-                    </div>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-copy">Henry Pan &copy; 2026</div>
+      <div class="footer-links">
+        <a href="https://instagram.com/henrybpan" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@henrybpan" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://linkedin.com/in/henrybpan" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/henrypanonx" target="_blank" rel="noopener">X</a>
+      </div>
+    </div>
+  </footer>
 
-                    <div class="footer-column">
-                        <h3>Sections</h3>
-                        <ul>
-                            <li><a href="/about">About</a></li>
-                            <li><a href="/writings">Writings</a></li>
-                            <li><a href="/recommendations">Recommendations</a></li>
-                            <li><a href="/coaching">Coaching</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="footer-bottom-left">
-                    <p>© 2025 Henry Pan</p>
-                    <p style="margin-top: 0.5rem;"><a href="/coaching">Want to work together? →</a></p>
-                </div>
-                <div class="footer-bottom-right">
-                    <p>Currently in: Charlottesville, VA</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Page Loading Bar JavaScript -->
-    <script src="{{ '/assets/js/loading-bar.js' | relative_url }}"></script>
-
-    <script>
-        function openMenu() {
-            const overlay = document.getElementById('menuOverlay');
-            overlay.classList.remove('closing');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMenu() {
-            const overlay = document.getElementById('menuOverlay');
-            overlay.classList.add('closing');
-
-            setTimeout(() => {
-                overlay.classList.remove('active');
-                overlay.classList.remove('closing');
-                document.body.style.overflow = 'auto';
-            }, 400);
-        }
-
-        // Close menu with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeMenu();
-            }
-        });
-    </script>
+  <script>
+    // Mobile menu
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      document.getElementById('mobileOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('mobileClose').addEventListener('click', function() {
+      document.getElementById('mobileOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    document.querySelectorAll('.mobile-overlay a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.getElementById('mobileOverlay').classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('mobileOverlay').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
 </body>
 </html>

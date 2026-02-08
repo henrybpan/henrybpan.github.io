@@ -13,18 +13,18 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #050507;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
         .container {
             text-align: center;
-            color: white;
+            color: #E8E8EC;
         }
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(212,165,116,0.2);
+            border-top-color: #D4A574;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
@@ -33,19 +33,21 @@
             to { transform: rotate(360deg); }
         }
         h1 {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 400;
             margin: 0 0 10px 0;
+            letter-spacing: 0.05em;
         }
         p {
-            font-size: 16px;
-            opacity: 0.9;
+            font-size: 14px;
+            color: rgba(232,232,236,0.5);
             margin: 0;
         }
         a {
-            color: white;
-            text-decoration: underline;
+            color: #D4A574;
+            text-decoration: none;
         }
+        a:hover { color: #E8E8EC; }
     </style>
 </head>
 <body>
@@ -54,9 +56,8 @@
         <h1>Redirecting...</h1>
         <p>If you're not redirected automatically, <a href="https://form.typeform.com/to/iNjNiJcH">click here</a>.</p>
     </div>
-    
+
     <script>
-        // Fallback JavaScript redirect
         setTimeout(function() {
             window.location.href = "https://form.typeform.com/to/iNjNiJcH";
         }, 100);
