@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Henry Pan — The Monument</title>
-<meta name="description" content="Henry Pan. Faith, ambition, and creation. Builder, writer, coach for Christian entrepreneurs.">
+<meta name="description" content="I help Christian entrepreneurs grow their businesses through personal brands that actually reflect who they are.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -30,12 +30,15 @@ img { max-width: 100%; display: block; }
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  perspective: 1400px;
+  perspective-origin: center 50%;
 }
 .skyscraper-bg svg {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 300%;
   will-change: transform;
+  transform-origin: center center;
 }
 .sky-gradient { pointer-events: none; }
 .fog-layer {
@@ -644,6 +647,25 @@ img { max-width: 100%; display: block; }
 }
 .footer-links a:hover { color: #000000; }
 
+/* ===== VIEW ALL LINKS ===== */
+.section-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 48px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #D4A574;
+  transition: color 0.3s ease, gap 0.3s ease;
+}
+.section-view-all:hover {
+  color: #FFFFFF;
+  gap: 14px;
+}
+
 /* ===== ANIMATIONS ===== */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
@@ -693,158 +715,174 @@ img { max-width: 100%; display: block; }
 <!-- ===== SKYSCRAPER BACKGROUND ===== -->
 <div class="skyscraper-bg" aria-hidden="true">
   <svg id="skyline-svg" viewBox="0 0 1920 4000" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-    <!-- Sky gradient -->
     <defs>
       <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#030304"/>
-        <stop offset="100%" stop-color="#0C0C10"/>
+        <stop offset="0%" stop-color="#020204"/>
+        <stop offset="40%" stop-color="#050508"/>
+        <stop offset="100%" stop-color="#0C0C12"/>
       </linearGradient>
-      <radialGradient id="spireGlow" cx="960" cy="600" r="120" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="rgba(212,165,116,0.06)"/>
+      <radialGradient id="spireGlow" cx="960" cy="420" r="180" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="rgba(212,165,116,0.08)"/>
+        <stop offset="60%" stop-color="rgba(212,165,116,0.02)"/>
         <stop offset="100%" stop-color="transparent"/>
       </radialGradient>
+      <radialGradient id="crownGlow" cx="960" cy="800" r="300" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="rgba(193,200,212,0.03)"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </radialGradient>
+      <linearGradient id="towerFade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0B0B16"/>
+        <stop offset="100%" stop-color="#08080F"/>
+      </linearGradient>
     </defs>
     <rect width="1920" height="4000" fill="url(#skyGrad)"/>
 
-    <!-- Far background buildings layer — opacity 0.3 -->
-    <g opacity="0.3">
-      <rect x="80" y="2900" width="200" height="1100" fill="#09090E"/>
-      <rect x="320" y="3100" width="160" height="900" fill="#08080D"/>
-      <rect x="1400" y="2950" width="220" height="1050" fill="#09090E"/>
-      <rect x="1660" y="3050" width="180" height="950" fill="#08080D"/>
-      <rect x="600" y="3200" width="140" height="800" fill="#0A0A0F"/>
-      <rect x="1100" y="3150" width="170" height="850" fill="#09090E"/>
+    <!-- ===== FAR BACKGROUND BUILDINGS ===== -->
+    <g opacity="0.2">
+      <rect x="60" y="3000" width="180" height="1000" fill="#07070C"/>
+      <rect x="280" y="3150" width="140" height="850" fill="#06060B"/>
+      <rect x="460" y="3250" width="100" height="750" fill="#07070C"/>
+      <rect x="1340" y="3050" width="200" height="950" fill="#07070C"/>
+      <rect x="1580" y="3200" width="150" height="800" fill="#06060B"/>
+      <rect x="1760" y="3100" width="120" height="900" fill="#07070C"/>
     </g>
 
-    <!-- Mid-layer buildings — opacity 0.35-0.45 -->
-    <g opacity="0.4">
-      <!-- Mid building 1 — left -->
-      <path d="M200 3800 L200 2600 L220 2580 L240 2560 L260 2560 L280 2580 L300 2600 L300 2700 L340 2700 L340 2650 L360 2630 L380 2630 L400 2650 L400 3800 Z" fill="#0A0A10"/>
-      <!-- Mid building 2 -->
-      <path d="M500 3800 L500 2750 L520 2720 L550 2700 L580 2720 L600 2750 L600 3800 Z" fill="#09090F"/>
-      <!-- Mid building 3 — right area -->
-      <path d="M1300 3800 L1300 2680 L1320 2650 L1340 2630 L1360 2630 L1380 2650 L1400 2680 L1400 2800 L1440 2800 L1440 2750 L1470 2730 L1500 2750 L1500 3800 Z" fill="#0A0A10"/>
-      <!-- Mid building 4 -->
-      <path d="M1600 3800 L1600 2800 L1630 2770 L1660 2770 L1690 2800 L1690 3800 Z" fill="#0B0B11"/>
-      <!-- Mid building 5 -->
-      <path d="M700 3800 L700 2850 L730 2820 L760 2820 L790 2850 L790 3800 Z" fill="#0A0A0F"/>
+    <!-- ===== MID-LAYER BUILDINGS ===== -->
+    <g opacity="0.35">
+      <!-- Left cluster -->
+      <path d="M180 3900 L180 2500 L200 2470 L230 2450 L260 2470 L280 2500 L280 2600 L320 2600 L320 2550 L350 2530 L380 2550 L380 3900 Z" fill="#09090F"/>
+      <path d="M440 3900 L440 2700 L470 2660 L500 2660 L530 2700 L530 3900 Z" fill="#08080E"/>
+      <!-- Right cluster -->
+      <path d="M1380 3900 L1380 2550 L1400 2520 L1430 2500 L1460 2520 L1480 2550 L1480 2700 L1520 2700 L1520 2640 L1550 2620 L1580 2640 L1580 3900 Z" fill="#09090F"/>
+      <path d="M1640 3900 L1640 2750 L1670 2720 L1700 2720 L1730 2750 L1730 3900 Z" fill="#08080E"/>
     </g>
 
-    <!-- Left flanking tower — opacity 0.5 -->
-    <g opacity="0.5">
-      <path d="
-        M580 3800
-        L580 1800
-        L590 1780
-        L600 1760
-        L610 1740
-        L620 1720
-        L630 1710
-        L640 1720
-        L650 1740
-        L660 1760
-        L670 1780
-        L680 1800
-        L680 1850
-        L720 1850
-        L720 3800 Z
-      " fill="#0A0A12"/>
-      <!-- Crown accent lines -->
-      <line x1="620" y1="1715" x2="620" y2="1800" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="640" y1="1715" x2="640" y2="1800" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <!-- Setback line -->
-      <line x1="580" y1="1850" x2="720" y2="1850" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
+    <!-- ===== LEFT FLANKING TOWER ===== -->
+    <g opacity="0.45">
+      <path d="M560 3900 L560 1700 L572 1670 L586 1640 L600 1615 L614 1600 L628 1590 L642 1600 L656 1615 L670 1640 L684 1670 L696 1700 L696 1780 L740 1780 L740 3900 Z" fill="#0A0A14"/>
+      <!-- Crown details -->
+      <line x1="614" y1="1595" x2="614" y2="1700" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
+      <line x1="642" y1="1595" x2="642" y2="1700" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
+      <line x1="628" y1="1590" x2="628" y2="1700" stroke="rgba(212,165,116,0.07)" stroke-width="0.5"/>
+      <!-- Small decorative triangles (Art Deco) -->
+      <path d="M610 1700 L628 1650 L646 1700 Z" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
+      <line x1="560" y1="1780" x2="740" y2="1780" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
     </g>
 
-    <!-- Right flanking tower — opacity 0.5 -->
-    <g opacity="0.5">
-      <path d="
-        M1240 3800
-        L1240 1850
-        L1250 1830
-        L1260 1800
-        L1270 1780
-        L1280 1760
-        L1290 1750
-        L1300 1760
-        L1310 1780
-        L1320 1800
-        L1330 1830
-        L1340 1850
-        L1340 1900
-        L1380 1900
-        L1380 3800 Z
-      " fill="#0A0A12"/>
-      <!-- Crown accent lines -->
-      <line x1="1280" y1="1755" x2="1280" y2="1850" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="1300" y1="1755" x2="1300" y2="1850" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="1240" y1="1900" x2="1380" y2="1900" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
+    <!-- ===== RIGHT FLANKING TOWER ===== -->
+    <g opacity="0.45">
+      <path d="M1220 3900 L1220 1750 L1232 1720 L1246 1690 L1260 1665 L1274 1650 L1288 1640 L1302 1650 L1316 1665 L1330 1690 L1344 1720 L1356 1750 L1356 1830 L1400 1830 L1400 3900 Z" fill="#0A0A14"/>
+      <line x1="1274" y1="1645" x2="1274" y2="1750" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
+      <line x1="1302" y1="1645" x2="1302" y2="1750" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
+      <line x1="1288" y1="1640" x2="1288" y2="1750" stroke="rgba(212,165,116,0.07)" stroke-width="0.5"/>
+      <path d="M1270 1750 L1288 1700 L1306 1750 Z" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
+      <line x1="1220" y1="1830" x2="1400" y2="1830" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
     </g>
 
-    <!-- ===== MAIN TOWER (center) ===== -->
+    <!-- ===== MAIN TOWER — ART DECO CHRYSLER-INSPIRED ===== -->
     <g>
       <!-- Main shaft -->
-      <rect x="840" y="1400" width="240" height="2600" fill="#0A0A14"/>
+      <rect x="820" y="1500" width="280" height="2400" fill="url(#towerFade)"/>
+
+      <!-- Wide base pedestal -->
+      <rect x="780" y="3400" width="360" height="500" fill="#0A0A12"/>
+      <rect x="800" y="3200" width="320" height="200" fill="#09090F"/>
 
       <!-- Setback tier 1 — widest -->
-      <rect x="810" y="1400" width="300" height="200" fill="#09090F"/>
+      <rect x="790" y="1500" width="340" height="300" fill="#0A0A12"/>
       <!-- Setback tier 2 -->
-      <rect x="830" y="1200" width="260" height="200" fill="#09090E"/>
+      <rect x="810" y="1300" width="300" height="200" fill="#09090F"/>
       <!-- Setback tier 3 -->
-      <rect x="860" y="1050" width="200" height="150" fill="#08080D"/>
+      <rect x="840" y="1150" width="240" height="150" fill="#09090E"/>
       <!-- Setback tier 4 -->
-      <rect x="890" y="900" width="140" height="150" fill="#08080C"/>
-      <!-- Setback tier 5 -->
-      <rect x="920" y="780" width="80" height="120" fill="#07070C"/>
-      <!-- Setback tier 6 — narrow crown -->
-      <rect x="940" y="700" width="40" height="80" fill="#07070B"/>
+      <rect x="870" y="1020" width="180" height="130" fill="#08080D"/>
+
+      <!-- ===== ART DECO CROWN — Chrysler-style sunburst ===== -->
+      <!-- Crown base platform -->
+      <rect x="890" y="920" width="140" height="100" fill="#08080C"/>
+
+      <!-- Sunburst arch tier 7 (outermost) -->
+      <path d="M880 920 L890 890 L910 850 L960 780 L1010 850 L1030 890 L1040 920 Z" fill="#07070B"/>
+      <!-- Sunburst arch tier 6 -->
+      <path d="M895 890 L910 860 L930 820 L960 760 L990 820 L1010 860 L1025 890 Z" fill="#07070A"/>
+      <!-- Sunburst arch tier 5 -->
+      <path d="M908 860 L920 830 L940 790 L960 740 L980 790 L1000 830 L1012 860 Z" fill="#070709"/>
+      <!-- Sunburst arch tier 4 -->
+      <path d="M920 830 L932 800 L948 770 L960 720 L972 770 L988 800 L1000 830 Z" fill="#060609"/>
+      <!-- Sunburst arch tier 3 -->
+      <path d="M932 800 L942 775 L952 750 L960 700 L968 750 L978 775 L988 800 Z" fill="#060608"/>
+      <!-- Sunburst arch tier 2 -->
+      <path d="M942 775 L950 755 L956 730 L960 680 L964 730 L970 755 L978 775 Z" fill="#050508"/>
+      <!-- Sunburst arch tier 1 (innermost) -->
+      <path d="M950 755 L955 740 L958 720 L960 660 L962 720 L965 740 L970 755 Z" fill="#050507"/>
+
       <!-- Spire -->
-      <path d="M955 700 L960 580 L965 700 Z" fill="#07070C"/>
+      <path d="M956 660 L960 380 L964 660 Z" fill="#060609"/>
+      <!-- Spire antenna -->
+      <line x1="960" y1="380" x2="960" y2="320" stroke="#08080D" stroke-width="2"/>
+      <circle cx="960" cy="318" r="3" fill="#0A0A14"/>
 
-      <!-- Gold accent lines on crown -->
-      <!-- Vertical bone lines -->
-      <line x1="960" y1="580" x2="960" y2="1400" stroke="rgba(212,165,116,0.06)" stroke-width="0.8"/>
-      <line x1="940" y1="700" x2="940" y2="1400" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
-      <line x1="980" y1="700" x2="980" y2="1400" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
-      <line x1="920" y1="780" x2="920" y2="1400" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
-      <line x1="1000" y1="780" x2="1000" y2="1400" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
-      <line x1="890" y1="900" x2="890" y2="1400" stroke="rgba(212,165,116,0.025)" stroke-width="0.5"/>
-      <line x1="1030" y1="900" x2="1030" y2="1400" stroke="rgba(212,165,116,0.025)" stroke-width="0.5"/>
+      <!-- ===== CROWN GOLD ACCENTS ===== -->
+      <!-- Central vertical accent through crown -->
+      <line x1="960" y1="320" x2="960" y2="1500" stroke="rgba(212,165,116,0.08)" stroke-width="1"/>
+      <!-- Crown arch highlight lines -->
+      <line x1="940" y1="700" x2="940" y2="920" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
+      <line x1="980" y1="700" x2="980" y2="920" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
+      <line x1="920" y1="780" x2="920" y2="920" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
+      <line x1="1000" y1="780" x2="1000" y2="920" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
+      <line x1="900" y1="850" x2="900" y2="920" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
+      <line x1="1020" y1="850" x2="1020" y2="920" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
 
-      <!-- Horizontal setback lines -->
-      <line x1="940" y1="700" x2="980" y2="700" stroke="rgba(212,165,116,0.06)" stroke-width="0.5"/>
-      <line x1="920" y1="780" x2="1000" y2="780" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="890" y1="900" x2="1030" y2="900" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
-      <line x1="860" y1="1050" x2="1060" y2="1050" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
-      <line x1="830" y1="1200" x2="1090" y2="1200" stroke="rgba(212,165,116,0.035)" stroke-width="0.5"/>
-      <line x1="810" y1="1400" x2="1110" y2="1400" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
+      <!-- Decorative Art Deco triangular window patterns on crown -->
+      <path d="M935 920 L960 870 L985 920" fill="none" stroke="rgba(212,165,116,0.06)" stroke-width="0.8"/>
+      <path d="M920 920 L960 840 L1000 920" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
+      <path d="M905 920 L960 810 L1015 920" fill="none" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
 
-      <!-- Faint structural verticals down main shaft -->
-      <line x1="870" y1="1400" x2="870" y2="3800" stroke="rgba(255,255,255,0.008)" stroke-width="0.5"/>
-      <line x1="900" y1="1400" x2="900" y2="3800" stroke="rgba(255,255,255,0.008)" stroke-width="0.5"/>
-      <line x1="930" y1="1400" x2="930" y2="3800" stroke="rgba(255,255,255,0.008)" stroke-width="0.5"/>
-      <line x1="960" y1="1400" x2="960" y2="3800" stroke="rgba(255,255,255,0.01)" stroke-width="0.5"/>
-      <line x1="990" y1="1400" x2="990" y2="3800" stroke="rgba(255,255,255,0.008)" stroke-width="0.5"/>
-      <line x1="1020" y1="1400" x2="1020" y2="3800" stroke="rgba(255,255,255,0.008)" stroke-width="0.5"/>
-      <line x1="1050" y1="1400" x2="1050" y2="3800" stroke="rgba(255,255,255,0.008)" stroke-width="0.5"/>
+      <!-- Eagle/gargoyle ornaments at crown base corners (simplified geometric) -->
+      <path d="M870 1020 L860 1010 L855 1025 L865 1020 Z" fill="rgba(212,165,116,0.06)"/>
+      <path d="M1050 1020 L1060 1010 L1065 1025 L1055 1020 Z" fill="rgba(212,165,116,0.06)"/>
+      <!-- Second pair at next setback -->
+      <path d="M840 1150 L830 1140 L825 1155 L835 1150 Z" fill="rgba(212,165,116,0.04)"/>
+      <path d="M1080 1150 L1090 1140 L1095 1155 L1085 1150 Z" fill="rgba(212,165,116,0.04)"/>
 
-      <!-- Window texture grid (NOT lit — near invisible) -->
-      <g opacity="0.01">
-        <g id="windowRow">
-          <rect x="855" width="12" height="16" fill="#fff" rx="0"/>
-          <rect x="880" width="12" height="16" fill="#fff" rx="0"/>
-          <rect x="905" width="12" height="16" fill="#fff" rx="0"/>
-          <rect x="930" width="12" height="16" fill="#fff" rx="0"/>
-          <rect x="955" width="12" height="16" fill="#fff" rx="0"/>
-          <rect x="980" width="12" height="16" fill="#fff" rx="0"/>
-          <rect x="1005" width="12" height="16" fill="#fff" rx="0"/>
-          <rect x="1030" width="12" height="16" fill="#fff" rx="0"/>
-          <rect x="1055" width="12" height="16" fill="#fff" rx="0"/>
+      <!-- Horizontal setback accent lines -->
+      <line x1="890" y1="920" x2="1030" y2="920" stroke="rgba(212,165,116,0.06)" stroke-width="0.8"/>
+      <line x1="870" y1="1020" x2="1050" y2="1020" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
+      <line x1="840" y1="1150" x2="1080" y2="1150" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
+      <line x1="810" y1="1300" x2="1110" y2="1300" stroke="rgba(212,165,116,0.035)" stroke-width="0.5"/>
+      <line x1="790" y1="1500" x2="1130" y2="1500" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
+
+      <!-- Vertical structural lines down main shaft -->
+      <line x1="850" y1="1500" x2="850" y2="3900" stroke="rgba(255,255,255,0.01)" stroke-width="0.5"/>
+      <line x1="880" y1="1500" x2="880" y2="3900" stroke="rgba(255,255,255,0.01)" stroke-width="0.5"/>
+      <line x1="910" y1="1500" x2="910" y2="3900" stroke="rgba(255,255,255,0.012)" stroke-width="0.5"/>
+      <line x1="940" y1="1300" x2="940" y2="3900" stroke="rgba(255,255,255,0.012)" stroke-width="0.5"/>
+      <line x1="960" y1="920" x2="960" y2="3900" stroke="rgba(255,255,255,0.015)" stroke-width="0.5"/>
+      <line x1="980" y1="1300" x2="980" y2="3900" stroke="rgba(255,255,255,0.012)" stroke-width="0.5"/>
+      <line x1="1010" y1="1500" x2="1010" y2="3900" stroke="rgba(255,255,255,0.012)" stroke-width="0.5"/>
+      <line x1="1040" y1="1500" x2="1040" y2="3900" stroke="rgba(255,255,255,0.01)" stroke-width="0.5"/>
+      <line x1="1070" y1="1500" x2="1070" y2="3900" stroke="rgba(255,255,255,0.01)" stroke-width="0.5"/>
+
+      <!-- Window rows (subtle, repeating pattern) -->
+      <g opacity="0.015">
+        <g id="winRow">
+          <rect x="835" width="14" height="18" fill="#fff"/>
+          <rect x="860" width="14" height="18" fill="#fff"/>
+          <rect x="885" width="14" height="18" fill="#fff"/>
+          <rect x="910" width="14" height="18" fill="#fff"/>
+          <rect x="935" width="14" height="18" fill="#fff"/>
+          <rect x="960" width="14" height="18" fill="#fff"/>
+          <rect x="985" width="14" height="18" fill="#fff"/>
+          <rect x="1010" width="14" height="18" fill="#fff"/>
+          <rect x="1035" width="14" height="18" fill="#fff"/>
+          <rect x="1060" width="14" height="18" fill="#fff"/>
         </g>
       </g>
 
       <!-- Spire glow -->
-      <circle cx="960" cy="590" r="60" fill="url(#spireGlow)"/>
+      <circle cx="960" cy="420" r="100" fill="url(#spireGlow)"/>
+      <!-- Crown ambient glow -->
+      <circle cx="960" cy="800" r="200" fill="url(#crownGlow)"/>
     </g>
   </svg>
 </div>
@@ -923,9 +961,12 @@ img { max-width: 100%; display: block; }
       <span class="section-label-text">About</span>
     </div>
     <div class="about-text reveal-stagger">
-      <p class="reveal">I'm 18 years old, building at the intersection of faith and ambition. First-year at the University of Virginia. Founding UVA's first space for content creators. Coaching Christian entrepreneurs on personal branding.</p>
-      <p class="reveal">I grew up sheltered, with every advantage. Private schools, safety nets, a family that gave me everything. <span class="dim">And somewhere in that comfort I realized</span> — I need to build something that's <strong>mine</strong>. Not to leave my family behind, but to stand next to them as someone who earned his own ground.</p>
-      <p class="reveal">I believe we must approach the world with childlike optimism while understanding that no one is coming to save us. We have everything we need. Most people never even start.</p>
+      <p class="reveal">I'm 18 years old and I'm currently a first year student at UVA.</p>
+      <p class="reveal">Ever since I was young I knew I wanted to make a name for myself. However, I never thought I could. I always compared myself to my peers who were artistic geniuses or coding masterminds. I tried to make up for my perceived lack of talent by working hard, getting good grades, and grinding extracurriculars. <span class="dim">But that hard work resulted in college rejections, burned relationships, and a forgettable high school experience.</span></p>
+      <p class="reveal">After graduating, I sat in my bedroom listening to podcasts on the lives of great entrepreneurs. I thought to myself, <em>"I want to be great like them."</em> However, I still had no idea what I wanted to do. That was when I discovered content creation. It began as a project for me to share what I had learned from my month of learning from the founders of old, but I quickly realized that nobody was going to take business advice from an 18 year old, especially one who had created nothing in his life.</p>
+      <p class="reveal">In the next months, I shifted my content. I stopped trying to give advice to others and began documenting my path to being a better person. Along that path I converted to Christianity, broke up with my girlfriend, and grew 30K followers <span class="dim">(in no particular order).</span></p>
+      <p class="reveal">Now in my first year at UVA, I opened up my coaching, started a club, took philosophy "for fun" (big mistake), made tons of friends, and learned the true impossibility of work-life balance.</p>
+      <p class="reveal"><strong>I'm not great yet, but I continue to strive every day.</strong></p>
     </div>
     <div class="about-verse reveal">
       <p>"Seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you."</p>
@@ -953,11 +994,7 @@ img { max-width: 100%; display: block; }
       <div class="thought-text">Lack of long-term success is completely due to one's inability to act and iterate. If you suck at something, it is because you don't want it enough. There is no other excuse.</div>
     </div>
 
-    <div class="thought-monument reveal">
-      <div class="thought-ghost">03</div>
-      <div class="thought-date">January 2026</div>
-      <div class="thought-text">Never be satisfied with what you have, but always be grateful for it. These are not contradictions. <em>Gratitude without ambition is complacency. Ambition without gratitude is vanity.</em></div>
-    </div>
+    <a href="/thoughts" class="section-view-all reveal">View All Thoughts <span class="arrow">&rarr;</span></a>
   </section>
 
   <!-- WRITING -->
@@ -968,26 +1005,21 @@ img { max-width: 100%; display: block; }
       <span class="section-label-text">Writing</span>
     </div>
 
-    <a href="#" class="essay-item reveal">
+    <a href="/writings/on-marty-supreme" class="essay-item reveal">
       <div class="essay-date">January 2026</div>
       <div class="essay-title">On Marty Supreme</div>
       <div class="essay-excerpt">What a film about a ping pong hustler taught me about obsession, identity, and the difference between playing a game and being consumed by it.</div>
       <span class="essay-arrow">&rarr;</span>
     </a>
 
-    <a href="#" class="essay-item reveal">
+    <a href="/writings/pickupartist" class="essay-item reveal">
       <div class="essay-date">December 2025</div>
-      <div class="essay-title">Why Do People Watch Me?</div>
-      <div class="essay-excerpt">I asked myself this question at 500 followers. The answer changed everything about how I create.</div>
+      <div class="essay-title">pick up artist</div>
+      <div class="essay-excerpt">Wordsworth says that poetry comes from "the spontaneous overflow of powerful feelings." What more of a powerful feeling than love?</div>
       <span class="essay-arrow">&rarr;</span>
     </a>
 
-    <a href="#" class="essay-item reveal">
-      <div class="essay-date">November 2025</div>
-      <div class="essay-title">The Content Creator's Paradox</div>
-      <div class="essay-excerpt">You have to be vulnerable enough to connect and strategic enough to grow. Most people pick one. You need both.</div>
-      <span class="essay-arrow">&rarr;</span>
-    </a>
+    <a href="/writings" class="section-view-all reveal">View All Writing <span class="arrow">&rarr;</span></a>
   </section>
 
   <!-- RECOMMENDATIONS -->
@@ -1012,23 +1044,7 @@ img { max-width: 100%; display: block; }
       </div>
     </div>
 
-    <div class="rec-category reveal">
-      <div class="rec-category-title">Podcasts</div>
-      <div class="rec-item">
-        <div class="rec-title">Founders</div>
-        <div class="rec-author">David Senra</div>
-        <div class="rec-note">"The podcast that made me believe I could build something. Every episode is a masterclass in conviction."</div>
-      </div>
-    </div>
-
-    <div class="rec-category reveal">
-      <div class="rec-category-title">Music</div>
-      <div class="rec-item">
-        <div class="rec-title">Daniel Caesar</div>
-        <div class="rec-author">&nbsp;</div>
-        <div class="rec-note">"The soundtrack to every late night on the balcony. Faith, love, and melancholy in perfect balance."</div>
-      </div>
-    </div>
+    <a href="/recommendations" class="section-view-all reveal">View All Recommendations <span class="arrow">&rarr;</span></a>
   </section>
 </main>
 
@@ -1040,7 +1056,7 @@ img { max-width: 100%; display: block; }
   </div>
   <h2 class="cta-headline reveal">Build something worth <em>believing</em> in.</h2>
   <p class="cta-body reveal">I help Christian entrepreneurs grow their businesses through personal brands that actually reflect who they are. Not templates. Not tactics. A brand built on conviction.</p>
-  <a href="https://calendly.com" target="_blank" rel="noopener" class="cta-button reveal"><span>Book a Call</span></a>
+  <a href="https://calendly.com/henrypaninquiries/30min" target="_blank" rel="noopener" class="cta-button reveal"><span>Book a Call</span></a>
 </section>
 
 <!-- ===== FOOTER ===== -->
@@ -1101,8 +1117,9 @@ img { max-width: 100%; display: block; }
       const maxScroll = docHeight();
       const progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
 
-      // Parallax: move SVG up
-      svg.style.transform = 'translateY(-' + (progress * 2200) + 'px)';
+      // Parallax: move SVG up + perspective shift (looking up → bird's eye)
+      var rotateX = 5 - (progress * 14); // 5deg (looking up) to -9deg (looking down)
+      svg.style.transform = 'rotateX(' + rotateX + 'deg) translateY(-' + (progress * 2200) + 'px)';
 
       // Floor indicator
       const floor = Math.max(1, Math.min(85, Math.round(1 + progress * 84)));
@@ -1115,42 +1132,46 @@ img { max-width: 100%; display: block; }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // ===== ROTATING QUOTES =====
-  var quotes = [
-    { text: 'In all hard work there is profit, but mere talk leads only to poverty.', attr: 'Proverbs 14:23' },
-    { text: 'Seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.', attr: 'Matthew 6:33' },
-    { text: 'We must approach the world with childlike optimism while understanding that no one is coming to save us.', attr: '' },
-    { text: 'The man who moves a mountain begins by carrying away small stones.', attr: 'Confucius' },
-    { text: 'Gratitude without ambition is complacency. Ambition without gratitude is vanity.', attr: '' },
-    { text: 'Whatever you do, work at it with all your heart, as working for the Lord.', attr: 'Colossians 3:23' },
-    { text: 'If you suck at something, it is because you don\u2019t want it enough. There is no other excuse.', attr: '' }
-  ];
+  // ===== ROTATING QUOTES (Bible Verses from /data/bible-verses.json) =====
+  var container = document.getElementById('quote-container');
+  var currentQuote = 0;
 
-  // Fisher-Yates shuffle
-  for (var si = quotes.length - 1; si > 0; si--) {
-    var sj = Math.floor(Math.random() * (si + 1));
-    var tmp = quotes[si]; quotes[si] = quotes[sj]; quotes[sj] = tmp;
+  function initQuotes(verses) {
+    // Fisher-Yates shuffle
+    for (var si = verses.length - 1; si > 0; si--) {
+      var sj = Math.floor(Math.random() * (si + 1));
+      var tmp = verses[si]; verses[si] = verses[sj]; verses[sj] = tmp;
+    }
+
+    verses.forEach(function(v, idx) {
+      var div = document.createElement('div');
+      div.className = 'quote-item' + (idx === 0 ? ' active' : '');
+      var html = '<div class="quote-text"><span class="quote-mark">\u201C</span>' + v.text + '<span class="quote-mark">\u201D</span></div>';
+      html += '<span class="quote-attribution">\u2014 ' + v.reference + '</span>';
+      div.innerHTML = html;
+      container.appendChild(div);
+    });
+
+    setInterval(function() {
+      var items = container.querySelectorAll('.quote-item');
+      items[currentQuote].classList.remove('active');
+      currentQuote = (currentQuote + 1) % items.length;
+      items[currentQuote].classList.add('active');
+    }, 10000);
   }
 
-  var container = document.getElementById('quote-container');
-  quotes.forEach(function(q, idx) {
-    var div = document.createElement('div');
-    div.className = 'quote-item' + (idx === 0 ? ' active' : '');
-    var html = '<div class="quote-text"><span class="quote-mark">\u201C</span>' + q.text + '<span class="quote-mark">\u201D</span></div>';
-    if (q.attr) {
-      html += '<span class="quote-attribution">\u2014 ' + q.attr + '</span>';
-    }
-    div.innerHTML = html;
-    container.appendChild(div);
-  });
-
-  var currentQuote = 0;
-  setInterval(function() {
-    var items = container.querySelectorAll('.quote-item');
-    items[currentQuote].classList.remove('active');
-    currentQuote = (currentQuote + 1) % items.length;
-    items[currentQuote].classList.add('active');
-  }, 10000);
+  // Fetch bible verses from JSON database
+  fetch('/data/bible-verses.json')
+    .then(function(res) { return res.json(); })
+    .then(function(verses) { initQuotes(verses); })
+    .catch(function() {
+      // Fallback if fetch fails
+      initQuotes([
+        { text: 'In all hard work there is profit, but mere talk leads only to poverty.', reference: 'Proverbs 14:23' },
+        { text: 'Whatever you do, work at it with all your heart, as working for the Lord.', reference: 'Colossians 3:23' },
+        { text: 'But seek first the kingdom of God and his righteousness, and all these things will be added to you.', reference: 'Matthew 6:33' }
+      ]);
+    });
 
   // ===== SCROLL REVEAL =====
   var reveals = document.querySelectorAll('.reveal');
