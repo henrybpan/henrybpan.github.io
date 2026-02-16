@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Henry Pan — The Monument</title>
+<title>Henry Pan — The Wanderer</title>
 <meta name="description" content="I help Christian entrepreneurs grow their businesses through personal brands that actually reflect who they are.">
 <link rel="icon" type="image/png" href="https://i.imgur.com/LTPgya5.png">
 <link rel="apple-touch-icon" type="image/png" href="https://i.imgur.com/LTPgya5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body {
-  background: #050507;
+  background: #1A1D24;
   color: #E8E8EC;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
@@ -24,70 +24,29 @@ body {
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 
-/* ===== SKYSCRAPER BACKGROUND ===== */
-.skyscraper-bg {
+/* ===== VIDEO BACKGROUND ===== */
+.video-bg {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100vh;
+  inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  perspective: 1400px;
-  perspective-origin: center 50%;
 }
-.skyscraper-bg svg {
+.video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.video-bg .video-poster {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 300%;
-  will-change: transform;
-  transform-origin: center center;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: none;
 }
-.sky-gradient { pointer-events: none; }
-.fog-layer {
-  position: fixed;
-  bottom: 0; left: 0;
-  width: 100%; height: 25vh;
-  background: linear-gradient(to top, rgba(5,5,7,0.9), transparent);
-  z-index: 1;
-  pointer-events: none;
-}
-.stars-layer {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 50vh;
-  z-index: 0;
-  pointer-events: none;
-}
-.star {
-  position: absolute;
-  background: #fff;
-  border-radius: 50%;
-}
-.cloud {
-  position: fixed;
-  height: 2px;
-  border-radius: 50%;
-  background: rgba(193, 200, 212, 0.03);
-  filter: blur(8px);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* ===== FLOOR INDICATOR ===== */
-.floor-indicator {
-  position: fixed;
-  bottom: 32px; left: 20px;
-  z-index: 100;
-  writing-mode: vertical-rl;
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.floor-indicator .fl-label { color: rgba(255,255,255,0.15); }
-.floor-indicator .fl-number { color: #D4A574; font-weight: 500; }
 
 /* ===== DESKTOP SIDEBAR NAV ===== */
 .sidebar-nav {
@@ -108,7 +67,7 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #888890;
+  color: rgba(255,255,255,0.35);
   transition: color 0.3s ease;
   position: relative;
   padding-left: 8px;
@@ -133,7 +92,7 @@ img { max-width: 100%; display: block; }
   top: 0; left: 0;
   width: 100%; height: 56px;
   z-index: 300;
-  background: rgba(5, 5, 7, 0.9);
+  background: rgba(42,47,56,0.85);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   align-items: center;
@@ -144,6 +103,8 @@ img { max-width: 100%; display: block; }
   font-family: 'Cormorant Garamond', serif;
   font-size: 18px;
   font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: #fff;
 }
 .hamburger {
@@ -173,7 +134,7 @@ img { max-width: 100%; display: block; }
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100vh;
-  background: #050507;
+  background: rgba(26,29,36,0.97);
   z-index: 250;
   flex-direction: column;
   align-items: center;
@@ -206,28 +167,30 @@ img { max-width: 100%; display: block; }
   font-size: clamp(64px, 10vw, 140px);
   font-weight: 300;
   line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.15);
   opacity: 0;
   transform: translateY(30px);
-  animation: fadeUp 1s ease 0.4s forwards;
+  animation: fadeUp 1.2s ease 0.4s forwards;
 }
 .hero-name .first { color: #FFFFFF; display: block; }
-.hero-name .last { color: #C1C8D4; display: block; margin-left: 0.15em; }
+.hero-name .last { color: #E2E6ED; display: block; margin-left: 0.15em; }
 
 .quote-container {
   margin-top: 48px;
   position: relative;
-  min-height: 120px;
+  min-height: 90px;
   max-width: 520px;
   opacity: 0;
   transform: translateY(30px);
-  animation: fadeUp 1s ease 0.8s forwards;
+  animation: fadeUp 1s ease 0.9s forwards;
 }
 .quote-item {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   opacity: 0;
-  transition: opacity 1.2s ease;
+  transition: opacity 1.5s ease;
 }
 .quote-item.active {
   position: relative;
@@ -238,8 +201,9 @@ img { max-width: 100%; display: block; }
   font-size: clamp(18px, 2.4vw, 26px);
   font-weight: 300;
   font-style: italic;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.55);
   line-height: 1.6;
+  text-shadow: 0 1px 20px rgba(0,0,0,0.1);
 }
 .quote-mark {
   color: #D4A574;
@@ -249,18 +213,20 @@ img { max-width: 100%; display: block; }
 .quote-attribution {
   display: block;
   margin-top: 12px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Inter', sans-serif;
   font-size: 13px;
   font-style: normal;
-  color: rgba(255,255,255,0.18);
+  font-weight: 400;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.08em;
 }
 
 .hero-gold-line {
   width: 1px; height: 80px;
   margin-top: 96px;
-  background: linear-gradient(to bottom, #D4A574, transparent);
+  background: linear-gradient(to bottom, rgba(212,165,116,0.5), transparent);
   opacity: 0;
-  animation: fadeIn 1s ease 1.2s forwards;
+  animation: fadeIn 1s ease 1.4s forwards;
 }
 
 .hero-vertical-text {
@@ -273,32 +239,32 @@ img { max-width: 100%; display: block; }
   font-size: 10px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.12);
   opacity: 0;
-  animation: fadeIn 1s ease 1.4s forwards;
+  animation: fadeIn 1s ease 1.6s forwards;
 }
 
 .scroll-prompt {
   position: absolute;
-  bottom: 48px;
+  bottom: 40px;
   left: 80px;
   display: flex;
   align-items: flex-end;
   gap: 12px;
   opacity: 0;
-  animation: fadeIn 1s ease 1.6s forwards;
+  animation: fadeIn 1s ease 1.8s forwards;
 }
 .scroll-prompt-line {
   width: 1px; height: 40px;
-  background: linear-gradient(to bottom, #C1C8D4, transparent);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
   animation: pulse-line 2.5s ease-in-out infinite;
 }
 .scroll-prompt-text {
   writing-mode: vertical-rl;
   font-family: 'Inter', sans-serif;
   font-size: 10px;
-  color: rgba(255,255,255,0.15);
-  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.18);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 
@@ -307,6 +273,24 @@ img { max-width: 100%; display: block; }
   position: relative;
   z-index: 10;
   margin-left: 64px;
+}
+
+/* ===== CONTENT BODY LAYER ===== */
+.content-body {
+  position: relative;
+}
+.content-body::before {
+  content: '';
+  position: absolute;
+  top: -120px; left: 0;
+  width: 100%; height: 120px;
+  background: linear-gradient(to bottom, transparent, rgba(26,29,36,0.85));
+  pointer-events: none;
+}
+.content-body-inner {
+  background: rgba(26,29,36,0.88);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 /* ===== SECTION LABELS ===== */
@@ -318,7 +302,7 @@ img { max-width: 100%; display: block; }
 }
 .section-label-line {
   width: 40px; height: 1px;
-  background: #C1C8D4;
+  background: rgba(193,200,212,0.5);
   flex-shrink: 0;
 }
 .section-label-text {
@@ -333,7 +317,7 @@ img { max-width: 100%; display: block; }
 /* ===== SECTION DIVIDER ===== */
 .section-divider {
   height: 1px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.08);
   margin: 0 80px;
 }
 
@@ -367,14 +351,14 @@ img { max-width: 100%; display: block; }
   font-weight: 300;
   line-height: 1.75;
   color: #E8E8EC;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 .about-text p strong {
   font-weight: 500;
   color: #FFFFFF;
 }
 .about-text p .dim {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.45);
 }
 .about-verse {
   margin-top: 64px;
@@ -385,12 +369,13 @@ img { max-width: 100%; display: block; }
   font-family: 'Cormorant Garamond', serif;
   font-size: 18px;
   font-style: italic;
-  color: #888890;
+  font-weight: 300;
+  color: #8A8E98;
   line-height: 1.75;
 }
 .about-verse .verse-ref {
   display: block;
-  margin-top: 16px;
+  margin-top: 8px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 12px;
   font-style: normal;
@@ -404,11 +389,14 @@ img { max-width: 100%; display: block; }
 }
 .thought-monument {
   padding: 96px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   position: relative;
 }
 .thought-monument:first-of-type {
   padding-top: 0;
+}
+.thought-monument:last-of-type {
+  border-bottom: none;
 }
 .thought-ghost {
   position: absolute;
@@ -417,7 +405,7 @@ img { max-width: 100%; display: block; }
   font-family: 'Cormorant Garamond', serif;
   font-size: 80px;
   font-weight: 300;
-  color: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.025);
   line-height: 1;
   pointer-events: none;
 }
@@ -427,8 +415,8 @@ img { max-width: 100%; display: block; }
   font-size: 10px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #888890;
-  margin-bottom: 24px;
+  color: #8A8E98;
+  margin-bottom: 16px;
 }
 .thought-text {
   font-family: 'Cormorant Garamond', serif;
@@ -451,7 +439,7 @@ img { max-width: 100%; display: block; }
 .essay-item {
   display: block;
   padding: 64px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   position: relative;
   transition: padding-left 0.4s ease;
 }
@@ -462,7 +450,7 @@ img { max-width: 100%; display: block; }
   font-family: 'Inter', sans-serif;
   font-size: 10px;
   text-transform: uppercase;
-  color: #888890;
+  color: #8A8E98;
   letter-spacing: 0.15em;
   margin-bottom: 16px;
 }
@@ -478,7 +466,7 @@ img { max-width: 100%; display: block; }
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 300;
-  color: #888890;
+  color: #8A8E98;
   max-width: 480px;
   line-height: 1.7;
 }
@@ -486,7 +474,7 @@ img { max-width: 100%; display: block; }
   position: absolute;
   right: 20px;
   top: 50%;
-  transform: translateX(10px);
+  transform: translateX(-10px);
   font-size: 20px;
   color: #D4A574;
   opacity: 0;
@@ -498,7 +486,7 @@ img { max-width: 100%; display: block; }
   padding: 200px 80px;
 }
 .rec-category {
-  margin-bottom: 80px;
+  margin-bottom: 96px;
 }
 .rec-category-title {
   font-family: 'Cormorant Garamond', serif;
@@ -507,11 +495,11 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #D4A574;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 .rec-item {
-  padding: 32px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   transition: padding-left 0.3s ease;
 }
 .rec-item:hover { padding-left: 12px; }
@@ -526,7 +514,7 @@ img { max-width: 100%; display: block; }
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   text-transform: uppercase;
-  color: #888890;
+  color: #8A8E98;
   letter-spacing: 0.1em;
   margin-bottom: 12px;
 }
@@ -534,13 +522,13 @@ img { max-width: 100%; display: block; }
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 300;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.6;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
 }
 
-/* ===== CTA SECTION — WHITE INVERSION ===== */
+/* ===== CTA SECTION — EMERGENCE INTO LIGHT ===== */
 .cta-section {
-  background: #FFFFFF;
+  background: linear-gradient(to bottom, rgba(26,29,36,0.88) 0%, #FFFFFF 30%);
   color: #000000;
   padding: 200px 80px;
   position: relative;
@@ -581,16 +569,16 @@ img { max-width: 100%; display: block; }
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 300;
-  color: #888890;
+  color: #8A8E98;
   max-width: 500px;
-  line-height: 1.7;
+  line-height: 1.8;
   margin-bottom: 56px;
 }
 .cta-button {
   display: inline-block;
   position: relative;
   overflow: hidden;
-  background: #000000;
+  background: #2C2F36;
   color: #FFFFFF;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
@@ -613,7 +601,7 @@ img { max-width: 100%; display: block; }
   z-index: 0;
 }
 .cta-button:hover::before { transform: translateX(0); }
-.cta-button:hover { color: #000000; }
+.cta-button:hover { color: #2C2F36; }
 .cta-button span {
   position: relative;
   z-index: 1;
@@ -628,12 +616,12 @@ img { max-width: 100%; display: block; }
   justify-content: space-between;
   position: relative;
   z-index: 10;
-  border-top: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid #E0E0E0;
 }
 .footer-copy {
   font-family: 'Cormorant Garamond', serif;
   font-size: 14px;
-  color: #888890;
+  color: #8A8E98;
 }
 .footer-links {
   display: flex;
@@ -643,11 +631,11 @@ img { max-width: 100%; display: block; }
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   text-transform: uppercase;
-  color: #888890;
+  color: #8A8E98;
   letter-spacing: 0.1em;
   transition: color 0.3s ease;
 }
-.footer-links a:hover { color: #000000; }
+.footer-links a:hover { color: #2C2F36; }
 
 /* ===== VIEW ALL LINKS ===== */
 .section-view-all {
@@ -682,6 +670,29 @@ img { max-width: 100%; display: block; }
   50% { opacity: 1; }
 }
 
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .video-bg video { display: none; }
+  .video-bg .video-poster { display: block; }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-name,
+  .quote-container,
+  .hero-gold-line,
+  .hero-vertical-text,
+  .scroll-prompt {
+    opacity: 1;
+    animation: none;
+  }
+  .scroll-prompt-line {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .sidebar-nav { display: none; }
@@ -699,212 +710,26 @@ img { max-width: 100%; display: block; }
   .writing-section,
   .recs-section { padding: 96px 24px; }
   .cta-section { padding: 96px 24px; }
-  .section-divider { margin: 0 24px; }
+  .section-divider { margin: 0 24px; width: calc(100% - 48px); }
   .site-footer {
     flex-direction: column;
     text-align: center;
     gap: 20px;
-    padding: 48px 24px;
+    padding: 32px 24px;
   }
   .footer-links { gap: 24px; }
   .thought-ghost { font-size: 48px; }
-  .floor-indicator { left: 12px; bottom: 24px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ===== SKYSCRAPER BACKGROUND ===== -->
-<div class="skyscraper-bg" aria-hidden="true">
-  <svg id="skyline-svg" viewBox="0 0 1920 4000" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#020204"/>
-        <stop offset="40%" stop-color="#050508"/>
-        <stop offset="100%" stop-color="#0C0C12"/>
-      </linearGradient>
-      <radialGradient id="spireGlow" cx="960" cy="420" r="180" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="rgba(212,165,116,0.08)"/>
-        <stop offset="60%" stop-color="rgba(212,165,116,0.02)"/>
-        <stop offset="100%" stop-color="transparent"/>
-      </radialGradient>
-      <radialGradient id="crownGlow" cx="960" cy="800" r="300" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="rgba(193,200,212,0.03)"/>
-        <stop offset="100%" stop-color="transparent"/>
-      </radialGradient>
-      <linearGradient id="towerFade" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0B0B16"/>
-        <stop offset="100%" stop-color="#08080F"/>
-      </linearGradient>
-    </defs>
-    <rect width="1920" height="4000" fill="url(#skyGrad)"/>
-
-    <!-- ===== FAR BACKGROUND BUILDINGS ===== -->
-    <g opacity="0.2">
-      <rect x="60" y="3000" width="180" height="1000" fill="#07070C"/>
-      <rect x="280" y="3150" width="140" height="850" fill="#06060B"/>
-      <rect x="460" y="3250" width="100" height="750" fill="#07070C"/>
-      <rect x="1340" y="3050" width="200" height="950" fill="#07070C"/>
-      <rect x="1580" y="3200" width="150" height="800" fill="#06060B"/>
-      <rect x="1760" y="3100" width="120" height="900" fill="#07070C"/>
-    </g>
-
-    <!-- ===== MID-LAYER BUILDINGS ===== -->
-    <g opacity="0.35">
-      <!-- Left cluster -->
-      <path d="M180 3900 L180 2500 L200 2470 L230 2450 L260 2470 L280 2500 L280 2600 L320 2600 L320 2550 L350 2530 L380 2550 L380 3900 Z" fill="#09090F"/>
-      <path d="M440 3900 L440 2700 L470 2660 L500 2660 L530 2700 L530 3900 Z" fill="#08080E"/>
-      <!-- Right cluster -->
-      <path d="M1380 3900 L1380 2550 L1400 2520 L1430 2500 L1460 2520 L1480 2550 L1480 2700 L1520 2700 L1520 2640 L1550 2620 L1580 2640 L1580 3900 Z" fill="#09090F"/>
-      <path d="M1640 3900 L1640 2750 L1670 2720 L1700 2720 L1730 2750 L1730 3900 Z" fill="#08080E"/>
-    </g>
-
-    <!-- ===== LEFT FLANKING TOWER ===== -->
-    <g opacity="0.45">
-      <path d="M560 3900 L560 1700 L572 1670 L586 1640 L600 1615 L614 1600 L628 1590 L642 1600 L656 1615 L670 1640 L684 1670 L696 1700 L696 1780 L740 1780 L740 3900 Z" fill="#0A0A14"/>
-      <!-- Crown details -->
-      <line x1="614" y1="1595" x2="614" y2="1700" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="642" y1="1595" x2="642" y2="1700" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="628" y1="1590" x2="628" y2="1700" stroke="rgba(212,165,116,0.07)" stroke-width="0.5"/>
-      <!-- Small decorative triangles (Art Deco) -->
-      <path d="M610 1700 L628 1650 L646 1700 Z" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
-      <line x1="560" y1="1780" x2="740" y2="1780" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
-    </g>
-
-    <!-- ===== RIGHT FLANKING TOWER ===== -->
-    <g opacity="0.45">
-      <path d="M1220 3900 L1220 1750 L1232 1720 L1246 1690 L1260 1665 L1274 1650 L1288 1640 L1302 1650 L1316 1665 L1330 1690 L1344 1720 L1356 1750 L1356 1830 L1400 1830 L1400 3900 Z" fill="#0A0A14"/>
-      <line x1="1274" y1="1645" x2="1274" y2="1750" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="1302" y1="1645" x2="1302" y2="1750" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="1288" y1="1640" x2="1288" y2="1750" stroke="rgba(212,165,116,0.07)" stroke-width="0.5"/>
-      <path d="M1270 1750 L1288 1700 L1306 1750 Z" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
-      <line x1="1220" y1="1830" x2="1400" y2="1830" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
-    </g>
-
-    <!-- ===== MAIN TOWER — ART DECO CHRYSLER-INSPIRED ===== -->
-    <g>
-      <!-- Main shaft -->
-      <rect x="820" y="1500" width="280" height="2400" fill="url(#towerFade)"/>
-
-      <!-- Wide base pedestal -->
-      <rect x="780" y="3400" width="360" height="500" fill="#0A0A12"/>
-      <rect x="800" y="3200" width="320" height="200" fill="#09090F"/>
-
-      <!-- Setback tier 1 — widest -->
-      <rect x="790" y="1500" width="340" height="300" fill="#0A0A12"/>
-      <!-- Setback tier 2 -->
-      <rect x="810" y="1300" width="300" height="200" fill="#09090F"/>
-      <!-- Setback tier 3 -->
-      <rect x="840" y="1150" width="240" height="150" fill="#09090E"/>
-      <!-- Setback tier 4 -->
-      <rect x="870" y="1020" width="180" height="130" fill="#08080D"/>
-
-      <!-- ===== ART DECO CROWN — Chrysler-style sunburst ===== -->
-      <!-- Crown base platform -->
-      <rect x="890" y="920" width="140" height="100" fill="#08080C"/>
-
-      <!-- Sunburst arch tier 7 (outermost) -->
-      <path d="M880 920 L890 890 L910 850 L960 780 L1010 850 L1030 890 L1040 920 Z" fill="#07070B"/>
-      <!-- Sunburst arch tier 6 -->
-      <path d="M895 890 L910 860 L930 820 L960 760 L990 820 L1010 860 L1025 890 Z" fill="#07070A"/>
-      <!-- Sunburst arch tier 5 -->
-      <path d="M908 860 L920 830 L940 790 L960 740 L980 790 L1000 830 L1012 860 Z" fill="#070709"/>
-      <!-- Sunburst arch tier 4 -->
-      <path d="M920 830 L932 800 L948 770 L960 720 L972 770 L988 800 L1000 830 Z" fill="#060609"/>
-      <!-- Sunburst arch tier 3 -->
-      <path d="M932 800 L942 775 L952 750 L960 700 L968 750 L978 775 L988 800 Z" fill="#060608"/>
-      <!-- Sunburst arch tier 2 -->
-      <path d="M942 775 L950 755 L956 730 L960 680 L964 730 L970 755 L978 775 Z" fill="#050508"/>
-      <!-- Sunburst arch tier 1 (innermost) -->
-      <path d="M950 755 L955 740 L958 720 L960 660 L962 720 L965 740 L970 755 Z" fill="#050507"/>
-
-      <!-- Spire -->
-      <path d="M956 660 L960 380 L964 660 Z" fill="#060609"/>
-      <!-- Spire antenna -->
-      <line x1="960" y1="380" x2="960" y2="320" stroke="#08080D" stroke-width="2"/>
-      <circle cx="960" cy="318" r="3" fill="#0A0A14"/>
-
-      <!-- ===== CROWN GOLD ACCENTS ===== -->
-      <!-- Central vertical accent through crown -->
-      <line x1="960" y1="320" x2="960" y2="1500" stroke="rgba(212,165,116,0.08)" stroke-width="1"/>
-      <!-- Crown arch highlight lines -->
-      <line x1="940" y1="700" x2="940" y2="920" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="980" y1="700" x2="980" y2="920" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="920" y1="780" x2="920" y2="920" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
-      <line x1="1000" y1="780" x2="1000" y2="920" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
-      <line x1="900" y1="850" x2="900" y2="920" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
-      <line x1="1020" y1="850" x2="1020" y2="920" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
-
-      <!-- Decorative Art Deco triangular window patterns on crown -->
-      <path d="M935 920 L960 870 L985 920" fill="none" stroke="rgba(212,165,116,0.06)" stroke-width="0.8"/>
-      <path d="M920 920 L960 840 L1000 920" fill="none" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
-      <path d="M905 920 L960 810 L1015 920" fill="none" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
-
-      <!-- Eagle/gargoyle ornaments at crown base corners (simplified geometric) -->
-      <path d="M870 1020 L860 1010 L855 1025 L865 1020 Z" fill="rgba(212,165,116,0.06)"/>
-      <path d="M1050 1020 L1060 1010 L1065 1025 L1055 1020 Z" fill="rgba(212,165,116,0.06)"/>
-      <!-- Second pair at next setback -->
-      <path d="M840 1150 L830 1140 L825 1155 L835 1150 Z" fill="rgba(212,165,116,0.04)"/>
-      <path d="M1080 1150 L1090 1140 L1095 1155 L1085 1150 Z" fill="rgba(212,165,116,0.04)"/>
-
-      <!-- Horizontal setback accent lines -->
-      <line x1="890" y1="920" x2="1030" y2="920" stroke="rgba(212,165,116,0.06)" stroke-width="0.8"/>
-      <line x1="870" y1="1020" x2="1050" y2="1020" stroke="rgba(212,165,116,0.05)" stroke-width="0.5"/>
-      <line x1="840" y1="1150" x2="1080" y2="1150" stroke="rgba(212,165,116,0.04)" stroke-width="0.5"/>
-      <line x1="810" y1="1300" x2="1110" y2="1300" stroke="rgba(212,165,116,0.035)" stroke-width="0.5"/>
-      <line x1="790" y1="1500" x2="1130" y2="1500" stroke="rgba(212,165,116,0.03)" stroke-width="0.5"/>
-
-      <!-- Vertical structural lines down main shaft -->
-      <line x1="850" y1="1500" x2="850" y2="3900" stroke="rgba(255,255,255,0.01)" stroke-width="0.5"/>
-      <line x1="880" y1="1500" x2="880" y2="3900" stroke="rgba(255,255,255,0.01)" stroke-width="0.5"/>
-      <line x1="910" y1="1500" x2="910" y2="3900" stroke="rgba(255,255,255,0.012)" stroke-width="0.5"/>
-      <line x1="940" y1="1300" x2="940" y2="3900" stroke="rgba(255,255,255,0.012)" stroke-width="0.5"/>
-      <line x1="960" y1="920" x2="960" y2="3900" stroke="rgba(255,255,255,0.015)" stroke-width="0.5"/>
-      <line x1="980" y1="1300" x2="980" y2="3900" stroke="rgba(255,255,255,0.012)" stroke-width="0.5"/>
-      <line x1="1010" y1="1500" x2="1010" y2="3900" stroke="rgba(255,255,255,0.012)" stroke-width="0.5"/>
-      <line x1="1040" y1="1500" x2="1040" y2="3900" stroke="rgba(255,255,255,0.01)" stroke-width="0.5"/>
-      <line x1="1070" y1="1500" x2="1070" y2="3900" stroke="rgba(255,255,255,0.01)" stroke-width="0.5"/>
-
-      <!-- Window rows (subtle, repeating pattern) -->
-      <g opacity="0.015">
-        <g id="winRow">
-          <rect x="835" width="14" height="18" fill="#fff"/>
-          <rect x="860" width="14" height="18" fill="#fff"/>
-          <rect x="885" width="14" height="18" fill="#fff"/>
-          <rect x="910" width="14" height="18" fill="#fff"/>
-          <rect x="935" width="14" height="18" fill="#fff"/>
-          <rect x="960" width="14" height="18" fill="#fff"/>
-          <rect x="985" width="14" height="18" fill="#fff"/>
-          <rect x="1010" width="14" height="18" fill="#fff"/>
-          <rect x="1035" width="14" height="18" fill="#fff"/>
-          <rect x="1060" width="14" height="18" fill="#fff"/>
-        </g>
-      </g>
-
-      <!-- Spire glow -->
-      <circle cx="960" cy="420" r="100" fill="url(#spireGlow)"/>
-      <!-- Crown ambient glow -->
-      <circle cx="960" cy="800" r="200" fill="url(#crownGlow)"/>
-    </g>
-  </svg>
-</div>
-
-<!-- Stars -->
-<div class="stars-layer" id="stars" aria-hidden="true"></div>
-
-<!-- Clouds -->
-<div class="cloud" style="top:12vh; left:-5%; width:30vw; opacity:0.025;" aria-hidden="true"></div>
-<div class="cloud" style="top:22vh; left:40%; width:25vw; opacity:0.02;" aria-hidden="true"></div>
-<div class="cloud" style="top:8vh; left:60%; width:28vw; opacity:0.03;" aria-hidden="true"></div>
-<div class="cloud" style="top:30vh; left:15%; width:22vw; opacity:0.02;" aria-hidden="true"></div>
-
-<!-- Fog -->
-<div class="fog-layer" aria-hidden="true"></div>
-
-<!-- Floor Indicator -->
-<div class="floor-indicator" aria-hidden="true">
-  <span class="fl-label">FL</span>
-  <span class="fl-number" id="floor-number">01</span>
+<!-- ===== VIDEO BACKGROUND ===== -->
+<div class="video-bg" aria-hidden="true">
+  <video autoplay muted loop playsinline poster="poster.jpg" id="bgVideo">
+    <source src="wanderer-bg.mp4" type="video/mp4">
+  </video>
+  <img class="video-poster" src="poster.jpg" alt="">
 </div>
 
 <!-- ===== DESKTOP SIDEBAR NAV ===== -->
@@ -948,12 +773,14 @@ img { max-width: 100%; display: block; }
 
   <div class="scroll-prompt">
     <div class="scroll-prompt-line"></div>
-    <span class="scroll-prompt-text">Ascend</span>
+    <span class="scroll-prompt-text">Descend</span>
   </div>
 </section>
 
 <!-- ===== CONTENT ===== -->
 <main class="content">
+<div class="content-body">
+<div class="content-body-inner">
 
   <!-- ABOUT -->
   <div class="section-divider"></div>
@@ -1048,6 +875,9 @@ img { max-width: 100%; display: block; }
 
     <a href="/recommendations" class="section-view-all reveal">View All Recommendations <span class="arrow">&rarr;</span></a>
   </section>
+
+</div><!-- .content-body-inner -->
+</div><!-- .content-body -->
 </main>
 
 <!-- ===== CTA SECTION ===== -->
@@ -1066,7 +896,7 @@ img { max-width: 100%; display: block; }
   <div class="footer-copy">Henry Pan &copy; 2026</div>
   <div class="footer-links">
     <a href="https://instagram.com/henrybpan" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://tiktok.com/@henrybpan" target="_blank" rel="noopener">TikTok</a>
     <a href="https://linkedin.com/in/henrybpan" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://x.com/henrypanonx" target="_blank" rel="noopener">X</a>
   </div>
@@ -1076,66 +906,19 @@ img { max-width: 100%; display: block; }
 (function() {
   'use strict';
 
-  // ===== STARS =====
-  const starsEl = document.getElementById('stars');
-  const starCount = 70;
-  const frag = document.createDocumentFragment();
-  for (let i = 0; i < starCount; i++) {
-    const star = document.createElement('div');
-    star.className = 'star';
-    const size = Math.random() < 0.15 ? (2 + Math.random()) : (1 + Math.random());
-    star.style.width = size + 'px';
-    star.style.height = size + 'px';
-    star.style.left = Math.random() * 100 + '%';
-    star.style.top = Math.random() * 100 + '%';
-    star.style.opacity = 0.1 + Math.random() * 0.4;
-    frag.appendChild(star);
+  // ===== VIDEO FALLBACK =====
+  var video = document.getElementById('bgVideo');
+  var posterImg = document.querySelector('.video-bg .video-poster');
+  if (video) {
+    var playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function() {
+        // Video can't autoplay — show poster image as fallback
+        video.style.display = 'none';
+        if (posterImg) posterImg.style.display = 'block';
+      });
+    }
   }
-  starsEl.appendChild(frag);
-
-  // ===== CLOUD DRIFT =====
-  const clouds = document.querySelectorAll('.cloud');
-  clouds.forEach(function(cloud, i) {
-    const dur = 60 + i * 15;
-    const dir = i % 2 === 0 ? 8 : -8;
-    cloud.style.animation = 'cloudDrift' + (i % 2) + ' ' + dur + 's ease-in-out infinite';
-  });
-  // Inject cloud keyframes
-  const cloudStyle = document.createElement('style');
-  cloudStyle.textContent = '@keyframes cloudDrift0{0%,100%{transform:translateX(0)}50%{transform:translateX(8vw)}}@keyframes cloudDrift1{0%,100%{transform:translateX(0)}50%{transform:translateX(-6vw)}}';
-  document.head.appendChild(cloudStyle);
-
-  // ===== PARALLAX & FLOOR INDICATOR =====
-  const svg = document.querySelector('#skyline-svg');
-  const floorNum = document.getElementById('floor-number');
-  const docHeight = function() { return document.documentElement.scrollHeight - window.innerHeight; };
-  let ticking = false;
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function() {
-      const scrollY = window.scrollY;
-      const maxScroll = docHeight();
-      const progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
-
-      // Parallax: start at base of building, ascend as user scrolls down
-      // translateY goes from -2200 (base visible) to 0 (crown/spire visible)
-      var translateY = (1 - progress) * 2200;
-      // Perspective: looking up at base → bird's eye at top
-      var rotateX = 5 - (progress * 14); // 5deg (looking up) to -9deg (looking down)
-      svg.style.transform = 'rotateX(' + rotateX + 'deg) translateY(-' + translateY + 'px)';
-
-      // Floor indicator
-      const floor = Math.max(1, Math.min(85, Math.round(1 + progress * 84)));
-      floorNum.textContent = floor < 10 ? '0' + floor : '' + floor;
-
-      ticking = false;
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
   // ===== ROTATING QUOTES (Bible Verses from /data/bible-verses.json) =====
   var container = document.getElementById('quote-container');
