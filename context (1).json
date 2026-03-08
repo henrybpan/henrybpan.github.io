@@ -1,0 +1,288 @@
+{
+  "project": {
+    "name": "henrybpan.com",
+    "owner": "Henry Pan",
+    "description": "Personal website — manifesto homepage, essays, short thoughts, recommendations, and a work-with-me contact page. Serves as a personal brand hub and record of ongoing intellectual development.",
+    "domain": "henrybpan.com",
+    "repository": "henrybpan.github.io",
+    "stack": "Jekyll on GitHub Pages. All pages use _layouts/default.html with YAML front matter, except index.html which is standalone.",
+    "contact_email": "work@henrybpan.com",
+    "inquiry_email": "henrypaninquiries@gmail.com"
+  },
+
+  "owner_identity": {
+    "age": 18,
+    "school": "University of Virginia, Class of 2028",
+    "hometown": "Northern Virginia",
+    "footer_location_line": "NoVA | University of Virginia",
+    "social_handles": {
+      "instagram": "henrybpan",
+      "youtube": "henrybpan",
+      "x_twitter": "henrypanonx",
+      "tiktok": "henrybpan",
+      "linkedin": "henrybpan"
+    },
+    "social_links": {
+      "instagram": "https://instagram.com/henrybpan",
+      "youtube": "https://youtube.com/@henrybpan",
+      "x_twitter": "https://x.com/henrypanonx",
+      "tiktok": "https://tiktok.com/@henrybpan",
+      "linkedin": "https://linkedin.com/in/henrybpan",
+      "email": "mailto:work@henrybpan.com"
+    },
+    "coaching_form": "https://form.typeform.com/to/iNjNiJcH",
+    "coaching_calendar": "https://calendly.com/henrypaninquiries/30min"
+  },
+
+  "brand": {
+    "concept": "The Solitary Wanderer — after Caspar David Friedrich's 'Wanderer Above the Sea of Fog'. Someone who travels alone toward the sublime, reaches peaks others haven't considered.",
+    "emotional_register": "Thesis statement from someone building something serious. Warm but disciplined. Contemplative, never navel-gazing.",
+    "anti_patterns": [
+      "Template-looking layouts",
+      "Gradient hero backgrounds",
+      "Bento grid layouts",
+      "Framer-style animations that feel like everyone's portfolio",
+      "Copy that could appear on someone else's site",
+      "Subtitles or page descriptions that state the obvious"
+    ]
+  },
+
+  "design_system": {
+    "css_variables": {
+      "--white": "#F5F2ED",
+      "--black": "#0C0C0C",
+      "--muted": "#888880",
+      "--gold":  "#D4A574",
+      "--blue":  "#C1C8D4",
+      "--card":  "#EDEAE4",
+      "--rule":  "rgba(12,12,12,0.12)"
+    },
+    "typography": {
+      "display_font": "Cormorant Garamond — logo text, page titles, nav overlay links, manifesto title, rec card titles",
+      "body_font":    "EB Garamond — body copy, annotations, labels, filter buttons, footer",
+      "google_fonts_import": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap",
+      "rule": "Both fonts are serif. The site should feel like reading a journal, not a SaaS dashboard. No Inter, Roboto, or sans-serif as a primary font."
+    },
+    "logo": {
+      "file": "/assets/images/logo.png",
+      "size": "26x26px, border-radius: 50%",
+      "placement": "Left of 'HENRY PAN' text in header, both vertically centered, gap 0.65rem",
+      "fallback": "If logo.png is missing, show a 26x26 filled black circle placeholder"
+    },
+    "animations": "Fade-up on page load: opacity 0→1, translateY 14px→0, ~0.8s ease, 0.15s delay. CSS only.",
+    "borders": "1px solid var(--rule) for header bottom and footer top. Square corners throughout."
+  },
+
+  "header": {
+    "left": "Logo image + 'HENRY PAN' (Cormorant Garamond, 500, uppercase, letter-spacing 0.1em), wrapped in <a href='/'>",
+    "right": "Two-bar hamburger button only. No inline nav links.",
+    "hamburger": "22px wide bars, 1.5px height, 5px gap. Animates to X when open. Toggles nav overlay. Locks body scroll.",
+    "style": "position: fixed. Background var(--white). 1px bottom border var(--rule). Padding 1.35rem 2.5rem."
+  },
+
+  "nav_overlay": {
+    "trigger": "Hamburger button",
+    "style": "Full viewport. Background var(--white). Centered column of links.",
+    "links_in_order": ["Essays", "Thoughts", "Recommendations", "Work With Me"],
+    "hrefs_in_order": ["/essays/", "/thoughts/", "/recommendations/", "/work-with-me/"],
+    "link_style": "Cormorant Garamond, 400 weight, clamp(2rem, 5.5vw, 3rem), color var(--muted). Hover: var(--black) + gold underline from left.",
+    "close_triggers": ["Click any link", "Click X (hamburger toggle)", "Press Escape"]
+  },
+
+  "footer": {
+    "left_column": "© 2026 Henry Pan (Cormorant Garamond, italic, var(--muted), 0.8rem)",
+    "right_column": [
+      "Line 1: work@henrybpan.com — mailto link, EB Garamond, 0.78rem, var(--muted), gold on hover",
+      "Line 2: NoVA | University of Virginia — EB Garamond, italic, var(--muted), 0.8rem"
+    ],
+    "right_column_note": "Email is ABOVE location on the right side. Copyright is on the left. This exact order is required.",
+    "style": "Not fixed. 1px top border var(--rule). Padding 1.5rem 2.5rem. Flex row, space-between, align items to flex-end."
+  },
+
+  "urls": {
+    "structure": "Clean trailing-slash URLs via _config.yml permalink: pretty",
+    "routes": {
+      "/":                 "index.html (standalone)",
+      "/essays/":          "essays.html",
+      "/essays/slug/":     "essays/slug.html",
+      "/thoughts/":        "thoughts.html",
+      "/recommendations/": "recommendations.html",
+      "/work-with-me/":    "work-with-me.html"
+    }
+  },
+
+  "pages": {
+    "home": {
+      "route": "/",
+      "file": "index.html",
+      "browser_tab": "Henry Pan",
+      "layout": "Standalone — full CSS/JS inline, not using Jekyll layout",
+      "manifesto_label": "My Manifesto",
+      "manifesto_title": "The Internet is Dying—and it's Your Fault",
+      "section_nav_links": "Essays · Thoughts · Recommendations · Work With Me",
+      "section_nav_hrefs": ["/essays/", "/thoughts/", "/recommendations/", "/work-with-me/"],
+      "note": "Gold dots (·) between nav links. Not pipes. Not slashes."
+    },
+    "essays": {
+      "route": "/essays/",
+      "file": "essays.html",
+      "browser_tab": "Essays — Henry Pan",
+      "layout": "Jekyll default",
+      "description": "Vertical list. Each item: date (Month Dth, Year) in muted text above, title as link, one-line excerpt. Separated by 1px rules.",
+      "date_format": "'January 14th, 2025' — ordinal suffixes required"
+    },
+    "thoughts": {
+      "route": "/thoughts/",
+      "file": "thoughts.html",
+      "browser_tab": "Thoughts — Henry Pan",
+      "layout": "Jekyll default",
+      "description": "Stream of short takes, 1 sentence to 2 paragraphs. Newest first. Date above each in muted uppercase. No titles, no play buttons, no audio. 1px rules between entries.",
+      "date_format": "'February 16th, 2026' — ordinal suffixes required"
+    },
+    "recommendations": {
+      "route": "/recommendations/",
+      "file": "recommendations.html",
+      "browser_tab": "Recommendations — Henry Pan",
+      "layout": "Jekyll default",
+      "description": "Grid of recommendation cards. Page title 'Recommendations' only — no subtitle.",
+      "filter_tabs": ["All", "Books", "Essays", "Podcasts", "Music"],
+      "filter_data_values": ["all", "books", "essays", "podcasts", "music"],
+      "films_removed": true,
+      "card_fields": ["square thumbnail", "category tag", "title", "author", "italic annotation"]
+    },
+    "work_with_me": {
+      "route": "/work-with-me/",
+      "file": "work-with-me.html",
+      "browser_tab": "Work With Me — Henry Pan",
+      "layout": "Jekyll default",
+      "primary_copy": "If you are a creator who wants to work with me, DM me on Instagram. If you are a brand, email work@henrybpan.com.",
+      "icon_order": ["Instagram", "YouTube", "X", "TikTok", "LinkedIn", "Email"],
+      "icon_style": "Outline SVG, 24-28px, var(--muted), gold on hover"
+    }
+  },
+
+  "data_files": {
+    "description": "Content for thoughts, essays, and recs is stored in _data/ JSON files. The HTML templates loop over these files to render content. This enables the CLI tool to add content by editing JSON only — never touching HTML.",
+    "files": {
+      "_data/thoughts.json": {
+        "description": "Array of thought objects, newest first",
+        "schema": {
+          "date": "string — 'February 16th, 2026'",
+          "text": "string — the thought text, plain or with basic HTML like <em>"
+        }
+      },
+      "_data/essays.json": {
+        "description": "Array of essay metadata objects, newest first",
+        "schema": {
+          "title": "string",
+          "date": "string — 'January 14th, 2025'",
+          "slug": "string — e.g. 'on-marty-supreme'",
+          "excerpt": "string — one sentence"
+        }
+      },
+      "_data/recs.json": {
+        "description": "Array of recommendation objects",
+        "schema": {
+          "title": "string",
+          "author": "string",
+          "type": "string — 'books' | 'essays' | 'podcasts' | 'music'",
+          "tag": "string — 'Book' | 'Essay' | 'Podcast' | 'Music'",
+          "annotation": "string",
+          "image": "string | null — path like '/assets/images/recs/filename.jpg'"
+        }
+      }
+    }
+  },
+
+  "cli_tool": {
+    "description": "A Node.js terminal CLI so Henry can add essays, thoughts, and recs without opening VS Code or Claude Code. Run with: node add.js",
+    "file": "add.js (in project root)",
+    "dependencies": "Only Node.js built-ins — no npm install required. Use readline for prompts, fs for file operations.",
+    "behavior": {
+      "startup": "Show a simple menu: (1) Add Thought  (2) Add Essay  (3) Add Rec  (4) Exit",
+      "add_thought": [
+        "Prompt: 'Thought text:' (multi-line, end with a blank line or type END)",
+        "Auto-generate today's date in 'Month Dth, Year' format with ordinal suffix",
+        "Confirm: show the entry, ask 'Add this? (y/n)'",
+        "On yes: prepend to _data/thoughts.json (newest first)",
+        "Success message: 'Thought added. Run jekyll serve to preview.'"
+      ],
+      "add_essay": [
+        "Prompt: 'Title:'",
+        "Prompt: 'Excerpt (one sentence):'",
+        "Auto-generate slug from title (lowercase, hyphens, no special chars)",
+        "Auto-generate today's date",
+        "Create the essay HTML file at essays/[slug].html with Jekyll front matter and a content placeholder",
+        "Prepend entry to _data/essays.json",
+        "Success message: 'Essay stub created at essays/[slug].html — open it to write your content.'"
+      ],
+      "add_rec": [
+        "Prompt: 'Title:'",
+        "Prompt: 'Author/Creator:'",
+        "Prompt: 'Type: (1) Book  (2) Essay  (3) Podcast  (4) Music'",
+        "Prompt: 'Annotation (your one-line take):'",
+        "Prompt: 'Image filename (or press Enter to skip):'",
+        "Append to _data/recs.json",
+        "Success message: 'Rec added. If you have a cover image, drop it in /assets/images/recs/[filename].'"
+      ],
+      "ux_notes": [
+        "Use colors in terminal output (green for success, yellow for prompts, red for errors) via ANSI codes",
+        "Show a brief welcome message on startup with the site name",
+        "After any action, ask 'Add another? (y/n)' before returning to menu or exiting",
+        "Handle Ctrl+C gracefully with a 'Goodbye.' message"
+      ]
+    }
+  },
+
+  "codebase_structure": {
+    "target_layout": {
+      "_data/":                    "thoughts.json, essays.json, recs.json — single source of truth for all content",
+      "_layouts/default.html":     "Shared layout: header, nav overlay, footer. Jekyll {{ content }} injection. Full comments.",
+      "_includes/":                "loading-bar.html — unchanged",
+      "assets/css/":               "loading-bar.css — unchanged. Add main.css for shared styles if needed.",
+      "assets/js/":                "loading-bar.js — unchanged",
+      "assets/images/":            "logo.png (Henry's logo), recs/ subfolder for rec thumbnails",
+      "essays/":                   "Individual essay HTML files using Jekyll layout",
+      "index.html":                "Standalone homepage",
+      "essays.html":               "Essays listing page",
+      "thoughts.html":             "Thoughts listing page",
+      "recommendations.html":      "Recommendations grid page",
+      "work-with-me.html":         "Contact/work page",
+      "add.js":                    "CLI content tool (Node.js, no dependencies)",
+      "_config.yml":               "Jekyll config",
+      "context.json":              "This file — project documentation for AI tools"
+    },
+    "documentation_standard": "Every file should have a comment block at the top explaining its purpose. CSS sections should be separated by labeled comment blocks (e.g. /* === HEADER === */). JS functions should have one-line comments above them.",
+    "no_duplicate_css": "All shared styles live in _layouts/default.html <style> block or a linked main.css. No copy-pasted CSS across pages.",
+    "no_dead_code": "Remove: old video background code, old sidebar nav, old coaching page nav links, any unused CSS classes, the old mobile overlay from the previous nav system."
+  },
+
+  "files_to_preserve_unchanged": [
+    "assets/js/loading-bar.js",
+    "assets/css/loading-bar.css",
+    "_includes/loading-bar.html",
+    "apply/index.html",
+    "data/bible-verses.json",
+    "CNAME",
+    "Essay body content (the written words inside on-marty-supreme.html and pickupartist.html)"
+  ],
+
+  "quality_checklist": [
+    "Hamburger on every page — homepage and all inner pages.",
+    "No inline nav links in header — only logo left, hamburger right.",
+    "Footer: copyright LEFT. Email (above) + location (below) RIGHT.",
+    "Logo image renders left of site name in header.",
+    "All URLs clean with trailing slashes: /essays/, /thoughts/, /recommendations/, /work-with-me/.",
+    "Recommendations filter: exactly All, Books, Essays, Podcasts, Music. No Films.",
+    "Recommendations page: no subtitle, no description — title and filter bar only.",
+    "Thoughts and essays pull from _data/ JSON files via Jekyll loops.",
+    "CLI tool runs with 'node add.js' from project root, no npm install.",
+    "CLI auto-generates correct date format with ordinals.",
+    "No Inter or sans-serif fonts in body copy.",
+    "Gold dots (·) separate section nav links on homepage.",
+    "Work With Me icons: Instagram, YouTube, X, TikTok, LinkedIn, Email — outline, muted, gold on hover.",
+    "Every file has a top-of-file comment explaining its purpose.",
+    "No dead code, no duplicate CSS, no leftover video background references.",
+    "Mobile: test at 375px. Grid collapses to 2 cols, header readable, overlay functional."
+  ]
+}
