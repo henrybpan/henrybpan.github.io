@@ -1,0 +1,25 @@
+---
+layout: default
+title: Essays
+---
+<!--
+  essays.html
+  ===========
+  Lists all essays from _data/essays.json.
+  Essays are ordered newest-first in the JSON file.
+  Each entry links to /essays/[slug]/.
+-->
+
+<section class="content">
+  <h1 class="page-heading">Essays</h1>
+
+  {% for essay in site.data.essays %}
+  <div class="listing-item">
+    <div class="listing-date">{{ essay.date }}</div>
+    <h3 class="listing-title">
+      <a href="/essays/{{ essay.slug }}/">{{ essay.title }}</a>
+    </h3>
+    <p class="listing-excerpt">{{ essay.excerpt }}</p>
+  </div>
+  {% endfor %}
+</section>
