@@ -8,18 +8,25 @@
  * - readline (for terminal prompts)
  * - fs (for reading/writing JSON and HTML)
  * - path (for file paths)
+ * - child_process (for git commit + push)
  *
  * Supported actions:
  *   1. Add a Thought   → prepends to _data/thoughts.json
  *   2. Add an Essay    → prepends to _data/essays.json + creates stub HTML
  *   3. Add a Rec       → appends to _data/recs.json
+ *
+ * After every successful write, the tool asks:
+ *   "Publish now? (y/n)"
+ * On y: runs git add . && git commit -m "[auto] add [type]" && git push
+ * GitHub Pages rebuilds automatically (~30 seconds after push).
  */
 
 'use strict';
 
-const readline = require('readline');
-const fs       = require('fs');
-const path     = require('path');
+const readline     = require('readline');
+const fs           = require('fs');
+const path         = require('path');
+const childProcess = require('child_process');
 
 // ── ANSI color helpers ──────────────────────────────────────────────────────
 const green  = (s) => `\x1b[32m${s}\x1b[0m`;
@@ -104,7 +111,7 @@ function askMultiline(prompt) {
   return new Promise((resolve) => {
     console.log(yellow(prompt));
     console.log(dim('  (Press Enter twice when done)'));
-    const lines = [];
+    const lines      = [];
     let lastWasBlank = false;
 
     const handler = (line) => {
@@ -131,35 +138,65 @@ async function confirm(preview) {
   return answer.toLowerCase() === 'y';
 }
 
+// ── Publish helper ──────────────────────────────────────────────────────────
+/**
+ * Asks whether to publish, then runs git add / commit / push.
+ * type        — label used in the prompt ("thought", "essay", "rec")
+ * commitMsg   — the message after "[auto] ", e.g. "add thought: first six words..."
+ */
+async function publishPrompt(type, commitMsg) {
+  const answer = await ask('Publish to henrybpan.com now? (y/n): ');
+  if (answer.toLowerCase() !== 'y') {
+    console.log(dim("Changes saved locally. Run 'node add.js' again or push manually."));
+    return;
+  }
+
+  try {
+    childProcess.execSync('git add .', { stdio: 'inherit' });
+    childProcess.execSync(`git commit -m "[auto] ${commitMsg}"`, { stdio: 'inherit' });
+    childProcess.execSync('git push', { stdio: 'inherit' });
+    console.log(green('✓ Published. Site will update in ~30 seconds.'));
+  } catch (e) {
+    console.log(red('✗ Publish failed. Check that git is configured and you have push access.'));
+    console.log(red(e.message));
+    console.log(dim("Your content was saved locally — run 'git push' manually."));
+  }
+}
+
 // ── ADD THOUGHT ─────────────────────────────────────────────────────────────
 async function addThought() {
   const text = await askMultiline('Thought:');
-  if (!text) { console.log(red('No text entered.')); return; }
+  if (!text) { console.log(red('No text entered.')); return false; }
 
   const date  = getOrdinalDate();
   const entry = { date, text };
 
   const preview = `Date: ${date}\nText: ${text}`;
-  if (!(await confirm(preview))) { console.log(dim('Cancelled.')); return; }
+  if (!(await confirm(preview))) { console.log(dim('Cancelled.')); return false; }
 
   const filePath = path.join(__dirname, '_data', 'thoughts.json');
   const data     = readJson(filePath);
   data.unshift(entry); // prepend (newest first)
   writeJson(filePath, data);
   console.log(green('✓ Thought added.'));
+
+  // Build commit message from first 6 words of the thought
+  const first6 = text.split(/\s+/).slice(0, 6).join(' ');
+  await publishPrompt('thought', `add thought: ${first6}...`);
+  return true;
 }
 
 // ── ADD ESSAY ───────────────────────────────────────────────────────────────
 async function addEssay() {
   const title   = await ask('Title: ');
-  if (!title) { console.log(red('No title entered.')); return; }
+  if (!title) { console.log(red('No title entered.')); return false; }
   const excerpt = await ask('Excerpt (one sentence): ');
 
   const date = getOrdinalDate();
   const slug = toSlug(title);
 
   const preview = `Title:   ${title}\nDate:    ${date}\nSlug:    ${slug}\nExcerpt: ${excerpt}`;
-  if (!(await confirm(preview))) { console.log(dim('Cancelled.')); return; }
+  if (!(await confirm(preview))) { console.log(dim('Cancelled.')); return false; }
 
   // Prepend to essays.json
   const jsonPath = path.join(__dirname, '_data', 'essays.json');
@@ -168,7 +205,7 @@ async function addEssay() {
   writeJson(jsonPath, data);
 
   // Create essay stub HTML file
-  const stubPath = path.join(__dirname, 'essays', `${slug}.html`);
+  const stubPath    = path.join(__dirname, 'essays', `${slug}.html`);
   const stubContent =
 `---
 layout: default
@@ -187,19 +224,35 @@ title: ${title}
 `;
   fs.writeFileSync(stubPath, stubContent, 'utf8');
   console.log(green(`✓ Essay stub created at essays/${slug}.html`));
+
+  // Ask whether to publish the stub now or write first
+  console.log(dim(`\nOpen essays/${slug}.html to write your content before publishing.`));
+  const choice = await ask('Publish stub now, or write first? (publish/write): ');
+  if (choice.toLowerCase() === 'write') {
+    console.log(dim("Okay — run 'node add.js' and publish when you're ready."));
+    return false; // skip "Add another?" prompt per spec
+  }
+
+  await publishPrompt('essay', `add essay: ${title}`);
+  return true;
 }
 
 // ── ADD REC ─────────────────────────────────────────────────────────────────
 async function addRec() {
   const title  = await ask('Title: ');
-  if (!title) { console.log(red('No title entered.')); return; }
+  if (!title) { console.log(red('No title entered.')); return false; }
   const author = await ask('Author / Creator: ');
 
   // Type selection
   const typeChoice = await ask('Type: (1) Book  (2) Essay  (3) Podcast  (4) Music — enter number: ');
-  const typeMap    = { '1': { type: 'books', tag: 'Book' }, '2': { type: 'essays', tag: 'Essay' }, '3': { type: 'podcasts', tag: 'Podcast' }, '4': { type: 'music', tag: 'Music' } };
-  const selected   = typeMap[typeChoice.trim()];
-  if (!selected) { console.log(red('Invalid type selection.')); return; }
+  const typeMap    = {
+    '1': { type: 'books',    tag: 'Book'    },
+    '2': { type: 'essays',   tag: 'Essay'   },
+    '3': { type: 'podcasts', tag: 'Podcast' },
+    '4': { type: 'music',    tag: 'Music'   },
+  };
+  const selected = typeMap[typeChoice.trim()];
+  if (!selected) { console.log(red('Invalid type selection.')); return false; }
 
   const annotation = await ask('Your one-line annotation: ');
   const imageInput = await ask('Image filename (or press Enter to skip): ');
@@ -207,7 +260,7 @@ async function addRec() {
 
   const entry   = { title, author, type: selected.type, tag: selected.tag, annotation, image };
   const preview = `Title:      ${title}\nAuthor:     ${author}\nType:       ${selected.tag}\nAnnotation: ${annotation}\nImage:      ${image || '(none)'}`;
-  if (!(await confirm(preview))) { console.log(dim('Cancelled.')); return; }
+  if (!(await confirm(preview))) { console.log(dim('Cancelled.')); return false; }
 
   const filePath = path.join(__dirname, '_data', 'recs.json');
   const data     = readJson(filePath);
@@ -217,10 +270,16 @@ async function addRec() {
   if (imageInput) {
     console.log(dim(`Drop the image file at assets/images/recs/${imageInput}`));
   }
+
+  await publishPrompt('rec', `add rec: ${title}`);
+  return true;
 }
 
 // ── MAIN MENU ───────────────────────────────────────────────────────────────
-/** Shows the main menu and dispatches to the selected action. */
+/**
+ * Shows the main menu, dispatches to the selected action, and returns whether
+ * to offer the "Add another?" prompt (false when essay 'write' path is taken).
+ */
 async function showMenu() {
   console.log('\n' + bold('henrybpan.com — Content Manager'));
   console.log(dim('─────────────────────────────────'));
@@ -233,9 +292,9 @@ async function showMenu() {
   const choice = await ask('Choose an option: ');
 
   switch (choice) {
-    case '1': await addThought(); break;
-    case '2': await addEssay();   break;
-    case '3': await addRec();     break;
+    case '1': return await addThought();
+    case '2': return await addEssay();
+    case '3': return await addRec();
     case '4':
       console.log('Goodbye.');
       rl.close();
@@ -243,23 +302,28 @@ async function showMenu() {
       break;
     default:
       console.log(red('Invalid option. Try again.'));
+      return false;
   }
 }
 
-/** After an action, ask whether to continue or exit. */
+// ── ENTRY POINT ─────────────────────────────────────────────────────────────
 async function run() {
-  await showMenu();
+  let offerAgain = await showMenu();
 
   while (true) {
+    // Skip "Add another?" when the essay 'write' path exits gracefully
+    if (!offerAgain) {
+      rl.close();
+      process.exit(0);
+    }
     const again = await ask('\nAdd another? (y/n): ');
     if (again.toLowerCase() !== 'y') {
       console.log('Goodbye.');
       rl.close();
       process.exit(0);
     }
-    await showMenu();
+    offerAgain = await showMenu();
   }
 }
 
-// ── ENTRY POINT ─────────────────────────────────────────────────────────────
 run();
