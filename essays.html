@@ -2,24 +2,41 @@
 layout: default
 title: Essays
 ---
-<!--
-  essays.html
-  ===========
-  Lists all essays from _data/essays.json.
-  Essays are ordered newest-first in the JSON file.
-  Each entry links to /essays/[slug]/.
--->
 
 <section class="content">
   <h1 class="page-heading">Essays</h1>
+
+  <p class="substack-cta">
+    Subscribe to my Substack for new essays:
+    <a href="https://henrybpan.substack.com/" target="_blank" rel="noopener" class="substack-link">henrybpan.substack.com &rarr;</a>
+  </p>
 
   {% for essay in site.data.essays %}
   <div class="listing-item">
     <div class="listing-date">{{ essay.date }}</div>
     <h3 class="listing-title">
+      {% if essay.url %}
+      <a href="{{ essay.url }}" target="_blank" rel="noopener">{{ essay.title }}</a>
+      {% else %}
       <a href="/essays/{{ essay.slug }}/">{{ essay.title }}</a>
+      {% endif %}
     </h3>
     <p class="listing-excerpt">{{ essay.excerpt }}</p>
   </div>
   {% endfor %}
 </section>
+
+<style>
+  .substack-cta {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+  .substack-link {
+    color: var(--gold);
+    transition: color 0.3s;
+  }
+  .substack-link:hover { color: var(--black); }
+</style>
