@@ -1,28 +1,17 @@
-# Jekyll configuration for GitHub Pages
-
-# Site settings
 title: Henry Pan
-description: I help Christian entrepreneurs grow their businesses through personal brands that actually reflect who they are.
-url: "https://henrybpan.github.io"
+description: "I help Christian entrepreneurs grow their businesses through personal brands that actually reflect who they are."
+url: "https://henrybpan.com"
 baseurl: ""
-
-# Build settings
 markdown: kramdown
 theme: null
-
-# Exclude from processing
+permalink: pretty
+plugins:
+  - jekyll-redirect-from
 exclude:
+  - add.js
+  - context.json
   - README.md
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
-
-# Permalinks
-permalink: pretty
-
-# Collections (if needed in the future)
-# collections:
-#   writings:
-#     output: true
-#     permalink: /writings/:name
