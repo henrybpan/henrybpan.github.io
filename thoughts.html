@@ -17,6 +17,7 @@ title: Thoughts
   {% for thought in site.data.thoughts %}
   <div class="listing-item">
     <div class="listing-date">{{ thought.date }}</div>
+    {% if thought.title %}<h3 class="listing-title" style="margin-bottom:1rem;">{{ thought.title }}</h3>{% endif %}
     <p class="listing-excerpt">{{ thought.text }}</p>
   </div>
   {% endfor %}
