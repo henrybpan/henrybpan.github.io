@@ -1,0 +1,160 @@
+{
+  "project": {
+    "name": "henrybpan.github.io",
+    "owner": "Henry Pan",
+    "domain": "henrybpan.com",
+    "repository": "henrypanqb/henrybpan.github.io",
+    "hosting": "GitHub Pages (static)",
+    "description": "Personal brand website. Single-page cinematic experience centered on an interactive business card inspired by the American Psycho (2000) Patrick Bateman scene. The card is the entire homepage — front shows identity, back reveals navigation."
+  },
+
+  "stack": {
+    "generator": "None — pure flat HTML, Jekyll removed",
+    "html": "Semantic HTML5, no templating",
+    "css": "Vanilla CSS, inline <style> blocks, CSS custom properties, no preprocessor",
+    "javascript": "Vanilla ES5 IIFE, zero dependencies, zero frameworks",
+    "fonts": "Google Fonts — Cormorant Garamond (300/400/500/600) + EB Garamond (400/500)",
+    "build": "None — GitHub Pages serves files directly",
+    "jekyll": "Disabled via .nojekyll file"
+  },
+
+  "fileStructure": {
+    "index.html": "Homepage. Cinematic card experience. All CSS and JS inline.",
+    "about/index.html": "About page — WIP placeholder, blank",
+    "essays/index.html": "Essays page — WIP placeholder, blank",
+    "recommendations/index.html": "Recommendations page — WIP placeholder, blank",
+    "work-with-me/index.html": "Work with Me page — WIP placeholder, blank",
+    ".nojekyll": "Empty file — disables Jekyll processing on GitHub Pages",
+    "CNAME": "Domain pointer: henrybpan.com"
+  },
+
+  "urlStructure": {
+    "/": "index.html — homepage card",
+    "/about": "about/index.html",
+    "/essays": "essays/index.html",
+    "/recommendations": "recommendations/index.html",
+    "/work-with-me": "work-with-me/index.html",
+    "note": "Directory-based routing (folder/index.html). GitHub Pages resolves /path to /path/index.html automatically. No trailing slash or .html extension needed in links."
+  },
+
+  "designSystem": {
+    "colors": {
+      "--bg": "#0F0E0C — near-black, warm brown undertone (page background)",
+      "--card": "#EDE8DE — warm bone/ivory (card face, both sides)",
+      "--card-text-primary": "#1C1A17 — near-black warm (name, nav items on hover)",
+      "--card-text-secondary": "#3A3530 — dark warm brown (title, nav items default, email hover)",
+      "--card-text-tertiary": "#6A6560 — medium warm gray (bottom location line)",
+      "--card-icons": "#5C5650 — warm gray (social icon default)",
+      "--card-email": "#46413B — dark warm (email text default)",
+      "rationale": "Background #0F0E0C is color-theory chosen: the warm brown undertone harmonizes with the bone card rather than creating a sterile cold contrast. Analogous warm palette throughout."
+    },
+    "typography": {
+      "displayFont": "Cormorant Garamond — used for card name, card title, nav links, WIP page titles",
+      "bodyFont": "EB Garamond — used for card email, card bottom text, hint text, back links",
+      "cardNameWeight": "400 (first name) / 600 (surname) — mirrors Patrick BATEMAN hierarchy",
+      "cardNameSize": "1.58em relative to card base font",
+      "cardNameTracking": "letter-spacing: 0.17em",
+      "cardTitleCase": "uppercase, letter-spacing: 0.1em",
+      "cardBaseFontSize": "clamp(9.5px, card-width / 38.5, 13.5px) — scales proportionally with card at every viewport"
+    },
+    "spacing": {
+      "cardPadding": "5.6% top, 6.8% sides, 5.0% bottom — percentage-based, scales with card",
+      "cardAspectRatio": "1.75:1 (standard business card 3.5 x 2 inches)",
+      "cardWidth": "min(520px, 88vw) — never overflows, responsive at any screen size"
+    },
+    "shadows": {
+      "card": "4-layer box shadow (1px, 12px, 32px, 72px) + inset 0.5px edge highlight. Simulates card resting on dark surface.",
+      "vignette": "radial-gradient overlay on body::after, 75% ellipse, transparent center to rgba(0,0,0,0.5) edges"
+    },
+    "animation": {
+      "flipDuration": "0.78s",
+      "flipEasing": "cubic-bezier(0.45, 0.05, 0.15, 0.95) — weighted deceleration, not springy",
+      "entryAnimation": "sceneEntry keyframe: translateY(22px) + opacity 0→1, 1.1s cubic-bezier(0.16,1,0.3,1)",
+      "wipPageEntry": "up keyframe: translateY(12px) + opacity 0→1, 0.75s same easing",
+      "hintFadeOut": "opacity transition 0.55s ease on .is-gone class"
+    }
+  },
+
+  "cardDesign": {
+    "inspiration": "Patrick Bateman business card, American Psycho (2000)",
+    "layout": {
+      "front": {
+        "topRight": "Email (work@henrybpan.com) stacked above social icons",
+        "center": "HENRY PAN (h1, tracked uppercase) + Social Media Growth (small caps)",
+        "bottom": "NoVA  |  University of Virginia (small uppercase)"
+      },
+      "back": {
+        "layout": "Left-aligned vertical nav list, vertically centered in card",
+        "items": ["About", "Essays", "Recommendations", "Work with Me"],
+        "dividers": "0.5px border-top on first item, border-bottom on all but last",
+        "hoverEffect": "Color darkens + padding-left nudge (0.28em indent)"
+      }
+    },
+    "socialIcons": {
+      "order": "Instagram, YouTube, X",
+      "style": "Inline SVG, stroke-based (outline), 0.72em size",
+      "instagram": "https://www.instagram.com/henrybpan",
+      "youtube": "https://www.youtube.com/@henrybpan",
+      "x": "https://x.com/henrybpan",
+      "note": "URLs use henrybpan as username — verify handles are correct before launching"
+    }
+  },
+
+  "flipBehavior": {
+    "desktop": "Pure CSS :hover on .card-scene with @media (hover: hover) and (pointer: fine). Zero JS on desktop.",
+    "mobile": "JS toggles .is-flipped class on .card-scene. Guards: (1) hover-capable devices skip JS handler; (2) taps on <a> elements navigate rather than toggle",
+    "keyboard": "Enter / Space toggle .is-flipped with preventDefault",
+    "hint": "hint-desktop / hint-mobile shown via @media (hover: hover). Fades out on first interaction via .is-gone class.",
+    "reducedMotion": "transition: none on .card-inner, animation: none on .scene"
+  },
+
+  "wipPages": {
+    "design": "Dark background (#0F0E0C), page title at rgba(237,232,222,0.28), 'Work in Progress' at rgba(237,232,222,0.1), back link at rgba(237,232,222,0.22)",
+    "status": "All four pages are intentionally blank — shell only",
+    "backLink": "← Back links to / (homepage)",
+    "readyToFill": ["about/index.html", "essays/index.html", "recommendations/index.html", "work-with-me/index.html"]
+  },
+
+  "removedFromPreviousSite": [
+    "_config.yml — Jekyll configuration",
+    "_layouts/default.html — Jekyll layout wrapper",
+    "_includes/loading-bar.html — loading bar component",
+    "_data/essays.json — essay metadata",
+    "_data/thoughts.json — thoughts content",
+    "_data/recs.json — recommendations data",
+    "data/bible-verses.json — unused data file",
+    "essays/why-do-people-watch-me.html — sample essay",
+    "thoughts.html — thoughts listing page",
+    "apply/index.html — Typeform redirect",
+    "assets/css/loading-bar.css — loading bar styles",
+    "assets/js/loading-bar.js — loading bar script",
+    "context.json — old project docs (replaced by this file)",
+    "add.js — CLI content management tool",
+    "essays.html — old Jekyll essays page",
+    "recommendations.html — old Jekyll recommendations page",
+    "work-with-me.html — old Jekyll contact page"
+  ],
+
+  "knownIssues": [],
+
+  "nextSteps": [
+    "Verify Instagram, YouTube, and X handles match actual accounts",
+    "Add og:title, og:description, og:image meta tags to index.html for link previews",
+    "Add a minimal SVG favicon (HP monogram or similar)",
+    "Fill in about/index.html first — highest-value page to complete",
+    "work-with-me page could be a simple email CTA or embedded Typeform",
+    "Consider adding a subtle page transition when navigating from card back to inner pages"
+  ],
+
+  "conventions": {
+    "cssOrganization": "Inline <style> blocks per page, sectioned with === SECTION === comments",
+    "jsOrganization": "IIFE pattern, 'use strict', vanilla ES5-compatible syntax",
+    "fontLoading": "Google Fonts with preconnect hints, display=swap implied",
+    "accessibility": "role=button + tabindex=0 on card, aria-label on card scene and icons, aria-hidden on decorative SVGs, focus-visible outline",
+    "performance": "GPU-only animation (transform + opacity), will-change scoped to .card-inner, percentage-based padding avoids JS layout reads",
+    "naming": "BEM-lite: .card-scene, .card-inner, .card-face, .card-front, .card-back, .card-nav, .card-hint"
+  },
+
+  "branch": "claude/frontend-architecture-analysis-eXb2O",
+  "lastUpdated": "2026-03-25"
+}
