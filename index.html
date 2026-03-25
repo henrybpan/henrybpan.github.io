@@ -1,395 +1,467 @@
-<!--
-  index.html
-  ==========
-  Standalone homepage. Does NOT use _layouts/default.html.
-  All CSS and JS are inline for full design control.
-
-  Structure:
-  - Fixed header (logo + hamburger)
-  - Full-screen nav overlay
-  - Manifesto block (label, title, divider, body)
-  - Section nav (Essays · Thoughts · Recommendations · Work With Me)
-  - Footer (copyright left, email+location right)
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Henry Pan — Social Media Growth">
   <title>Henry Pan</title>
-  <meta name="description" content="I help Christian entrepreneurs grow their businesses through personal brands that actually reflect who they are.">
-  <link rel="icon" type="image/png" href="https://i.imgur.com/LTPgya5.png">
-  <link rel="apple-touch-icon" type="image/png" href="https://i.imgur.com/LTPgya5.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <style>
 
-    /* === RESET & BASE === */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    body {
-      background: var(--white);
-      color: var(--black);
-      font-family: 'EB Garamond', serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
-    ::selection { background: var(--gold); color: var(--black); }
-
-    /* === CSS VARIABLES === */
-    :root {
-      --white: #F5F2ED;
-      --black: #0C0C0C;
-      --muted: #888880;
-      --gold:  #D4A574;
-      --blue:  #C1C8D4;
-      --card:  #EDEAE4;
-      --rule:  rgba(12,12,12,0.12);
-    }
-
-    /* === HEADER === */
-    .site-header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 500;
-      background: var(--white);
-      border-bottom: 1px solid var(--rule);
-      padding: 1.35rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .header-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      text-decoration: none;
-      color: var(--black);
-    }
-    /* Logo image — 26x26 circle */
-    .header-logo img {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-    /* Fallback circle placeholder if logo.png is missing */
-    .logo-placeholder {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--black);
-      flex-shrink: 0;
-    }
-    .header-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* === HAMBURGER === */
-    .hamburger {
-      width: 22px;
-      height: 16px;
-      position: relative;
-      cursor: pointer;
-      background: none;
-      border: none;
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 600;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 1.5px;
-      background: var(--black);
-      transition: all 0.3s ease;
-      transform-origin: center;
-    }
-    /* Animate bars → X when open */
-    .hamburger.open span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-    .hamburger.open span:nth-child(2) {
-      transform: translateY(-7px) rotate(-45deg);
     }
 
-    /* === NAV OVERLAY === */
-    .nav-overlay {
+    /* ============================================================
+       BASE
+    ============================================================ */
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: #0F0E0C;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Cinematic vignette — draws focus to the card */
+    body::after {
+      content: '';
       position: fixed;
       inset: 0;
-      background: var(--white);
-      z-index: 400;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      opacity: 0;
+      background: radial-gradient(
+        ellipse 75% 75% at 50% 50%,
+        transparent 30%,
+        rgba(0, 0, 0, 0.5) 100%
+      );
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      z-index: 0;
     }
-    .nav-overlay.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .nav-overlay a {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5.5vw, 3rem);
-      font-weight: 400;
-      color: var(--muted);
-      padding: 0.4rem 0;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    /* Gold underline from left on hover */
-    .nav-overlay a::after {
-      content: '';
-      position: absolute;
-      bottom: 0.2rem;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: width 0.3s ease;
-    }
-    .nav-overlay a:hover { color: var(--black); }
-    .nav-overlay a:hover::after { width: 100%; }
 
-    /* === MAIN / MANIFESTO === */
-    .manifesto-wrap {
-      min-height: 100vh;
+    /* ============================================================
+       SCENE
+    ============================================================ */
+    .scene {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      animation: sceneEntry 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes sceneEntry {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    /* ============================================================
+       CARD SCENE  (perspective wrapper + tap target)
+    ============================================================ */
+    .card-scene {
+      width: min(520px, 88vw);
+      aspect-ratio: 1.75;
+      perspective: 1400px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+
+    .card-scene:focus-visible {
+      outline: 1.5px solid rgba(237, 232, 222, 0.22);
+      outline-offset: 10px;
+      border-radius: 3px;
+    }
+
+    /* ============================================================
+       CARD INNER  (3D flip container)
+    ============================================================ */
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.78s cubic-bezier(0.45, 0.05, 0.15, 0.95);
+      will-change: transform;
+    }
+
+    /* Desktop hover — CSS-only, no JS */
+    @media (hover: hover) and (pointer: fine) {
+      .card-scene:hover .card-inner {
+        transform: rotateY(180deg);
+      }
+    }
+
+    /* Mobile tap / keyboard toggle */
+    .card-scene.is-flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* ============================================================
+       CARD FACES
+    ============================================================ */
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+
+      background-color: #EDE8DE;
+      border-radius: 2px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      /* Percentage padding scales naturally with card width */
+      padding: 5.6% 6.8% 5.0% 6.8%;
+
+      box-shadow:
+        0 1px 2px  rgba(0, 0, 0, 0.55),
+        0 4px 12px rgba(0, 0, 0, 0.48),
+        0 14px 32px rgba(0, 0, 0, 0.40),
+        0 32px 72px rgba(0, 0, 0, 0.30),
+        inset 0 0 0 0.5px rgba(255, 252, 240, 0.18);
+
+      color: #1C1A17;
+
+      /* Base font scales proportionally with card width */
+      font-size: clamp(9.5px, calc(min(520px, 88vw) / 38.5), 13.5px);
+    }
+
+    /* Back face starts pre-rotated */
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* ============================================================
+       FRONT — TOP
+    ============================================================ */
+    .card-top {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .card-top-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5em;
+    }
+
+    .card-email {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.62em;
+      letter-spacing: 0.04em;
+      color: #46413B;
+      text-decoration: none;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+
+    .card-email:hover { color: #1C1A17; }
+
+    .card-icons {
+      display: flex;
+      align-items: center;
+      gap: 0.58em;
+    }
+
+    .card-icons a {
+      display: flex;
+      align-items: center;
+      color: #5C5650;
+      text-decoration: none;
+      line-height: 0;
+      transition: color 0.2s ease;
+    }
+
+    .card-icons a:hover { color: #1C1A17; }
+
+    .card-icons svg {
+      width: 0.72em;
+      height: 0.72em;
+    }
+
+    /* ============================================================
+       FRONT — CENTER
+    ============================================================ */
+    .card-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.42em;
+      /* Slight upward optical bias — mirrors Bateman card proportions */
+      margin-bottom: 1.5%;
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.58em;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: #1C1A17;
+      line-height: 1;
+    }
+
+    /* Surname heavier — mirrors "Patrick BATEMAN" hierarchy */
+    .card-name .surname {
+      font-weight: 600;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      font-size: 0.71em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #3A3530;
+      line-height: 1;
+    }
+
+    /* ============================================================
+       FRONT — BOTTOM
+    ============================================================ */
+    .card-bottom {
+      text-align: center;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.56em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6A6560;
+      line-height: 1;
+    }
+
+    /* ============================================================
+       BACK — NAVIGATION
+    ============================================================ */
+    .card-nav {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 8rem 2.5rem 5rem;
-      max-width: 720px;
-      margin: 0 auto;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.15s forwards;
+      height: 100%;
     }
 
-    /* "My Manifesto" label above the title */
-    .manifesto-label {
-      font-family: 'EB Garamond', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.24em;
+    .card-nav a {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: 1.26em;
+      letter-spacing: 0.07em;
+      color: #3A3530;
+      text-decoration: none;
+      display: block;
+      padding: 0.3em 0;
+      border-bottom: 0.5px solid rgba(26, 23, 20, 0.1);
+      line-height: 1.15;
+      transition: color 0.2s ease, padding-left 0.22s ease;
+    }
+
+    .card-nav a:first-child {
+      border-top: 0.5px solid rgba(26, 23, 20, 0.1);
+    }
+
+    .card-nav a:hover {
+      color: #1C1A17;
+      padding-left: 0.28em;
+    }
+
+    /* ============================================================
+       INTERACTION HINT
+    ============================================================ */
+    .card-hint {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 10px;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
-    /* Main manifesto title */
-    .manifesto-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 400;
-      line-height: 1.2;
-      color: var(--black);
-      margin-bottom: 1.75rem;
-    }
-
-    /* Gold divider line */
-    .manifesto-divider {
-      width: 32px;
-      height: 1px;
-      background: var(--gold);
-      margin-bottom: 1.75rem;
-    }
-
-    /* Manifesto body copy */
-    .manifesto-body p {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.1rem;
-      line-height: 1.9;
-      color: var(--black);
-      margin-bottom: 1.4rem;
-    }
-    .manifesto-body p:last-child { margin-bottom: 0; }
-    .manifesto-body em { font-style: italic; }
-    .manifesto-body strong { font-weight: 500; }
-
-    /* === SECTION NAV === */
-    /* Links below the manifesto article: Essays · Thoughts · Recommendations · Work With Me */
-    .section-nav {
-      margin-top: 3.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .section-nav a {
-      font-family: 'EB Garamond', serif;
-      font-size: 1rem;
-      color: var(--muted);
-      transition: color 0.3s;
-    }
-    .section-nav a:hover { color: var(--gold); }
-    /* Gold dot separator between links */
-    .section-nav .dot {
-      font-family: 'EB Garamond', serif;
-      color: var(--gold);
-      font-size: 1rem;
+      color: rgba(237, 232, 222, 0.17);
       user-select: none;
+      pointer-events: none;
+      transition: opacity 0.55s ease;
     }
 
-    /* === FOOTER === */
-    .site-footer {
-      border-top: 1px solid var(--rule);
-      padding: 1.5rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-    .footer-copy {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-    .footer-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.2rem;
-    }
-    .footer-email {
-      font-family: 'EB Garamond', serif;
-      font-size: 0.78rem;
-      color: var(--muted);
-      transition: color 0.3s;
-    }
-    .footer-email:hover { color: var(--gold); }
-    .footer-location {
-      font-family: 'EB Garamond', serif;
-      font-style: italic;
-      font-size: 0.8rem;
-      color: var(--muted);
+    .card-hint.is-gone { opacity: 0; }
+
+    /* Show correct hint by device capability */
+    .hint-desktop { display: none; }
+    .hint-mobile  { display: none; }
+
+    @media (hover: hover) and (pointer: fine) {
+      .hint-desktop { display: inline; }
     }
 
-    /* === ANIMATIONS === */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
+    @media (hover: none) {
+      .hint-mobile { display: inline; }
     }
 
-    /* === RESPONSIVE === */
-    @media (max-width: 600px) {
-      .site-header { padding: 1rem 1.25rem; }
-      .manifesto-wrap { padding: 7rem 1.25rem 4rem; }
-      .site-footer { padding: 1.25rem; flex-direction: column; gap: 0.75rem; align-items: flex-start; }
-      .footer-right { align-items: flex-start; }
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 480px) {
+      body {
+        overflow: auto;
+        align-items: flex-start;
+      }
+
+      .scene {
+        min-height: 100dvh;
+        justify-content: center;
+        padding: 2.5rem 0;
+      }
+    }
+
+    /* ============================================================
+       REDUCED MOTION
+    ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      .card-inner { transition: none; }
+      .scene      { animation: none; }
     }
 
   </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <header class="site-header">
-    <a href="/" class="header-logo">
-      <img src="https://i.imgur.com/LTPgya5.png" alt="Henry Pan logo">
-      <span class="header-name">Henry Pan</span>
-    </a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span>
-      <span></span>
-    </button>
-  </header>
+  <main class="scene">
 
-  <!-- ===== NAV OVERLAY ===== -->
-  <nav class="nav-overlay" id="navOverlay" aria-label="Main navigation">
-    <a href="/essays/">Essays</a>
-    <a href="/thoughts/">Thoughts</a>
-    <a href="/recommendations/">Recommendations</a>
-    <a href="/work-with-me/">Work With Me</a>
-  </nav>
+    <div
+      class="card-scene"
+      id="cardScene"
+      role="button"
+      aria-label="Business card. Activate to reveal navigation."
+      tabindex="0"
+    >
+      <div class="card-inner">
 
-  <!-- ===== MANIFESTO ===== -->
-  <main>
-    <article class="manifesto-wrap">
-      <p class="manifesto-label">My Manifesto</p>
-      <h1 class="manifesto-title">The Internet is Dying&mdash;and it&rsquo;s Your Fault</h1>
-      <div class="manifesto-divider"></div>
-      <div class="manifesto-body">
-        <p>I&rsquo;m 18 years old and I&rsquo;m currently a first year student at UVA.</p>
-        <p>Ever since I was young I knew I wanted to make a name for myself. However, I never thought I could. I always compared myself to my peers who were artistic geniuses or coding masterminds. I tried to make up for my perceived lack of talent by working hard, getting good grades, and grinding extracurriculars. But that hard work resulted in college rejections, burned relationships, and a forgettable high school experience.</p>
-        <p>After graduating, I sat in my bedroom listening to podcasts on the lives of great entrepreneurs. I thought to myself, <em>&ldquo;I want to be great like them.&rdquo;</em> However, I still had no idea what I wanted to do. That was when I discovered content creation. It began as a project for me to share what I had learned from my month of learning from the founders of old, but I quickly realized that nobody was going to take business advice from an 18 year old, especially one who had created nothing in his life.</p>
-        <p>In the next months, I shifted my content. I stopped trying to give advice to others and began documenting my path to being a better person. Along that path I converted to Christianity, broke up with my girlfriend, and grew 30K followers (in no particular order).</p>
-        <p>Now in my first year at UVA, I opened up my coaching, started a club, took philosophy &ldquo;for fun&rdquo; (big mistake), made tons of friends, and learned the true impossibility of work-life balance.</p>
-        <p>Because of the internet our joy has been snatched away and replaced with informed cynicism. We have to forget all of that&mdash;forget all the existential noise that limits us&mdash;and create and imagine like we did when we were young. Back then we believed anything was possible, and somewhere along the way we forgot that, but it never stopped being true.</p>
-        <p><strong>I&rsquo;m not great yet, but I continue to strive every day.</strong></p>
+        <!-- ===== FRONT ===== -->
+        <article class="card-face card-front">
+
+          <div class="card-top">
+            <div class="card-top-right">
+
+              <a class="card-email" href="mailto:work@henrybpan.com">
+                work@henrybpan.com
+              </a>
+
+              <div class="card-icons">
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="4.2"/>
+                    <circle cx="17.5" cy="6.5" r="0.85" fill="currentColor" stroke="none"/>
+                  </svg>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
+                  </svg>
+                </a>
+
+                <!-- X -->
+                <a href="https://x.com/henrybpan" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </a>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="card-center">
+            <h1 class="card-name">Henry <span class="surname">Pan</span></h1>
+            <p class="card-title">Social Media Growth</p>
+          </div>
+
+          <p class="card-bottom">
+            NoVA&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;University&nbsp;of&nbsp;Virginia
+          </p>
+
+        </article>
+
+        <!-- ===== BACK ===== -->
+        <article class="card-face card-back">
+          <nav class="card-nav" aria-label="Site navigation">
+            <a href="/about">About</a>
+            <a href="/essays">Essays</a>
+            <a href="/recommendations">Recommendations</a>
+            <a href="/work-with-me">Work with Me</a>
+          </nav>
+        </article>
+
       </div>
+    </div>
 
-      <!-- Section nav: Essays · Thoughts · Recommendations · Work With Me -->
-      <nav class="section-nav" aria-label="Site sections">
-        <a href="/essays/">Essays</a>
-        <span class="dot" aria-hidden="true">&middot;</span>
-        <a href="/thoughts/">Thoughts</a>
-        <span class="dot" aria-hidden="true">&middot;</span>
-        <a href="/recommendations/">Recommendations</a>
-        <span class="dot" aria-hidden="true">&middot;</span>
-        <a href="/work-with-me/">Work With Me</a>
-      </nav>
-    </article>
+    <p class="card-hint" id="cardHint">
+      <span class="hint-desktop">hover to explore</span>
+      <span class="hint-mobile">tap to explore</span>
+    </p>
+
   </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="site-footer">
-    <div class="footer-copy">&copy; 2026 Henry Pan</div>
-    <div class="footer-right">
-      <a href="mailto:work@henrybpan.com" class="footer-email">work@henrybpan.com</a>
-      <span class="footer-location">NoVA | University of Virginia</span>
-    </div>
-  </footer>
-
-  <!-- ===== HAMBURGER JS ===== -->
   <script>
     (function () {
       'use strict';
 
-      var hamburger = document.getElementById('hamburger');
-      var overlay   = document.getElementById('navOverlay');
+      var scene    = document.getElementById('cardScene');
+      var hint     = document.getElementById('cardHint');
+      var revealed = false;
 
-      // Open the nav overlay
-      function openNav() {
-        hamburger.classList.add('open');
-        overlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        hamburger.setAttribute('aria-expanded', 'true');
+      function isHoverDevice() {
+        return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       }
 
-      // Close the nav overlay
-      function closeNav() {
-        hamburger.classList.remove('open');
-        overlay.classList.remove('open');
-        document.body.style.overflow = '';
-        hamburger.setAttribute('aria-expanded', 'false');
+      function dismissHint() {
+        if (!revealed) {
+          revealed = true;
+          hint.classList.add('is-gone');
+        }
       }
 
-      // Toggle on hamburger click
-      hamburger.addEventListener('click', function () {
-        overlay.classList.contains('open') ? closeNav() : openNav();
+      /* Mobile tap: toggle flip.
+         On hover-capable devices CSS :hover handles it.
+         Guard: nav link taps navigate, they don't toggle the card. */
+      scene.addEventListener('click', function (e) {
+        if (isHoverDevice()) return;
+        if (e.target.closest('a')) return;
+        scene.classList.toggle('is-flipped');
+        dismissHint();
       });
 
-      // Close when any nav link is clicked
-      overlay.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', closeNav);
+      /* Keyboard: Enter / Space */
+      scene.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          scene.classList.toggle('is-flipped');
+          dismissHint();
+        }
       });
 
-      // Close on Escape key
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeNav();
-      });
+      /* Desktop: dismiss hint on first hover */
+      scene.addEventListener('mouseenter', function () {
+        if (isHoverDevice()) dismissHint();
+      }, { once: true });
+
     }());
   </script>
 
