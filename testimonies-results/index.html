@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonies &amp; Results — Henry Pan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=EB+Garamond:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      background-color: #0F0E0C;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(2.5rem, 8vw, 4.5rem) clamp(2rem, 10vw, 5rem);
+      animation: up 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes up {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    .back {
+      display: inline-block;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(237, 232, 222, 0.22);
+      text-decoration: none;
+      margin-bottom: clamp(3rem, 8vh, 5rem);
+      transition: color 0.2s ease;
+    }
+
+    .back:hover { color: rgba(237, 232, 222, 0.5); }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(2.2rem, 7vw, 3.5rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(237, 232, 222, 0.28);
+      line-height: 1;
+    }
+
+    .wip {
+      margin-top: 1.4rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(237, 232, 222, 0.1);
+    }
+
+    @media (prefers-reduced-motion: reduce) { .page { animation: none; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a href="/" class="back">&#8592; Back</a>
+    <h1>Testimonies &amp; Results</h1>
+    <p class="wip">Work in Progress</p>
+  </main>
+</body>
+</html>
