@@ -94,18 +94,11 @@
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.78s cubic-bezier(0.45, 0.05, 0.15, 0.95);
+      transition: transform 1.01s cubic-bezier(0.45, 0.05, 0.15, 0.95);
       will-change: transform;
     }
 
-    /* Desktop hover — CSS-only, no JS */
-    @media (hover: hover) and (pointer: fine) {
-      .card-scene:hover .card-inner {
-        transform: rotateY(180deg);
-      }
-    }
-
-    /* Mobile tap / keyboard toggle */
+    /* Click / keyboard toggle */
     .card-scene.is-flipped .card-inner {
       transform: rotateY(180deg);
     }
@@ -152,7 +145,12 @@
     ============================================================ */
     .card-top {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card-top-left {
+      display: flex;
       align-items: flex-start;
     }
 
@@ -160,12 +158,11 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 0.5em;
     }
 
     .card-email {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 0.62em;
+      font-size: 0.713em;
       letter-spacing: 0.04em;
       color: #46413B;
       text-decoration: none;
@@ -193,8 +190,8 @@
     .card-icons a:hover { color: #1C1A17; }
 
     .card-icons svg {
-      width: 0.72em;
-      height: 0.72em;
+      width: 0.828em;
+      height: 0.828em;
     }
 
     /* ============================================================
@@ -241,7 +238,7 @@
     .card-bottom {
       text-align: center;
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 0.56em;
+      font-size: 0.644em;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #6A6560;
@@ -249,36 +246,116 @@
     }
 
     /* ============================================================
-       BACK — NAVIGATION
+       BACK — SEE MORE BUTTON
     ============================================================ */
-    .card-nav {
+    .card-back-inner {
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: center;
       height: 100%;
     }
 
-    .card-nav a {
+    .see-more-btn {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-weight: 300;
-      font-size: 1.26em;
-      letter-spacing: 0.07em;
+      font-size: 1.1em;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: #3A3530;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4em 0.8em;
+      transition: color 0.2s ease;
+    }
+
+    .see-more-btn:hover { color: #1C1A17; }
+
+    /* ============================================================
+       POPUP OVERLAY
+    ============================================================ */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .popup-overlay.is-open {
+      pointer-events: all;
+      opacity: 1;
+    }
+
+    .popup-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 14, 12, 0.65);
+    }
+
+    /* Mini business cards */
+    .popup-card {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: min(190px, 36vw);
+      aspect-ratio: 1.75;
+      background-color: #EDE8DE;
+      border-radius: 2px;
+      box-shadow:
+        0 1px 2px  rgba(0, 0, 0, 0.55),
+        0 4px 12px rgba(0, 0, 0, 0.48),
+        0 14px 32px rgba(0, 0, 0, 0.40),
+        inset 0 0 0 0.5px rgba(255, 252, 240, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
-      display: block;
-      padding: 0.3em 0;
-      border-bottom: 0.5px solid rgba(26, 23, 20, 0.1);
-      line-height: 1.15;
-      transition: color 0.2s ease, padding-left 0.22s ease;
+      cursor: pointer;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(8px, 2.2vw, 12px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3A3530;
+      /* Start collapsed at center */
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition:
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.3s ease,
+        color 0.2s ease;
+      transition-delay: var(--delay, 0s);
     }
 
-    .card-nav a:first-child {
-      border-top: 0.5px solid rgba(26, 23, 20, 0.1);
-    }
+    .popup-card:hover { color: #1C1A17; }
 
-    .card-nav a:hover {
-      color: #1C1A17;
-      padding-left: 0.28em;
+    /* Final positions when open — 5 cards radiating from center */
+    .popup-overlay.is-open .popup-card[data-idx="0"] {
+      transform: translate(calc(-50% - min(260px, 42vw)), calc(-50% - min(170px, 28vh))) scale(1);
+      opacity: 1;
+      --delay: 0.04s;
+    }
+    .popup-overlay.is-open .popup-card[data-idx="1"] {
+      transform: translate(-50%, calc(-50% - min(210px, 35vh))) scale(1);
+      opacity: 1;
+      --delay: 0.08s;
+    }
+    .popup-overlay.is-open .popup-card[data-idx="2"] {
+      transform: translate(calc(-50% + min(260px, 42vw)), calc(-50% - min(170px, 28vh))) scale(1);
+      opacity: 1;
+      --delay: 0.12s;
+    }
+    .popup-overlay.is-open .popup-card[data-idx="3"] {
+      transform: translate(calc(-50% - min(200px, 34vw)), calc(-50% + min(170px, 28vh))) scale(1);
+      opacity: 1;
+      --delay: 0.16s;
+    }
+    .popup-overlay.is-open .popup-card[data-idx="4"] {
+      transform: translate(calc(-50% + min(200px, 34vw)), calc(-50% + min(170px, 28vh))) scale(1);
+      opacity: 1;
+      --delay: 0.20s;
     }
 
     /* ============================================================
@@ -296,18 +373,6 @@
     }
 
     .card-hint.is-gone { opacity: 0; }
-
-    /* Show correct hint by device capability */
-    .hint-desktop { display: none; }
-    .hint-mobile  { display: none; }
-
-    @media (hover: hover) and (pointer: fine) {
-      .hint-desktop { display: inline; }
-    }
-
-    @media (hover: none) {
-      .hint-mobile { display: inline; }
-    }
 
     /* ============================================================
        RESPONSIVE
@@ -329,8 +394,10 @@
        REDUCED MOTION
     ============================================================ */
     @media (prefers-reduced-motion: reduce) {
-      .card-inner { transition: none; }
-      .scene      { animation: none; }
+      .card-inner    { transition: none; }
+      .scene         { animation: none; }
+      .popup-card    { transition: none; }
+      .popup-overlay { transition: none; }
     }
 
   </style>
@@ -352,12 +419,7 @@
         <article class="card-face card-front">
 
           <div class="card-top">
-            <div class="card-top-right">
-
-              <a class="card-email" href="mailto:work@henrybpan.com">
-                work@henrybpan.com
-              </a>
-
+            <div class="card-top-left">
               <div class="card-icons">
 
                 <!-- Instagram -->
@@ -378,13 +440,19 @@
                 </a>
 
                 <!-- X -->
-                <a href="https://x.com/henrybpan" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
+                <a href="https://x.com/henrypanonx" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
                   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>
                 </a>
 
               </div>
+            </div>
+
+            <div class="card-top-right">
+              <a class="card-email" href="mailto:work@henrybpan.com">
+                work@henrybpan.com
+              </a>
             </div>
           </div>
 
@@ -401,35 +469,42 @@
 
         <!-- ===== BACK ===== -->
         <article class="card-face card-back">
-          <nav class="card-nav" aria-label="Site navigation">
-            <a href="/about">About</a>
-            <a href="/essays">Essays</a>
-            <a href="/recommendations">Recommendations</a>
-            <a href="/work-with-me">Work with Me</a>
-          </nav>
+          <div class="card-back-inner">
+            <button class="see-more-btn" id="seeMoreBtn" aria-label="See navigation options">
+              see more
+            </button>
+          </div>
         </article>
 
       </div>
     </div>
 
     <p class="card-hint" id="cardHint">
-      <span class="hint-desktop">hover to explore</span>
-      <span class="hint-mobile">tap to explore</span>
+      tap to explore
     </p>
 
   </main>
+
+  <!-- Popup overlay — mini business card navigation -->
+  <div class="popup-overlay" id="popupOverlay" aria-hidden="true">
+    <div class="popup-backdrop" id="popupBackdrop"></div>
+    <a href="/about"               class="popup-card" data-idx="0">About</a>
+    <a href="/essays"              class="popup-card" data-idx="1">Essays</a>
+    <a href="/recommendations"     class="popup-card" data-idx="2">Recommendations</a>
+    <a href="/work-with-me"        class="popup-card" data-idx="3">Work with Me</a>
+    <a href="/testimonies-results" class="popup-card" data-idx="4">Testimonies &amp; Results</a>
+  </div>
 
   <script>
     (function () {
       'use strict';
 
-      var scene    = document.getElementById('cardScene');
-      var hint     = document.getElementById('cardHint');
-      var revealed = false;
-
-      function isHoverDevice() {
-        return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-      }
+      var scene         = document.getElementById('cardScene');
+      var hint          = document.getElementById('cardHint');
+      var seeMoreBtn    = document.getElementById('seeMoreBtn');
+      var popupOverlay  = document.getElementById('popupOverlay');
+      var popupBackdrop = document.getElementById('popupBackdrop');
+      var revealed      = false;
 
       function dismissHint() {
         if (!revealed) {
@@ -438,12 +513,11 @@
         }
       }
 
-      /* Mobile tap: toggle flip.
-         On hover-capable devices CSS :hover handles it.
-         Guard: nav link taps navigate, they don't toggle the card. */
+      /* Card flip: click toggles .is-flipped on all devices.
+         Guards: anchor links and see-more button do not trigger flip. */
       scene.addEventListener('click', function (e) {
-        if (isHoverDevice()) return;
-        if (e.target.closest('a')) return;
+        if (e.target.closest('a'))             return;
+        if (e.target.closest('.see-more-btn')) return;
         scene.classList.toggle('is-flipped');
         dismissHint();
       });
@@ -457,10 +531,28 @@
         }
       });
 
-      /* Desktop: dismiss hint on first hover */
-      scene.addEventListener('mouseenter', function () {
-        if (isHoverDevice()) dismissHint();
-      }, { once: true });
+      /* ---- Popup ---- */
+      function openPopup() {
+        popupOverlay.classList.add('is-open');
+        popupOverlay.setAttribute('aria-hidden', 'false');
+      }
+
+      function closePopup() {
+        popupOverlay.classList.remove('is-open');
+        popupOverlay.setAttribute('aria-hidden', 'true');
+      }
+
+      seeMoreBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        dismissHint();
+        openPopup();
+      });
+
+      popupBackdrop.addEventListener('click', closePopup);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closePopup();
+      });
 
     }());
   </script>
