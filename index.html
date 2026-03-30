@@ -162,7 +162,7 @@
 
     .card-email {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 0.713em;
+      font-size: 0.749em;
       letter-spacing: 0.04em;
       color: #46413B;
       text-decoration: none;
@@ -190,8 +190,8 @@
     .card-icons a:hover { color: #1C1A17; }
 
     .card-icons svg {
-      width: 0.870em;
-      height: 0.870em;
+      width: 0.914em;
+      height: 0.914em;
     }
 
     /* ============================================================
@@ -331,15 +331,30 @@
       touch-action: none;
     }
 
+    /* Float keyframe — gentle drift + wobble */
+    @keyframes popupFloat {
+      0%, 100% { transform: rotate(var(--rot, 0deg)) scale(1) translateY(0); }
+      50%       { transform: rotate(calc(var(--rot, 0deg) + var(--float-tilt, 1deg))) scale(1) translateY(var(--float-y, -6px)); }
+    }
+
+    /* Per-card float timing — each card gets its own rhythm */
+    .popup-card[data-idx="0"] { --float-dur: 5.0s; --float-delay:  0.0s; --float-y: -7px;  --float-tilt:  1.2deg; }
+    .popup-card[data-idx="1"] { --float-dur: 4.2s; --float-delay: -1.5s; --float-y: -5px;  --float-tilt: -1.0deg; }
+    .popup-card[data-idx="2"] { --float-dur: 6.1s; --float-delay: -3.0s; --float-y: -8px;  --float-tilt:  0.8deg; }
+    .popup-card[data-idx="3"] { --float-dur: 4.8s; --float-delay: -2.2s; --float-y: -6px;  --float-tilt: -1.5deg; }
+    .popup-card[data-idx="4"] { --float-dur: 5.5s; --float-delay: -0.8s; --float-y: -9px;  --float-tilt:  1.8deg; }
+
     .popup-overlay.is-open .popup-card {
       opacity: 1;
       transform: rotate(var(--rot, 0deg)) scale(1);
+      animation: popupFloat var(--float-dur, 5s) ease-in-out var(--float-delay, 0s) infinite;
     }
 
     .popup-card:hover { color: #1C1A17; }
 
     .popup-card.is-dragging {
       cursor: grabbing !important;
+      animation: none !important;
       transition: box-shadow 0.15s ease, color 0.2s ease !important;
       box-shadow:
         0 4px 8px  rgba(0, 0, 0, 0.60),
@@ -388,7 +403,7 @@
     @media (prefers-reduced-motion: reduce) {
       .card-inner    { transition: none; }
       .scene         { animation: none; }
-      .popup-card    { transition: none; }
+      .popup-card    { transition: none; animation: none !important; }
       .popup-overlay { transition: none; }
     }
 
@@ -484,7 +499,7 @@
     <a href="/essays"              class="popup-card" data-idx="1">Essays</a>
     <a href="/recommendations"     class="popup-card" data-idx="2">Recommendations</a>
     <a href="/work-with-me"        class="popup-card" data-idx="3">Work with Me</a>
-    <a href="/testimonies-results" class="popup-card" data-idx="4">Testimonies &amp; Results</a>
+    <a href="/testimonies-results" class="popup-card" data-idx="4">Results</a>
   </div>
 
   <script>
@@ -525,11 +540,11 @@
          rot   = tilt in degrees
          delay = stagger for entry animation                                         */
       var placements = [
-        { dx: -0.34, dy: -0.30, rot:  -4, delay: '0.04s' }, // About      — top-left
-        { dx:  0.08, dy: -0.38, rot:   6, delay: '0.09s' }, // Essays     — top-right
-        { dx:  0.36, dy: -0.05, rot:  -3, delay: '0.14s' }, // Recommendations — right
-        { dx: -0.30, dy:  0.28, rot:   5, delay: '0.19s' }, // Work with Me    — bottom-left
-        { dx:  0.16, dy:  0.34, rot:  -7, delay: '0.24s' }, // Testimonies     — bottom-right
+        { dx: -0.40, dy: -0.34, rot:  -8, delay: '0.04s' }, // About           — top-left, steep tilt
+        { dx:  0.14, dy: -0.44, rot:  10, delay: '0.09s' }, // Essays          — top-right, high & tilted
+        { dx:  0.42, dy: -0.10, rot:  -5, delay: '0.14s' }, // Recommendations — far right, slight lean
+        { dx: -0.32, dy:  0.34, rot:   9, delay: '0.19s' }, // Work with Me    — bottom-left, warm tilt
+        { dx:  0.22, dy:  0.40, rot: -12, delay: '0.24s' }, // Results         — bottom-right, dramatic lean
       ];
 
       /* Compute home position (px) for a card given its index */
