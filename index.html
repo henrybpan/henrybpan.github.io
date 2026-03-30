@@ -28,7 +28,7 @@
     }
 
     body {
-      background-color: #0F0E0C;
+      background-color: #1C0A06;
       min-height: 100dvh;
       display: flex;
       align-items: center;
@@ -72,7 +72,7 @@
        CARD SCENE  (perspective wrapper + tap target)
     ============================================================ */
     .card-scene {
-      width: min(400px, 80vw);
+      width: min(560px, 90vw);
       aspect-ratio: 1.75;
       perspective: 1400px;
       cursor: pointer;
@@ -144,7 +144,7 @@
       color: #1C1A17;
 
       /* Base font scales proportionally with card width */
-      font-size: clamp(8.5px, calc(min(400px, 80vw) / 36), 11.5px);
+      font-size: clamp(12px, calc(min(560px, 90vw) / 28), 17px);
     }
 
     /* Back face starts pre-rotated */
@@ -162,7 +162,6 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding-bottom: 0.6em; /* optical upward bias */
     }
 
     .card-name {
@@ -177,51 +176,24 @@
 
     .card-name .surname { font-weight: 600; }
 
-    /* Hairline anchor between name and tagline */
-    .card-rule {
-      width: 22px;
-      height: 0.5px;
-      background: rgba(28, 26, 23, 0.20);
-      margin: 0.75em auto 0.65em;
-      flex-shrink: 0;
-    }
-
-    .card-tagline {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.54em;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(28, 26, 23, 0.38);
-      line-height: 1;
-    }
-
-    /* CTA — subtle third tier */
-    .card-cta {
-      display: inline-block;
-      margin-top: 1.1em;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 0.48em;
-      letter-spacing: 0.20em;
-      text-transform: uppercase;
-      color: rgba(28, 26, 23, 0.38);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .card-cta:hover { color: #1C1A17; }
-
     /* ============================================================
-       FRONT — CONTACT ZONE (bottom, single row)
+       FRONT — CONTACT ZONE (bottom row: icons+email left, CTA right)
     ============================================================ */
     .card-contact {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-end;
+    }
+
+    .card-contact-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45em;
     }
 
     .card-email {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 0.66em;
+      font-size: 0.85em;
       letter-spacing: 0.04em;
       color: rgba(28, 26, 23, 0.42);
       text-decoration: none;
@@ -240,7 +212,7 @@
     .card-icons a {
       display: flex;
       align-items: center;
-      color: rgba(92, 86, 80, 0.45); /* dimmed at rest */
+      color: rgba(92, 86, 80, 0.45);
       text-decoration: none;
       line-height: 0;
       transition: color 0.2s ease;
@@ -249,19 +221,28 @@
     .card-icons a:hover { color: #1C1A17; }
 
     .card-icons svg {
-      width: 0.870em;
-      height: 0.870em;
+      width: 1.05em;
+      height: 1.05em;
     }
+
+    /* CTA — bottom right */
+    .card-cta {
+      display: inline-block;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.65em;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(28, 26, 23, 0.38);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      align-self: flex-end;
+    }
+
+    .card-cta:hover { color: #1C1A17; }
 
     /* ============================================================
-       BACK — MORE INFO BUTTON
-       Button is position:absolute so it covers the entire card face,
-       making it easy to click from anywhere on the back.
+       BACK — MORE INFO BUTTON (small, centered — edges flip the card)
     ============================================================ */
-    .card-back {
-      padding: 0; /* button fills the face, no gap needed */
-    }
-
     .card-back-inner {
       display: flex;
       align-items: center;
@@ -270,28 +251,20 @@
     }
 
     .see-more-btn {
-      position: absolute;
-      inset: 0;
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 0.65em 1.6em;
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-weight: 300;
-      font-size: 1.15em;
+      font-size: 1.05em;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: #3A3530;
       background: none;
       border: none;
       cursor: pointer;
-      transition: color 0.25s ease, background-color 0.3s ease;
+      transition: color 0.25s ease;
     }
 
-    .see-more-btn:hover {
-      color: #1C1A17;
-      background-color: rgba(28, 26, 23, 0.04);
-    }
+    .see-more-btn:hover { color: #1C1A17; }
 
     /* ============================================================
        POPUP OVERLAY
@@ -319,7 +292,7 @@
     /* Mini business cards — positions set by JS */
     .popup-card {
       position: fixed;
-      width: min(200px, 38vw);
+      width: min(200px, 42vw);
       aspect-ratio: 1.75;
       background-color: #EDE8DE;
       border-radius: 2px;
@@ -398,22 +371,6 @@
     }
 
     /* ============================================================
-       INTERACTION HINT
-    ============================================================ */
-    .card-hint {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 10px;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: rgba(237, 232, 222, 0.17);
-      user-select: none;
-      pointer-events: none;
-      transition: opacity 0.55s ease;
-    }
-
-    .card-hint.is-gone { opacity: 0; }
-
-    /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 480px) {
@@ -461,18 +418,15 @@
         <!-- ===== FRONT ===== -->
         <article class="card-face card-front">
 
-          <!-- Identity: dominant name → hairline → tagline → CTA -->
+          <!-- Identity: name only -->
           <div class="card-identity">
             <h1 class="card-name">Henry <span class="surname">Pan</span></h1>
-            <div class="card-rule" aria-hidden="true"></div>
-            <p class="card-tagline">Make something worth stealing</p>
-            <a href="/work-with-me" class="card-cta">Work with me</a>
           </div>
 
-          <!-- Contact: email left, icons right — single bottom row -->
+          <!-- Contact: icons+email stacked left, CTA bottom right -->
           <div class="card-contact">
-            <a class="card-email" href="mailto:work@henrybpan.com">work@henrybpan.com</a>
-            <div class="card-icons">
+            <div class="card-contact-left">
+              <div class="card-icons">
 
               <!-- Instagram -->
               <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -498,7 +452,10 @@
                 </svg>
               </a>
 
+              </div>
+              <a class="card-email" href="mailto:work@henrybpan.com">work@henrybpan.com</a>
             </div>
+            <a href="/work-with-me" class="card-cta">Work with me</a>
           </div>
 
         </article>
@@ -515,10 +472,6 @@
       </div>
       </div><!-- /.card-tilt -->
     </div>
-
-    <p class="card-hint" id="cardHint">
-      tap to explore
-    </p>
 
   </main>
 
@@ -538,33 +491,24 @@
 
       var scene         = document.getElementById('cardScene');
       var cardTilt      = document.getElementById('cardTilt');
-      var hint          = document.getElementById('cardHint');
       var seeMoreBtn    = document.getElementById('seeMoreBtn');
       var popupOverlay  = document.getElementById('popupOverlay');
       var popupBackdrop = document.getElementById('popupBackdrop');
       var popupCards    = Array.prototype.slice.call(document.querySelectorAll('.popup-card'));
-      var revealed      = false;
       var tiltRAF       = null;
       var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      /* ---- Hint ---- */
-      function dismissHint() {
-        if (!revealed) { revealed = true; hint.classList.add('is-gone'); }
-      }
 
       /* ---- Card flip ---- */
       scene.addEventListener('click', function (e) {
         if (e.target.closest('a'))             return; /* email, icons, card-cta */
         if (e.target.closest('.see-more-btn')) return;
         scene.classList.toggle('is-flipped');
-        dismissHint();
       });
 
       scene.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           scene.classList.toggle('is-flipped');
-          dismissHint();
         }
       });
 
@@ -597,11 +541,11 @@
          rot   = tilt in degrees
          delay = stagger for entry animation                                         */
       var placements = [
-        { dx: -0.40, dy: -0.34, rot:  -8, delay: '0.04s' }, // About           — top-left, steep tilt
-        { dx:  0.14, dy: -0.44, rot:  10, delay: '0.09s' }, // Essays          — top-right, high & tilted
-        { dx:  0.42, dy: -0.10, rot:  -5, delay: '0.14s' }, // Recommendations — far right, slight lean
-        { dx: -0.32, dy:  0.34, rot:   9, delay: '0.19s' }, // Work with Me    — bottom-left, warm tilt
-        { dx:  0.22, dy:  0.40, rot: -12, delay: '0.24s' }, // Results         — bottom-right, dramatic lean
+        { dx: -0.22, dy: -0.38, rot: -16, delay: '0.04s' }, // About           — upper left, thrown askew
+        { dx:  0.20, dy: -0.30, rot:  11, delay: '0.09s' }, // Essays          — upper right
+        { dx: -0.32, dy: -0.08, rot:   5, delay: '0.14s' }, // Recommendations — left, overlapping center
+        { dx:  0.30, dy: -0.14, rot: -12, delay: '0.19s' }, // Work with Me    — right, overlapping center
+        { dx:  0.04, dy: -0.44, rot:   9, delay: '0.24s' }, // Results         — top center, highest
       ];
 
       /* Compute home position (px) for a card given its index */
@@ -609,7 +553,7 @@
         var vw = window.innerWidth;
         var vh = window.innerHeight;
         var p  = placements[idx];
-        var cardW = Math.min(200, vw * 0.38);
+        var cardW = Math.min(200, vw * 0.42);
         var cardH = cardW / 1.75;
         var left = Math.max(8, Math.min(vw - cardW - 8,
           vw / 2 + p.dx * vw - cardW / 2));
@@ -659,7 +603,6 @@
 
       seeMoreBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        dismissHint();
         openPopup();
       });
 
@@ -721,7 +664,7 @@
         var vh = window.innerHeight;
         popupCards.forEach(function (card, i) {
           var pos   = homePos(i);
-          var cardW = Math.min(200, vw * 0.38);
+          var cardW = Math.min(200, vw * 0.42);
           var cardH = cardW / 1.75;
           card.style.left = pos.left + 'px';
           card.style.top  = pos.top  + 'px';
