@@ -176,32 +176,23 @@
 
     .card-name .surname { font-weight: 600; }
 
+    .card-tagline {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.72em;
+      color: rgba(28, 26, 23, 0.45);
+      margin-top: 0.55em;
+      line-height: 1;
+    }
+
     /* ============================================================
-       FRONT — CONTACT ZONE (bottom row: icons+email left, CTA right)
+       FRONT — CONTACT ZONE (bottom row: icons left, CTA right)
     ============================================================ */
     .card-contact {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
     }
-
-    .card-contact-left {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45em;
-    }
-
-    .card-email {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 0.85em;
-      letter-spacing: 0.04em;
-      color: rgba(28, 26, 23, 0.42);
-      text-decoration: none;
-      line-height: 1;
-      transition: color 0.2s ease;
-    }
-
-    .card-email:hover { color: #1C1A17; }
 
     .card-icons {
       display: flex;
@@ -228,7 +219,7 @@
     /* CTA — bottom right */
     .card-cta {
       display: inline-block;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'EB Garamond', Georgia, serif;
       font-size: 0.65em;
       letter-spacing: 0.20em;
       text-transform: uppercase;
@@ -418,15 +409,15 @@
         <!-- ===== FRONT ===== -->
         <article class="card-face card-front">
 
-          <!-- Identity: name only -->
+          <!-- Identity: name + positioning -->
           <div class="card-identity">
             <h1 class="card-name">Henry <span class="surname">Pan</span></h1>
+            <p class="card-tagline">Make something worth stealing.</p>
           </div>
 
-          <!-- Contact: icons+email stacked left, CTA bottom right -->
+          <!-- Contact: 4 icons left, CTA bottom right -->
           <div class="card-contact">
-            <div class="card-contact-left">
-              <div class="card-icons">
+            <div class="card-icons">
 
               <!-- Instagram -->
               <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -452,8 +443,14 @@
                 </svg>
               </a>
 
-              </div>
-              <a class="card-email" href="mailto:work@henrybpan.com">work@henrybpan.com</a>
+              <!-- Email -->
+              <a href="mailto:work@henrybpan.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </a>
+
             </div>
             <a href="/work-with-me" class="card-cta">Work with me</a>
           </div>
