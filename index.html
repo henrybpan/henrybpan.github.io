@@ -318,43 +318,37 @@
       text-transform: uppercase;
       color: #3A3530;
       opacity: 0;
-      transform: rotate(var(--rot, 0deg)) scale(0.5);
+      /* Closed: translated back to viewport center, unrotated */
+      transform: rotate(0deg) scale(0.88) translate(var(--origin-tx, 0px), var(--origin-ty, 0px));
+      /* Closing transition: ease back toward center */
       transition:
-        opacity 0.4s ease,
-        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.35s ease-in,
+        transform 0.4s cubic-bezier(0.4, 0, 1, 1),
         box-shadow 0.2s ease,
         color 0.2s ease;
-      transition-delay: var(--delay, 0s);
+      will-change: transform, opacity;
       user-select: none;
       -webkit-user-select: none;
       z-index: 101;
       touch-action: none;
     }
 
-    /* Float keyframe — gentle drift + wobble */
-    @keyframes popupFloat {
-      0%, 100% { transform: rotate(var(--rot, 0deg)) scale(1) translateY(0); }
-      50%       { transform: rotate(calc(var(--rot, 0deg) + var(--float-tilt, 1deg))) scale(1) translateY(var(--float-y, -6px)); }
-    }
-
-    /* Per-card float timing — each card gets its own rhythm */
-    .popup-card[data-idx="0"] { --float-dur: 5.0s; --float-delay:  0.0s; --float-y: -7px;  --float-tilt:  1.2deg; }
-    .popup-card[data-idx="1"] { --float-dur: 4.2s; --float-delay: -1.5s; --float-y: -5px;  --float-tilt: -1.0deg; }
-    .popup-card[data-idx="2"] { --float-dur: 6.1s; --float-delay: -3.0s; --float-y: -8px;  --float-tilt:  0.8deg; }
-    .popup-card[data-idx="3"] { --float-dur: 4.8s; --float-delay: -2.2s; --float-y: -6px;  --float-tilt: -1.5deg; }
-    .popup-card[data-idx="4"] { --float-dur: 5.5s; --float-delay: -0.8s; --float-y: -9px;  --float-tilt:  1.8deg; }
-
+    /* Opening: fly from center to resting position with overshoot */
     .popup-overlay.is-open .popup-card {
       opacity: 1;
-      transform: rotate(var(--rot, 0deg)) scale(1);
-      animation: popupFloat var(--float-dur, 5s) ease-in-out var(--float-delay, 0s) infinite;
+      transform: rotate(var(--rot, 0deg)) scale(1) translate(0px, 0px);
+      transition:
+        opacity 0.3s ease,
+        transform 0.68s cubic-bezier(0.175, 0.885, 0.32, 1.28),
+        box-shadow 0.2s ease,
+        color 0.2s ease;
+      transition-delay: var(--delay, 0s);
     }
 
     .popup-card:hover { color: #1C1A17; }
 
     .popup-card.is-dragging {
       cursor: grabbing !important;
-      animation: none !important;
       transition: box-shadow 0.15s ease, color 0.2s ease !important;
       box-shadow:
         0 4px 8px  rgba(0, 0, 0, 0.60),
@@ -401,10 +395,11 @@
        REDUCED MOTION
     ============================================================ */
     @media (prefers-reduced-motion: reduce) {
-      .card-inner    { transition: none; }
-      .scene         { animation: none; }
-      .popup-card    { transition: none; animation: none !important; }
-      .popup-overlay { transition: none; }
+      .card-inner                    { transition: none; }
+      .scene                         { animation: none; }
+      .popup-card                    { transition: none; }
+      .popup-overlay.is-open .popup-card { transition: none; }
+      .popup-overlay                 { transition: none; }
     }
 
   </style>
@@ -561,25 +556,41 @@
         return { left: left, top: top };
       }
 
-      /* Place cards at their home positions without animation */
-      function resetCardPositions() {
+      /* ---- Popup open / close ---- */
+      function openPopup() {
+        var vw = window.innerWidth;
+        var vh = window.innerHeight;
+
         popupCards.forEach(function (card, i) {
-          var pos = homePos(i);
+          var pos    = homePos(i);
+          var cardW  = Math.min(200, vw * 0.38);
+          var cardH  = cardW / 1.75;
+
+          /* Final resting position */
           card.style.left = pos.left + 'px';
           card.style.top  = pos.top  + 'px';
           card.style.setProperty('--rot',   placements[i].rot   + 'deg');
           card.style.setProperty('--delay', placements[i].delay);
-        });
-      }
 
-      /* ---- Popup open / close ---- */
-      function openPopup() {
-        resetCardPositions();
+          /* Offset from card's resting center back to viewport center */
+          var cx = pos.left + cardW / 2;
+          var cy = pos.top  + cardH / 2;
+          card.style.setProperty('--origin-tx', (vw / 2 - cx) + 'px');
+          card.style.setProperty('--origin-ty', (vh / 2 - cy) + 'px');
+        });
+
+        /* Flush layout so browser registers the origin state before transitioning */
+        void popupOverlay.offsetHeight;
+
         popupOverlay.classList.add('is-open');
         popupOverlay.setAttribute('aria-hidden', 'false');
       }
 
       function closePopup() {
+        /* Clear stagger so all cards collapse back together */
+        popupCards.forEach(function (card) {
+          card.style.setProperty('--delay', '0s');
+        });
         popupOverlay.classList.remove('is-open');
         popupOverlay.setAttribute('aria-hidden', 'true');
       }
@@ -641,10 +652,20 @@
         });
       });
 
-      /* Re-home cards if viewport resizes while popup is closed */
+      /* Re-home cards if viewport resizes while popup is open */
       window.addEventListener('resize', function () {
         if (!popupOverlay.classList.contains('is-open')) return;
-        resetCardPositions();
+        var vw = window.innerWidth;
+        var vh = window.innerHeight;
+        popupCards.forEach(function (card, i) {
+          var pos   = homePos(i);
+          var cardW = Math.min(200, vw * 0.38);
+          var cardH = cardW / 1.75;
+          card.style.left = pos.left + 'px';
+          card.style.top  = pos.top  + 'px';
+          card.style.setProperty('--origin-tx', (vw / 2 - (pos.left + cardW / 2)) + 'px');
+          card.style.setProperty('--origin-ty', (vh / 2 - (pos.top  + cardH / 2)) + 'px');
+        });
       });
 
     }());
