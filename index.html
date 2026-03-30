@@ -72,7 +72,7 @@
        CARD SCENE  (perspective wrapper + tap target)
     ============================================================ */
     .card-scene {
-      width: min(520px, 88vw);
+      width: min(400px, 80vw);
       aspect-ratio: 1.75;
       perspective: 1400px;
       cursor: pointer;
@@ -84,6 +84,18 @@
       outline: 1.5px solid rgba(237, 232, 222, 0.22);
       outline-offset: 10px;
       border-radius: 3px;
+    }
+
+    /* ============================================================
+       CARD TILT  (cursor-following 3D hover layer)
+    ============================================================ */
+    .card-tilt {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
     }
 
     /* ============================================================
@@ -132,7 +144,7 @@
       color: #1C1A17;
 
       /* Base font scales proportionally with card width */
-      font-size: clamp(9.5px, calc(min(520px, 88vw) / 38.5), 13.5px);
+      font-size: clamp(8.5px, calc(min(400px, 80vw) / 36), 11.5px);
     }
 
     /* Back face starts pre-rotated */
@@ -141,30 +153,77 @@
     }
 
     /* ============================================================
-       FRONT — TOP
+       FRONT — IDENTITY ZONE (centered, dominant)
     ============================================================ */
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .card-top-left {
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .card-top-right {
+    .card-identity {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-bottom: 0.6em; /* optical upward bias */
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-size: 1.68em;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #1C1A17;
+      line-height: 1;
+    }
+
+    .card-name .surname { font-weight: 600; }
+
+    /* Hairline anchor between name and tagline */
+    .card-rule {
+      width: 22px;
+      height: 0.5px;
+      background: rgba(28, 26, 23, 0.20);
+      margin: 0.75em auto 0.65em;
+      flex-shrink: 0;
+    }
+
+    .card-tagline {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.54em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(28, 26, 23, 0.38);
+      line-height: 1;
+    }
+
+    /* CTA — subtle third tier */
+    .card-cta {
+      display: inline-block;
+      margin-top: 1.1em;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.48em;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(28, 26, 23, 0.38);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .card-cta:hover { color: #1C1A17; }
+
+    /* ============================================================
+       FRONT — CONTACT ZONE (bottom, single row)
+    ============================================================ */
+    .card-contact {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .card-email {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 0.749em;
+      font-size: 0.66em;
       letter-spacing: 0.04em;
-      color: #46413B;
+      color: rgba(28, 26, 23, 0.42);
       text-decoration: none;
       line-height: 1;
       transition: color 0.2s ease;
@@ -175,13 +234,13 @@
     .card-icons {
       display: flex;
       align-items: center;
-      gap: 0.58em;
+      gap: 0.60em;
     }
 
     .card-icons a {
       display: flex;
       align-items: center;
-      color: #5C5650;
+      color: rgba(92, 86, 80, 0.45); /* dimmed at rest */
       text-decoration: none;
       line-height: 0;
       transition: color 0.2s ease;
@@ -190,64 +249,19 @@
     .card-icons a:hover { color: #1C1A17; }
 
     .card-icons svg {
-      width: 0.914em;
-      height: 0.914em;
+      width: 0.870em;
+      height: 0.870em;
     }
 
     /* ============================================================
-       FRONT — CENTER
+       BACK — MORE INFO BUTTON
+       Button is position:absolute so it covers the entire card face,
+       making it easy to click from anywhere on the back.
     ============================================================ */
-    .card-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 0.42em;
-      /* Slight upward optical bias — mirrors Bateman card proportions */
-      margin-bottom: 1.5%;
+    .card-back {
+      padding: 0; /* button fills the face, no gap needed */
     }
 
-    .card-name {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 400;
-      font-size: 1.58em;
-      letter-spacing: 0.17em;
-      text-transform: uppercase;
-      color: #1C1A17;
-      line-height: 1;
-    }
-
-    /* Surname heavier — mirrors "Patrick BATEMAN" hierarchy */
-    .card-name .surname {
-      font-weight: 600;
-    }
-
-    .card-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 400;
-      font-size: 0.71em;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #3A3530;
-      line-height: 1;
-    }
-
-    /* ============================================================
-       FRONT — BOTTOM
-    ============================================================ */
-    .card-bottom {
-      text-align: center;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 0.644em;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #6A6560;
-      line-height: 1;
-    }
-
-    /* ============================================================
-       BACK — SEE MORE BUTTON
-    ============================================================ */
     .card-back-inner {
       display: flex;
       align-items: center;
@@ -256,20 +270,28 @@
     }
 
     .see-more-btn {
+      position: absolute;
+      inset: 0;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-weight: 300;
-      font-size: 1.1em;
-      letter-spacing: 0.2em;
+      font-size: 1.15em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: #3A3530;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0.4em 0.8em;
-      transition: color 0.2s ease;
+      transition: color 0.25s ease, background-color 0.3s ease;
     }
 
-    .see-more-btn:hover { color: #1C1A17; }
+    .see-more-btn:hover {
+      color: #1C1A17;
+      background-color: rgba(28, 26, 23, 0.04);
+    }
 
     /* ============================================================
        POPUP OVERLAY
@@ -359,6 +381,22 @@
       z-index: 115;
     }
 
+    /* Hover lift — matches the main card's tilt-lift aesthetic */
+    .popup-overlay.is-open .popup-card:not(.is-dragging):hover {
+      color: #1C1A17;
+      transform: rotate(var(--rot, 0deg)) scale(1.03) translateY(-6px);
+      box-shadow:
+        0 2px 4px  rgba(0, 0, 0, 0.58),
+        0 8px 22px rgba(0, 0, 0, 0.52),
+        0 22px 56px rgba(0, 0, 0, 0.42),
+        inset 0 0 0 0.5px rgba(255, 252, 240, 0.22);
+      transition:
+        transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.28s ease,
+        color 0.2s ease;
+      z-index: 112;
+    }
+
     /* ============================================================
        INTERACTION HINT
     ============================================================ */
@@ -395,11 +433,13 @@
        REDUCED MOTION
     ============================================================ */
     @media (prefers-reduced-motion: reduce) {
-      .card-inner                    { transition: none; }
-      .scene                         { animation: none; }
-      .popup-card                    { transition: none; }
+      .card-tilt                         { transition: none; }
+      .card-inner                        { transition: none; }
+      .scene                             { animation: none; }
+      .popup-card                        { transition: none; }
       .popup-overlay.is-open .popup-card { transition: none; }
-      .popup-overlay                 { transition: none; }
+      .popup-overlay.is-open .popup-card:not(.is-dragging):hover { transition: none; }
+      .popup-overlay                     { transition: none; }
     }
 
   </style>
@@ -415,57 +455,51 @@
       aria-label="Business card. Activate to reveal navigation."
       tabindex="0"
     >
+      <div class="card-tilt" id="cardTilt">
       <div class="card-inner">
 
         <!-- ===== FRONT ===== -->
         <article class="card-face card-front">
 
-          <div class="card-top">
-            <div class="card-top-left">
-              <a class="card-email" href="mailto:work@henrybpan.com">
-                work@henrybpan.com
-              </a>
-            </div>
-
-            <div class="card-top-right">
-              <div class="card-icons">
-
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <circle cx="12" cy="12" r="4.2"/>
-                    <circle cx="17.5" cy="6.5" r="0.85" fill="currentColor" stroke="none"/>
-                  </svg>
-                </a>
-
-                <!-- YouTube -->
-                <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
-                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
-                  </svg>
-                </a>
-
-                <!-- X -->
-                <a href="https://x.com/henrypanonx" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                  </svg>
-                </a>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="card-center">
+          <!-- Identity: dominant name → hairline → tagline → CTA -->
+          <div class="card-identity">
             <h1 class="card-name">Henry <span class="surname">Pan</span></h1>
-            <p class="card-title">Social Media Growth</p>
+            <div class="card-rule" aria-hidden="true"></div>
+            <p class="card-tagline">Make something worth stealing</p>
+            <a href="/work-with-me" class="card-cta">Work with me</a>
           </div>
 
-          <p class="card-bottom">
-            NoVA&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;University&nbsp;of&nbsp;Virginia
-          </p>
+          <!-- Contact: email left, icons right — single bottom row -->
+          <div class="card-contact">
+            <a class="card-email" href="mailto:work@henrybpan.com">work@henrybpan.com</a>
+            <div class="card-icons">
+
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4.2"/>
+                  <circle cx="17.5" cy="6.5" r="0.85" fill="currentColor" stroke="none"/>
+                </svg>
+              </a>
+
+              <!-- YouTube -->
+              <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
+                </svg>
+              </a>
+
+              <!-- X -->
+              <a href="https://x.com/henrypanonx" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+
+            </div>
+          </div>
 
         </article>
 
@@ -473,12 +507,13 @@
         <article class="card-face card-back">
           <div class="card-back-inner">
             <button class="see-more-btn" id="seeMoreBtn" aria-label="See navigation options">
-              see more
+              more info
             </button>
           </div>
         </article>
 
       </div>
+      </div><!-- /.card-tilt -->
     </div>
 
     <p class="card-hint" id="cardHint">
@@ -502,12 +537,15 @@
       'use strict';
 
       var scene         = document.getElementById('cardScene');
+      var cardTilt      = document.getElementById('cardTilt');
       var hint          = document.getElementById('cardHint');
       var seeMoreBtn    = document.getElementById('seeMoreBtn');
       var popupOverlay  = document.getElementById('popupOverlay');
       var popupBackdrop = document.getElementById('popupBackdrop');
       var popupCards    = Array.prototype.slice.call(document.querySelectorAll('.popup-card'));
       var revealed      = false;
+      var tiltRAF       = null;
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       /* ---- Hint ---- */
       function dismissHint() {
@@ -516,7 +554,7 @@
 
       /* ---- Card flip ---- */
       scene.addEventListener('click', function (e) {
-        if (e.target.closest('a'))             return;
+        if (e.target.closest('a'))             return; /* email, icons, card-cta */
         if (e.target.closest('.see-more-btn')) return;
         scene.classList.toggle('is-flipped');
         dismissHint();
@@ -529,6 +567,30 @@
           dismissHint();
         }
       });
+
+      /* ---- 3D tilt hover (cursor-following perspective, inspired by monikamichalczyk.com) ---- */
+      if (!reducedMotion) {
+        scene.addEventListener('mousemove', function (e) {
+          if (tiltRAF) cancelAnimationFrame(tiltRAF);
+          tiltRAF = requestAnimationFrame(function () {
+            var rect = scene.getBoundingClientRect();
+            var nx   = (e.clientX - rect.left  - rect.width  / 2) / (rect.width  / 2); // -1..1
+            var ny   = (e.clientY - rect.top   - rect.height / 2) / (rect.height / 2); // -1..1
+            cardTilt.style.setProperty('--rx',   (-ny * 7) + 'deg');
+            cardTilt.style.setProperty('--ry',   ( nx * 5) + 'deg');
+            cardTilt.style.setProperty('--lift', '-7px');
+            cardTilt.style.transition = 'transform 0.1s linear';
+          });
+        });
+
+        scene.addEventListener('mouseleave', function () {
+          if (tiltRAF) cancelAnimationFrame(tiltRAF);
+          cardTilt.style.setProperty('--rx',   '0deg');
+          cardTilt.style.setProperty('--ry',   '0deg');
+          cardTilt.style.setProperty('--lift', '0px');
+          cardTilt.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+      }
 
       /* ---- Mind-map scatter placements ----
          dx/dy = fraction of viewport offset from center (card-center to screen-center)
