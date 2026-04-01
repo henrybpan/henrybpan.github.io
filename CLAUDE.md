@@ -29,8 +29,15 @@ The site is a collection of standalone HTML files. Each page is self-contained w
 **Home page UX pattern:**
 1. Business card renders centered with a cinematic vignette (`body::after`)
 2. Click/Space/Enter flips the card (CSS 3D transform via `.is-flipped` class on `.card-scene`)
-3. "See more" button on the back opens a popup overlay with 5 radiating mini-card navigation links
+3. "See more" button on the back opens a popup overlay with 5 scattered mini-card navigation links
 4. Popup closes on backdrop click or Escape key
+
+**Card back design:**
+- Layout: `.card-back-inner` is a column flex with `justify-content: space-between` — three zones
+- Top: `.card-back-monogram` — "H P" in Cormorant Garamond 300, 2em, very faint (8% opacity), watermark feel
+- Middle: `.card-back-center` — two `.card-back-rule` hairlines (0.5px, 52% width) bracketing the `.see-more-btn`
+- Bottom: `.card-back-url` — `henrybpan.com` in small tracked EB Garamond (28% opacity)
+- Button hover: `::after` pseudo-element underline grows from center (width 0 → 65%) with spring easing
 
 **Sub-page pattern:**
 - Dark full-height layout with entry animation (`@keyframes up`)

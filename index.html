@@ -233,17 +233,52 @@
     .card-cta:hover { color: #1C1A17; }
 
     /* ============================================================
-       BACK — MORE INFO BUTTON (small, centered — edges flip the card)
+       BACK — LAYOUT (monogram top, rules+button center, url bottom)
     ============================================================ */
     .card-back-inner {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       height: 100%;
     }
 
+    .card-back-monogram {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: 2.0em;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: rgba(28, 26, 23, 0.08);
+      padding-left: 0.5em; /* compensate for letter-spacing on last char */
+    }
+
+    .card-back-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6em;
+      width: 100%;
+    }
+
+    .card-back-rule {
+      width: 52%;
+      height: 0.5px;
+      background: rgba(28, 26, 23, 0.16);
+    }
+
+    .card-back-url {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.58em;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(28, 26, 23, 0.28);
+      padding-left: 0.28em; /* compensate for letter-spacing on last char */
+    }
+
     .see-more-btn {
-      padding: 0.75em 1.85em;
+      position: relative;
+      padding: 0.55em 1.6em;
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-weight: 300;
       font-size: 1.05em;
@@ -256,7 +291,20 @@
       transition: color 0.25s ease;
     }
 
+    .see-more-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0.4em;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0.5px;
+      background: rgba(28, 26, 23, 0.45);
+      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
     .see-more-btn:hover { color: #1C1A17; }
+    .see-more-btn:hover::after { width: 65%; }
 
     /* ============================================================
        POPUP OVERLAY
@@ -293,17 +341,6 @@
         0 4px 12px rgba(0, 0, 0, 0.48),
         0 14px 32px rgba(0, 0, 0, 0.40),
         inset 0 0 0 0.5px rgba(255, 252, 240, 0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      cursor: grab;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 300;
-      font-size: clamp(8px, 2.2vw, 12px);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #3A3530;
       opacity: 0;
       /* Closed: translated back to viewport center, unrotated */
       transform: rotate(0deg) scale(0.88) translate(var(--origin-tx, 0px), var(--origin-ty, 0px));
@@ -311,8 +348,7 @@
       transition:
         opacity 0.35s ease-in,
         transform 0.4s cubic-bezier(0.4, 0, 1, 1),
-        box-shadow 0.2s ease,
-        color 0.2s ease;
+        box-shadow 0.2s ease;
       will-change: transform, opacity;
       user-select: none;
       -webkit-user-select: none;
@@ -320,36 +356,50 @@
       touch-action: none;
     }
 
+    /* Inner nav link — centered 50% hitbox */
+    .popup-card-link {
+      position: absolute;
+      inset: 25%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(8px, 2.2vw, 12px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3A3530;
+      transition: color 0.2s ease;
+    }
+
+    .popup-card-link:hover { color: #1C1A17; }
+
     /* Opening: fly from center to resting position with overshoot */
     .popup-overlay.is-open .popup-card {
       opacity: 1;
       transform: rotate(var(--rot, 0deg)) scale(1) translate(0px, 0px);
       transition:
         opacity 0.3s ease,
-        transform 0.68s cubic-bezier(0.175, 0.885, 0.32, 1.28),
-        box-shadow 0.2s ease,
-        color 0.2s ease;
+        transform 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.28),
+        box-shadow 0.2s ease;
       transition-delay: var(--delay, 0s);
     }
 
-    .popup-card:hover { color: #1C1A17; }
-
     .popup-card.is-dragging {
-      cursor: grabbing !important;
-      transition: box-shadow 0.15s ease, color 0.2s ease !important;
+      transition: box-shadow 0.15s ease !important;
       box-shadow:
         0 4px 8px  rgba(0, 0, 0, 0.60),
         0 12px 32px rgba(0, 0, 0, 0.52),
         0 28px 64px rgba(0, 0, 0, 0.44),
         inset 0 0 0 0.5px rgba(255, 252, 240, 0.18);
-      transform: rotate(var(--rot, 0deg)) scale(1.06) !important;
+      transform: rotate(var(--rot, 0deg)) scale(1.05) !important;
       z-index: 115;
     }
 
-    /* Hover lift — matches the main card's tilt-lift aesthetic */
+    /* Hover lift */
     .popup-overlay.is-open .popup-card:not(.is-dragging):hover {
-      color: #1C1A17;
-      transform: rotate(var(--rot, 0deg)) scale(1.03) translateY(-6px);
+      transform: rotate(var(--rot, 0deg)) scale(1.03) translateY(-5px);
       box-shadow:
         0 2px 4px  rgba(0, 0, 0, 0.58),
         0 8px 22px rgba(0, 0, 0, 0.52),
@@ -357,8 +407,7 @@
         inset 0 0 0 0.5px rgba(255, 252, 240, 0.22);
       transition:
         transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-        box-shadow 0.28s ease,
-        color 0.2s ease;
+        box-shadow 0.28s ease;
       z-index: 112;
     }
 
@@ -389,6 +438,7 @@
       .popup-overlay.is-open .popup-card { transition: none; }
       .popup-overlay.is-open .popup-card:not(.is-dragging):hover { transition: none; }
       .popup-overlay                     { transition: none; }
+      .see-more-btn::after               { transition: none; }
     }
 
   </style>
@@ -461,9 +511,15 @@
         <!-- ===== BACK ===== -->
         <article class="card-face card-back">
           <div class="card-back-inner">
-            <button class="see-more-btn" id="seeMoreBtn" aria-label="See navigation options">
-              more info
-            </button>
+            <div class="card-back-monogram">H&thinsp;P</div>
+            <div class="card-back-center">
+              <div class="card-back-rule"></div>
+              <button class="see-more-btn" id="seeMoreBtn" aria-label="See navigation options">
+                more info
+              </button>
+              <div class="card-back-rule"></div>
+            </div>
+            <div class="card-back-url">henrybpan.com</div>
           </div>
         </article>
 
@@ -476,11 +532,11 @@
   <!-- Popup overlay — mini business card navigation -->
   <div class="popup-overlay" id="popupOverlay" aria-hidden="true">
     <div class="popup-backdrop" id="popupBackdrop"></div>
-    <a href="/about"               class="popup-card" data-idx="0">About</a>
-    <a href="/essays"              class="popup-card" data-idx="1">Essays</a>
-    <a href="/recommendations"     class="popup-card" data-idx="2">Recommendations</a>
-    <a href="/work-with-me"        class="popup-card" data-idx="3">Work with Me</a>
-    <a href="/testimonies-results" class="popup-card" data-idx="4">Results</a>
+    <div class="popup-card" data-idx="0"><a href="/about"               class="popup-card-link">About</a></div>
+    <div class="popup-card" data-idx="1"><a href="/essays"              class="popup-card-link">Essays</a></div>
+    <div class="popup-card" data-idx="2"><a href="/recommendations"     class="popup-card-link">Recommendations</a></div>
+    <div class="popup-card" data-idx="3"><a href="/work-with-me"        class="popup-card-link">Work with Me</a></div>
+    <div class="popup-card" data-idx="4"><a href="/testimonies-results" class="popup-card-link">Results</a></div>
   </div>
 
   <script>
@@ -534,16 +590,16 @@
         });
       }
 
-      /* ---- Mind-map scatter placements ----
-         dx/dy = fraction of viewport offset from center (card-center to screen-center)
+      /* ---- Scatter placements — cards tossed on a table ----
+         dx/dy = fraction of viewport offset from center
          rot   = tilt in degrees
-         delay = stagger for entry animation                                         */
+         delay = stagger for entry animation                  */
       var placements = [
-        { dx: -0.22, dy: -0.38, rot: -16, delay: '0.04s' }, // About           — upper left, thrown askew
-        { dx:  0.20, dy: -0.30, rot:  11, delay: '0.09s' }, // Essays          — upper right
-        { dx: -0.32, dy: -0.08, rot:   5, delay: '0.14s' }, // Recommendations — left, overlapping center
-        { dx:  0.30, dy: -0.14, rot: -12, delay: '0.19s' }, // Work with Me    — right, overlapping center
-        { dx:  0.04, dy: -0.44, rot:   9, delay: '0.24s' }, // Results         — top center, highest
+        { dx: -0.28, dy:  0.16, rot: -21, delay: '0.04s' }, // About           — lower left
+        { dx:  0.25, dy: -0.22, rot:  14, delay: '0.08s' }, // Essays          — upper right
+        { dx: -0.22, dy: -0.20, rot:  -7, delay: '0.12s' }, // Recommendations — upper left
+        { dx:  0.27, dy:  0.20, rot:  19, delay: '0.16s' }, // Work with Me    — lower right
+        { dx:  0.02, dy: -0.30, rot:   6, delay: '0.20s' }, // Results         — top center
       ];
 
       /* Compute home position (px) for a card given its index */
@@ -613,6 +669,7 @@
       /* ---- Draggable cards ---- */
       popupCards.forEach(function (card) {
         var startPX, startPY, startLeft, startTop, dragging, hasMoved;
+        var link = card.querySelector('.popup-card-link');
 
         function endDrag(e) {
           if (!dragging) return;
@@ -651,10 +708,12 @@
         card.addEventListener('pointerup',     endDrag);
         card.addEventListener('pointercancel', endDrag);
 
-        /* Block navigation if the card was dragged */
-        card.addEventListener('click', function (e) {
-          if (hasMoved) e.preventDefault();
-        });
+        /* Block navigation on the inner link if the card was dragged */
+        if (link) {
+          link.addEventListener('click', function (e) {
+            if (hasMoved) e.preventDefault();
+          });
+        }
       });
 
       /* Re-home cards if viewport resizes while popup is open */
