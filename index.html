@@ -243,7 +243,7 @@
     }
 
     .see-more-btn {
-      padding: 0.65em 1.6em;
+      padding: 0.75em 1.85em;
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-weight: 300;
       font-size: 1.05em;
@@ -614,8 +614,16 @@
       popupCards.forEach(function (card) {
         var startPX, startPY, startLeft, startTop, dragging, hasMoved;
 
+        function endDrag(e) {
+          if (!dragging) return;
+          dragging = false;
+          card.classList.remove('is-dragging');
+          if (e && e.pointerId != null) card.releasePointerCapture(e.pointerId);
+          /* Defer reset so the synchronous click event (fires before rAF) still sees hasMoved */
+          requestAnimationFrame(function () { hasMoved = false; });
+        }
+
         card.addEventListener('pointerdown', function (e) {
-          /* Only primary pointer / left button */
           if (e.button && e.button !== 0) return;
           dragging  = true;
           hasMoved  = false;
@@ -631,7 +639,7 @@
           if (!dragging) return;
           var dx = e.clientX - startPX;
           var dy = e.clientY - startPY;
-          if (Math.abs(dx) > 4 || Math.abs(dy) > 4) hasMoved = true;
+          if (!hasMoved && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) hasMoved = true;
           var vw = window.innerWidth;
           var vh = window.innerHeight;
           var cardW = card.offsetWidth;
@@ -640,18 +648,12 @@
           card.style.top  = Math.max(0, Math.min(vh - cardH, startTop  + dy)) + 'px';
         });
 
-        card.addEventListener('pointerup', function (e) {
-          dragging = false;
-          card.classList.remove('is-dragging');
-          card.releasePointerCapture(e.pointerId);
-        });
+        card.addEventListener('pointerup',     endDrag);
+        card.addEventListener('pointercancel', endDrag);
 
         /* Block navigation if the card was dragged */
         card.addEventListener('click', function (e) {
-          if (hasMoved) {
-            e.preventDefault();
-            hasMoved = false;
-          }
+          if (hasMoved) e.preventDefault();
         });
       });
 
