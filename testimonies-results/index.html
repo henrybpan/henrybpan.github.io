@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Testimonies &amp; Results — Henry Pan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=EB+Garamond:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=EB+Garamond:wght@400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -28,7 +29,7 @@
 
     @keyframes up {
       from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0);    }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .back {
@@ -42,7 +43,6 @@
       margin-bottom: clamp(3rem, 8vh, 5rem);
       transition: color 0.2s ease;
     }
-
     .back:hover { color: rgba(237, 232, 222, 0.5); }
 
     h1 {
@@ -53,15 +53,123 @@
       text-transform: uppercase;
       color: rgba(237, 232, 222, 0.28);
       line-height: 1;
+      margin-bottom: clamp(3rem, 8vh, 5rem);
     }
 
-    .wip {
-      margin-top: 1.4rem;
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+    @media (max-width: 680px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Card ── */
+    .card {
+      background: rgba(237, 232, 222, 0.03);
+      box-shadow: inset 0 0 0 0.5px rgba(255, 252, 240, 0.07);
+      border-radius: 2px;
+      padding: clamp(1.25rem, 3vw, 1.75rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    /* ── Card header ── */
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: inset 0 0 0 1px rgba(237, 232, 222, 0.1);
+    }
+
+    .avatar-initials {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(237, 232, 222, 0.07);
+      box-shadow: inset 0 0 0 1px rgba(237, 232, 222, 0.1);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: rgba(237, 232, 222, 0.38);
+      user-select: none;
+    }
+
+    .card-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      letter-spacing: 0.08em;
+      color: rgba(237, 232, 222, 0.55);
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+    .card-name:hover { color: rgba(237, 232, 222, 0.85); }
+
+    /* ── Social badges ── */
+    .badges {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 10px;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(237, 232, 222, 0.1);
+      color: rgba(237, 232, 222, 0.28);
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+    .badge:hover { color: rgba(237, 232, 222, 0.55); }
+
+    .badge svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    /* ── Video ── */
+    .card-video {
+      width: 100%;
+      border-radius: 2px;
+      display: block;
+      background: #000;
+      max-height: 420px;
+      object-fit: cover;
+    }
+
+    /* ── No-video placeholder ── */
+    .no-video {
+      height: 2rem;
     }
 
     @media (prefers-reduced-motion: reduce) { .page { animation: none; } }
@@ -71,7 +179,163 @@
   <main class="page">
     <a href="/" class="back">&#8592; Back</a>
     <h1>Testimonies &amp; Results</h1>
-    <p class="wip">Work in Progress</p>
+
+    <div class="grid">
+
+      <!-- seb.e.kho -->
+      <div class="card">
+        <div class="card-header">
+          <img class="avatar" src="/testimonials/photos/seb_e_kho.jpg" alt="@seb.e.kho profile photo">
+          <div class="card-identity">
+            <a href="https://www.instagram.com/seb.e.kho/" target="_blank" rel="noopener noreferrer" class="card-name">@seb.e.kho</a>
+            <div class="badges">
+              <a href="https://www.instagram.com/seb.e.kho/" target="_blank" rel="noopener noreferrer" class="badge">
+                <!-- Instagram icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+                25.8k
+              </a>
+            </div>
+          </div>
+        </div>
+        <video class="card-video" src="/testimonials/seb.e.kho_testimonial.MOV" controls preload="metadata" playsinline></video>
+      </div>
+
+      <!-- rohabits -->
+      <div class="card">
+        <div class="card-header">
+          <img class="avatar" src="/testimonials/photos/rohabits.jpg" alt="@rohabits profile photo">
+          <div class="card-identity">
+            <a href="https://www.instagram.com/rohabits/" target="_blank" rel="noopener noreferrer" class="card-name">@rohabits</a>
+            <div class="badges">
+              <a href="https://www.instagram.com/rohabits/" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+                101k
+              </a>
+              <a href="https://www.tiktok.com/@rohabits" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+                65.6k
+              </a>
+            </div>
+          </div>
+        </div>
+        <video class="card-video" src="/testimonials/rohabits_testimonial.MOV" controls preload="metadata" playsinline></video>
+      </div>
+
+      <!-- sheancreates -->
+      <div class="card">
+        <div class="card-header">
+          <img class="avatar" src="/testimonials/photos/sheancreates.jpg" alt="@sheancreates profile photo">
+          <div class="card-identity">
+            <a href="https://www.instagram.com/sheancreates/" target="_blank" rel="noopener noreferrer" class="card-name">@sheancreates</a>
+            <div class="badges">
+              <a href="https://www.instagram.com/sheancreates/" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+                10.3k
+              </a>
+            </div>
+          </div>
+        </div>
+        <video class="card-video" src="/testimonials/sheancreates_testimonial.MOV" controls preload="metadata" playsinline></video>
+      </div>
+
+      <!-- ericvwrld -->
+      <div class="card">
+        <div class="card-header">
+          <img class="avatar" src="/testimonials/photos/ericvwrld.jpg" alt="@ericvwrld profile photo">
+          <div class="card-identity">
+            <a href="https://www.instagram.com/ericvwrld/" target="_blank" rel="noopener noreferrer" class="card-name">@ericvwrld</a>
+            <div class="badges">
+              <a href="https://www.instagram.com/ericvwrld/" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+                5.9k
+              </a>
+            </div>
+          </div>
+        </div>
+        <video class="card-video" src="/testimonials/ericvwrld_testimonial.MOV" controls preload="metadata" playsinline></video>
+      </div>
+
+      <!-- lifeofdiegogabriel -->
+      <div class="card">
+        <div class="card-header">
+          <img class="avatar" src="/testimonials/photos/lifeofdiegogabriel.jpg" alt="@lifeofdiegogabriel profile photo">
+          <div class="card-identity">
+            <a href="https://www.instagram.com/lifeofdiegogabriel/" target="_blank" rel="noopener noreferrer" class="card-name">@lifeofdiegogabriel</a>
+            <div class="badges">
+              <a href="https://www.instagram.com/lifeofdiegogabriel/" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+                13.2k
+              </a>
+            </div>
+          </div>
+        </div>
+        <video class="card-video" src="/testimonials/lifeofdiegogabriel_testimonial.MOV" controls preload="metadata" playsinline></video>
+      </div>
+
+      <!-- leogibson.mp4 -->
+      <div class="card">
+        <div class="card-header">
+          <img class="avatar" src="/testimonials/photos/leogibson_mp4.jpg" alt="@leogibson.mp4 profile photo">
+          <div class="card-identity">
+            <a href="https://www.instagram.com/leogibson.mp4/" target="_blank" rel="noopener noreferrer" class="card-name">@leogibson.mp4</a>
+            <div class="badges">
+              <a href="https://www.instagram.com/leogibson.mp4/" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+                16.4k
+              </a>
+              <a href="https://www.tiktok.com/@leogibson.mp4" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+                27.3k
+              </a>
+            </div>
+          </div>
+        </div>
+        <video class="card-video" src="/testimonials/leogibson.mp4_testimonial.MOV" controls preload="metadata" playsinline></video>
+      </div>
+
+      <!-- jaqoea -->
+      <div class="card">
+        <div class="card-header">
+          <img class="avatar" src="/testimonials/photos/jaqoea.jpg" alt="@jaqoea profile photo">
+          <div class="card-identity">
+            <a href="https://www.instagram.com/jaqoea/" target="_blank" rel="noopener noreferrer" class="card-name">@jaqoea</a>
+            <div class="badges">
+              <a href="https://www.instagram.com/jaqoea/" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+                10k
+              </a>
+              <a href="https://www.tiktok.com/@jaqoea" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+                13.5k
+              </a>
+            </div>
+          </div>
+        </div>
+        <video class="card-video" src="/testimonials/jaqoea_testimonial.MOV" controls preload="metadata" playsinline></video>
+      </div>
+
+      <!-- justtonch — no video -->
+      <div class="card">
+        <div class="card-header">
+          <img class="avatar" src="/testimonials/photos/justtonch.jpg" alt="@justtonch profile photo">
+          <div class="card-identity">
+            <a href="https://www.instagram.com/justtonch/" target="_blank" rel="noopener noreferrer" class="card-name">@justtonch</a>
+            <div class="badges">
+              <a href="https://www.instagram.com/justtonch/" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+                17.5k
+              </a>
+              <a href="https://www.tiktok.com/@justtonch" target="_blank" rel="noopener noreferrer" class="badge">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+                28.2k
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="no-video"></div>
+      </div>
+
+    </div>
   </main>
 </body>
 </html>
