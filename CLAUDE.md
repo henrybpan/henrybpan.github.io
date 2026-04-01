@@ -81,7 +81,15 @@ The site is a collection of standalone HTML files. Each page is self-contained w
 ## Home page popup cards (mini navigation)
 
 - 5 mini business cards fly out from center on "more info" click: About, Essays, Recommendations, Work with Me, Results
-- Cards are draggable via Pointer Events API — drag threshold is 6px before `hasMoved` is set
-- `hasMoved` reset is deferred with `requestAnimationFrame` so the click handler can still block navigation on drag-release
-- Both `pointerup` and `pointercancel` call the shared `endDrag` function
+- Scatter placement hits all four quadrants (lower-left, upper-right, upper-left, lower-right, top-center) — "cards tossed on a table" feel
+- `homePos()` clamps all positions to viewport bounds (8px margin) — handles mobile safely
 - Positions defined in `placements[]` array as `{ dx, dy, rot, delay }` — dx/dy are fractions of viewport
+
+**Popup card structure:**
+- Each card is a `<div class="popup-card">` wrapping an `<a class="popup-card-link">` — NOT a bare anchor
+- `.popup-card-link` uses `position: absolute; inset: 25%` — only the center 50% of the card triggers navigation
+- The outer `<div>` handles all drag events; cursor never changes during drag (no `grab`/`grabbing`)
+- `is-dragging` class: disables transitions + scale(1.05) + elevated shadow + z-index bump — no cursor change
+- Drag threshold is 6px before `hasMoved` is set; `hasMoved` reset deferred with `requestAnimationFrame`
+- Navigation blocked via `click` listener on the inner `<a>` (not the card div) when `hasMoved` is true
+- Both `pointerup` and `pointercancel` call the shared `endDrag` function
