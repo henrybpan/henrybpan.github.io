@@ -554,8 +554,9 @@
 
       /* ---- Card flip ---- */
       scene.addEventListener('click', function (e) {
-        if (e.target.closest('a'))             return; /* email, icons, card-cta */
-        if (e.target.closest('.see-more-btn')) return;
+        if (e.target.closest('a'))               return; /* email, icons, card-cta */
+        if (e.target.closest('.see-more-btn'))   return;
+        if (e.target.closest('.card-back-center')) return; /* rules + button gap area */
         scene.classList.toggle('is-flipped');
       });
 
@@ -708,12 +709,18 @@
         card.addEventListener('pointerup',     endDrag);
         card.addEventListener('pointercancel', endDrag);
 
-        /* Block navigation on the inner link if the card was dragged */
-        if (link) {
-          link.addEventListener('click', function (e) {
-            if (hasMoved) e.preventDefault();
-          });
-        }
+        /* Navigate if click landed in the center 50% zone and card wasn't dragged.
+           setPointerCapture routes click to the div rather than the inner <a>,
+           so we handle navigation here via coordinate check.                       */
+        card.addEventListener('click', function (e) {
+          if (hasMoved || !link) return;
+          var rect = card.getBoundingClientRect();
+          var relX = (e.clientX - rect.left)  / rect.width;
+          var relY = (e.clientY - rect.top)   / rect.height;
+          if (relX >= 0.25 && relX <= 0.75 && relY >= 0.25 && relY <= 0.75) {
+            window.location.href = link.href;
+          }
+        });
       });
 
       /* Re-home cards if viewport resizes while popup is open */
