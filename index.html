@@ -233,7 +233,7 @@
     .card-cta:hover { color: #1C1A17; }
 
     /* ============================================================
-       BACK — LAYOUT (monogram top, rules+button center, url bottom)
+       BACK — LAYOUT (monogram top, nav center, url bottom)
     ============================================================ */
     .card-back-inner {
       display: flex;
@@ -243,29 +243,47 @@
       height: 100%;
     }
 
-    .card-back-monogram {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 300;
-      font-size: 2.0em;
-      letter-spacing: 0.5em;
-      text-transform: uppercase;
-      color: rgba(28, 26, 23, 0.08);
-      padding-left: 0.5em; /* compensate for letter-spacing on last char */
+    .card-back-monogram-img {
+      height: 2.2em;
+      width: auto;
+      opacity: 0.12;
+      display: block;
     }
 
-    .card-back-center {
+    .card-back-nav {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6em;
+      gap: 0.28em;
       width: 100%;
     }
 
-    .card-back-rule {
-      width: 52%;
-      height: 0.5px;
-      background: rgba(28, 26, 23, 0.16);
+    .card-back-nav-link {
+      display: inline-block;
+      text-decoration: none;
+      color: rgba(28, 26, 23, 0.42);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: 0.72em;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      position: relative;
     }
+
+    .card-back-nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -0.1em;
+      left: 0;
+      width: 0;
+      height: 0.5px;
+      background: rgba(28, 26, 23, 0.5);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-back-nav-link:hover              { color: #1C1A17; }
+    .card-back-nav-link:hover::after       { width: 100%; }
 
     .card-back-url {
       font-family: 'EB Garamond', Georgia, serif;
@@ -273,143 +291,26 @@
       letter-spacing: 0.28em;
       text-transform: uppercase;
       color: rgba(28, 26, 23, 0.28);
-      padding-left: 0.28em; /* compensate for letter-spacing on last char */
+      padding-left: 0.28em;
     }
-
-    .see-more-btn {
-      position: relative;
-      padding: 0.55em 1.6em;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 300;
-      font-size: 1.05em;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #3A3530;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color 0.25s ease;
-    }
-
-    .see-more-btn::after {
-      content: '';
-      position: absolute;
-      bottom: 0.4em;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0.5px;
-      background: rgba(28, 26, 23, 0.45);
-      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .see-more-btn:hover { color: #1C1A17; }
-    .see-more-btn:hover::after { width: 65%; }
 
     /* ============================================================
-       POPUP OVERLAY
+       FLIP HINT  (idle CTA — fades in after 5s of no interaction)
     ============================================================ */
-    .popup-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
+    .flip-hint {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(11px, 1.8vw, 13px);
+      letter-spacing: 0.12em;
+      color: rgba(237, 232, 222, 0.28);
+      opacity: 0;
+      transition: opacity 0.6s ease;
       pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .popup-overlay.is-open {
-      pointer-events: all;
-      opacity: 1;
-    }
-
-    .popup-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(15, 14, 12, 0.72);
-    }
-
-    /* Mini business cards — positions set by JS */
-    .popup-card {
-      position: fixed;
-      width: min(200px, 42vw);
-      aspect-ratio: 1.75;
-      background-color: #EDE8DE;
-      border-radius: 2px;
-      box-shadow:
-        0 1px 2px  rgba(0, 0, 0, 0.55),
-        0 4px 12px rgba(0, 0, 0, 0.48),
-        0 14px 32px rgba(0, 0, 0, 0.40),
-        inset 0 0 0 0.5px rgba(255, 252, 240, 0.18);
-      opacity: 0;
-      /* Closed: translated back to viewport center, unrotated */
-      transform: rotate(0deg) scale(0.88) translate(var(--origin-tx, 0px), var(--origin-ty, 0px));
-      /* Closing transition: ease back toward center */
-      transition:
-        opacity 0.35s ease-in,
-        transform 0.4s cubic-bezier(0.4, 0, 1, 1),
-        box-shadow 0.2s ease;
-      will-change: transform, opacity;
       user-select: none;
       -webkit-user-select: none;
-      z-index: 101;
-      touch-action: none;
     }
 
-    /* Inner nav link — centered 50% hitbox */
-    .popup-card-link {
-      position: absolute;
-      inset: 25%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 300;
-      font-size: clamp(8px, 2.2vw, 12px);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #3A3530;
-      transition: color 0.2s ease;
-    }
-
-    .popup-card-link:hover { color: #1C1A17; }
-
-    /* Opening: fly from center to resting position with overshoot */
-    .popup-overlay.is-open .popup-card {
-      opacity: 1;
-      transform: rotate(var(--rot, 0deg)) scale(1) translate(0px, 0px);
-      transition:
-        opacity 0.3s ease,
-        transform 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.28),
-        box-shadow 0.2s ease;
-      transition-delay: var(--delay, 0s);
-    }
-
-    .popup-card.is-dragging {
-      transition: box-shadow 0.15s ease !important;
-      box-shadow:
-        0 4px 8px  rgba(0, 0, 0, 0.60),
-        0 12px 32px rgba(0, 0, 0, 0.52),
-        0 28px 64px rgba(0, 0, 0, 0.44),
-        inset 0 0 0 0.5px rgba(255, 252, 240, 0.18);
-      transform: rotate(var(--rot, 0deg)) scale(1.05) !important;
-      z-index: 115;
-    }
-
-    /* Hover lift */
-    .popup-overlay.is-open .popup-card:not(.is-dragging):hover {
-      transform: rotate(var(--rot, 0deg)) scale(1.03) translateY(-5px);
-      box-shadow:
-        0 2px 4px  rgba(0, 0, 0, 0.58),
-        0 8px 22px rgba(0, 0, 0, 0.52),
-        0 22px 56px rgba(0, 0, 0, 0.42),
-        inset 0 0 0 0.5px rgba(255, 252, 240, 0.22);
-      transition:
-        transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-        box-shadow 0.28s ease;
-      z-index: 112;
-    }
+    .flip-hint.is-visible { opacity: 1; }
 
     /* ============================================================
        RESPONSIVE
@@ -431,14 +332,11 @@
        REDUCED MOTION
     ============================================================ */
     @media (prefers-reduced-motion: reduce) {
-      .card-tilt                         { transition: none; }
-      .card-inner                        { transition: none; }
-      .scene                             { animation: none; }
-      .popup-card                        { transition: none; }
-      .popup-overlay.is-open .popup-card { transition: none; }
-      .popup-overlay.is-open .popup-card:not(.is-dragging):hover { transition: none; }
-      .popup-overlay                     { transition: none; }
-      .see-more-btn::after               { transition: none; }
+      .card-tilt                   { transition: none; }
+      .card-inner                  { transition: none; }
+      .scene                       { animation: none; }
+      .card-back-nav-link::after   { transition: none; }
+      .flip-hint                   { transition: none; }
     }
 
   </style>
@@ -511,14 +409,14 @@
         <!-- ===== BACK ===== -->
         <article class="card-face card-back">
           <div class="card-back-inner">
-            <div class="card-back-monogram">H&thinsp;P</div>
-            <div class="card-back-center">
-              <div class="card-back-rule"></div>
-              <button class="see-more-btn" id="seeMoreBtn" aria-label="See navigation options">
-                more info
-              </button>
-              <div class="card-back-rule"></div>
-            </div>
+            <img src="/monogram.png" class="card-back-monogram-img" alt="">
+            <nav class="card-back-nav" aria-label="Site navigation">
+              <a href="/about"               class="card-back-nav-link">About</a>
+              <a href="/essays"              class="card-back-nav-link">Essays</a>
+              <a href="/recommendations"     class="card-back-nav-link">Recommendations</a>
+              <a href="/work-with-me"        class="card-back-nav-link">Work with Me</a>
+              <a href="/testimonies-results" class="card-back-nav-link">Results</a>
+            </nav>
             <div class="card-back-url">henrybpan.com</div>
           </div>
         </article>
@@ -527,17 +425,9 @@
       </div><!-- /.card-tilt -->
     </div>
 
-  </main>
+    <p class="flip-hint" id="flipHint" aria-hidden="true">flip to explore</p>
 
-  <!-- Popup overlay — mini business card navigation -->
-  <div class="popup-overlay" id="popupOverlay" aria-hidden="true">
-    <div class="popup-backdrop" id="popupBackdrop"></div>
-    <div class="popup-card" data-idx="0"><a href="/about"               class="popup-card-link">About</a></div>
-    <div class="popup-card" data-idx="1"><a href="/essays"              class="popup-card-link">Essays</a></div>
-    <div class="popup-card" data-idx="2"><a href="/recommendations"     class="popup-card-link">Recommendations</a></div>
-    <div class="popup-card" data-idx="3"><a href="/work-with-me"        class="popup-card-link">Work with Me</a></div>
-    <div class="popup-card" data-idx="4"><a href="/testimonies-results" class="popup-card-link">Results</a></div>
-  </div>
+  </main>
 
   <script>
     (function () {
@@ -545,29 +435,51 @@
 
       var scene         = document.getElementById('cardScene');
       var cardTilt      = document.getElementById('cardTilt');
-      var seeMoreBtn    = document.getElementById('seeMoreBtn');
-      var popupOverlay  = document.getElementById('popupOverlay');
-      var popupBackdrop = document.getElementById('popupBackdrop');
-      var popupCards    = Array.prototype.slice.call(document.querySelectorAll('.popup-card'));
+      var flipHint      = document.getElementById('flipHint');
       var tiltRAF       = null;
       var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+      /* ---- Flip hint (idle CTA — shows after 5s of no interaction) ---- */
+      var hintTimer = null;
+      var hintDone  = false;
+
+      function showHint()    { if (!hintDone) flipHint.classList.add('is-visible'); }
+      function hideHint()    { flipHint.classList.remove('is-visible'); }
+      function dismissHint() { if (hintDone) return; hintDone = true; clearTimeout(hintTimer); hideHint(); }
+
+      function resetTimer() {
+        if (hintDone) return;
+        clearTimeout(hintTimer);
+        hideHint();
+        hintTimer = setTimeout(showHint, 5000);
+      }
+
+      /* Passive movement resets the idle clock; deliberate action kills the hint for good */
+      document.addEventListener('mousemove', resetTimer);
+      document.addEventListener('touchmove', resetTimer, { passive: true });
+      ['pointerdown', 'keydown'].forEach(function (evt) {
+        document.addEventListener(evt, dismissHint);
+      });
+
+      resetTimer();
+
       /* ---- Card flip ---- */
       scene.addEventListener('click', function (e) {
-        if (e.target.closest('a'))               return; /* email, icons, card-cta */
-        if (e.target.closest('.see-more-btn'))   return;
-        if (e.target.closest('.card-back-center')) return; /* rules + button gap area */
+        if (e.target.closest('a'))              return; /* icons, cta, back nav links */
+        if (e.target.closest('.card-back-nav')) return; /* nav container gap area */
+        dismissHint();
         scene.classList.toggle('is-flipped');
       });
 
       scene.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
+          dismissHint();
           scene.classList.toggle('is-flipped');
         }
       });
 
-      /* ---- 3D tilt hover (cursor-following perspective, inspired by monikamichalczyk.com) ---- */
+      /* ---- 3D tilt hover (cursor-following perspective) ---- */
       if (!reducedMotion) {
         scene.addEventListener('mousemove', function (e) {
           if (tiltRAF) cancelAnimationFrame(tiltRAF);
@@ -590,154 +502,6 @@
           cardTilt.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
         });
       }
-
-      /* ---- Scatter placements — cards tossed on a table ----
-         dx/dy = fraction of viewport offset from center
-         rot   = tilt in degrees
-         delay = stagger for entry animation                  */
-      var placements = [
-        { dx: -0.28, dy:  0.16, rot: -21, delay: '0.04s' }, // About           — lower left
-        { dx:  0.25, dy: -0.22, rot:  14, delay: '0.08s' }, // Essays          — upper right
-        { dx: -0.22, dy: -0.20, rot:  -7, delay: '0.12s' }, // Recommendations — upper left
-        { dx:  0.27, dy:  0.20, rot:  19, delay: '0.16s' }, // Work with Me    — lower right
-        { dx:  0.02, dy: -0.30, rot:   6, delay: '0.20s' }, // Results         — top center
-      ];
-
-      /* Compute home position (px) for a card given its index */
-      function homePos(idx) {
-        var vw = window.innerWidth;
-        var vh = window.innerHeight;
-        var p  = placements[idx];
-        var cardW = Math.min(200, vw * 0.42);
-        var cardH = cardW / 1.75;
-        var left = Math.max(8, Math.min(vw - cardW - 8,
-          vw / 2 + p.dx * vw - cardW / 2));
-        var top  = Math.max(8, Math.min(vh - cardH - 8,
-          vh / 2 + p.dy * vh - cardH / 2));
-        return { left: left, top: top };
-      }
-
-      /* ---- Popup open / close ---- */
-      function openPopup() {
-        var vw = window.innerWidth;
-        var vh = window.innerHeight;
-
-        popupCards.forEach(function (card, i) {
-          var pos    = homePos(i);
-          var cardW  = Math.min(200, vw * 0.38);
-          var cardH  = cardW / 1.75;
-
-          /* Final resting position */
-          card.style.left = pos.left + 'px';
-          card.style.top  = pos.top  + 'px';
-          card.style.setProperty('--rot',   placements[i].rot   + 'deg');
-          card.style.setProperty('--delay', placements[i].delay);
-
-          /* Offset from card's resting center back to viewport center */
-          var cx = pos.left + cardW / 2;
-          var cy = pos.top  + cardH / 2;
-          card.style.setProperty('--origin-tx', (vw / 2 - cx) + 'px');
-          card.style.setProperty('--origin-ty', (vh / 2 - cy) + 'px');
-        });
-
-        /* Flush layout so browser registers the origin state before transitioning */
-        void popupOverlay.offsetHeight;
-
-        popupOverlay.classList.add('is-open');
-        popupOverlay.setAttribute('aria-hidden', 'false');
-      }
-
-      function closePopup() {
-        /* Clear stagger so all cards collapse back together */
-        popupCards.forEach(function (card) {
-          card.style.setProperty('--delay', '0s');
-        });
-        popupOverlay.classList.remove('is-open');
-        popupOverlay.setAttribute('aria-hidden', 'true');
-      }
-
-      seeMoreBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        openPopup();
-      });
-
-      popupBackdrop.addEventListener('click', closePopup);
-
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closePopup();
-      });
-
-      /* ---- Draggable cards ---- */
-      popupCards.forEach(function (card) {
-        var startPX, startPY, startLeft, startTop, dragging, hasMoved;
-        var link = card.querySelector('.popup-card-link');
-
-        function endDrag(e) {
-          if (!dragging) return;
-          dragging = false;
-          card.classList.remove('is-dragging');
-          if (e && e.pointerId != null) card.releasePointerCapture(e.pointerId);
-          /* Defer reset so the synchronous click event (fires before rAF) still sees hasMoved */
-          requestAnimationFrame(function () { hasMoved = false; });
-        }
-
-        card.addEventListener('pointerdown', function (e) {
-          if (e.button && e.button !== 0) return;
-          dragging  = true;
-          hasMoved  = false;
-          startPX   = e.clientX;
-          startPY   = e.clientY;
-          startLeft = parseFloat(card.style.left) || 0;
-          startTop  = parseFloat(card.style.top)  || 0;
-          card.setPointerCapture(e.pointerId);
-          card.classList.add('is-dragging');
-        });
-
-        card.addEventListener('pointermove', function (e) {
-          if (!dragging) return;
-          var dx = e.clientX - startPX;
-          var dy = e.clientY - startPY;
-          if (!hasMoved && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) hasMoved = true;
-          var vw = window.innerWidth;
-          var vh = window.innerHeight;
-          var cardW = card.offsetWidth;
-          var cardH = card.offsetHeight;
-          card.style.left = Math.max(0, Math.min(vw - cardW, startLeft + dx)) + 'px';
-          card.style.top  = Math.max(0, Math.min(vh - cardH, startTop  + dy)) + 'px';
-        });
-
-        card.addEventListener('pointerup',     endDrag);
-        card.addEventListener('pointercancel', endDrag);
-
-        /* Navigate if click landed in the center 50% zone and card wasn't dragged.
-           setPointerCapture routes click to the div rather than the inner <a>,
-           so we handle navigation here via coordinate check.                       */
-        card.addEventListener('click', function (e) {
-          if (hasMoved || !link) return;
-          var rect = card.getBoundingClientRect();
-          var relX = (e.clientX - rect.left)  / rect.width;
-          var relY = (e.clientY - rect.top)   / rect.height;
-          if (relX >= 0.25 && relX <= 0.75 && relY >= 0.25 && relY <= 0.75) {
-            window.location.href = link.href;
-          }
-        });
-      });
-
-      /* Re-home cards if viewport resizes while popup is open */
-      window.addEventListener('resize', function () {
-        if (!popupOverlay.classList.contains('is-open')) return;
-        var vw = window.innerWidth;
-        var vh = window.innerHeight;
-        popupCards.forEach(function (card, i) {
-          var pos   = homePos(i);
-          var cardW = Math.min(200, vw * 0.42);
-          var cardH = cardW / 1.75;
-          card.style.left = pos.left + 'px';
-          card.style.top  = pos.top  + 'px';
-          card.style.setProperty('--origin-tx', (vw / 2 - (pos.left + cardW / 2)) + 'px');
-          card.style.setProperty('--origin-ty', (vh / 2 - (pos.top  + cardH / 2)) + 'px');
-        });
-      });
 
     }());
   </script>
