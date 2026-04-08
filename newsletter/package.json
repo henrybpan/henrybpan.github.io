@@ -1,0 +1,14 @@
+{
+  "name": "newsletter",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "send": "node send.js",
+    "add": "node add.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "resend": "^4.0.0"
+  }
+}

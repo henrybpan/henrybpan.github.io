@@ -7,72 +7,120 @@
   <title>Essays — Henry Pan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=EB+Garamond:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    html { -webkit-font-smoothing: antialiased; }
 
     body {
-      background-color: #0F0E0C;
+      background: #fff;
+      color: #1a1915;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      line-height: 1.7;
       min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
     }
 
     .page {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: clamp(2.5rem, 8vw, 4.5rem) clamp(2rem, 10vw, 5rem);
-      animation: up 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    @keyframes up {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0);    }
+      max-width: 580px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 6vw, 2rem);
     }
 
     .back {
       display: inline-block;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(237, 232, 222, 0.22);
+      font-size: 0.8rem;
+      color: #999;
       text-decoration: none;
-      margin-bottom: clamp(3rem, 8vh, 5rem);
-      transition: color 0.2s ease;
+      margin-bottom: 2.8rem;
+      letter-spacing: 0.01em;
     }
 
-    .back:hover { color: rgba(237, 232, 222, 0.5); }
+    .back:hover { color: #1a1915; }
 
     h1 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 300;
-      font-size: clamp(2.2rem, 7vw, 3.5rem);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(237, 232, 222, 0.28);
-      line-height: 1;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      margin-bottom: 2rem;
+      line-height: 1.2;
     }
 
-    .wip {
-      margin-top: 1.4rem;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 10px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(237, 232, 222, 0.1);
+    /* Essay list */
+    .essay-list {
+      list-style: none;
+      margin-bottom: 3.5rem;
     }
 
-    @media (prefers-reduced-motion: reduce) { .page { animation: none; } }
+    .essay-list li + li {
+      margin-top: 0.25rem;
+    }
+
+    .essay-list a {
+      color: #1a1915;
+      text-decoration: underline;
+      text-decoration-color: #ccc;
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s ease;
+    }
+
+    .essay-list a:hover {
+      text-decoration-color: #1a1915;
+    }
+
+    .essay-meta {
+      color: #999;
+      font-size: 0.875rem;
+      margin-left: 0.6em;
+    }
+
+    .empty {
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* Email CTA */
+    .divider {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 2.5rem 0;
+    }
+
+    .email-cta p {
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .email-cta a {
+      color: #1a1915;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .email-cta a:hover { color: #555; }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
 </head>
 <body>
-  <main class="page">
-    <a href="/" class="back">&#8592; Back</a>
+  <div class="page">
+    <a href="/" class="back">&#8592; Henry Pan</a>
+
     <h1>Essays</h1>
-    <p class="wip">Work in Progress</p>
-  </main>
+
+    <ul class="essay-list">
+      <!-- Add essays here as:
+      <li><a href="/essays/essay-slug">Essay Title</a> <span class="essay-meta">Month Year</span></li>
+      -->
+      <li><span class="empty">Nothing published yet.</span></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="email-cta">
+      <p>Get new essays in your inbox.</p>
+      <a href="https://henrybpan.substack.com/" target="_blank" rel="noopener noreferrer">Subscribe on Substack &rarr;</a>
+    </div>
+  </div>
 </body>
 </html>
