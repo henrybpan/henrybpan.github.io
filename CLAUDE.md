@@ -21,7 +21,8 @@ The site is a collection of standalone HTML files. Each page is self-contained w
 - `director/welcome/index.html` — Post-payment welcome page (GitHub username capture form). `noindex`.
 - `text/index.html` — SMS list signup page.
 - `community/index.html` — Two rooms (free Bible study + paid content review). `noindex` — hidden until deliverable is defined.
-- `about/index.html`, `essays/index.html`, `lindy-library/index.html`, `testimonies-results/index.html` — Simple sub-pages.
+- `essays/index.html`, `lindy-library/index.html` — chester.how-inspired list pages (writing list, grouped reading list).
+- `testimonies-results/index.html` — video testimonial grid. `noindex` — accessible via direct link from `/director` only, not listed in nav.
 - `work-with-me/index.html` — Instant redirect to `/director` (`<meta http-equiv="refresh">` + JS `location.replace`). Not themed because it never renders for long.
 - Legacy redirects: `essays.html`, `recommendations.html`, `work-with-me.html` may exist alongside the directory versions.
 
@@ -36,7 +37,7 @@ The site is a collection of standalone HTML files. Each page is self-contained w
 2. Floating `.theme-toggle` button (top-right, fixed position).
 3. Hero: monogram watermark (absolute-positioned, low opacity, `filter: invert(1)` in dark mode), `h1.name`, italic tagline, 3-paragraph intro, two CTA buttons (`.btn-primary` "Install your AI creative director" → `/director`, `.btn-secondary` "Join my newsletter" → `/text`).
 4. 6 `.section` blocks, each with `.section-label` (tracked caps), `.section-link` (em-dash ::before pseudo-element), `.section-title`, `.section-blurb`.
-5. Footer: social SVGs (IG/YT/X/email), copyright, "see the old card →" link to `/card`.
+5. Footer: social SVGs (IG/YT/X/email), copyright.
 
 **Card page (`/card/index.html`) — preserved easter egg:**
 - Verbatim copy of the pre-redesign homepage.

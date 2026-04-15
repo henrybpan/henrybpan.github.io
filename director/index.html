@@ -430,13 +430,25 @@
   </style>
 </head>
 <body>
-  <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
-    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-  </button>
-  <main class="page">
-    <a href="/" class="back">&#8592; Back</a>
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a href="/" class="nav-home">Henry</a>
+      <ul class="nav-links">
+        <li><a href="/director" aria-current="page">director</a></li>
+        <li><a href="/essays">essays</a></li>
+        <li><a href="/lindy-library">library</a></li>
+        <li><a href="/text">text</a></li>
+      </ul>
+      <div class="nav-right">
+        <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
 
+  <main class="page">
     <!-- ========== HERO ========== -->
     <h1>A creative director that actually knows you.</h1>
     <p class="subhead">I install it on your Mac. It reads every reel you've posted, learns your voice from the data, and hands you ideas grounded in what already worked. No templates. No guessing.</p>

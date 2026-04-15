@@ -5,10 +5,11 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lindy Library — Henry Pan</title>
+  <meta name="description" content="Books, essays, and ideas that have stood the test of time — curated by Henry Pan.">
+  <title>library. — Henry Pan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/theme.css">
   <script src="/assets/theme.js" defer></script>
   <style>
@@ -20,82 +21,179 @@
       color: var(--fg);
       font-family: 'EB Garamond', Georgia, serif;
       font-size: clamp(1rem, 1.8vw, 1.125rem);
-      line-height: 1.7;
+      line-height: 1.65;
       min-height: 100dvh;
     }
 
     .page {
-      max-width: 580px;
+      max-width: 620px;
       margin: 0 auto;
-      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 6vw, 2rem);
+      padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 6vw, 2rem) clamp(3rem, 6vw, 5rem);
     }
-
-    .back {
-      display: inline-block;
-      font-size: 0.8rem;
-      color: var(--fg-dim);
-      text-decoration: none;
-      margin-bottom: 2.8rem;
-      letter-spacing: 0.01em;
-    }
-
-    .back:hover { color: var(--fg); }
 
     h1 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.4rem, 7vw, 3.4rem);
       font-weight: 500;
-      letter-spacing: 0.01em;
-      margin-bottom: 0.5rem;
-      line-height: 1.2;
+      letter-spacing: 0.005em;
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
     }
 
-    .subtitle {
-      font-style: italic;
-      color: var(--fg-dim);
-      margin-bottom: 2rem;
-    }
-
-    .wip {
-      color: var(--fg-faint);
-      font-style: italic;
-      font-size: 0.95rem;
-    }
-
-    /* Email CTA */
-    .email-cta {
-      margin-top: 3.5rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .email-cta p {
+    .intro {
       color: var(--fg-mut);
-      margin-bottom: 0.5rem;
+      font-size: clamp(1.02rem, 1.8vw, 1.1rem);
+      line-height: 1.6;
+      margin-bottom: clamp(3rem, 6vw, 4rem);
+      max-width: 34rem;
     }
 
-    .email-cta a {
+    /* Reading list — chester.how/reading grouped pattern */
+    .status-group {
+      margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    }
+
+    .status-label {
+      font-size: 0.78rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .items { list-style: none; }
+
+    .item {
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .items .item:last-child { border-bottom: 1px solid var(--border); }
+
+    .item-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .item-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.25rem, 2.6vw, 1.45rem);
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--fg);
+    }
+    .item-title a {
+      color: var(--fg);
+      text-decoration: none;
+      transition: opacity 0.15s ease;
+    }
+    .item-title a:hover { opacity: 0.7; }
+
+    .item-author {
+      font-size: 0.88rem;
+      color: var(--fg-dim);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .item-note {
+      color: var(--fg-mut);
+      font-size: 0.98rem;
+      line-height: 1.55;
+      margin-top: 0.2rem;
+    }
+
+    /* Empty state */
+    .empty {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      color: var(--fg-dim);
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* CTA */
+    .cta {
+      margin-top: clamp(3rem, 6vw, 4.5rem);
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.95rem;
+      color: var(--fg-mut);
+      text-align: center;
+    }
+    .cta p { margin-bottom: 0.4rem; }
+    .cta a {
       color: var(--fg);
       text-decoration: underline;
+      text-decoration-color: var(--border-strong);
       text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s ease;
     }
+    .cta a:hover { text-decoration-color: var(--fg); }
 
-    .email-cta a:hover { color: var(--fg-mut); }
+    @media (max-width: 480px) {
+      .item-row { flex-direction: column; gap: 0.2rem; }
+      .item-author { white-space: normal; }
+    }
 
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
 </head>
 <body>
-  <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
-    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-  </button>
-  <main class="page">
-    <a href="/" class="back">&#8592; Back</a>
-    <h1>Lindy Library</h1>
-    <p class="subtitle">Things that have stood the test of time.</p>
-    <p class="wip">Work in Progress</p>
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a href="/" class="nav-home">Henry</a>
+      <ul class="nav-links">
+        <li><a href="/director">director</a></li>
+        <li><a href="/essays">essays</a></li>
+        <li><a href="/lindy-library" aria-current="page">library</a></li>
+        <li><a href="/text">text</a></li>
+      </ul>
+      <div class="nav-right">
+        <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-    <div class="email-cta">
+  <main class="page">
+    <h1>library.</h1>
+    <p class="intro">Books, essays, and ideas that have stood the test of time — the ones I keep coming back to. Grouped by what I'm reading now, what's next, and what has already shaped how I think.</p>
+
+    <!-- Add items under each status-group as:
+    <li class="item">
+      <div class="item-row">
+        <span class="item-title"><a href="https://...">Title</a></span>
+        <span class="item-author">Author</span>
+      </div>
+      <p class="item-note">Optional one-line take on why it matters.</p>
+    </li>
+    -->
+
+    <section class="status-group">
+      <span class="status-label">Reading</span>
+      <div class="empty">Nothing here yet.</div>
+    </section>
+
+    <section class="status-group">
+      <span class="status-label">Next</span>
+      <div class="empty">Nothing here yet.</div>
+    </section>
+
+    <section class="status-group">
+      <span class="status-label">Read</span>
+      <div class="empty">The list is coming.</div>
+    </section>
+
+    <div class="cta">
       <p>Get new additions to the library.</p>
       <a href="https://henrybpan.substack.com/" target="_blank" rel="noopener noreferrer">Subscribe on Substack &rarr;</a>
     </div>

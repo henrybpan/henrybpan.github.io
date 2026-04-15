@@ -48,19 +48,102 @@ html, body {
 }
 
 /* ============================================================
-   THEME TOGGLE  (floating top-right, every page)
+   SITEWIDE TOP NAV  (chester.how-inspired, persistent)
+   Left: Henry (home). Center-left: section links. Right: theme toggle.
+============================================================ */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+}
+
+.site-nav-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0.85rem clamp(1.5rem, 6vw, 2rem);
+  display: flex;
+  align-items: center;
+  gap: clamp(0.9rem, 3vw, 1.6rem);
+  font-family: 'EB Garamond', Georgia, serif;
+}
+
+.nav-home {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--fg);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+.nav-home:hover { opacity: 0.7; }
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.7rem, 2.5vw, 1.3rem);
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-links a {
+  font-size: 0.92rem;
+  color: var(--fg-mut);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.15s ease;
+  padding: 0.15rem 0;
+  position: relative;
+}
+.nav-links a:hover { color: var(--fg); }
+
+/* Active page indicator — subtle underline */
+.nav-links a[aria-current="page"] {
+  color: var(--fg);
+}
+.nav-links a[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15rem;
+  height: 0.5px;
+  background: var(--fg);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* On narrow screens, hide section links and keep only home + toggle */
+@media (max-width: 540px) {
+  .nav-links a { font-size: 0.85rem; }
+  .site-nav-inner { gap: 0.6rem; }
+}
+
+/* ============================================================
+   THEME TOGGLE
+   Default: compact, lives inside the top nav's right slot.
 ============================================================ */
 .theme-toggle {
-  position: fixed;
-  top: clamp(0.8rem, 2vw, 1.25rem);
-  right: clamp(0.8rem, 2vw, 1.25rem);
-  z-index: 100;
-
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   padding: 0;
 
-  background: var(--bg);
+  background: transparent;
   border: 0.5px solid var(--border);
   border-radius: 50%;
   color: var(--fg-mut);
@@ -69,6 +152,8 @@ html, body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
 
   transition: color 0.2s ease, border-color 0.2s ease,
               background-color 0.25s ease, transform 0.15s ease;
@@ -89,8 +174,8 @@ html, body {
 }
 
 .theme-toggle svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   display: block;
 }
 
