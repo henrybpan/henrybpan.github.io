@@ -304,6 +304,64 @@
     }
 
     /* ============================================================
+       PRIMARY CTAs  (below the card — the loud layer for new visitors)
+    ============================================================ */
+    .card-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      max-width: min(560px, 90vw);
+      padding: 0 8px;
+      animation: ctaEntry 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+    }
+
+    @keyframes ctaEntry {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    .card-ctas a {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(11px, 1.55vw, 13px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 12px 22px;
+      text-decoration: none;
+      border-radius: 1px;
+      transition: background 0.25s ease, color 0.25s ease,
+                  border-color 0.25s ease, transform 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .card-ctas .cta-primary {
+      background: #EDE8DE;
+      color: #1C1A17;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.35), 0 6px 16px rgba(0,0,0,0.28);
+    }
+    .card-ctas .cta-primary:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    .card-ctas .cta-secondary {
+      color: rgba(237, 232, 222, 0.78);
+      border: 0.5px solid rgba(237, 232, 222, 0.38);
+      background: transparent;
+    }
+    .card-ctas .cta-secondary:hover {
+      color: #EDE8DE;
+      border-color: rgba(237, 232, 222, 0.75);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 520px) {
+      .card-ctas { flex-direction: column; align-items: stretch; width: min(320px, 88vw); }
+      .card-ctas a { text-align: center; }
+    }
+
+    /* ============================================================
        FLIP HINT  (idle CTA — fades in after 5s of no interaction)
     ============================================================ */
     .flip-hint {
@@ -436,6 +494,11 @@
 
       </div>
       </div><!-- /.card-tilt -->
+    </div>
+
+    <div class="card-ctas" aria-label="Primary actions">
+      <a href="/director" class="cta-primary">Install your AI creative director</a>
+      <a href="/text" class="cta-secondary">Join my newsletter</a>
     </div>
 
     <p class="flip-hint" id="flipHint" aria-hidden="true">flip to explore</p>
