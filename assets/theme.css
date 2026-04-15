@@ -49,19 +49,17 @@ html, body {
 
 /* ============================================================
    SITEWIDE TOP NAV  (chester.how-inspired floating pill capsule)
-   Centered floating pill at top. Theme toggle floats separately
-   on the right edge at the same vertical position.
+   Everything lives inside one centered floating pill at the top.
 ============================================================ */
 .site-nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  pointer-events: none;          /* only the pill + toggle capture clicks */
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 0.9rem 0.6rem;
-  isolation: isolate;
+  padding: 0.9rem 0.6rem 0.4rem;
+  background: transparent;
+  pointer-events: none;          /* pass clicks to content below empty nav edges */
 }
 
 .site-nav-inner {
@@ -69,18 +67,29 @@ html, body {
   display: inline-flex;
   align-items: center;
   gap: 0.15rem;
-  padding: 0.3rem;
-  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  padding: 0.28rem;
+  background: rgba(255, 255, 255, 0.72);
   border: 0.5px solid var(--border);
   border-radius: 10px;
-  box-shadow: var(--shadow-sm), 0 4px 14px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
   backdrop-filter: saturate(160%) blur(10px);
   -webkit-backdrop-filter: saturate(160%) blur(10px);
   font-family: 'EB Garamond', Georgia, serif;
+  max-width: calc(100vw - 1.2rem);
 }
 
 [data-theme="dark"] .site-nav-inner {
-  box-shadow: var(--shadow-sm), 0 4px 16px rgba(0,0,0,0.5);
+  background: rgba(20, 19, 15, 0.72);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 18px rgba(0,0,0,0.45);
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
 }
 
 /* Every nav item (Henry + section links) uses the same pill style */
@@ -88,13 +97,15 @@ html, body {
 .nav-links a {
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 0.9rem;
+  line-height: 1.2;
   letter-spacing: 0.005em;
   color: var(--fg-dim);
   text-decoration: none;
-  padding: 0.35rem 0.65rem;
+  padding: 0.38rem 0.65rem;
   border-radius: 6px;
   transition: color 0.18s ease, background-color 0.18s ease;
   white-space: nowrap;
+  display: inline-block;
 }
 
 .nav-home:hover,
@@ -109,29 +120,20 @@ html, body {
   background: var(--border);
 }
 
-.nav-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* Theme toggle sits at the end of the pill as the last item */
+.nav-right {
   display: inline-flex;
   align-items: center;
-  gap: 0.15rem;
-}
-
-/* Theme toggle floats independently on the right edge, same vertical line */
-.nav-right {
-  pointer-events: auto;
-  position: absolute;
-  right: clamp(0.75rem, 3vw, 1.25rem);
-  top: 50%;
-  transform: translateY(-50%);
+  margin-left: 0.15rem;
+  padding-left: 0.3rem;
+  border-left: 0.5px solid var(--border);
 }
 
 @media (max-width: 540px) {
   .nav-home,
-  .nav-links a { font-size: 0.82rem; padding: 0.3rem 0.5rem; }
-  .site-nav-inner { gap: 0.1rem; padding: 0.25rem; }
-  .nav-right { right: 0.6rem; }
+  .nav-links a { font-size: 0.82rem; padding: 0.32rem 0.5rem; }
+  .site-nav-inner { gap: 0.1rem; padding: 0.22rem; }
+  .nav-right { padding-left: 0.22rem; margin-left: 0.1rem; }
 }
 
 /* ============================================================
@@ -139,14 +141,14 @@ html, body {
    Default: compact, lives inside the top nav's right slot.
 ============================================================ */
 .theme-toggle {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   padding: 0;
 
   background: transparent;
-  border: 0.5px solid var(--border);
-  border-radius: 50%;
-  color: var(--fg-mut);
+  border: 0;
+  border-radius: 6px;
+  color: var(--fg-dim);
 
   display: inline-flex;
   align-items: center;
@@ -155,13 +157,12 @@ html, body {
   position: relative;
   flex-shrink: 0;
 
-  transition: color 0.2s ease, border-color 0.2s ease,
-              background-color 0.25s ease, transform 0.15s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
 }
 
 .theme-toggle:hover {
   color: var(--fg);
-  border-color: var(--border-strong);
+  background: var(--border);
 }
 
 .theme-toggle:active {
@@ -174,8 +175,8 @@ html, body {
 }
 
 .theme-toggle svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   display: block;
 }
 
