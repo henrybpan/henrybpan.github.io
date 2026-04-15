@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A free weekly Bible study for creators, and a paid community for content review.">
+  <title>Communities — Henry Pan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: #fff;
+      color: #1a1915;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      line-height: 1.65;
+      min-height: 100dvh;
+    }
+
+    .page {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .back {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: #999;
+      text-decoration: none;
+      margin-bottom: 2.8rem;
+      letter-spacing: 0.01em;
+    }
+    .back:hover { color: #1a1915; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .subhead {
+      font-style: italic;
+      color: #555;
+      font-size: clamp(1.05rem, 2vw, 1.15rem);
+      margin-bottom: 3rem;
+      line-height: 1.5;
+    }
+
+    .room {
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #e6e2d8;
+    }
+    .room:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+    .room-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.6rem;
+    }
+    .room-tag.paid { color: #1a1915; font-weight: 500; }
+
+    .room h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .room-cadence {
+      font-style: italic;
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .room p + p { margin-top: 1em; }
+
+    .room ul {
+      list-style: none;
+      margin: 1rem 0 1.5rem;
+      padding: 0;
+      font-size: 0.98rem;
+      color: #444;
+    }
+    .room li {
+      padding: 0.3rem 0;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .room li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #999;
+    }
+
+    .price {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 0.5rem 0 1rem;
+    }
+    .price .pu {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #888;
+      margin-left: 0.3rem;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 0.85rem 1.6rem;
+      background: #1a1915;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: background 0.15s ease;
+    }
+    .cta:hover { background: #000; }
+
+    .cta.secondary {
+      background: transparent;
+      color: #1a1915;
+      border: 1px solid #1a1915;
+    }
+    .cta.secondary:hover {
+      background: #1a1915;
+      color: #fff;
+    }
+
+    .cross {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e6e2d8;
+      font-size: 0.92rem;
+      color: #888;
+      font-style: italic;
+      text-align: center;
+    }
+    .cross a {
+      color: #1a1915;
+      font-style: normal;
+      text-decoration: underline;
+      text-decoration-color: #ccc;
+      text-underline-offset: 3px;
+    }
+    .cross a:hover { text-decoration-color: #1a1915; }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a href="/" class="back">&#8592; Back</a>
+
+    <h1>Two rooms.</h1>
+
+    <p class="subhead">One is free, where we read scripture together. One is paid, where we tear apart the work we're making. Join either. Join both.</p>
+
+    <section class="room">
+      <span class="room-tag">Free</span>
+      <h2>Weekly Bible Study</h2>
+      <p class="room-cadence">Once a week. Live when you can, async when you can't.</p>
+
+      <p>A weekly pass through scripture with other creators trying to make work that actually means something. No performance. No polish. Just reading, arguing, sitting with the hard parts.</p>
+
+      <ul>
+        <li>One live study per week</li>
+        <li>Async thread so you never miss one</li>
+        <li>No prerequisites — new to the Bible is welcome</li>
+      </ul>
+
+      <a href="[COMMUNITY_FREE_URL]" class="cta secondary">Join the study</a>
+    </section>
+
+    <section class="room">
+      <span class="room-tag paid">Paid</span>
+      <h2>Content Review Community</h2>
+      <p class="room-cadence">Ongoing. Monthly.</p>
+
+      <p><em>[PLACEHOLDER — define the deliverable before this goes live. Options in the funnel-buildout doc: weekly 1:1 review, async Loom feedback, group critique sessions, monthly call. Pricing stays at $50 but the promise needs to be concrete.]</em></p>
+
+      <ul>
+        <li>[What members get — review cadence]</li>
+        <li>[What they submit — reels, scripts, carousels?]</li>
+        <li>[Group size cap]</li>
+      </ul>
+
+      <div class="price">$50<span class="pu">/month</span></div>
+
+      <a href="[COMMUNITY_PAID_URL]" class="cta">Join the review room</a>
+    </section>
+
+    <div class="cross">
+      Building your own AI creative director? <a href="/director">See the install offer</a> · or <a href="/text">get occasional texts from me</a>
+    </div>
+  </main>
+</body>
+</html>

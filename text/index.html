@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A text from Henry Pan when he finds something worth reading, writing, or listening to.">
+  <title>Text list — Henry Pan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: #fff;
+      color: #1a1915;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      line-height: 1.65;
+      min-height: 100dvh;
+    }
+
+    .page {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .back {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: #999;
+      text-decoration: none;
+      margin-bottom: 2.8rem;
+      letter-spacing: 0.01em;
+    }
+    .back:hover { color: #1a1915; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .subhead {
+      font-style: italic;
+      color: #555;
+      font-size: clamp(1.05rem, 2vw, 1.15rem);
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .sample {
+      margin: 2rem 0;
+      padding: 1.2rem 1.4rem;
+      background: #faf8f2;
+      border: 1px solid #e6e2d8;
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .sample .label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.6rem;
+    }
+    .sample p { margin: 0.3rem 0; }
+    .sample p + p { margin-top: 0.5rem; }
+
+    form {
+      margin-top: 2.2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.6rem;
+    }
+
+    input[type="tel"] {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      border: 1px solid #d4cfc2;
+      background: #fff;
+      color: #1a1915;
+      margin-bottom: 1rem;
+    }
+    input[type="tel"]:focus {
+      outline: none;
+      border-color: #1a1915;
+    }
+
+    .consent {
+      font-size: 0.82rem;
+      color: #666;
+      line-height: 1.5;
+      margin: 1rem 0 1.3rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+    .consent input[type="checkbox"] {
+      margin-top: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      background: #1a1915;
+      color: #fff;
+      border: none;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    button:hover { background: #000; }
+
+    .fine {
+      font-size: 0.78rem;
+      color: #999;
+      line-height: 1.5;
+      margin-top: 1.2rem;
+    }
+
+    .cross {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e6e2d8;
+      font-size: 0.92rem;
+      color: #888;
+      font-style: italic;
+      text-align: center;
+    }
+    .cross a {
+      color: #1a1915;
+      font-style: normal;
+      text-decoration: underline;
+      text-decoration-color: #ccc;
+      text-underline-offset: 3px;
+    }
+    .cross a:hover { text-decoration-color: #1a1915; }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a href="/" class="back">&#8592; Back</a>
+
+    <h1>A text, when I find something worth it.</h1>
+
+    <p class="subhead">No newsletter. No schedule. Every so often, I'll text you one link — an essay I read, one I wrote, or a podcast that moved me. That's it.</p>
+
+    <div class="sample">
+      <span class="label">Sample — what a text looks like</span>
+      <p>henry — found a 1992 essay that explains why creators burn out. [link]</p>
+      <p>henry — new thing I wrote about why Christians make bad art. [link]</p>
+    </div>
+
+    <form id="text-signup" action="[SMS_FORM_ACTION_URL]" method="POST">
+      <label for="phone">Your phone number</label>
+      <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required autocomplete="tel">
+
+      <label class="consent">
+        <input type="checkbox" id="consent" name="consent" required>
+        <span>By entering my number, I consent to receive recurring marketing texts from Henry Pan. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.</span>
+      </label>
+
+      <button type="submit">Text me</button>
+
+      <p class="fine">One-click unsubscribe. I'll never sell your number. You'll get a confirmation text — reply <strong>YES</strong> to confirm.</p>
+    </form>
+
+    <div class="cross">
+      Want the creative director system instead? <a href="/director">See the install offer</a> · or <a href="/community">join the free Bible study</a>
+    </div>
+  </main>
+</body>
+</html>

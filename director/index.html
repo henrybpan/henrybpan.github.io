@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An AI creative director that actually knows your content, your voice, and your audience — installed on your Mac by Henry Pan.">
+  <title>AI Creative Director — Henry Pan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+
+    body {
+      background: #fff;
+      color: #1a1915;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      line-height: 1.65;
+      min-height: 100dvh;
+    }
+
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .back {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: #999;
+      text-decoration: none;
+      margin-bottom: 2.8rem;
+      letter-spacing: 0.01em;
+    }
+    .back:hover { color: #1a1915; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 500;
+      letter-spacing: 0.005em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .subhead {
+      font-style: italic;
+      color: #555;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      margin-bottom: 2.5rem;
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.3rem, 3vw, 1.6rem);
+      font-weight: 500;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.01em;
+    }
+
+    p + p { margin-top: 1.1em; }
+
+    a {
+      color: #1a1915;
+      text-decoration: underline;
+      text-decoration-color: #ccc;
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s ease;
+    }
+    a:hover { text-decoration-color: #1a1915; }
+
+    /* Proof block */
+    .proof {
+      border-left: 2px solid #e6e2d8;
+      padding: 0.25rem 0 0.25rem 1.2rem;
+      margin: 2rem 0;
+      color: #555;
+      font-style: italic;
+    }
+    .proof .attribution {
+      display: block;
+      margin-top: 0.6rem;
+      font-style: normal;
+      font-size: 0.85rem;
+      color: #999;
+      letter-spacing: 0.02em;
+    }
+
+    /* Two-card offer grid */
+    .offers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0 1rem;
+    }
+    @media (max-width: 560px) {
+      .offers { grid-template-columns: 1fr; }
+    }
+
+    .offer-card {
+      border: 1px solid #e6e2d8;
+      background: #fafaf7;
+      padding: 1.8rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .offer-card:hover { border-color: #1a1915; }
+
+    .offer-card.featured {
+      background: #1a1915;
+      color: #ede8de;
+      border-color: #1a1915;
+    }
+    .offer-card.featured .offer-sub,
+    .offer-card.featured li { color: rgba(237, 232, 222, 0.7); }
+    .offer-card.featured .offer-cta {
+      background: #ede8de;
+      color: #1a1915;
+    }
+    .offer-card.featured .offer-cta:hover { background: #fff; }
+
+    .offer-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .offer-price {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .offer-price .pu {
+      font-size: 0.9rem;
+      font-style: italic;
+      font-weight: 400;
+      color: inherit;
+      opacity: 0.55;
+      margin-left: 0.3rem;
+    }
+
+    .offer-sub {
+      font-size: 0.9rem;
+      color: #888;
+      font-style: italic;
+      margin-bottom: 1.2rem;
+      min-height: 2.4em;
+    }
+
+    .offer-card ul {
+      list-style: none;
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 1.5rem;
+      padding: 0;
+    }
+
+    .offer-card li {
+      padding: 0.35rem 0;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .offer-card li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      opacity: 0.5;
+    }
+
+    .offer-cta {
+      display: block;
+      text-align: center;
+      padding: 0.85rem 1rem;
+      background: #1a1915;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: auto;
+      transition: background 0.15s ease;
+    }
+    .offer-cta:hover {
+      background: #000;
+      text-decoration: none;
+    }
+
+    /* Updates ribbon */
+    .updates {
+      margin-top: 2.5rem;
+      padding: 1.3rem 1.5rem;
+      background: #faf8f2;
+      border: 1px solid #e6e2d8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .updates .u-copy {
+      font-size: 0.95rem;
+      color: #444;
+      flex: 1;
+      min-width: 220px;
+    }
+    .updates .u-copy strong { color: #1a1915; font-weight: 500; }
+    .updates a {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.7rem 1.1rem;
+      border: 1px solid #1a1915;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .updates a:hover {
+      background: #1a1915;
+      color: #fff;
+    }
+
+    /* FAQ */
+    .faq details {
+      border-bottom: 1px solid #e6e2d8;
+      padding: 1rem 0;
+    }
+    .faq summary {
+      cursor: pointer;
+      font-weight: 500;
+      list-style: none;
+      position: relative;
+      padding-right: 1.5rem;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1.2rem;
+      color: #999;
+      transition: transform 0.15s ease;
+    }
+    .faq details[open] summary::after { content: '–'; }
+    .faq .answer {
+      margin-top: 0.8rem;
+      color: #555;
+      font-size: 0.98rem;
+    }
+
+    /* Soft cross-link */
+    .cross {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e6e2d8;
+      font-size: 0.92rem;
+      color: #888;
+      font-style: italic;
+      text-align: center;
+    }
+    .cross a { font-style: normal; }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a href="/" class="back">&#8592; Back</a>
+
+    <h1>An AI creative director that actually knows you.</h1>
+
+    <p class="subhead">I'll install it on your Mac. It reads every reel you've ever posted, learns your voice, and gives you ideas grounded in what already worked.</p>
+
+    <div class="proof">
+      “[MINO QUOTE PLACEHOLDER — replace with his strongest on-camera line from 2026-04-14 install footage. Ideal: something about seeing his own voice reflected back for the first time.]”
+      <span class="attribution">— Mino Lee, first install (2026-04-14)</span>
+    </div>
+
+    <h2>Pick your path</h2>
+
+    <div class="offers">
+      <div class="offer-card">
+        <div class="offer-name">Prompts</div>
+        <div class="offer-price">$750</div>
+        <div class="offer-sub">Self-install. One payment.</div>
+        <ul>
+          <li>Full prompt pack + wiki template</li>
+          <li>Loom walkthrough of the install</li>
+          <li>Claude handles questions while you set up</li>
+          <li>Yours forever. No subscription.</li>
+        </ul>
+        <a href="[GUMROAD_PROMPTS_URL]" class="offer-cta">Get the pack</a>
+      </div>
+
+      <div class="offer-card featured">
+        <div class="offer-name">Two-Call</div>
+        <div class="offer-price">$2,000</div>
+        <div class="offer-sub">I install it with you. Two calls.</div>
+        <ul>
+          <li>Everything in Prompts</li>
+          <li>Call 1: install + ingest your last 30 reels live</li>
+          <li>Call 2: I teach you how to drive the system</li>
+          <li>~2 hours of your time, total</li>
+        </ul>
+        <a href="[CALENDLY_TWO_CALL_URL]" class="offer-cta">Book the install</a>
+      </div>
+    </div>
+
+    <div class="updates">
+      <div class="u-copy">
+        <strong>Want every new update?</strong> Every prompt, skill, and template I ship — pushed to you as I release it.
+      </div>
+      <a href="[GUMROAD_UPDATES_URL]">$100/mo →</a>
+    </div>
+
+    <h2>What you're actually getting</h2>
+
+    <p>A folder that lives inside Obsidian on your machine. Claude Code reads and writes it. Inside: a page for every reel you've posted, transcribed locally, tagged by hook type, performance, topic. Brand docs Claude writes by reading your actual content — not what you <em>say</em> your voice is, what it <em>actually</em> is.</p>
+
+    <p>When you ask for ideas, it doesn't make them up. It reads your top performers, cross-references your competitors, and tells you the specific reel it's pattern-matching from. It compounds. Every piece of content you feed it makes the next answer sharper.</p>
+
+    <p>No subscription to me. No SaaS. Nothing leaves your machine. You own the whole system after I'm done.</p>
+
+    <h2>Questions</h2>
+
+    <section class="faq">
+      <details>
+        <summary>Do I need to know how to code?</summary>
+        <p class="answer">No. The <strong>Two-Call</strong> tier exists specifically because you don't. I run the install while you watch. The <strong>Prompts</strong> tier assumes you're willing to follow a Loom video and paste commands into a terminal — no actual coding.</p>
+      </details>
+      <details>
+        <summary>What if something breaks after you leave?</summary>
+        <p class="answer">Claude Code is your support. The whole system is built so you talk to Claude like you'd talk to me. I also cover common failure modes on the Part 2 call.</p>
+      </details>
+      <details>
+        <summary>Does this work on Windows?</summary>
+        <p class="answer">Not yet. Mac (Apple Silicon) only. The transcription model runs on your GPU locally — Windows version is on the roadmap but not shipping at this price.</p>
+      </details>
+      <details>
+        <summary>How is this different from ChatGPT or Jasper?</summary>
+        <p class="answer">ChatGPT forgets you between sessions. Jasper knows templates, not your content. This reads every reel you've made, holds that memory forever, and writes back in your voice. It's yours. Nothing leaves your machine.</p>
+      </details>
+      <details>
+        <summary>What about my Instagram data — is it safe?</summary>
+        <p class="answer">Yes. The whole system runs on your computer. Your Instagram token, your transcripts, your brand docs — none of it touches a server you don't own. I see it once during the install call and never again.</p>
+      </details>
+      <details>
+        <summary>Do I need an ongoing subscription to Claude?</summary>
+        <p class="answer">You need a paid Claude plan to run Claude Code — that's Anthropic's, not mine. Starts at $20/mo. The <strong>$100/mo Updates</strong> tier is optional and separate — it's how you get every new template and skill I ship.</p>
+      </details>
+      <details>
+        <summary>Can I see it working before I pay?</summary>
+        <p class="answer">Watch the YouTube breakdown — link on my <a href="/">homepage</a>. You'll see the full install on camera, the live ingest, and three things the system found in my own content that I didn't see.</p>
+      </details>
+    </section>
+
+    <div class="cross">
+      Not ready yet? <a href="/text">Get a text when I publish something worth reading</a> · <a href="/community">Join the free Bible study community</a>
+    </div>
+  </main>
+</body>
+</html>
