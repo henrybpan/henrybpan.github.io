@@ -48,90 +48,90 @@ html, body {
 }
 
 /* ============================================================
-   SITEWIDE TOP NAV  (chester.how-inspired, persistent)
-   Left: Henry (home). Center-left: section links. Right: theme toggle.
+   SITEWIDE TOP NAV  (chester.how-inspired floating pill capsule)
+   Centered floating pill at top. Theme toggle floats separately
+   on the right edge at the same vertical position.
 ============================================================ */
 .site-nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: saturate(140%) blur(8px);
-  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  pointer-events: none;          /* only the pill + toggle capture clicks */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 0.6rem;
+  isolation: isolate;
 }
 
 .site-nav-inner {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0.85rem clamp(1.5rem, 6vw, 2rem);
-  display: flex;
+  pointer-events: auto;
+  display: inline-flex;
   align-items: center;
-  gap: clamp(0.9rem, 3vw, 1.6rem);
+  gap: 0.15rem;
+  padding: 0.3rem;
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm), 0 4px 14px rgba(0,0,0,0.06);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
   font-family: 'EB Garamond', Georgia, serif;
 }
 
-.nav-home {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: var(--fg);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  flex-shrink: 0;
-  transition: opacity 0.15s ease;
+[data-theme="dark"] .site-nav-inner {
+  box-shadow: var(--shadow-sm), 0 4px 16px rgba(0,0,0,0.5);
 }
-.nav-home:hover { opacity: 0.7; }
+
+/* Every nav item (Henry + section links) uses the same pill style */
+.nav-home,
+.nav-links a {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.005em;
+  color: var(--fg-dim);
+  text-decoration: none;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  transition: color 0.18s ease, background-color 0.18s ease;
+  white-space: nowrap;
+}
+
+.nav-home:hover,
+.nav-links a:hover {
+  color: var(--fg);
+}
+
+/* Active item — solid chip */
+.nav-home[aria-current="page"],
+.nav-links a[aria-current="page"] {
+  color: var(--fg);
+  background: var(--border);
+}
 
 .nav-links {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: clamp(0.7rem, 2.5vw, 1.3rem);
-  flex-wrap: wrap;
-  flex: 1;
-  min-width: 0;
+  gap: 0.15rem;
 }
 
-.nav-links a {
-  font-size: 0.92rem;
-  color: var(--fg-mut);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  transition: color 0.15s ease;
-  padding: 0.15rem 0;
-  position: relative;
-}
-.nav-links a:hover { color: var(--fg); }
-
-/* Active page indicator — subtle underline */
-.nav-links a[aria-current="page"] {
-  color: var(--fg);
-}
-.nav-links a[aria-current="page"]::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.15rem;
-  height: 0.5px;
-  background: var(--fg);
-}
-
+/* Theme toggle floats independently on the right edge, same vertical line */
 .nav-right {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-shrink: 0;
-  margin-left: auto;
+  pointer-events: auto;
+  position: absolute;
+  right: clamp(0.75rem, 3vw, 1.25rem);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-/* On narrow screens, hide section links and keep only home + toggle */
 @media (max-width: 540px) {
-  .nav-links a { font-size: 0.85rem; }
-  .site-nav-inner { gap: 0.6rem; }
+  .nav-home,
+  .nav-links a { font-size: 0.82rem; padding: 0.3rem 0.5rem; }
+  .site-nav-inner { gap: 0.1rem; padding: 0.25rem; }
+  .nav-right { right: 0.6rem; }
 }
 
 /* ============================================================
