@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Welcome in. Next step: drop your GitHub username so I can invite you to the director repo.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Welcome — Henry Pan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: #fff;
+      color: #1a1915;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      line-height: 1.65;
+      min-height: 100dvh;
+    }
+
+    .page {
+      max-width: 580px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 5.5vw, 2.6rem);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .lede {
+      font-style: italic;
+      color: #555;
+      font-size: clamp(1.05rem, 2vw, 1.18rem);
+      margin-bottom: 2.6rem;
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
+      font-weight: 500;
+      margin: 2.6rem 0 1rem;
+      line-height: 1.2;
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .steps {
+      list-style: none;
+      margin: 1.4rem 0 2rem;
+      padding: 0;
+      counter-reset: step;
+    }
+    .steps li {
+      padding: 0.9rem 0 0.9rem 2.4rem;
+      border-top: 1px solid #e6e2d8;
+      position: relative;
+      counter-increment: step;
+    }
+    .steps li:last-child { border-bottom: 1px solid #e6e2d8; }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0.95rem;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      color: #999;
+      width: 1.6rem;
+      text-align: center;
+    }
+    .steps .step-title {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .steps .step-body {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.55;
+    }
+
+    form {
+      margin-top: 1rem;
+      padding: 1.6rem 1.4rem;
+      background: #faf8f2;
+      border: 1px solid #e6e2d8;
+    }
+
+    label {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.55rem;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      border: 1px solid #d4cfc2;
+      background: #fff;
+      color: #1a1915;
+      margin-bottom: 1rem;
+    }
+    input:focus {
+      outline: none;
+      border-color: #1a1915;
+    }
+
+    .hint {
+      font-size: 0.82rem;
+      color: #888;
+      margin: -0.6rem 0 1rem;
+      font-style: italic;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      background: #1a1915;
+      color: #fff;
+      border: none;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    button:hover { background: #000; }
+
+    .fine {
+      font-size: 0.82rem;
+      color: #777;
+      line-height: 1.55;
+      margin-top: 1.2rem;
+    }
+
+    .signoff {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e6e2d8;
+      font-style: italic;
+      color: #555;
+    }
+    .signoff .name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: normal;
+      color: #1a1915;
+      margin-top: 0.6rem;
+      display: block;
+    }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <span class="eyebrow">Payment received</span>
+
+    <h1>You're in.</h1>
+
+    <p class="lede">One more thing before I can hand over the repo — I need your GitHub username so I can add you as a collaborator. Drop it below and I'll have you inside within 24 hours.</p>
+
+    <form action="[FORMSPREE_WELCOME_URL]" method="POST">
+      <label for="github">Your GitHub username</label>
+      <input type="text" id="github" name="github" placeholder="e.g. henrybpan" required autocomplete="username">
+      <p class="hint">The username on your GitHub profile URL — github.com/<em>your-username</em>.</p>
+
+      <label for="email">The email you paid with</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+
+      <button type="submit">Send it to Henry</button>
+
+      <p class="fine">Don't have a GitHub account? <a href="https://github.com/signup" target="_blank" rel="noopener noreferrer">Sign up here</a> — free, takes 60 seconds. Then come back and submit.</p>
+    </form>
+
+    <h2>What happens next</h2>
+
+    <ol class="steps">
+      <li>
+        <span class="step-title">You get a GitHub invite email</span>
+        <span class="step-body">I manually add you as a collaborator to the private director repo. Check your GitHub notifications or the email you use for GitHub.</span>
+      </li>
+      <li>
+        <span class="step-title">You get a Loom from me</span>
+        <span class="step-body">15–20 min walkthrough — how to clone the repo, set up Claude Code, run your first skill. No prior dev experience required.</span>
+      </li>
+      <li>
+        <span class="step-title">You run it on your own content</span>
+        <span class="step-body">Point it at your Instagram, let it read the last year of your posts, and watch it write your brand back to you.</span>
+      </li>
+    </ol>
+
+    <p>If anything breaks or you're stuck on setup, text me or DM <a href="https://instagram.com/henrybpan" target="_blank" rel="noopener noreferrer">@henrybpan</a> — I'd rather you interrupt me than quietly give up.</p>
+
+    <div class="signoff">
+      Glad you're here.
+      <span class="name">— Henry</span>
+    </div>
+
+  </main>
+</body>
+</html>

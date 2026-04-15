@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!-- DRAFT — REVIEW BEFORE SHIPPING.
+     Pricing locked: DFY $1,500 / DWY $750.
+     Retainers ($50 tech / $100 updates) live only as a quiet line — pitched on call 2.
+     Placeholders still to fill: [STRIPE_DFY_URL], [STRIPE_DWY_URL], [MINO_QUOTE], 3 testimonial blocks. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -23,7 +27,7 @@
     }
 
     .page {
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto;
       padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 6vw, 2rem);
     }
@@ -40,10 +44,10 @@
 
     h1 {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-size: clamp(1.9rem, 5.4vw, 2.8rem);
       font-weight: 500;
       letter-spacing: 0.005em;
-      line-height: 1.15;
+      line-height: 1.12;
       margin-bottom: 1rem;
     }
 
@@ -57,11 +61,12 @@
 
     h2 {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(1.3rem, 3vw, 1.6rem);
+      font-size: clamp(1.4rem, 3.2vw, 1.75rem);
       font-weight: 500;
-      margin-top: 3rem;
-      margin-bottom: 1rem;
-      letter-spacing: 0.01em;
+      margin-top: 3.5rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.005em;
+      line-height: 1.2;
     }
 
     p + p { margin-top: 1.1em; }
@@ -75,7 +80,7 @@
     }
     a:hover { text-decoration-color: #1a1915; }
 
-    /* Proof block */
+    /* Hero Mino quote */
     .proof {
       border-left: 2px solid #e6e2d8;
       padding: 0.25rem 0 0.25rem 1.2rem;
@@ -92,12 +97,50 @@
       letter-spacing: 0.02em;
     }
 
+    /* "Here's the problem" section */
+    .problem p {
+      color: #333;
+    }
+    .problem .landing-line {
+      color: #1a1915;
+      font-weight: 500;
+      font-style: italic;
+      margin-top: 1.3em;
+    }
+
+    /* Capability blocks */
+    .caps {
+      margin-top: 1rem;
+    }
+    .cap {
+      padding: 1.3rem 0;
+      border-bottom: 1px solid #f0ece3;
+    }
+    .cap:last-child { border-bottom: none; }
+
+    .cap-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.01em;
+    }
+    .cap-title::before {
+      content: '—';
+      color: #999;
+      margin-right: 0.6rem;
+    }
+    .cap-body {
+      color: #555;
+      font-size: 0.98rem;
+    }
+
     /* Two-card offer grid */
     .offers {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
-      margin: 2rem 0 1rem;
+      margin: 1.5rem 0 1rem;
     }
     @media (max-width: 560px) {
       .offers { grid-template-columns: 1fr; }
@@ -119,7 +162,7 @@
       border-color: #1a1915;
     }
     .offer-card.featured .offer-sub,
-    .offer-card.featured li { color: rgba(237, 232, 222, 0.7); }
+    .offer-card.featured li { color: rgba(237, 232, 222, 0.72); }
     .offer-card.featured .offer-cta {
       background: #ede8de;
       color: #1a1915;
@@ -198,39 +241,98 @@
       text-decoration: none;
     }
 
-    /* Updates ribbon */
-    .updates {
-      margin-top: 2.5rem;
-      padding: 1.3rem 1.5rem;
-      background: #faf8f2;
-      border: 1px solid #e6e2d8;
+    /* Retainer line — quiet, informational, no CTA */
+    .retainer-note {
+      margin-top: 1.3rem;
+      font-size: 0.92rem;
+      color: #888;
+      font-style: italic;
+      line-height: 1.6;
+      padding: 0 0.2rem;
+    }
+    .retainer-note strong { color: #555; font-weight: 500; font-style: normal; }
+
+    /* Testimonials grid */
+    .t-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 560px) {
+      .t-grid { grid-template-columns: 1fr; }
+    }
+
+    .t-card {
+      background: #fafafa;
+      border: 1px solid #e8e8e8;
+      padding: 1.4rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .t-card.pending {
+      background: #fff;
+      border-style: dashed;
+      border-color: #e0e0e0;
+      color: #bbb;
+    }
+
+    .t-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
+      gap: 0.7rem;
     }
-    .updates .u-copy {
+
+    .t-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .t-avatar-placeholder {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #f0ece3;
+      flex-shrink: 0;
+    }
+    .pending .t-avatar-placeholder { background: #f6f6f6; }
+
+    .t-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      min-width: 0;
+    }
+
+    .t-handle {
+      font-size: 0.95rem;
+      color: #1a1915;
+      text-decoration: none;
+    }
+    .t-handle:hover { color: #555; }
+    .pending .t-handle { color: #bbb; }
+
+    .t-stat {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      color: #888;
+      letter-spacing: 0.04em;
+    }
+    .t-stat svg { width: 11px; height: 11px; }
+
+    .t-quote {
       font-size: 0.95rem;
       color: #444;
-      flex: 1;
-      min-width: 220px;
+      font-style: italic;
+      line-height: 1.55;
     }
-    .updates .u-copy strong { color: #1a1915; font-weight: 500; }
-    .updates a {
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.7rem 1.1rem;
-      border: 1px solid #1a1915;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: background 0.15s ease, color 0.15s ease;
-    }
-    .updates a:hover {
-      background: #1a1915;
-      color: #fff;
-    }
+    .pending .t-quote { color: #ccc; font-style: normal; }
 
     /* FAQ */
     .faq details {
@@ -260,10 +362,56 @@
       color: #555;
       font-size: 0.98rem;
     }
+    .faq .answer p + p { margin-top: 0.8em; }
 
-    /* Soft cross-link */
-    .cross {
+    /* Final CTA block */
+    .final {
       margin-top: 4rem;
+      padding: 2.5rem 2rem;
+      background: #1a1915;
+      color: #ede8de;
+      text-align: center;
+    }
+    .final h2 {
+      color: #ede8de;
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+    }
+    .final p {
+      color: rgba(237, 232, 222, 0.7);
+      margin-bottom: 1.8rem;
+      font-size: 1rem;
+    }
+    .final-ctas {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .final-ctas a {
+      display: inline-block;
+      padding: 0.85rem 1.6rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .final-ctas .primary {
+      background: #ede8de;
+      color: #1a1915;
+    }
+    .final-ctas .primary:hover { background: #fff; }
+    .final-ctas .secondary {
+      background: transparent;
+      color: #ede8de;
+      border: 1px solid rgba(237, 232, 222, 0.4);
+    }
+    .final-ctas .secondary:hover { border-color: #ede8de; }
+
+    /* Cross-link */
+    .cross {
+      margin-top: 3rem;
       padding-top: 2rem;
       border-top: 1px solid #e6e2d8;
       font-size: 0.92rem;
@@ -280,91 +428,188 @@
   <main class="page">
     <a href="/" class="back">&#8592; Back</a>
 
-    <h1>Creative director that actually knows you.</h1>
-
-    <p class="subhead">I'll install it on your Mac. It reads every reel you've ever posted, figures out your voice, hands you ideas grounded in what already worked. No guessing.</p>
+    <!-- ========== HERO ========== -->
+    <h1>A creative director that actually knows you.</h1>
+    <p class="subhead">I install it on your Mac. It reads every reel you've posted, learns your voice from the data, and hands you ideas grounded in what already worked. No templates. No guessing.</p>
 
     <div class="proof">
-      “[MINO QUOTE PLACEHOLDER — replace with his strongest on-camera line from 2026-04-14 install footage. Ideal: something about seeing his own voice reflected back for the first time.]”
+      “[MINO_QUOTE — replace with his strongest line from the 2026-04-14 install footage. Ideal: something about seeing his own voice reflected back for the first time.]”
       <span class="attribution">— Mino Lee, first install (2026-04-14)</span>
     </div>
 
+    <!-- ========== THE PROBLEM ========== -->
+    <h2>Every AI tool you've tried has amnesia.</h2>
+    <div class="problem">
+      <p>You re-explain your niche every session. You forget why the post that went off last month went off. Your voice drifts because you're watching twelve creators at once, and none of them are you.</p>
+      <p>No amount of prompt engineering fixes the fact that the tool doesn't know you.</p>
+      <p class="landing-line">This one does.</p>
+    </div>
+
+    <!-- ========== WHAT IT ACTUALLY DOES ========== -->
+    <h2>What it actually does</h2>
+    <div class="caps">
+      <div class="cap">
+        <div class="cap-title">Reads every reel you've made.</div>
+        <div class="cap-body">Downloads each one, transcribes it locally on your GPU, tags the hook, the topic, the performance. Free forever. Nothing leaves your machine.</div>
+      </div>
+      <div class="cap">
+        <div class="cap-title">Writes your brand from the data.</div>
+        <div class="cap-body">Voice, audience, positioning — not what you say you sound like. What you actually sound like. Claude writes those files by reading your last three hundred posts, not by guessing.</div>
+      </div>
+      <div class="cap">
+        <div class="cap-title">Gives you ideas grounded in posts that worked.</div>
+        <div class="cap-body">You ask for an idea. It doesn't make one up. It tells you the specific reel of yours it's pattern-matching from. Every time.</div>
+      </div>
+    </div>
+
+    <!-- ========== PICK YOUR PATH ========== -->
     <h2>Pick your path</h2>
 
     <div class="offers">
       <div class="offer-card">
-        <div class="offer-name">Prompts</div>
+        <div class="offer-name">DWY</div>
         <div class="offer-price">$750</div>
         <div class="offer-sub">Self-install. One payment.</div>
         <ul>
-          <li>Full prompt pack + wiki template</li>
-          <li>Loom of me doing the install on my own machine</li>
-          <li>Claude answers your questions while you set up</li>
-          <li>Yours forever. No sub. No drip.</li>
+          <li>Private repo access — cloned onto your machine</li>
+          <li>Loom of me running the full install, step by step</li>
+          <li>Claude handles your questions while you set up</li>
+          <li>Yours to keep. Pull new updates any time.</li>
         </ul>
-        <a href="[GUMROAD_PROMPTS_URL]" class="offer-cta">Get the pack</a>
+        <a href="[STRIPE_DWY_URL]" class="offer-cta">Get the pack</a>
       </div>
 
       <div class="offer-card featured">
-        <div class="offer-name">Two-Call</div>
-        <div class="offer-price">$2,000</div>
+        <div class="offer-name">DFY</div>
+        <div class="offer-price">$1,500</div>
         <div class="offer-sub">I install it with you. Two calls.</div>
         <ul>
-          <li>Everything in Prompts</li>
-          <li>Call 1: I install it, we ingest your last 30 reels live</li>
-          <li>Call 2: I teach you how to actually drive it</li>
+          <li>Everything in DWY</li>
+          <li>Call 1: I install it, we ingest your last 30 reels live, build your first voice profile on the call</li>
+          <li>Call 2: I teach you how to actually drive the system</li>
           <li>About 2 hours of your time, total</li>
         </ul>
-        <a href="[CALENDLY_TWO_CALL_URL]" class="offer-cta">Book the install</a>
+        <a href="[STRIPE_DFY_URL]" class="offer-cta">Book the install</a>
       </div>
     </div>
 
-    <div class="updates">
-      <div class="u-copy">
-        <strong>Want every new update?</strong> Every prompt, skill, and template I ship, pushed to you the day it's done.
+    <p class="retainer-note">
+      <strong>After install, two optional add-ons:</strong> tech support when something breaks ($50/mo) and new skills + platform expansions as I ship them ($100/mo). Neither required. If you're doing the install together, I'll walk you through both on call 2.
+    </p>
+
+    <!-- ========== TESTIMONIALS GRID ========== -->
+    <h2>People who've used it</h2>
+    <div class="t-grid">
+
+      <!-- Mino — real (quote placeholder) -->
+      <div class="t-card">
+        <div class="t-header">
+          <div class="t-avatar-placeholder" aria-hidden="true"></div>
+          <!-- When photo exists: <img class="t-avatar" src="/testimonials/photos/minolee_mp4.jpg" alt="@minolee.mp4"> -->
+          <div class="t-identity">
+            <a href="https://www.instagram.com/minolee.mp4/" target="_blank" rel="noopener noreferrer" class="t-handle">@minolee.mp4</a>
+            <span class="t-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+              [IG FOLLOWERS]
+            </span>
+          </div>
+        </div>
+        <div class="t-quote">“[MINO_FULL_TESTIMONIAL — longer than the hero quote. Something about the value of the install, or the specific moment the system surprised him.]”</div>
       </div>
-      <a href="[GUMROAD_UPDATES_URL]">$100/mo →</a>
+
+      <!-- Rajan — pending -->
+      <div class="t-card pending">
+        <div class="t-header">
+          <div class="t-avatar-placeholder" aria-hidden="true"></div>
+          <div class="t-identity">
+            <span class="t-handle">@rajan</span>
+            <span class="t-stat">testimonial coming</span>
+          </div>
+        </div>
+        <div class="t-quote">Quote pending — install scheduled.</div>
+      </div>
+
+      <!-- Justin Ho — pending -->
+      <div class="t-card pending">
+        <div class="t-header">
+          <div class="t-avatar-placeholder" aria-hidden="true"></div>
+          <div class="t-identity">
+            <span class="t-handle">@justinho</span>
+            <span class="t-stat">testimonial coming</span>
+          </div>
+        </div>
+        <div class="t-quote">Quote pending — install scheduled.</div>
+      </div>
+
+      <!-- Jadesprake — pending -->
+      <div class="t-card pending">
+        <div class="t-header">
+          <div class="t-avatar-placeholder" aria-hidden="true"></div>
+          <div class="t-identity">
+            <span class="t-handle">@jadesprake</span>
+            <span class="t-stat">testimonial coming</span>
+          </div>
+        </div>
+        <div class="t-quote">Quote pending — install scheduled.</div>
+      </div>
+
     </div>
 
-    <h2>What you're actually getting</h2>
-
-    <p>A folder that lives inside Obsidian on your machine. Claude Code reads it and writes to it. Inside: a page for every reel you've posted, transcribed locally, tagged by hook type, performance, topic. Brand docs Claude writes by reading your actual content — not what you <em>say</em> your voice is, what it <em>actually</em> is.</p>
-
-    <p>When you ask for ideas, it doesn't make them up. It reads your top performers, cross-references the creators you track, and tells you exactly which of your own reels it's pattern-matching from. Every piece of content you feed it makes the next answer sharper. That's the whole point.</p>
-
-    <p>No subscription to me. No SaaS. Nothing leaves your machine. Once I'm done, the system is yours.</p>
-
+    <!-- ========== FAQ ========== -->
     <h2>Questions</h2>
-
     <section class="faq">
       <details>
+        <summary>What actually happens after I pay?</summary>
+        <div class="answer">
+          <p><strong>DFY:</strong> you'll land on Calendly, pick a time for call 1, and I'll email you a pre-install checklist. First call runs 60–90 min — we install together, ingest your last 30 reels, build your voice profile live. Call 2 is a few days later for training.</p>
+          <p><strong>DWY:</strong> you'll land on a thank-you page, drop your GitHub username, and within 24 hours I add you to the private repo and email you the Loom walkthrough. From there you run it at your pace — Claude handles the questions.</p>
+        </div>
+      </details>
+      <details>
         <summary>Do I need to know how to code?</summary>
-        <p class="answer">No. The <strong>Two-Call</strong> tier exists because you don't. I run the install while you watch. The <strong>Prompts</strong> tier assumes you can follow a Loom video and paste a few commands into a terminal. Still not coding.</p>
+        <p class="answer">No. DFY exists because you don't — I run the install while you watch. DWY assumes you can follow a Loom and paste a few commands into a terminal. Still not coding.</p>
+      </details>
+      <details>
+        <summary>Do I keep the system if I stop paying the retainers?</summary>
+        <div class="answer">
+          <p>Yes. Whatever you cloned is yours forever. Your current version keeps working on your machine — nothing I ship breaks what you already have.</p>
+          <p>Here's the mechanic: when you cancel the updates retainer, I remove you as a collaborator on the private repo. That means you stop pulling new skills, templates, and platform expansions as I ship them. But your local copy doesn't disappear, phone home, or expire. No DRM, no kill switch. Cancel clean, keep what you built.</p>
+        </div>
       </details>
       <details>
         <summary>What if something breaks after you leave?</summary>
-        <p class="answer">Claude Code is your support. The whole system is built so you talk to Claude like you'd talk to me. I also cover the common failure modes on the second call so you're not stuck.</p>
+        <p class="answer">Claude Code is your support. The whole system is built so you talk to Claude like you'd talk to me. Common failure modes are covered on call 2. For everything else, the tech support retainer ($50/mo) is there if you want a real person.</p>
       </details>
       <details>
         <summary>Does this work on Windows?</summary>
-        <p class="answer">Not yet. Mac (Apple Silicon) only. The transcription model runs on your GPU locally and I'm not shipping a half-working Windows version at this price. On the roadmap, not promised.</p>
+        <p class="answer">Not yet. Mac (Apple Silicon) only. The transcription model runs locally on your GPU, and I'm not shipping a half-working Windows version at this price. Roadmap, not promise.</p>
       </details>
       <details>
         <summary>How is this different from ChatGPT or Jasper?</summary>
-        <p class="answer">ChatGPT forgets you every session. Jasper knows templates, not your content. This thing reads every reel you've made, holds it forever, and writes back in your voice. It's yours. Nothing leaves your machine.</p>
+        <p class="answer">ChatGPT forgets you every session. Jasper knows templates, not your content. This thing reads every reel you've made, holds it forever, and writes back in your voice. Nothing leaves your machine.</p>
       </details>
       <details>
         <summary>Is my Instagram data safe?</summary>
-        <p class="answer">Yes. Whole system runs on your computer. Your token, your transcripts, your brand docs — none of it touches a server you don't own. I see it once during the install and never again.</p>
+        <p class="answer">Yes. The whole system runs on your computer. Your token, your transcripts, your brand docs — none of it touches a server you don't own. I see it once during the install and never again.</p>
       </details>
       <details>
         <summary>Do I need a Claude subscription?</summary>
-        <p class="answer">You need a paid Claude plan to run Claude Code. That's Anthropic's, not mine. Starts at $20/mo. The <strong>$100/mo Updates</strong> tier is optional and separate — that's how you get every new template and skill I ship.</p>
+        <p class="answer">You need a paid Claude plan to run Claude Code. That's Anthropic's, not mine. Starts at $20/mo.</p>
       </details>
       <details>
         <summary>Can I see it working before I pay?</summary>
         <p class="answer">Watch the YouTube breakdown — link on my <a href="/">homepage</a>. Full install on camera, live ingest, and three things the system found in my own content that I'd missed for a year.</p>
       </details>
+    </section>
+
+    <!-- ========== FINAL CTA ========== -->
+    <section class="final">
+      <h2>Ready?</h2>
+      <p>Pick your path. I'll take it from there.</p>
+      <div class="final-ctas">
+        <a href="[STRIPE_DFY_URL]" class="primary">Book the install · $1,500</a>
+        <a href="[STRIPE_DWY_URL]" class="secondary">Get the pack · $750</a>
+      </div>
     </section>
 
     <div class="cross">
