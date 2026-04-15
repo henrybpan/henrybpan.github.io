@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Henry Pan — the cinematic card. An easter egg; the real homepage is at henrybpan.com.">
+  <meta name="robots" content="noindex">
+  <title>Henry Pan — card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ============================================================
+       BASE
+    ============================================================ */
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: #1C0A06;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Cinematic vignette — draws focus to the card */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(
+        ellipse 75% 75% at 50% 50%,
+        transparent 30%,
+        rgba(0, 0, 0, 0.5) 100%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ============================================================
+       HOME LINK  (tiny muted escape hatch — not a dead end)
+    ============================================================ */
+    .home-link {
+      position: fixed;
+      top: clamp(0.8rem, 2vw, 1.25rem);
+      left: clamp(0.8rem, 2vw, 1.25rem);
+      z-index: 2;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(11px, 1.6vw, 13px);
+      letter-spacing: 0.04em;
+      color: rgba(237, 232, 222, 0.28);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .home-link:hover { color: rgba(237, 232, 222, 0.7); }
+
+    /* ============================================================
+       SCENE
+    ============================================================ */
+    .scene {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      animation: sceneEntry 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes sceneEntry {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    /* ============================================================
+       CARD SCENE  (perspective wrapper + tap target)
+    ============================================================ */
+    .card-scene {
+      width: min(560px, 90vw);
+      aspect-ratio: 1.75;
+      perspective: 1400px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+
+    .card-scene:focus-visible {
+      outline: 1.5px solid rgba(237, 232, 222, 0.22);
+      outline-offset: 10px;
+      border-radius: 3px;
+    }
+
+    /* ============================================================
+       CARD TILT  (cursor-following 3D hover layer)
+    ============================================================ */
+    .card-tilt {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    /* ============================================================
+       CARD INNER  (3D flip container)
+    ============================================================ */
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1.01s cubic-bezier(0.45, 0.05, 0.15, 0.95);
+      will-change: transform;
+    }
+
+    /* Click / keyboard toggle */
+    .card-scene.is-flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* ============================================================
+       CARD FACES
+    ============================================================ */
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+
+      background-color: #EDE8DE;
+      border-radius: 2px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      /* Percentage padding scales naturally with card width */
+      padding: 5.6% 6.8% 5.0% 6.8%;
+
+      box-shadow:
+        0 1px 2px  rgba(0, 0, 0, 0.55),
+        0 4px 12px rgba(0, 0, 0, 0.48),
+        0 14px 32px rgba(0, 0, 0, 0.40),
+        0 32px 72px rgba(0, 0, 0, 0.30),
+        inset 0 0 0 0.5px rgba(255, 252, 240, 0.18);
+
+      color: #1C1A17;
+
+      /* Base font scales proportionally with card width */
+      font-size: clamp(12px, calc(min(560px, 90vw) / 28), 17px);
+    }
+
+    /* Back face starts pre-rotated */
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* ============================================================
+       FRONT — IDENTITY ZONE (centered, dominant)
+    ============================================================ */
+    .card-identity {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-size: 1.68em;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #1C1A17;
+      line-height: 1;
+    }
+
+    .card-name .surname { font-weight: 600; }
+
+    .card-tagline {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.72em;
+      color: rgba(28, 26, 23, 0.45);
+      margin-top: 0.55em;
+      line-height: 1;
+    }
+
+    /* ============================================================
+       FRONT — CONTACT ZONE (bottom row: icons left, CTA right)
+    ============================================================ */
+    .card-contact {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .card-icons {
+      display: flex;
+      align-items: center;
+      gap: 0.60em;
+    }
+
+    .card-icons a {
+      display: flex;
+      align-items: center;
+      color: rgba(92, 86, 80, 0.45);
+      text-decoration: none;
+      line-height: 0;
+      transition: color 0.2s ease;
+    }
+
+    .card-icons a:hover { color: #1C1A17; }
+
+    .card-icons svg {
+      width: 1.05em;
+      height: 1.05em;
+    }
+
+    /* CTA stack — bottom right */
+    .card-cta-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.32em;
+      align-self: flex-end;
+    }
+
+    .card-cta {
+      display: inline-block;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.65em;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(28, 26, 23, 0.38);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .card-cta:hover { color: #1C1A17; }
+
+    /* ============================================================
+       BACK — LAYOUT (monogram top, nav center, url bottom)
+    ============================================================ */
+    .card-back-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.1em;
+      height: 100%;
+    }
+
+    .card-back-monogram-img {
+      height: 2.2em;
+      width: auto;
+      opacity: 0.12;
+      display: block;
+    }
+
+    .card-back-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.28em;
+      width: 100%;
+    }
+
+    .card-back-nav-link {
+      display: inline-block;
+      text-decoration: none;
+      color: rgba(28, 26, 23, 0.42);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: 0.82em;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .card-back-nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -0.1em;
+      left: 0;
+      width: 0;
+      height: 0.5px;
+      background: rgba(28, 26, 23, 0.5);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-back-nav-link:hover              { color: #1C1A17; }
+    .card-back-nav-link:hover::after       { width: 100%; }
+
+    .card-back-url {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.64em;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(28, 26, 23, 0.28);
+      padding-left: 0.28em;
+      margin-top: auto;
+    }
+
+    /* ============================================================
+       FLIP HINT  (idle CTA — fades in after 5s of no interaction)
+    ============================================================ */
+    .flip-hint {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(11px, 1.8vw, 13px);
+      letter-spacing: 0.12em;
+      color: rgba(237, 232, 222, 0.28);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .flip-hint.is-visible { opacity: 1; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 480px) {
+      body {
+        overflow: auto;
+        align-items: flex-start;
+      }
+
+      .scene {
+        min-height: 100dvh;
+        justify-content: center;
+        padding: 2.5rem 0;
+      }
+    }
+
+    /* ============================================================
+       REDUCED MOTION
+    ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      .card-tilt                   { transition: none; }
+      .card-inner                  { transition: none; }
+      .scene                       { animation: none; }
+      .card-back-nav-link::after   { transition: none; }
+      .flip-hint                   { transition: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <a href="/" class="home-link">&#8592; home</a>
+
+  <main class="scene">
+
+    <div
+      class="card-scene"
+      id="cardScene"
+      role="button"
+      aria-label="Business card. Activate to reveal navigation."
+      tabindex="0"
+    >
+      <div class="card-tilt" id="cardTilt">
+      <div class="card-inner">
+
+        <!-- ===== FRONT ===== -->
+        <article class="card-face card-front">
+
+          <!-- Identity: name + positioning -->
+          <div class="card-identity">
+            <h1 class="card-name">Henry <span class="surname">Pan</span></h1>
+            <p class="card-tagline">Make something worth stealing.</p>
+          </div>
+
+          <!-- Contact: 4 icons left, CTA bottom right -->
+          <div class="card-contact">
+            <div class="card-icons">
+
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4.2"/>
+                  <circle cx="17.5" cy="6.5" r="0.85" fill="currentColor" stroke="none"/>
+                </svg>
+              </a>
+
+              <!-- YouTube -->
+              <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
+                </svg>
+              </a>
+
+              <!-- X -->
+              <a href="https://x.com/henrypanonx" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+
+              <!-- Email -->
+              <a href="mailto:work@henrybpan.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </a>
+
+            </div>
+            <div class="card-cta-stack">
+              <a href="/director" class="card-cta">Director</a>
+              <a href="/text" class="card-cta">Text list</a>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- ===== BACK ===== -->
+        <article class="card-face card-back">
+          <div class="card-back-inner">
+            <img src="/monogram.png" class="card-back-monogram-img" alt="">
+            <nav class="card-back-nav" aria-label="Site navigation">
+              <a href="/about"               class="card-back-nav-link">About</a>
+              <a href="/essays"              class="card-back-nav-link">Essays</a>
+              <a href="/lindy-library"       class="card-back-nav-link">Lindy Library</a>
+              <a href="/director"            class="card-back-nav-link">Director</a>
+              <a href="/testimonies-results" class="card-back-nav-link">Results</a>
+              <a href="/text"                class="card-back-nav-link">Text List</a>
+            </nav>
+            <div class="card-back-url">henrybpan.com</div>
+          </div>
+        </article>
+
+      </div>
+      </div><!-- /.card-tilt -->
+    </div>
+
+    <p class="flip-hint" id="flipHint" aria-hidden="true">flip to explore</p>
+
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var scene         = document.getElementById('cardScene');
+      var cardTilt      = document.getElementById('cardTilt');
+      var flipHint      = document.getElementById('flipHint');
+      var tiltRAF       = null;
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---- Flip hint (idle CTA — shows after 5s of no interaction) ---- */
+      var hintTimer = null;
+      var hintDone  = false;
+
+      function showHint()    { if (!hintDone) flipHint.classList.add('is-visible'); }
+      function hideHint()    { flipHint.classList.remove('is-visible'); }
+      function dismissHint() { if (hintDone) return; hintDone = true; clearTimeout(hintTimer); hideHint(); }
+
+      function resetTimer() {
+        if (hintDone) return;
+        clearTimeout(hintTimer);
+        hideHint();
+        hintTimer = setTimeout(showHint, 5000);
+      }
+
+      /* Passive movement resets the idle clock; deliberate action kills the hint for good */
+      document.addEventListener('mousemove', resetTimer);
+      document.addEventListener('touchmove', resetTimer, { passive: true });
+      ['pointerdown', 'keydown'].forEach(function (evt) {
+        document.addEventListener(evt, dismissHint);
+      });
+
+      resetTimer();
+
+      /* ---- Card flip ---- */
+      scene.addEventListener('click', function (e) {
+        if (e.target.closest('a'))              return; /* icons, cta, back nav links */
+        if (e.target.closest('.card-back-nav')) return; /* nav container gap area */
+        dismissHint();
+        scene.classList.toggle('is-flipped');
+      });
+
+      scene.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dismissHint();
+          scene.classList.toggle('is-flipped');
+        }
+      });
+
+      /* ---- 3D tilt hover (cursor-following perspective) ---- */
+      if (!reducedMotion) {
+        scene.addEventListener('mousemove', function (e) {
+          if (tiltRAF) cancelAnimationFrame(tiltRAF);
+          tiltRAF = requestAnimationFrame(function () {
+            var rect = scene.getBoundingClientRect();
+            var nx   = (e.clientX - rect.left  - rect.width  / 2) / (rect.width  / 2); // -1..1
+            var ny   = (e.clientY - rect.top   - rect.height / 2) / (rect.height / 2); // -1..1
+            cardTilt.style.setProperty('--rx',   (-ny * 7) + 'deg');
+            cardTilt.style.setProperty('--ry',   ( nx * 5) + 'deg');
+            cardTilt.style.setProperty('--lift', '-7px');
+            cardTilt.style.transition = 'transform 0.1s linear';
+          });
+        });
+
+        scene.addEventListener('mouseleave', function () {
+          if (tiltRAF) cancelAnimationFrame(tiltRAF);
+          cardTilt.style.setProperty('--rx',   '0deg');
+          cardTilt.style.setProperty('--ry',   '0deg');
+          cardTilt.style.setProperty('--lift', '0px');
+          cardTilt.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+      }
+
+    }());
+  </script>
+
+</body>
+</html>

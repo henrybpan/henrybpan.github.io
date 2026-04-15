@@ -1,0 +1,118 @@
+/* ============================================================
+   SITEWIDE THEME — light + dark via [data-theme] on <html>
+   Loaded on every page. Anti-flash inline script in <head>
+   sets data-theme BEFORE first paint.
+============================================================ */
+
+:root,
+[data-theme="light"] {
+  --bg:       #ffffff;
+  --bg-alt:   #faf8f2;   /* cream panel bg — cards, callouts */
+  --bg-inv:   #1a1915;   /* inverted bg — for the /director final CTA block */
+  --fg:       #1a1915;
+  --fg-inv:   #ffffff;   /* inverted fg — for text on --bg-inv */
+  --fg-mut:   #555555;
+  --fg-dim:   #888888;
+  --fg-faint: #999999;
+  --border:   #e6e2d8;
+  --border-strong: #d4cfc2;
+  --accent:   #1a1915;
+
+  /* Shadow tokens */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] {
+  --bg:       #14130f;   /* warm near-black */
+  --bg-alt:   #1c1a16;
+  --bg-inv:   #ede8de;   /* inverted = cream in dark mode */
+  --fg:       #ede8de;
+  --fg-inv:   #14130f;
+  --fg-mut:   #a8a399;
+  --fg-dim:   #7a756c;
+  --fg-faint: #5e5a52;
+  --border:   #2b2824;
+  --border-strong: #3a3630;
+  --accent:   #ede8de;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* Body/html get a gentle color transition on toggle */
+html, body {
+  background-color: var(--bg);
+  color: var(--fg);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ============================================================
+   THEME TOGGLE  (floating top-right, every page)
+============================================================ */
+.theme-toggle {
+  position: fixed;
+  top: clamp(0.8rem, 2vw, 1.25rem);
+  right: clamp(0.8rem, 2vw, 1.25rem);
+  z-index: 100;
+
+  width: 40px;
+  height: 40px;
+  padding: 0;
+
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-radius: 50%;
+  color: var(--fg-mut);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  transition: color 0.2s ease, border-color 0.2s ease,
+              background-color 0.25s ease, transform 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--fg);
+  border-color: var(--border-strong);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+.theme-toggle:focus-visible {
+  outline: 1.5px solid var(--fg-mut);
+  outline-offset: 3px;
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* Icon visibility — one shows per theme. Both live in the DOM
+   so we can crossfade instead of swapping markup. */
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  position: absolute;
+  transition: opacity 0.18s ease, transform 0.25s ease;
+}
+
+[data-theme="light"] .theme-toggle .icon-sun  { opacity: 0; transform: rotate(-40deg) scale(0.8); }
+[data-theme="light"] .theme-toggle .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+
+[data-theme="dark"]  .theme-toggle .icon-sun  { opacity: 1; transform: rotate(0) scale(1); }
+[data-theme="dark"]  .theme-toggle .icon-moon { opacity: 0; transform: rotate(40deg) scale(0.8); }
+
+@media (prefers-reduced-motion: reduce) {
+  html, body,
+  .theme-toggle,
+  .theme-toggle .icon-sun,
+  .theme-toggle .icon-moon {
+    transition: none !important;
+  }
+}

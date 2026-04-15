@@ -5,6 +5,7 @@
      Placeholders still to fill: [STRIPE_DFY_URL], [STRIPE_DWY_URL], [MINO_QUOTE], 3 testimonial blocks. -->
 <html lang="en">
 <head>
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}}());</script>
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,13 +14,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/theme.css">
+  <script src="/assets/theme.js" defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
 
     body {
-      background: #fff;
-      color: #1a1915;
+      background: var(--bg);
+      color: var(--fg);
       font-family: 'EB Garamond', Georgia, serif;
       font-size: clamp(1rem, 1.8vw, 1.125rem);
       line-height: 1.65;
@@ -35,12 +38,12 @@
     .back {
       display: inline-block;
       font-size: 0.8rem;
-      color: #999;
+      color: var(--fg-dim);
       text-decoration: none;
       margin-bottom: 2.8rem;
       letter-spacing: 0.01em;
     }
-    .back:hover { color: #1a1915; }
+    .back:hover { color: var(--fg); }
 
     h1 {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -53,7 +56,7 @@
 
     .subhead {
       font-style: italic;
-      color: #555;
+      color: var(--fg-mut);
       font-size: clamp(1.05rem, 2vw, 1.2rem);
       margin-bottom: 2.5rem;
       line-height: 1.5;
@@ -72,20 +75,20 @@
     p + p { margin-top: 1.1em; }
 
     a {
-      color: #1a1915;
+      color: var(--fg);
       text-decoration: underline;
-      text-decoration-color: #ccc;
+      text-decoration-color: var(--border-strong);
       text-underline-offset: 3px;
       transition: text-decoration-color 0.15s ease;
     }
-    a:hover { text-decoration-color: #1a1915; }
+    a:hover { text-decoration-color: var(--fg); }
 
     /* Hero Mino quote */
     .proof {
-      border-left: 2px solid #e6e2d8;
+      border-left: 2px solid var(--border);
       padding: 0.25rem 0 0.25rem 1.2rem;
       margin: 2rem 0;
-      color: #555;
+      color: var(--fg-mut);
       font-style: italic;
     }
     .proof .attribution {
@@ -93,16 +96,16 @@
       margin-top: 0.6rem;
       font-style: normal;
       font-size: 0.85rem;
-      color: #999;
+      color: var(--fg-dim);
       letter-spacing: 0.02em;
     }
 
     /* "Here's the problem" section */
     .problem p {
-      color: #333;
+      color: var(--fg);
     }
     .problem .landing-line {
-      color: #1a1915;
+      color: var(--fg);
       font-weight: 500;
       font-style: italic;
       margin-top: 1.3em;
@@ -114,7 +117,7 @@
     }
     .cap {
       padding: 1.3rem 0;
-      border-bottom: 1px solid #f0ece3;
+      border-bottom: 1px solid var(--border);
     }
     .cap:last-child { border-bottom: none; }
 
@@ -127,11 +130,11 @@
     }
     .cap-title::before {
       content: '—';
-      color: #999;
+      color: var(--fg-dim);
       margin-right: 0.6rem;
     }
     .cap-body {
-      color: #555;
+      color: var(--fg-mut);
       font-size: 0.98rem;
     }
 
@@ -147,27 +150,27 @@
     }
 
     .offer-card {
-      border: 1px solid #e6e2d8;
-      background: #fafaf7;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
       padding: 1.8rem 1.5rem;
       display: flex;
       flex-direction: column;
       transition: border-color 0.15s ease, background 0.15s ease;
     }
-    .offer-card:hover { border-color: #1a1915; }
+    .offer-card:hover { border-color: var(--fg); }
 
     .offer-card.featured {
-      background: #1a1915;
-      color: #ede8de;
-      border-color: #1a1915;
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
     }
     .offer-card.featured .offer-sub,
-    .offer-card.featured li { color: rgba(237, 232, 222, 0.72); }
+    .offer-card.featured li { color: var(--bg); opacity: 0.72; }
     .offer-card.featured .offer-cta {
-      background: #ede8de;
-      color: #1a1915;
+      background: var(--bg);
+      color: var(--fg);
     }
-    .offer-card.featured .offer-cta:hover { background: #fff; }
+    .offer-card.featured .offer-cta:hover { opacity: 0.88; }
 
     .offer-name {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -197,7 +200,7 @@
 
     .offer-sub {
       font-size: 0.9rem;
-      color: #888;
+      color: var(--fg-dim);
       font-style: italic;
       margin-bottom: 1.2rem;
       min-height: 2.4em;
@@ -206,7 +209,7 @@
     .offer-card ul {
       list-style: none;
       font-size: 0.95rem;
-      color: #444;
+      color: var(--fg-mut);
       margin-bottom: 1.5rem;
       padding: 0;
     }
@@ -227,17 +230,17 @@
       display: block;
       text-align: center;
       padding: 0.85rem 1rem;
-      background: #1a1915;
-      color: #fff;
+      background: var(--fg);
+      color: var(--bg);
       text-decoration: none;
       font-size: 0.8rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-top: auto;
-      transition: background 0.15s ease;
+      transition: opacity 0.15s ease;
     }
     .offer-cta:hover {
-      background: #000;
+      opacity: 0.88;
       text-decoration: none;
     }
 
@@ -245,12 +248,12 @@
     .retainer-note {
       margin-top: 1.3rem;
       font-size: 0.92rem;
-      color: #888;
+      color: var(--fg-dim);
       font-style: italic;
       line-height: 1.6;
       padding: 0 0.2rem;
     }
-    .retainer-note strong { color: #555; font-weight: 500; font-style: normal; }
+    .retainer-note strong { color: var(--fg-mut); font-weight: 500; font-style: normal; }
 
     /* Testimonials grid */
     .t-grid {
@@ -264,18 +267,18 @@
     }
 
     .t-card {
-      background: #fafafa;
-      border: 1px solid #e8e8e8;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
       padding: 1.4rem 1.3rem;
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
     }
     .t-card.pending {
-      background: #fff;
+      background: var(--bg);
       border-style: dashed;
-      border-color: #e0e0e0;
-      color: #bbb;
+      border-color: var(--border);
+      color: var(--fg-faint);
     }
 
     .t-header {
@@ -296,10 +299,10 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: #f0ece3;
+      background: var(--border);
       flex-shrink: 0;
     }
-    .pending .t-avatar-placeholder { background: #f6f6f6; }
+    .pending .t-avatar-placeholder { background: var(--bg-alt); }
 
     .t-identity {
       display: flex;
@@ -310,33 +313,33 @@
 
     .t-handle {
       font-size: 0.95rem;
-      color: #1a1915;
+      color: var(--fg);
       text-decoration: none;
     }
-    .t-handle:hover { color: #555; }
-    .pending .t-handle { color: #bbb; }
+    .t-handle:hover { color: var(--fg-mut); }
+    .pending .t-handle { color: var(--fg-faint); }
 
     .t-stat {
       display: flex;
       align-items: center;
       gap: 0.3rem;
       font-size: 0.72rem;
-      color: #888;
+      color: var(--fg-dim);
       letter-spacing: 0.04em;
     }
     .t-stat svg { width: 11px; height: 11px; }
 
     .t-quote {
       font-size: 0.95rem;
-      color: #444;
+      color: var(--fg-mut);
       font-style: italic;
       line-height: 1.55;
     }
-    .pending .t-quote { color: #ccc; font-style: normal; }
+    .pending .t-quote { color: var(--fg-faint); font-style: normal; }
 
     /* FAQ */
     .faq details {
-      border-bottom: 1px solid #e6e2d8;
+      border-bottom: 1px solid var(--border);
       padding: 1rem 0;
     }
     .faq summary {
@@ -353,32 +356,33 @@
       right: 0;
       top: 0;
       font-size: 1.2rem;
-      color: #999;
+      color: var(--fg-dim);
       transition: transform 0.15s ease;
     }
     .faq details[open] summary::after { content: '–'; }
     .faq .answer {
       margin-top: 0.8rem;
-      color: #555;
+      color: var(--fg-mut);
       font-size: 0.98rem;
     }
     .faq .answer p + p { margin-top: 0.8em; }
 
-    /* Final CTA block */
+    /* Final CTA block — inverted from page (dark-on-light in light, light-on-dark in dark) */
     .final {
       margin-top: 4rem;
       padding: 2.5rem 2rem;
-      background: #1a1915;
-      color: #ede8de;
+      background: var(--fg);
+      color: var(--bg);
       text-align: center;
     }
     .final h2 {
-      color: #ede8de;
+      color: inherit;
       margin-top: 0;
       margin-bottom: 0.6rem;
     }
     .final p {
-      color: rgba(237, 232, 222, 0.7);
+      color: inherit;
+      opacity: 0.7;
       margin-bottom: 1.8rem;
       font-size: 1rem;
     }
@@ -395,27 +399,28 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       text-decoration: none;
-      transition: background 0.15s ease, color 0.15s ease;
+      transition: opacity 0.15s ease, border-color 0.15s ease;
     }
     .final-ctas .primary {
-      background: #ede8de;
-      color: #1a1915;
+      background: var(--bg);
+      color: var(--fg);
     }
-    .final-ctas .primary:hover { background: #fff; }
+    .final-ctas .primary:hover { opacity: 0.88; }
     .final-ctas .secondary {
       background: transparent;
-      color: #ede8de;
-      border: 1px solid rgba(237, 232, 222, 0.4);
+      color: var(--bg);
+      border: 1px solid currentColor;
+      opacity: 0.75;
     }
-    .final-ctas .secondary:hover { border-color: #ede8de; }
+    .final-ctas .secondary:hover { opacity: 1; }
 
     /* Cross-link */
     .cross {
       margin-top: 3rem;
       padding-top: 2rem;
-      border-top: 1px solid #e6e2d8;
+      border-top: 1px solid var(--border);
       font-size: 0.92rem;
-      color: #888;
+      color: var(--fg-dim);
       font-style: italic;
       text-align: center;
     }
@@ -425,6 +430,10 @@
   </style>
 </head>
 <body>
+  <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+  </button>
   <main class="page">
     <a href="/" class="back">&#8592; Back</a>
 

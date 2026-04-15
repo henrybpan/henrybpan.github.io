@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}}());</script>
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/theme.css">
+  <script src="/assets/theme.js" defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { -webkit-font-smoothing: antialiased; }
 
     body {
-      background: #fff;
-      color: #1a1915;
+      background: var(--bg);
+      color: var(--fg);
       font-family: 'EB Garamond', Georgia, serif;
       font-size: clamp(1rem, 1.8vw, 1.125rem);
       line-height: 1.65;
@@ -31,12 +34,12 @@
     .back {
       display: inline-block;
       font-size: 0.8rem;
-      color: #999;
+      color: var(--fg-dim);
       text-decoration: none;
       margin-bottom: 2.8rem;
       letter-spacing: 0.01em;
     }
-    .back:hover { color: #1a1915; }
+    .back:hover { color: var(--fg); }
 
     h1 {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -48,7 +51,7 @@
 
     .subhead {
       font-style: italic;
-      color: #555;
+      color: var(--fg-mut);
       font-size: clamp(1.05rem, 2vw, 1.15rem);
       margin-bottom: 2rem;
       line-height: 1.5;
@@ -57,17 +60,17 @@
     .sample {
       margin: 2rem 0;
       padding: 1.2rem 1.4rem;
-      background: #faf8f2;
-      border: 1px solid #e6e2d8;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
       font-size: 0.95rem;
-      color: #444;
+      color: var(--fg-mut);
     }
     .sample .label {
       display: block;
       font-size: 0.72rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #999;
+      color: var(--fg-dim);
       margin-bottom: 0.6rem;
     }
     .sample p { margin: 0.3rem 0; }
@@ -82,7 +85,7 @@
       font-size: 0.8rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #888;
+      color: var(--fg-dim);
       margin-bottom: 0.6rem;
     }
 
@@ -91,19 +94,19 @@
       padding: 0.9rem 1rem;
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 1.05rem;
-      border: 1px solid #d4cfc2;
-      background: #fff;
-      color: #1a1915;
+      border: 1px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--fg);
       margin-bottom: 1rem;
     }
     input[type="tel"]:focus {
       outline: none;
-      border-color: #1a1915;
+      border-color: var(--fg);
     }
 
     .consent {
       font-size: 0.82rem;
-      color: #666;
+      color: var(--fg-mut);
       line-height: 1.5;
       margin: 1rem 0 1.3rem;
       display: flex;
@@ -118,8 +121,8 @@
     button {
       width: 100%;
       padding: 0.95rem 1rem;
-      background: #1a1915;
-      color: #fff;
+      background: var(--fg);
+      color: var(--bg);
       border: none;
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 0.85rem;
@@ -128,11 +131,11 @@
       cursor: pointer;
       transition: background 0.15s ease;
     }
-    button:hover { background: #000; }
+    button:hover { opacity: 0.88; }
 
     .fine {
       font-size: 0.78rem;
-      color: #999;
+      color: var(--fg-dim);
       line-height: 1.5;
       margin-top: 1.2rem;
     }
@@ -140,25 +143,29 @@
     .cross {
       margin-top: 3.5rem;
       padding-top: 2rem;
-      border-top: 1px solid #e6e2d8;
+      border-top: 1px solid var(--border);
       font-size: 0.92rem;
-      color: #888;
+      color: var(--fg-dim);
       font-style: italic;
       text-align: center;
     }
     .cross a {
-      color: #1a1915;
+      color: var(--fg);
       font-style: normal;
       text-decoration: underline;
-      text-decoration-color: #ccc;
+      text-decoration-color: var(--border-strong);
       text-underline-offset: 3px;
     }
-    .cross a:hover { text-decoration-color: #1a1915; }
+    .cross a:hover { text-decoration-color: var(--fg); }
 
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
 </head>
 <body>
+  <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+  </button>
   <main class="page">
     <a href="/" class="back">&#8592; Back</a>
 

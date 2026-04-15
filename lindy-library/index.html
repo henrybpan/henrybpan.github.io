@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}}());</script>
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/theme.css">
+  <script src="/assets/theme.js" defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { -webkit-font-smoothing: antialiased; }
 
     body {
-      background: #fff;
-      color: #1a1915;
+      background: var(--bg);
+      color: var(--fg);
       font-family: 'EB Garamond', Georgia, serif;
       font-size: clamp(1rem, 1.8vw, 1.125rem);
       line-height: 1.7;
@@ -30,13 +33,13 @@
     .back {
       display: inline-block;
       font-size: 0.8rem;
-      color: #999;
+      color: var(--fg-dim);
       text-decoration: none;
       margin-bottom: 2.8rem;
       letter-spacing: 0.01em;
     }
 
-    .back:hover { color: #1a1915; }
+    .back:hover { color: var(--fg); }
 
     h1 {
       font-size: clamp(1.5rem, 4vw, 2rem);
@@ -48,12 +51,12 @@
 
     .subtitle {
       font-style: italic;
-      color: #888;
+      color: var(--fg-dim);
       margin-bottom: 2rem;
     }
 
     .wip {
-      color: #aaa;
+      color: var(--fg-faint);
       font-style: italic;
       font-size: 0.95rem;
     }
@@ -62,26 +65,30 @@
     .email-cta {
       margin-top: 3.5rem;
       padding-top: 2.5rem;
-      border-top: 1px solid #e8e8e8;
+      border-top: 1px solid var(--border);
     }
 
     .email-cta p {
-      color: #666;
+      color: var(--fg-mut);
       margin-bottom: 0.5rem;
     }
 
     .email-cta a {
-      color: #1a1915;
+      color: var(--fg);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
-    .email-cta a:hover { color: #555; }
+    .email-cta a:hover { color: var(--fg-mut); }
 
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
 </head>
 <body>
+  <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+  </button>
   <main class="page">
     <a href="/" class="back">&#8592; Back</a>
     <h1>Lindy Library</h1>

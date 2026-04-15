@@ -12,47 +12,86 @@ Push to `main` → GitHub Pages auto-deploys. The custom domain `henrybpan.com` 
 
 ## Architecture
 
-The site is a collection of standalone HTML files. Each page is self-contained with all CSS inlined in `<style>` tags and JS inlined in `<script>` tags — there are no external stylesheets or JS modules.
+The site is a collection of standalone HTML files. Each page is self-contained with all *page-specific* CSS inlined in `<style>` tags and JS inlined in `<script>` tags. The **one exception** is the sitewide theme system, which is shared via `/assets/theme.css` + `/assets/theme.js` — see "Theming" below.
 
 **Page structure:**
-- `index.html` — Landing page (the interactive business card)
-- `about/index.html`, `essays/index.html`, `recommendations/index.html`, `work-with-me/index.html`, `testimonies-results/index.html` — Sub-pages (also served at `/about`, `/essays`, etc. without the trailing `/index.html`)
-- Legacy redirects: `essays.html`, `recommendations.html`, `work-with-me.html` may exist alongside the directory versions
+- `index.html` — Landing page (chester.how-style single-column scroll; hero + labeled section blocks routing to Director / Writing / Reading / Results / Text / About)
+- `card/index.html` — The old flip business card, preserved as an easter egg. `noindex`. Linked from the homepage footer ("see the old card →"). Keeps its own cinematic dark aesthetic — does NOT participate in the sitewide light/dark theme.
+- `director/index.html` — Paid offer page (DWY $750 / DFY $1,500). Has FAQ, testimonials grid, inverted final CTA block.
+- `director/welcome/index.html` — Post-payment welcome page (GitHub username capture form). `noindex`.
+- `text/index.html` — SMS list signup page.
+- `community/index.html` — Two rooms (free Bible study + paid content review). `noindex` — hidden until deliverable is defined.
+- `about/index.html`, `essays/index.html`, `lindy-library/index.html`, `testimonies-results/index.html` — Simple sub-pages.
+- `work-with-me/index.html` — Instant redirect to `/director` (`<meta http-equiv="refresh">` + JS `location.replace`). Not themed because it never renders for long.
+- Legacy redirects: `essays.html`, `recommendations.html`, `work-with-me.html` may exist alongside the directory versions.
 
-**Design system (consistent across all pages):**
-- Dark background: `#0F0E0C`
-- Card/surface color: `#EDE8DE` (warm cream)
-- Primary text on dark: `rgba(237, 232, 222, 0.28)` or similar opacity variants
-- Fonts: Cormorant Garamond (display/headings) + EB Garamond (body/UI) — loaded from Google Fonts
-- Cinematic aesthetic inspired by Patrick Bateman business card scene
+**Design system:**
+- Typography: Cormorant Garamond (display/headings) + EB Garamond (body/UI) — loaded from Google Fonts. Consistent across every page.
+- Palette driven by CSS custom properties in `/assets/theme.css`. See "Theming" below.
+- Visual direction on post-redesign pages (everything except `/card`): generous whitespace, serif-only, em-dash-prefix section links, tracked-caps labels.
+- The `/card` page keeps the original Bateman-inspired cinematic aesthetic — warm near-black `#1C0A06` bg with cream surface — that's intentional and must stay.
 
-**Home page UX pattern:**
-1. Business card renders centered with a cinematic vignette (`body::after`)
-2. Click/Space/Enter flips the card (CSS 3D transform via `.is-flipped` class on `.card-scene`)
-3. "See more" button on the back opens a popup overlay with 5 scattered mini-card navigation links
-4. Popup closes on backdrop click or Escape key
+**Home page (`index.html`) — new layout:**
+1. Anti-flash inline `<script>` at very top of `<head>` sets `data-theme` before first paint.
+2. Floating `.theme-toggle` button (top-right, fixed position).
+3. Hero: monogram watermark (absolute-positioned, low opacity, `filter: invert(1)` in dark mode), `h1.name`, italic tagline, 3-paragraph intro, two CTA buttons (`.btn-primary` "Install your AI creative director" → `/director`, `.btn-secondary` "Join my newsletter" → `/text`).
+4. 6 `.section` blocks, each with `.section-label` (tracked caps), `.section-link` (em-dash ::before pseudo-element), `.section-title`, `.section-blurb`.
+5. Footer: social SVGs (IG/YT/X/email), copyright, "see the old card →" link to `/card`.
 
-**Card back design:**
-- Layout: `.card-back-inner` is a column flex with `justify-content: space-between` — three zones
-- Top: `.card-back-monogram` — "H P" in Cormorant Garamond 300, 2em, very faint (8% opacity), watermark feel
-- Middle: `.card-back-center` — two `.card-back-rule` hairlines (0.5px, 52% width) bracketing the `.see-more-btn`
-- Bottom: `.card-back-url` — `henrybpan.com` in small tracked EB Garamond (28% opacity)
-- Button hover: `::after` pseudo-element underline grows from center (width 0 → 65%) with spring easing
+**Card page (`/card/index.html`) — preserved easter egg:**
+- Verbatim copy of the pre-redesign homepage.
+- Adds `<meta name="robots" content="noindex, nofollow">`.
+- Adds small muted `← home` link top-left so it's not a dead end.
+- Keeps its dark `#1C0A06` palette, flip-card UX, "see more" popup with scattered mini-cards.
 
-**Sub-page pattern:**
-- Dark full-height layout with entry animation (`@keyframes up`)
-- Back arrow link `← Back` returning to `/`
-- Heading + optional "Work in Progress" placeholder
+## Theming (sitewide light + dark mode)
+
+**Files (the only shared stylesheet + script in the repo):**
+- `/assets/theme.css` — CSS custom properties for `[data-theme="light"]` and `[data-theme="dark"]`, plus the floating `.theme-toggle` button styles.
+- `/assets/theme.js` — IIFE that wires `.theme-toggle` click handlers, writes to `localStorage['theme']`, and honors `prefers-color-scheme` only when no explicit preference exists.
+
+**Why this breaks the "all CSS inlined per file" rule:** duplicating the theme variables + toggle styles across 9 pages would be unmaintainable. The exception is scoped to theming only. Page-specific CSS stays inlined per file.
+
+**CSS variables (light / dark):**
+- `--bg` — page bg (`#ffffff` / `#14130f`)
+- `--bg-alt` — panel/card bg (`#faf8f2` / `#1c1a16`)
+- `--fg` — primary text (`#1a1915` / `#ede8de`)
+- `--fg-mut`, `--fg-dim`, `--fg-faint` — descending tiers of muted text
+- `--border`, `--border-strong` — hairlines + emphasized borders
+
+**Inverted blocks (e.g. `/director` `.final` CTA, `.offer-card.featured`):** use `background: var(--fg); color: var(--bg);` so the block inverts naturally in both themes without needing dark-mode-specific overrides.
+
+**Anti-flash pattern (inlined at top of every themed page's `<head>`):**
+```html
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}}());</script>
+```
+This sets `data-theme` before first paint to prevent flash-of-wrong-theme on navigation.
+
+**Toggle button markup** (placed directly after `<body>` on every themed page):
+```html
+<button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
+  <svg class="icon-sun" ...>...</svg>
+  <svg class="icon-moon" ...>...</svg>
+</button>
+```
+Both SVGs live in the DOM and crossfade via `[data-theme]` selectors.
+
+**Persistence:** `localStorage['theme']` (values: `"light"` or `"dark"`). Cleared by user clearing site data; otherwise sticky across sessions and navigations.
+
+**Pages that do NOT include theming:**
+- `/card` — intentional aesthetic moment.
+- `/work-with-me` — instant redirect, never renders.
 
 ## Conventions
 
-- All CSS lives in `<style>` blocks within each HTML file — no shared stylesheet
-- Responsive sizing uses `clamp()` and `min()` — avoid fixed pixel values for layout dimensions
-- Font sizes on the card use `em` relative to the card's root `font-size` (set via `clamp()` on `.card-face`)
-- `@media (prefers-reduced-motion: reduce)` blocks must be included when adding any animation
-- Social links use `target="_blank" rel="noopener noreferrer"` — maintain this on all external links
-- Favicon lives at `/favicon.png` (root) — all pages reference it as `<link rel="icon" type="image/png" href="/favicon.png">`
-- Open Graph + Twitter Card meta tags live only on `index.html`; preview image is `/preview.png`; canonical URL is `https://henrybpan.com/`
+- Page-specific CSS lives in `<style>` blocks within each HTML file. Only `/assets/theme.*` is shared.
+- Responsive sizing uses `clamp()` and `min()` — avoid fixed pixel values for layout dimensions.
+- Font sizes on the card use `em` relative to the card's root `font-size` (set via `clamp()` on `.card-face`).
+- `@media (prefers-reduced-motion: reduce)` blocks must be included when adding any animation.
+- Social links use `target="_blank" rel="noopener noreferrer"` — maintain this on all external links.
+- Favicon lives at `/favicon.png` (root) — all pages reference it as `<link rel="icon" type="image/png" href="/favicon.png">`.
+- Open Graph + Twitter Card meta tags live only on `index.html`; preview image is `/preview.png`; canonical URL is `https://henrybpan.com/`.
+- When adding a new themed page: include the anti-flash inline script + `<link rel="stylesheet" href="/assets/theme.css">` + `<script src="/assets/theme.js" defer></script>` + the `.theme-toggle` button markup, and use CSS variables (`var(--fg)` etc.) instead of hardcoded color literals.
 
 ## Testimonies & Results page
 
@@ -78,7 +117,9 @@ The site is a collection of standalone HTML files. Each page is self-contained w
 | jaqoea | 10k | 13.5k |
 | justtonch | 17.5k | 28.2k |
 
-## Home page popup cards (mini navigation)
+## Card page popup cards (mini navigation — easter egg)
+
+*Lives at `/card/index.html` — the preserved old flip-card homepage, no longer the site's landing page.*
 
 - 5 mini business cards fly out from center on "more info" click: About, Essays, Recommendations, Work with Me, Results
 - Scatter placement hits all four quadrants (lower-left, upper-right, upper-left, lower-right, top-center) — "cards tossed on a table" feel
