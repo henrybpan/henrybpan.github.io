@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!-- Post-payment booking page for $6,000 DFY install.
+     Stripe redirects here (success_url) after payment. -->
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}}());</script>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book your AI Creative Director install call.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Book your install — Henry Pan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/theme.css?v=2">
+  <script src="/assets/theme.js?v=2" defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      line-height: 1.65;
+      min-height: 100dvh;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 5.5vw, 2.6rem);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .lede {
+      font-style: italic;
+      color: var(--fg-mut);
+      font-size: clamp(1.05rem, 2vw, 1.18rem);
+      margin-bottom: 2.6rem;
+      line-height: 1.5;
+      max-width: 36rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
+      font-weight: 500;
+      margin: 2.6rem 0 1rem;
+      line-height: 1.2;
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .calendly-wrap {
+      margin: 1.2rem 0 2rem;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: clamp(0.5rem, 2vw, 1rem);
+    }
+
+    .calendly-inline-widget {
+      min-width: 320px;
+      height: 720px;
+    }
+
+    .steps {
+      list-style: none;
+      margin: 1.4rem 0 2rem;
+      padding: 0;
+      counter-reset: step;
+    }
+    .steps li {
+      padding: 0.9rem 0 0.9rem 2.4rem;
+      border-top: 1px solid var(--border);
+      position: relative;
+      counter-increment: step;
+    }
+    .steps li:last-child { border-bottom: 1px solid var(--border); }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0.95rem;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      color: var(--fg-dim);
+      width: 1.6rem;
+      text-align: center;
+    }
+    .steps .step-title {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .steps .step-body {
+      font-size: 0.95rem;
+      color: var(--fg-mut);
+      line-height: 1.55;
+    }
+
+    .signoff {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--fg-mut);
+    }
+    .signoff .name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: normal;
+      color: var(--fg);
+      margin-top: 0.6rem;
+      display: block;
+    }
+
+    a.inline {
+      color: var(--fg);
+      text-decoration: underline;
+      text-decoration-color: var(--border-strong);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s ease;
+    }
+    a.inline:hover { text-decoration-color: var(--fg); }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+  </button>
+  <main class="page">
+
+    <span class="eyebrow">Payment received</span>
+
+    <h1>Book your setup call.</h1>
+
+    <p class="lede">Your install is secured. Pick a time below — we'll do our first strategy call to map the system to your content, niche, and audience.</p>
+
+    <div class="calendly-wrap">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/henrypaninquiries/dfy-creative-director-setup"></div>
+    </div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    <h2>What happens next</h2>
+
+    <ol class="steps">
+      <li>
+        <span class="step-title">You'll get a calendar invite + prep doc</span>
+        <span class="step-body">A short intake form lands in your inbox so I can pull your content library and audience data before we meet.</span>
+      </li>
+      <li>
+        <span class="step-title">We do our setup call</span>
+        <span class="step-body">~60 minutes. I learn your voice, your audience, and your goals. You get the full install scoped and confirmed.</span>
+      </li>
+      <li>
+        <span class="step-title">I build the system over 14–30 days</span>
+        <span class="step-body">I ingest your content, train the director, and install it on your machine. Then we do a second call to hand it off.</span>
+      </li>
+    </ol>
+
+    <p>Questions before the call? Text me or DM <a class="inline" href="https://instagram.com/henrybpan" target="_blank" rel="noopener noreferrer">@henrybpan</a>.</p>
+
+    <div class="signoff">
+      Excited to build this with you.
+      <span class="name">— Henry</span>
+    </div>
+
+  </main>
+</body>
+</html>

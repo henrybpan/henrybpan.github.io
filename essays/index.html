@@ -47,6 +47,14 @@
       margin-bottom: clamp(3rem, 6vw, 4rem);
       max-width: 34rem;
     }
+    .intro a {
+      color: var(--fg);
+      text-decoration: underline;
+      text-decoration-color: var(--border-strong);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s ease, color 0.15s ease;
+    }
+    .intro a:hover { text-decoration-color: var(--fg); }
 
     /* Entry list — chester.how writing pattern */
     .entries { list-style: none; }
@@ -138,7 +146,7 @@
 
   <main class="page">
     <h1>essays.</h1>
-    <p class="intro">Long-form on Christianity, creativity, originality, and why the internet is quietly dying. No fixed schedule — I publish when something is actually worth saying.</p>
+    <p class="intro">essays are the purest form of content, and yet i have written very few of them. aiming to write like 1-2 a month going forward. subscribe via my <a href="/text">textletter</a> / <a href="https://henrybpan.substack.com/" target="_blank" rel="noopener noreferrer">substack</a>.</p>
 
     <!-- When essays land, list them newest → oldest as:
     <article class="entry">
