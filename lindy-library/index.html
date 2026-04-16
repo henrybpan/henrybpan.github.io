@@ -190,6 +190,65 @@
         transform: none !important;
       }
     }
+
+    /* Toggle Switch */
+    .lindy-toggle-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1rem;
+      background: var(--bg-alt);
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      color: var(--fg);
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+    .lindy-toggle-wrapper:hover,
+    .lindy-toggle-wrapper:focus-within {
+      border-color: var(--border-strong);
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 36px;
+      height: 20px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--border-strong);
+      transition: .3s;
+      border-radius: 20px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: var(--bg);
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #10b981; /* Lindy green */
+    }
+    input:checked + .slider:before {
+      transform: translateX(16px);
+    }
   </style>
 </head>
 <body>
@@ -213,8 +272,18 @@
   </nav>
 
   <main class="page">
-    <h1>library.</h1>
-    <p class="intro">Books I'm reading, want to read, and have read. Covers link out — today to Amazon search, later to my own reviews.</p>
+    <h1 id="page-title">library.</h1>
+    <div class="intro">
+      <span id="intro-text">Books I'm reading, want to read, and have read. Covers link out — today to Amazon search, later to my own reviews.</span>
+      <br>
+      <label class="lindy-toggle-wrapper">
+        <span class="switch">
+          <input type="checkbox" id="lindy-mode-toggle">
+          <span class="slider"></span>
+        </span>
+        <span style="font-weight: 500; letter-spacing: 0.02em;">Lindy mode</span>
+      </label>
+    </div>
 
     <!--
       Book card template:
@@ -239,9 +308,10 @@
       When a review page exists, swap the href to /essays/[slug] or similar.
     -->
 
-    <section class="book-grid">
+    <div id="regular-library">
+      <section class="book-grid">
 
-      <!-- READING -->
+        <!-- READING -->
       <article class="book-card">
         <a href="https://www.amazon.com/s?k=how+to+win+friends+and+influence+people+dale+carnegie&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open How to Win Friends and Influence People">
           <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
@@ -357,6 +427,83 @@
       </article>
 
     </section>
+    </div>
+
+    <div id="lindy-library-content" style="display: none;">
+      <section class="book-grid">
+
+        <article class="book-card">
+          <a href="https://www.founderspodcast.com/" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Founders Podcast">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+          </a>
+          <div class="book-body">
+            <div class="book-cover"><img src="/assets/books/founders-podcast.png" alt="Founders Podcast"></div>
+            <div class="book-info">
+              <span class="book-tag tag-read">Lindy</span>
+              <h3 class="book-title">Founders Podcast</h3>
+              <div class="book-author">David Senra</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <a href="https://highagency.com/" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open High Agency">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+          </a>
+          <div class="book-body">
+            <div class="book-cover"><img src="/assets/books/high-agency.png" alt="High Agency"></div>
+            <div class="book-info">
+              <span class="book-tag tag-read">Lindy</span>
+              <h3 class="book-title">High Agency</h3>
+              <div class="book-author">George Mack</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <a href="https://fs.blog/david-foster-wallace-this-is-water/" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open This is Water">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+          </a>
+          <div class="book-body">
+            <div class="book-cover"><img src="/assets/books/this-is-water.png" alt="This is Water"></div>
+            <div class="book-info">
+              <span class="book-tag tag-read">Lindy</span>
+              <h3 class="book-title">This is Water</h3>
+              <div class="book-author">David Foster Wallace</div>
+            </div>
+          </div>
+        </article>
+
+      </section>
+    </div>
+
   </main>
+
+  <script>
+    const toggle = document.getElementById('lindy-mode-toggle');
+    const regLib = document.getElementById('regular-library');
+    const lindyLib = document.getElementById('lindy-library-content');
+    const pageTitle = document.getElementById('page-title');
+    const introText = document.getElementById('intro-text');
+
+    const regTitle = 'library.';
+    const regIntro = "Books I'm reading, want to read, and have read. Covers link out — today to Amazon search, later to my own reviews.";
+    const lindyTitle = 'lindy library.';
+    const lindyIntro = "The 0.1% of things I've read that gave me 99% of the value.";
+
+    toggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        regLib.style.display = 'none';
+        lindyLib.style.display = 'block';
+        pageTitle.textContent = lindyTitle;
+        introText.textContent = lindyIntro;
+      } else {
+        lindyLib.style.display = 'none';
+        regLib.style.display = 'block';
+        pageTitle.textContent = regTitle;
+        introText.textContent = regIntro;
+      }
+    });
+  </script>
 </body>
 </html>
