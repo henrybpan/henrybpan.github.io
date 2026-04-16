@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Books, essays, and ideas that have stood the test of time — curated by Henry Pan.">
-  <title>library. — Henry Pan</title>
+  <meta name="description" content="Books Henry Pan is reading, wants to read, and has read.">
+  <title>library — Henry Pan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
     }
 
     .page {
-      max-width: 620px;
+      max-width: 820px;
       margin: 0 auto;
       padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 6vw, 2rem) clamp(3rem, 6vw, 5rem);
     }
@@ -44,108 +44,156 @@
       color: var(--fg-mut);
       font-size: clamp(1.02rem, 1.8vw, 1.1rem);
       line-height: 1.6;
-      margin-bottom: clamp(3rem, 6vw, 4rem);
+      margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
       max-width: 34rem;
     }
 
-    /* Reading list — chester.how/reading grouped pattern */
-    .status-group {
-      margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    /* ============================================================
+       BOOK GRID — chester.how/reading pattern
+    ============================================================ */
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(0.9rem, 2.2vw, 1.3rem);
+    }
+    @media (max-width: 600px) {
+      .book-grid { grid-template-columns: 1fr; }
     }
 
-    .status-label {
-      font-size: 0.78rem;
-      color: var(--fg-dim);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .items { list-style: none; }
-
-    .item {
-      padding: 1.1rem 0;
-      border-top: 1px solid var(--border);
+    .book-card {
+      position: relative;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem 1.4rem 1.3rem;
+      min-height: 250px;
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+      justify-content: flex-end;
+      transition: border-color 0.2s ease;
     }
-    .items .item:last-child { border-bottom: 1px solid var(--border); }
-
-    .item-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
+    .book-card:hover,
+    .book-card:focus-within {
+      border-color: var(--border-strong);
     }
 
-    .item-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(1.25rem, 2.6vw, 1.45rem);
-      font-weight: 500;
-      line-height: 1.25;
-      color: var(--fg);
-    }
-    .item-title a {
-      color: var(--fg);
+    /* Top-right external-link button (matches chester's arrow chip) */
+    .book-external-btn {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      color: var(--fg-dim);
+      background: transparent;
       text-decoration: none;
-      transition: opacity 0.15s ease;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.25s ease;
+      z-index: 2;
     }
-    .item-title a:hover { opacity: 0.7; }
-
-    .item-author {
-      font-size: 0.88rem;
-      color: var(--fg-dim);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .item-note {
-      color: var(--fg-mut);
-      font-size: 0.98rem;
-      line-height: 1.55;
-      margin-top: 0.2rem;
-    }
-
-    /* Empty state */
-    .empty {
-      padding: 2.5rem 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      color: var(--fg-dim);
-      font-style: italic;
-      text-align: center;
-    }
-
-    /* CTA */
-    .cta {
-      margin-top: clamp(3rem, 6vw, 4.5rem);
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.95rem;
-      color: var(--fg-mut);
-      text-align: center;
-    }
-    .cta p { margin-bottom: 0.4rem; }
-    .cta a {
+    .book-card:hover .book-external-btn,
+    .book-card:focus-within .book-external-btn {
+      background: var(--bg);
       color: var(--fg);
-      text-decoration: underline;
-      text-decoration-color: var(--border-strong);
-      text-underline-offset: 3px;
-      transition: text-decoration-color 0.15s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
     }
-    .cta a:hover { text-decoration-color: var(--fg); }
+    [data-theme="dark"] .book-card:hover .book-external-btn,
+    [data-theme="dark"] .book-card:focus-within .book-external-btn {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    .book-external-btn svg { width: 15px; height: 15px; }
 
-    @media (max-width: 480px) {
-      .item-row { flex-direction: column; gap: 0.2rem; }
-      .item-author { white-space: normal; }
+    .book-body {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 1.1rem;
+      align-items: end;
     }
 
-    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+    .book-cover {
+      align-self: end;
+    }
+    .book-cover img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 3px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+      transition: transform 0.45s cubic-bezier(.2, .9, .3, 1.25),
+                  box-shadow 0.45s ease;
+      transform-origin: bottom left;
+    }
+    .book-card:hover .book-cover img,
+    .book-card:focus-within .book-cover img {
+      transform: rotate(-3deg) scale(1.1);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+    }
+    [data-theme="dark"] .book-card:hover .book-cover img,
+    [data-theme="dark"] .book-card:focus-within .book-cover img {
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+    }
+
+    .book-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding-bottom: 0.1rem;
+    }
+
+    .book-tag {
+      display: inline-block;
+      width: fit-content;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 0.15rem 0.45rem 0.22rem;
+      border-radius: 4px;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    /* Chester-style light-bg tints per status */
+    .tag-reading { background: rgba(251, 191, 36, 0.32); color: #7c4a03; }
+    .tag-to-read { background: rgba(251, 113, 133, 0.28); color: #881337; }
+    .tag-read    { background: rgba(74, 222, 128, 0.28); color: #14532d; }
+    [data-theme="dark"] .tag-reading { background: rgba(251, 191, 36, 0.2);  color: #fbbf24; }
+    [data-theme="dark"] .tag-to-read { background: rgba(251, 113, 133, 0.2); color: #fb7185; }
+    [data-theme="dark"] .tag-read    { background: rgba(74, 222, 128, 0.2);  color: #4ade80; }
+
+    .book-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.15rem, 2.2vw, 1.32rem);
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--fg);
+      margin-top: 0.25rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .book-author {
+      font-size: 0.88rem;
+      color: var(--fg-mut);
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+      .book-card:hover .book-cover img,
+      .book-card:focus-within .book-cover img {
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 <body>
+
   <nav class="site-nav">
     <div class="site-nav-inner">
       <a href="/" class="nav-home">henry</a>
@@ -166,37 +214,149 @@
 
   <main class="page">
     <h1>library.</h1>
-    <p class="intro">Books, essays, and ideas that have stood the test of time — the ones I keep coming back to. Grouped by what I'm reading now, what's next, and what has already shaped how I think.</p>
+    <p class="intro">Books I'm reading, want to read, and have read. Covers link out — today to Amazon search, later to my own reviews.</p>
 
-    <!-- Add items under each status-group as:
-    <li class="item">
-      <div class="item-row">
-        <span class="item-title"><a href="https://...">Title</a></span>
-        <span class="item-author">Author</span>
-      </div>
-      <p class="item-note">Optional one-line take on why it matters.</p>
-    </li>
+    <!--
+      Book card template:
+
+      <article class="book-card">
+        <a href="[link]" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open [title]">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover">
+            <img src="/assets/books/[slug].jpg" alt="[Title]">
+          </div>
+          <div class="book-info">
+            <span class="book-tag tag-reading|tag-to-read|tag-read">[STATUS]</span>
+            <h3 class="book-title">[Title]</h3>
+            <div class="book-author">[Author]</div>
+          </div>
+        </div>
+      </article>
+
+      Status tags: tag-reading (amber), tag-to-read (rose), tag-read (green)
+      When a review page exists, swap the href to /essays/[slug] or similar.
     -->
 
-    <section class="status-group">
-      <span class="status-label">Reading</span>
-      <div class="empty">Nothing here yet.</div>
-    </section>
+    <section class="book-grid">
 
-    <section class="status-group">
-      <span class="status-label">Next</span>
-      <div class="empty">Nothing here yet.</div>
-    </section>
+      <!-- READING -->
+      <article class="book-card">
+        <a href="https://www.amazon.com/s?k=how+to+win+friends+and+influence+people+dale+carnegie&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open How to Win Friends and Influence People">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/how-to-win-friends.jpg" alt="How to Win Friends and Influence People"></div>
+          <div class="book-info">
+            <span class="book-tag tag-reading">Reading</span>
+            <h3 class="book-title">How to Win Friends and Influence People</h3>
+            <div class="book-author">Dale Carnegie</div>
+          </div>
+        </div>
+      </article>
 
-    <section class="status-group">
-      <span class="status-label">Read</span>
-      <div class="empty">The list is coming.</div>
-    </section>
+      <article class="book-card">
+        <a href="https://www.amazon.com/s?k=red+notice+bill+browder&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Red Notice">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/red-notice.jpg" alt="Red Notice"></div>
+          <div class="book-info">
+            <span class="book-tag tag-reading">Reading</span>
+            <h3 class="book-title">Red Notice</h3>
+            <div class="book-author">Bill Browder</div>
+          </div>
+        </div>
+      </article>
 
-    <div class="cta">
-      <p>Get new additions to the library.</p>
-      <a href="https://henrybpan.substack.com/" target="_blank" rel="noopener noreferrer">Subscribe on Substack &rarr;</a>
-    </div>
+      <article class="book-card">
+        <a href="https://www.amazon.com/s?k=the+creative+act+rick+rubin&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open The Creative Act">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/creative-act.jpg" alt="The Creative Act"></div>
+          <div class="book-info">
+            <span class="book-tag tag-reading">Reading</span>
+            <h3 class="book-title">The Creative Act</h3>
+            <div class="book-author">Rick Rubin</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TO READ -->
+      <article class="book-card">
+        <a href="https://www.amazon.com/s?k=ogilvy+on+advertising&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Ogilvy on Advertising">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/ogilvy-on-advertising.jpg" alt="Ogilvy on Advertising"></div>
+          <div class="book-info">
+            <span class="book-tag tag-to-read">To read</span>
+            <h3 class="book-title">Ogilvy on Advertising</h3>
+            <div class="book-author">David Ogilvy</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <a href="https://www.amazon.com/s?k=antifragile+nassim+taleb&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Antifragile">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/antifragile.jpg" alt="Antifragile"></div>
+          <div class="book-info">
+            <span class="book-tag tag-to-read">To read</span>
+            <h3 class="book-title">Antifragile</h3>
+            <div class="book-author">Nassim Nicholas Taleb</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <a href="https://www.amazon.com/s?k=thinking+fast+and+slow+daniel+kahneman&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Thinking, Fast and Slow">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/thinking-fast-and-slow.jpg" alt="Thinking, Fast and Slow"></div>
+          <div class="book-info">
+            <span class="book-tag tag-to-read">To read</span>
+            <h3 class="book-title">Thinking, Fast and Slow</h3>
+            <div class="book-author">Daniel Kahneman</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <a href="https://www.amazon.com/s?k=confessions+augustine&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Confessions">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/confessions.jpg" alt="Confessions"></div>
+          <div class="book-info">
+            <span class="book-tag tag-to-read">To read</span>
+            <h3 class="book-title">Confessions</h3>
+            <div class="book-author">Augustine of Hippo</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- READ -->
+      <article class="book-card">
+        <a href="https://www.amazon.com/s?k=zero+to+one+peter+thiel&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Zero to One">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/zero-to-one.jpg" alt="Zero to One"></div>
+          <div class="book-info">
+            <span class="book-tag tag-read">Read</span>
+            <h3 class="book-title">Zero to One</h3>
+            <div class="book-author">Peter Thiel</div>
+          </div>
+        </div>
+      </article>
+
+    </section>
   </main>
 </body>
 </html>
