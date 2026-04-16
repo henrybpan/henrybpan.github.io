@@ -2,6 +2,29 @@
    SITEWIDE THEME — light + dark via [data-theme] on <html>
    Loaded on every page. Anti-flash inline script in <head>
    sets data-theme BEFORE first paint.
+============================================================
+   ⚠️  CACHE-BUST CHECKLIST — READ BEFORE EDITING
+   ------------------------------------------------------------
+   Current cache-bust version: ?v=2
+
+   If you change any RULE, SELECTOR, PROPERTY, or VALUE below,
+   you MUST bump the ?v=N query string in every themed HTML
+   page in lockstep. Otherwise Cloudflare + browsers will keep
+   serving the old cached CSS against the new HTML, and the
+   nav + theme will render broken (see commit 5c003a9).
+
+   Files to update (search for `theme.css?v=` + `theme.js?v=`):
+     - /index.html
+     - /director/index.html
+     - /director/welcome/index.html
+     - /essays/index.html
+     - /lindy-library/index.html
+     - /text/index.html
+     - /community/index.html
+     - /testimonies-results/index.html
+
+   NEXT EDIT → bump v=2 to v=3  (then update this comment)
+   Comment-only edits to this file do NOT require a bump.
 ============================================================ */
 
 :root,

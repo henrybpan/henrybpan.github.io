@@ -35,7 +35,7 @@ The site is a collection of standalone HTML files. Each page is self-contained w
 **Home page (`index.html`) — new layout:**
 1. Anti-flash inline `<script>` at very top of `<head>` sets `data-theme` before first paint.
 2. Floating `.theme-toggle` button (top-right, fixed position).
-3. Hero: monogram watermark (absolute-positioned, low opacity, `filter: invert(1)` in dark mode), `h1.name`, italic tagline, 3-paragraph intro, two CTA buttons (`.btn-primary` "Install your AI creative director" → `/director`, `.btn-secondary` "Join my newsletter" → `/text`).
+3. Hero: monogram watermark (absolute-positioned, low opacity, `filter: invert(1)` in dark mode), `h1.name`, italic tagline, 3-paragraph intro (with inline links — UVA → virginia.edu, "AI creative director" → /director, "read" → /lindy-library, "write" → /essays), two CTA buttons (`.btn-primary` "Install your AI creative director" → `/director`, `.btn-secondary` "Join my textletter" → `/text`).
 4. 6 `.section` blocks, each with `.section-label` (tracked caps), `.section-link` (em-dash ::before pseudo-element), `.section-title`, `.section-blurb`.
 5. Footer: social SVGs (IG/YT/X/email), copyright.
 

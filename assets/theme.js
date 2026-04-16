@@ -3,6 +3,19 @@
    NOTE: The anti-flash script that sets data-theme on <html>
    BEFORE first paint is inlined at the top of every page's
    <head>. This file only handles click + persistence.
+============================================================
+   ⚠️  CACHE-BUST CHECKLIST — READ BEFORE EDITING
+   ------------------------------------------------------------
+   Current cache-bust version: ?v=2
+
+   If you change any LOGIC or BEHAVIOR below, you MUST bump
+   the ?v=N query string in every themed HTML page in
+   lockstep (same list as in theme.css). Otherwise Cloudflare
+   + browsers will keep serving stale JS and the toggle will
+   silently break.
+
+   NEXT EDIT → bump v=2 to v=3  (then update this comment)
+   Comment-only edits to this file do NOT require a bump.
 ============================================================ */
 (function () {
   'use strict';
