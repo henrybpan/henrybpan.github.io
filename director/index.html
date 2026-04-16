@@ -4,8 +4,7 @@
        DFY $6,000 flat — Stripe upfront, then Calendly booking at /director/book/
        DWY $1,500 — Typeform waitlist at /director/waitlist/
        System Optimization $1,500/mo — Stripe subscription
-       Creative Director Partnership — gated copy page, DFY-only, /director/partnership/
-       DIY kit $99–$499 — decoy -->
+       Creative Director Partnership — gated copy page, DFY-only, /director/partnership/ -->
 <html lang="en">
 <head>
   <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}}());</script>
@@ -342,21 +341,6 @@
       border-color: var(--bg);
     }
 
-    /* Decoy card — muted, smaller */
-    .offer-card.decoy {
-      background: var(--bg);
-      border-style: dashed;
-      grid-column: 1 / -1;
-    }
-    .offer-card.decoy .offer-sub { font-size: 0.9rem; }
-    .offer-card.decoy .limitations {
-      color: var(--fg-dim);
-      font-size: 0.88rem;
-      font-style: italic;
-      margin-top: 0.5rem;
-      line-height: 1.55;
-    }
-
     /* ============================================================
        OUTCOMES
     ============================================================ */
@@ -686,26 +670,6 @@
             <li>Direct access for creative decisions</li>
           </ul>
           <a href="/director/partnership" class="offer-cta">Check eligibility</a>
-        </article>
-      </div>
-    </section>
-
-
-    <!-- ===== 8. DIY DECOY ===== -->
-    <section>
-      <h2>Want to build it yourself?</h2>
-
-      <div class="offers" style="grid-template-columns: 1fr;">
-        <article class="offer-card decoy">
-          <div class="offer-name">DIY Creative Director Kit</div>
-          <div class="offer-sub">The system without the implementation.</div>
-          <ul class="offer-details">
-            <li>Base prompt library and workflow templates</li>
-            <li>Repository access with full documentation</li>
-            <li>Loom walkthrough of setup and usage</li>
-          </ul>
-          <p class="limitations">Not personalized. No content analysis. No optimization. No live support. This is the same system — without the strategy, customization, or guidance. Most creators underestimate how much of the value comes from implementation.</p>
-          <a href="[DIY_URL]" class="offer-cta">Get the kit</a>
         </article>
       </div>
     </section>
