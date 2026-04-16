@@ -92,7 +92,7 @@ Both SVGs live in the DOM and crossfade via `[data-theme]` selectors.
 - Social links use `target="_blank" rel="noopener noreferrer"` — maintain this on all external links.
 - Favicon lives at `/favicon.png` (root) — all pages reference it as `<link rel="icon" type="image/png" href="/favicon.png">`.
 - Open Graph + Twitter Card meta tags live only on `index.html`; preview image is `/preview.png`; canonical URL is `https://henrybpan.com/`.
-- When adding a new themed page: include the anti-flash inline script + `<link rel="stylesheet" href="/assets/theme.css">` + `<script src="/assets/theme.js" defer></script>` + the `.theme-toggle` button markup, and use CSS variables (`var(--fg)` etc.) instead of hardcoded color literals.
+- When adding a new themed page: include the anti-flash inline script + `<link rel="stylesheet" href="/assets/theme.css?v=N">` + `<script src="/assets/theme.js?v=N" defer></script>` + the `.theme-toggle` button markup, and use CSS variables (`var(--fg)` etc.) instead of hardcoded color literals. The `?v=N` query string busts the Cloudflare + browser cache whenever `theme.css` or `theme.js` changes — bump the number across all themed pages in lockstep whenever you edit either file (currently `v=2`).
 
 ## Testimonies & Results page
 
