@@ -47,14 +47,6 @@
       margin-bottom: clamp(3rem, 6vw, 4rem);
       max-width: 34rem;
     }
-    .intro a {
-      color: var(--fg);
-      text-decoration: underline;
-      text-decoration-color: var(--border-strong);
-      text-underline-offset: 3px;
-      transition: text-decoration-color 0.15s ease, color 0.15s ease;
-    }
-    .intro a:hover { text-decoration-color: var(--fg); }
 
     /* Entry list — chester.how writing pattern */
     .entries { list-style: none; }
@@ -130,8 +122,10 @@
     <div class="site-nav-inner">
       <a href="/" class="nav-home">henry</a>
       <ul class="nav-links">
+        <li><a href="/director">director</a></li>
         <li><a href="/essays" aria-current="page">essays</a></li>
         <li><a href="/lindy-library">library</a></li>
+        <li><a href="/text">text</a></li>
       </ul>
       <div class="nav-right">
         <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
@@ -144,7 +138,7 @@
 
   <main class="page">
     <h1>essays.</h1>
-    <p class="intro">essays are the purest form of content, and yet i have written very few of them. aiming to write like 1-2 a month going forward. subscribe on <a href="https://henrybpan.substack.com/" target="_blank" rel="noopener noreferrer">substack</a>.</p>
+    <p class="intro">essays are the purest form of content, and yet i have written very few of them. aiming to write like 1-2 a month going forward. subscribe via my textletter/substack.</p>
 
     <!-- When essays land, list them newest → oldest as:
     <article class="entry">
