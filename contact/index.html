@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}}());</script>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with Henry Pan — collaborations, partnerships, speaking, or a simple hello.">
+  <title>contact. — Henry Pan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/theme.css?v=2">
+  <script src="/assets/theme.js?v=2" defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      line-height: 1.65;
+      min-height: 100dvh;
+    }
+
+    .page {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 6vw, 2rem) clamp(3rem, 6vw, 5rem);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.4rem, 7vw, 3.4rem);
+      font-weight: 500;
+      letter-spacing: 0.005em;
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+    }
+
+    .intro {
+      color: var(--fg-mut);
+      font-size: clamp(1.02rem, 1.8vw, 1.12rem);
+      line-height: 1.6;
+      margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+      max-width: 34rem;
+    }
+    .intro a {
+      color: var(--fg);
+      text-decoration: underline;
+      text-decoration-color: var(--border-strong);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s ease;
+    }
+    .intro a:hover { text-decoration-color: var(--fg); }
+
+    form { margin: 0; }
+
+    .field { margin-bottom: 1.4rem; }
+
+    label {
+      display: block;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-bottom: 0.55rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.8rem 0.95rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      border: 1px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--fg);
+      border-radius: 0;
+      transition: border-color 0.15s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--fg);
+    }
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, var(--fg-mut) 50%),
+                        linear-gradient(135deg, var(--fg-mut) 50%, transparent 50%);
+      background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+      background-size: 6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 2rem;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 7.5rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      background: var(--fg);
+      color: var(--bg);
+      border: 1px solid var(--fg);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      margin-top: 0.4rem;
+    }
+    button:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .status {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--fg-mut);
+      min-height: 1.4em;
+    }
+    .status.ok { color: var(--fg); }
+    .status.err { color: #b94848; }
+
+    .direct {
+      margin-top: clamp(3rem, 6vw, 4.5rem);
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .direct-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .direct-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 1.8rem;
+      font-size: 1rem;
+    }
+    .direct-links a {
+      color: var(--fg);
+      text-decoration: underline;
+      text-decoration-color: var(--border-strong);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s ease;
+    }
+    .direct-links a:hover { text-decoration-color: var(--fg); }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a href="/" class="nav-home">henry</a>
+      <ul class="nav-links">
+        <li><a href="/essays">essays</a></li>
+        <li><a href="/lindy-library">library</a></li>
+        <li><a href="/contact" aria-current="page">contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+    <h1>contact.</h1>
+    <p class="intro">Collaborations, partnerships, speaking, or just saying hi — send me a note. I read every message and reply to the ones I can.</p>
+
+    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" required autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="email">Your email</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+
+      <div class="field">
+        <label for="subject">What's this about?</label>
+        <select id="subject" name="subject" required>
+          <option value="" disabled selected>Choose one</option>
+          <option value="general">General inquiry</option>
+          <option value="collaboration">Collaboration</option>
+          <option value="partnership">Brand partnership</option>
+          <option value="speaking">Speaking / podcast</option>
+          <option value="other">Something else</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" required rows="5"></textarea>
+      </div>
+
+      <button type="submit">Send message</button>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="direct">
+      <span class="direct-label">Or reach me directly</span>
+      <div class="direct-links">
+        <a href="mailto:work@henrybpan.com">work@henrybpan.com</a>
+        <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://x.com/henrypanonx" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://www.linkedin.com/in/henrybpan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      var status = document.getElementById('status');
+      form.addEventListener('submit', async function (e) {
+        if (form.action.indexOf('YOUR_FORM_ID') !== -1) return;
+        e.preventDefault();
+        status.className = 'status';
+        status.textContent = 'Sending…';
+        try {
+          var res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { Accept: 'application/json' }
+          });
+          if (res.ok) {
+            form.reset();
+            status.className = 'status ok';
+            status.textContent = 'Sent. I\u2019ll get back to you soon.';
+          } else {
+            var data = await res.json().catch(function () { return {}; });
+            status.className = 'status err';
+            status.textContent = (data && data.error) || 'Something went wrong. Try emailing me directly.';
+          }
+        } catch (err) {
+          status.className = 'status err';
+          status.textContent = 'Network error. Try emailing me directly.';
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

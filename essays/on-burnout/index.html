@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}}());</script>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Burning out while loving your job, the shift from process to results, and the false idol of social media.">
+  <title>on burnout — Henry Pan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/theme.css?v=2">
+  <script src="/assets/theme.js?v=2" defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; }
+    body { background: var(--bg); color: var(--fg); font-family: 'EB Garamond', Georgia, serif; font-size: clamp(1.05rem, 1.9vw, 1.18rem); line-height: 1.72; min-height: 100dvh; }
+    .page { max-width: 640px; margin: 0 auto; padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 6vw, 2rem) clamp(3rem, 6vw, 5rem); }
+    .back { display: inline-block; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-dim); text-decoration: none; margin-bottom: clamp(2rem, 5vw, 3rem); transition: color 0.15s ease, transform 0.2s ease; }
+    .back:hover { color: var(--fg); transform: translateX(-2px); }
+    h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2rem, 5.5vw, 2.8rem); font-weight: 500; letter-spacing: 0.005em; line-height: 1.1; margin-bottom: 0.6rem; }
+    .date { font-size: 0.82rem; color: var(--fg-dim); letter-spacing: 0.08em; margin-bottom: clamp(2rem, 5vw, 3rem); display: block; }
+    .essay h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: clamp(1.3rem, 3vw, 1.55rem); margin: 2.2rem 0 0.9rem; color: var(--fg); }
+    .essay p { margin-bottom: 1.25rem; color: var(--fg); }
+    .essay blockquote { margin: 1.8rem 0; padding: 0.2rem 0 0.2rem 1.2rem; border-left: 2px solid var(--border-strong); color: var(--fg-mut); font-style: italic; }
+    .essay blockquote cite { display: block; margin-top: 0.5rem; font-size: 0.9rem; font-style: normal; color: var(--fg-dim); letter-spacing: 0.04em; }
+    .essay a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; transition: text-decoration-color 0.15s ease; }
+    .essay a:hover { text-decoration-color: var(--fg); }
+    .end { margin-top: clamp(3rem, 6vw, 4rem); padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: var(--fg-mut); font-style: italic; }
+    .end a { color: var(--fg); font-style: normal; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a href="/" class="nav-home">henry</a>
+      <ul class="nav-links">
+        <li><a href="/essays" aria-current="page">essays</a></li>
+        <li><a href="/lindy-library">library</a></li>
+        <li><a href="/contact">contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+    <a href="/essays" class="back">← all essays</a>
+
+    <h1>on burnout</h1>
+    <span class="date">Jul 17, 2025</span>
+
+    <article class="essay">
+      <p>I used to think the term burnout was ridiculous.</p>
+      <p>Yes, I suppose I could understand one's eventual fatigue working a job they hated or doing mountains of busywork for a degree they didn't even want.</p>
+      <p>But how could you ever burnout if you were doing something you love? Obviously, those who burnout just don't work the right jobs, they just don't pursue their true passions.</p>
+      <p>I know, I know, I just changed your entire life outlook. You're welcome. I would be remiss to not use my infinite wisdom as a 18 year old who just graduated high school to tell you how to live your life.</p>
+      <p>But seriously, I used to think burnout was just for soulless people who worked soulless jobs to provide for their soulless life.</p>
+      <p>However, after living in San Francisco for the past two weeks, and creating 4–6 pieces of short form content every day, I'm burning out.</p>
+      <p>It's kind of crazy to say that given that</p>
+      <p>A) My job is literally to create 90 second Instagram Reels.</p>
+      <p>B) I really really love doing my job.</p>
+      <p>But when you spend every waking minute of your day focusing, thinking, and stressing about one thing, you are going to burn out. I believe in some part it is due to my shift to a results based framework of success. That's what happens when you start working for someone — you feel like you have to hit these goals and view targets or else you don't provide any value. I recognized that early on, and was okay with it, until it started to leak into my personal content.</p>
+      <p>I have become increasingly obsessive over the wrong things. Instead of being obsessed with the process, I've been fixated on the results. When I should be researching and experimenting with hooks, pacing, and tonality, I instead compare follower counts, average views, and likes.</p>
+      <p>I'm afraid of falling behind. So I create for the sake of creation, blindly throwing a dart and hoping it hits. Even worse, I begin to muse to myself on what has worked for me in the past. The answer is Christ. And so I begin brainstorming ways to create Christian content, ones that will drive engagement and views to my page. Thank God I never pressed record.</p>
+      <p>It was at this point that I realized social media for what it was to me: a false idol. It is something I worship, something I seek validation from, something that I believe will give me fulfillment.</p>
+      <p>I require another shift in mindset. True fulfillment will never come from money, prestige, or online clout. It comes from our Lord and savior, Jesus Christ. Focus on Him, and let his will be executed. I know by strengthening my relationship with God, by praying and reading His Word, then everything else will fall into place.</p>
+      <p>I still believe that burnout is due to working for something useless, because if you don't have Christ as your first and upmost priority, you won't find true happiness.</p>
+    </article>
+
+    <div class="end">
+      Thanks for reading. <a href="/essays">More essays →</a>
+    </div>
+  </main>
+</body>
+</html>
