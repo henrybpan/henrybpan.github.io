@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/favicon.png?v=3">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Books Henry Pan is reading, wants to read, and has read.">
+  <meta name="description" content="Henry Pan's media library — books, films, shows, anime, and everything else worth consuming.">
   <title>library — Henry Pan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,13 +155,29 @@
       line-height: 1.2;
       text-transform: uppercase;
     }
-    /* Chester-style light-bg tints per status */
-    .tag-reading { background: rgba(251, 191, 36, 0.32); color: #7c4a03; }
-    .tag-to-read { background: rgba(251, 113, 133, 0.28); color: #881337; }
-    .tag-read    { background: rgba(74, 222, 128, 0.28); color: #14532d; }
-    [data-theme="dark"] .tag-reading { background: rgba(251, 191, 36, 0.2);  color: #fbbf24; }
-    [data-theme="dark"] .tag-to-read { background: rgba(251, 113, 133, 0.2); color: #fb7185; }
-    [data-theme="dark"] .tag-read    { background: rgba(74, 222, 128, 0.2);  color: #4ade80; }
+    /* Status tags */
+    .tag-reading  { background: rgba(251, 191, 36, 0.32); color: #7c4a03; }
+    .tag-to-read  { background: rgba(251, 113, 133, 0.28); color: #881337; }
+    .tag-read     { background: rgba(74, 222, 128, 0.28); color: #14532d; }
+    .tag-watching { background: rgba(251, 191, 36, 0.32); color: #7c4a03; }
+    .tag-to-watch { background: rgba(251, 113, 133, 0.28); color: #881337; }
+    .tag-watched  { background: rgba(74, 222, 128, 0.28); color: #14532d; }
+    [data-theme="dark"] .tag-reading  { background: rgba(251, 191, 36, 0.2);  color: #fbbf24; }
+    [data-theme="dark"] .tag-to-read  { background: rgba(251, 113, 133, 0.2); color: #fb7185; }
+    [data-theme="dark"] .tag-read     { background: rgba(74, 222, 128, 0.2);  color: #4ade80; }
+    [data-theme="dark"] .tag-watching { background: rgba(251, 191, 36, 0.2);  color: #fbbf24; }
+    [data-theme="dark"] .tag-to-watch { background: rgba(251, 113, 133, 0.2); color: #fb7185; }
+    [data-theme="dark"] .tag-watched  { background: rgba(74, 222, 128, 0.2);  color: #4ade80; }
+
+    /* Medium tag — neutral, sits next to status */
+    .tag-medium { background: rgba(120, 113, 108, 0.22); color: #44403c; }
+    [data-theme="dark"] .tag-medium { background: rgba(168, 162, 158, 0.18); color: #d6d3d1; }
+
+    .book-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
 
     .book-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -273,7 +289,7 @@
   <main class="page">
     <h1 id="page-title">library.</h1>
     <div class="intro">
-      <span id="intro-text">Books I'm reading, want to read, and have read. Covers link out — today to Amazon search, later to my own reviews.</span>
+      <span id="intro-text">Everything I'm consuming across mediums — books, films, shows, anime. Tagged by medium and status.</span>
       <br>
       <label class="lindy-toggle-wrapper">
         <span class="switch">
@@ -318,7 +334,7 @@
         <div class="book-body">
           <div class="book-cover"><img src="/assets/books/how-to-win-friends.jpg?v=3" alt="How to Win Friends and Influence People"></div>
           <div class="book-info">
-            <span class="book-tag tag-reading">Reading</span>
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-reading">Reading</span></div>
             <h3 class="book-title">How to Win Friends and Influence People</h3>
             <div class="book-author">Dale Carnegie</div>
           </div>
@@ -332,7 +348,7 @@
         <div class="book-body">
           <div class="book-cover"><img src="/assets/books/red-notice.jpg?v=3" alt="Red Notice"></div>
           <div class="book-info">
-            <span class="book-tag tag-reading">Reading</span>
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-reading">Reading</span></div>
             <h3 class="book-title">Red Notice</h3>
             <div class="book-author">Bill Browder</div>
           </div>
@@ -346,7 +362,7 @@
         <div class="book-body">
           <div class="book-cover"><img src="/assets/books/creative-act.jpg?v=3" alt="The Creative Act"></div>
           <div class="book-info">
-            <span class="book-tag tag-reading">Reading</span>
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-reading">Reading</span></div>
             <h3 class="book-title">The Creative Act</h3>
             <div class="book-author">Rick Rubin</div>
           </div>
@@ -361,7 +377,7 @@
         <div class="book-body">
           <div class="book-cover"><img src="/assets/books/ogilvy-on-advertising.jpg?v=3" alt="Ogilvy on Advertising"></div>
           <div class="book-info">
-            <span class="book-tag tag-to-read">To read</span>
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-to-read">To read</span></div>
             <h3 class="book-title">Ogilvy on Advertising</h3>
             <div class="book-author">David Ogilvy</div>
           </div>
@@ -375,7 +391,7 @@
         <div class="book-body">
           <div class="book-cover"><img src="/assets/books/antifragile.jpg?v=3" alt="Antifragile"></div>
           <div class="book-info">
-            <span class="book-tag tag-to-read">To read</span>
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-to-read">To read</span></div>
             <h3 class="book-title">Antifragile</h3>
             <div class="book-author">Nassim Nicholas Taleb</div>
           </div>
@@ -389,7 +405,7 @@
         <div class="book-body">
           <div class="book-cover"><img src="/assets/books/thinking-fast-and-slow.jpg?v=3" alt="Thinking, Fast and Slow"></div>
           <div class="book-info">
-            <span class="book-tag tag-to-read">To read</span>
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-to-read">To read</span></div>
             <h3 class="book-title">Thinking, Fast and Slow</h3>
             <div class="book-author">Daniel Kahneman</div>
           </div>
@@ -403,14 +419,71 @@
         <div class="book-body">
           <div class="book-cover"><img src="/assets/books/confessions.jpg?v=3" alt="Confessions"></div>
           <div class="book-info">
-            <span class="book-tag tag-to-read">To read</span>
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-to-read">To read</span></div>
             <h3 class="book-title">Confessions</h3>
             <div class="book-author">Augustine of Hippo</div>
           </div>
         </div>
       </article>
 
-      <!-- READ -->
+      <article class="book-card">
+        <a href="https://www.amazon.com/Augustine-Hippo-Biography-New-Epilogue/dp/0520227573" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Augustine of Hippo">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/augustine-of-hippo.jpg?v=3" alt="Augustine of Hippo: A Biography"></div>
+          <div class="book-info">
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-to-read">To read</span></div>
+            <h3 class="book-title">Augustine of Hippo: A Biography</h3>
+            <div class="book-author">Peter Brown</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <a href="https://amzn.to/3R22LE4" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Christ and Culture">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/christ-and-culture.jpg?v=3" alt="Christ and Culture"></div>
+          <div class="book-info">
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-to-read">To read</span></div>
+            <h3 class="book-title">Christ and Culture</h3>
+            <div class="book-author">H. Richard Niebuhr</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <a href="https://www.amazon.com/s?k=the+sports+gene+david+epstein&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open The Sports Gene">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/sports-gene.jpg?v=3" alt="The Sports Gene"></div>
+          <div class="book-info">
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-to-read">To read</span></div>
+            <h3 class="book-title">The Sports Gene</h3>
+            <div class="book-author">David Epstein</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- TO WATCH -->
+      <article class="book-card">
+        <a href="https://www.youtube.com/results?search_query=listers+youtube+movie" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Listers">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/listers.jpg" alt="Listers"></div>
+          <div class="book-info">
+            <div class="book-tags"><span class="book-tag tag-medium">Movie</span><span class="book-tag tag-to-watch">To watch</span></div>
+            <h3 class="book-title">Listers</h3>
+            <div class="book-author">YouTube</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- READ / WATCHED -->
       <article class="book-card">
         <a href="https://www.amazon.com/s?k=zero+to+one+peter+thiel&i=stripbooks" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Zero to One">
           <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
@@ -418,9 +491,37 @@
         <div class="book-body">
           <div class="book-cover"><img src="/assets/books/zero-to-one.jpg?v=3" alt="Zero to One"></div>
           <div class="book-info">
-            <span class="book-tag tag-read">Read</span>
+            <div class="book-tags"><span class="book-tag tag-medium">Book</span><span class="book-tag tag-read">Read</span></div>
             <h3 class="book-title">Zero to One</h3>
             <div class="book-author">Peter Thiel</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <a href="https://www.imdb.com/title/tt0068646/" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open The Godfather">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/the-godfather.jpg?v=3" alt="The Godfather"></div>
+          <div class="book-info">
+            <div class="book-tags"><span class="book-tag tag-medium">Movie</span><span class="book-tag tag-watched">Watched</span></div>
+            <h3 class="book-title">The Godfather</h3>
+            <div class="book-author">Francis Ford Coppola</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="book-card">
+        <a href="https://www.imdb.com/title/tt15324822/" target="_blank" rel="noopener noreferrer" class="book-external-btn" aria-label="Open Blue Lock">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg>
+        </a>
+        <div class="book-body">
+          <div class="book-cover"><img src="/assets/books/blue-lock.jpg?v=3" alt="Blue Lock"></div>
+          <div class="book-info">
+            <div class="book-tags"><span class="book-tag tag-medium">Anime</span><span class="book-tag tag-watched">Watched</span></div>
+            <h3 class="book-title">Blue Lock</h3>
+            <div class="book-author">Muneyuki Kaneshiro</div>
           </div>
         </div>
       </article>
@@ -486,7 +587,7 @@
     const introText = document.getElementById('intro-text');
 
     const regTitle = 'library.';
-    const regIntro = "Books I'm reading, want to read, and have read. Covers link out — today to Amazon search, later to my own reviews.";
+    const regIntro = "Everything I'm consuming across mediums — books, films, shows, anime. Tagged by medium and status.";
     const lindyTitle = 'lindy library.';
     const lindyIntro = "The 0.1% of things I've read that gave me 99% of the value.";
 

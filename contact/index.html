@@ -182,7 +182,7 @@
     <h1>contact.</h1>
     <p class="intro">Collaborations, partnerships, speaking, or just saying hi — send me a note. I read every message and reply to the ones I can.</p>
 
-    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/xqewvkjk" method="POST">
       <div class="field">
         <label for="name">Your name</label>
         <input type="text" id="name" name="name" required autocomplete="name">
@@ -232,7 +232,6 @@
       var form = document.getElementById('contact-form');
       var status = document.getElementById('status');
       form.addEventListener('submit', async function (e) {
-        if (form.action.indexOf('YOUR_FORM_ID') !== -1) return;
         e.preventDefault();
         status.className = 'status';
         status.textContent = 'Sending…';
