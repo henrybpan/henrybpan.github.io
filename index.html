@@ -16,8 +16,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/theme.css?v=2">
-  <script src="/assets/theme.js?v=2" defer></script>
+  <link rel="stylesheet" href="/assets/theme.css?v=3">
+  <script src="/assets/theme.js?v=3" defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { -webkit-font-smoothing: antialiased; }
@@ -30,15 +30,34 @@
     }
 
     .page {
-      max-width: 680px;
+      max-width: 1040px;
       margin: 0 auto;
-      padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 6vw, 2rem) clamp(3rem, 8vw, 5rem);
+      padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 6vw, 2.4rem) clamp(3rem, 8vw, 5rem);
+    }
+
+    /* ============================================================
+       TWO-COLUMN HOME LAYOUT
+       Left  = about / hero
+       Right = bookshelf + recent essays sidebar
+       Stacks on narrow viewports.
+    ============================================================ */
+    .home-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: clamp(2.5rem, 6vw, 4.5rem);
+      align-items: start;
+    }
+    @media (max-width: 820px) {
+      .home-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(3rem, 8vw, 4.5rem);
+      }
     }
 
     /* ============================================================
        HERO
     ============================================================ */
-    .hero { position: relative; margin-bottom: clamp(4rem, 8vw, 6rem); }
+    .hero { position: relative; }
 
     .hero-monogram {
       position: absolute;
@@ -188,66 +207,85 @@
     }
 
     /* ============================================================
-       HOME READING STRIP — mini chester-style row of covers
+       SIDEBAR — bookshelf + recent essays
     ============================================================ */
-    .home-reading {
-      margin-top: clamp(3rem, 7vw, 5rem);
-      padding-top: clamp(2rem, 4vw, 2.5rem);
-      border-top: 1px solid var(--border);
-    }
-
-    .home-reading-label {
-      display: block;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
-      font-size: clamp(1.05rem, 2vw, 1.2rem);
-      color: var(--fg-mut);
-      margin-bottom: clamp(1.3rem, 3vw, 1.8rem);
-    }
-
-    .home-reading-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(1rem, 3vw, 1.8rem);
-    }
-    @media (max-width: 600px) {
-      .home-reading-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-    }
-
-    .mini-book {
+    .home-side {
       display: flex;
       flex-direction: column;
-      gap: 0.7rem;
-      text-decoration: none;
-      color: inherit;
-    }
-    .mini-book-cover {
-      perspective: 600px;
-    }
-    .mini-book-cover img {
-      display: block;
-      width: 100%;
-      max-width: 140px;
-      height: auto;
-      border-radius: 3px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-      transition: transform 0.45s cubic-bezier(.2, .9, .3, 1.25),
-                  box-shadow 0.45s ease;
-      transform-origin: bottom left;
-    }
-    .mini-book:hover .mini-book-cover img,
-    .mini-book:focus-visible .mini-book-cover img {
-      transform: rotate(-3deg) scale(1.06);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
-    }
-    [data-theme="dark"] .mini-book:hover .mini-book-cover img,
-    [data-theme="dark"] .mini-book:focus-visible .mini-book-cover img {
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+      gap: clamp(2.4rem, 5vw, 3.2rem);
+      padding-top: 0.4rem;
     }
 
-    .mini-book-title {
+    .side-block-label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-bottom: 1.1rem;
+    }
+
+    .side-more {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      color: var(--fg-mut);
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .side-more::before {
+      content: '— ';
+      color: var(--fg-dim);
+      transition: color 0.2s ease;
+    }
+    .side-more:hover {
+      color: var(--fg);
+      transform: translateX(2px);
+    }
+    .side-more:hover::before { color: var(--fg); }
+
+    /* Bookshelf — vertical stacked list */
+    .bookshelf {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.05rem;
+    }
+    .shelf-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0.95rem;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease;
+    }
+    .shelf-item:hover { transform: translateX(2px); }
+
+    .shelf-cover {
+      width: 44px;
+      height: auto;
+      border-radius: 2px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+      transition: transform 0.4s cubic-bezier(.2, .9, .3, 1.25),
+                  box-shadow 0.4s ease;
+      transform-origin: bottom left;
+    }
+    .shelf-item:hover .shelf-cover {
+      transform: rotate(-2deg) scale(1.06);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+    }
+    [data-theme="dark"] .shelf-cover {
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    }
+    [data-theme="dark"] .shelf-item:hover .shelf-cover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+    }
+
+    .shelf-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.08rem;
+      font-size: 1.02rem;
       font-weight: 500;
       line-height: 1.25;
       color: var(--fg);
@@ -256,11 +294,47 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .mini-book-author {
-      font-size: 0.82rem;
+    .shelf-author {
+      font-size: 0.78rem;
       color: var(--fg-mut);
       font-style: italic;
       line-height: 1.3;
+      margin-top: 0.15rem;
+    }
+
+    /* Essays list */
+    .home-essays {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .home-essay {
+      padding: 0.85rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .home-essay:first-child { border-top: 0; padding-top: 0; }
+    .home-essay a {
+      text-decoration: none;
+      color: var(--fg);
+      display: block;
+      transition: opacity 0.15s ease, transform 0.2s ease;
+    }
+    .home-essay a:hover {
+      opacity: 0.78;
+      transform: translateX(2px);
+    }
+    .home-essay-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.08rem;
+      font-weight: 500;
+      line-height: 1.25;
+    }
+    .home-essay-date {
+      font-size: 0.76rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.04em;
+      margin-top: 0.2rem;
+      display: block;
     }
 
     /* ============================================================
@@ -337,51 +411,93 @@
 
   <main class="page">
 
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-      <img src="/monogram.png?v=3" class="hero-monogram" alt="" aria-hidden="true">
-      <div class="hero-content">
-        <div class="intro">
-          <p style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 500; font-family: 'EB Garamond', Georgia, serif; line-height: 1.1; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Hi! I'm Henry.</p>
-          <p>I'm a 19 year old content creator at <a href="https://virginia.edu" target="_blank" rel="noopener noreferrer">UVA</a>.</p>
-          <p>I like to <a href="/lindy-library">read</a> and to <a href="/essays">write</a>, though I am consistent at neither. Trying to get better at that.</p>
-          <p>Most of what I'm thinking about lives on <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer">Instagram</a> and <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer">YouTube</a>.</p>
-        </div>
+    <div class="home-grid">
 
-        <div class="hero-ctas">
-          <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow on Instagram</a>
-          <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Subscribe on YouTube</a>
-        </div>
-      </div>
-    </section>
+      <!-- ===== LEFT: HERO / ABOUT ===== -->
+      <section class="hero">
+        <img src="/monogram.png?v=3" class="hero-monogram" alt="" aria-hidden="true">
+        <div class="hero-content">
+          <div class="intro">
+            <p style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 500; font-family: 'EB Garamond', Georgia, serif; line-height: 1.1; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Hi! I'm Henry.</p>
+            <p>I'm a 19 year old content creator at <a href="https://virginia.edu" target="_blank" rel="noopener noreferrer">UVA</a>.</p>
+            <p>I like to <a href="/lindy-library">read</a> and to <a href="/essays">write</a>, though I am consistent at neither. Trying to get better at that.</p>
+            <p>Most of what I'm thinking about lives on <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer">Instagram</a> and <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer">YouTube</a>.</p>
+          </div>
 
-    <!-- ===== READING NOW ===== -->
-    <section class="home-reading">
-      <span class="home-reading-label">Reading now</span>
-      <div class="home-reading-grid">
-        <a href="/lindy-library" class="mini-book">
-          <div class="mini-book-cover">
-            <img src="/assets/books/how-to-win-friends.jpg?v=3" alt="How to Win Friends and Influence People">
+          <div class="hero-ctas">
+            <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Follow on Instagram</a>
+            <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Subscribe on YouTube</a>
           </div>
-          <div class="mini-book-title">How to Win Friends and Influence People</div>
-          <div class="mini-book-author">Dale Carnegie</div>
-        </a>
-        <a href="/lindy-library" class="mini-book">
-          <div class="mini-book-cover">
-            <img src="/assets/books/red-notice.jpg?v=3" alt="Red Notice">
-          </div>
-          <div class="mini-book-title">Red Notice</div>
-          <div class="mini-book-author">Bill Browder</div>
-        </a>
-        <a href="/lindy-library" class="mini-book">
-          <div class="mini-book-cover">
-            <img src="/assets/books/creative-act.jpg?v=3" alt="The Creative Act">
-          </div>
-          <div class="mini-book-title">The Creative Act</div>
-          <div class="mini-book-author">Rick Rubin</div>
-        </a>
-      </div>
-    </section>
+        </div>
+      </section>
+
+      <!-- ===== RIGHT: SIDEBAR ===== -->
+      <aside class="home-side">
+
+        <!-- Bookshelf -->
+        <section>
+          <span class="side-block-label">Reading now</span>
+          <ul class="bookshelf">
+            <li>
+              <a href="/lindy-library" class="shelf-item">
+                <img class="shelf-cover" src="/assets/books/how-to-win-friends.jpg?v=3" alt="How to Win Friends and Influence People">
+                <div>
+                  <div class="shelf-title">How to Win Friends and Influence People</div>
+                  <div class="shelf-author">Dale Carnegie</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/lindy-library" class="shelf-item">
+                <img class="shelf-cover" src="/assets/books/red-notice.jpg?v=3" alt="Red Notice">
+                <div>
+                  <div class="shelf-title">Red Notice</div>
+                  <div class="shelf-author">Bill Browder</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/lindy-library" class="shelf-item">
+                <img class="shelf-cover" src="/assets/books/creative-act.jpg?v=3" alt="The Creative Act">
+                <div>
+                  <div class="shelf-title">The Creative Act</div>
+                  <div class="shelf-author">Rick Rubin</div>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <a href="/lindy-library" class="side-more">full library</a>
+        </section>
+
+        <!-- Recent essays -->
+        <section>
+          <span class="side-block-label">Recent essays</span>
+          <ul class="home-essays">
+            <li class="home-essay">
+              <a href="/essays/how-to-make-your-first-video">
+                <span class="home-essay-title">how to make your first video</span>
+                <span class="home-essay-date">Nov 13, 2025</span>
+              </a>
+            </li>
+            <li class="home-essay">
+              <a href="/essays/why-do-people-watch-me">
+                <span class="home-essay-title">why do people watch me?</span>
+                <span class="home-essay-date">Jul 22, 2025</span>
+              </a>
+            </li>
+            <li class="home-essay">
+              <a href="/essays/on-burnout">
+                <span class="home-essay-title">on burnout</span>
+                <span class="home-essay-date">Jul 17, 2025</span>
+              </a>
+            </li>
+          </ul>
+          <a href="/essays" class="side-more">all essays</a>
+        </section>
+
+      </aside>
+
+    </div>
 
     <!-- ===== FOOTER ===== -->
     <footer>

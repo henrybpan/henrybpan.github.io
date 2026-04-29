@@ -5,7 +5,7 @@
 ============================================================
    ⚠️  CACHE-BUST CHECKLIST — READ BEFORE EDITING
    ------------------------------------------------------------
-   Current cache-bust version: ?v=2
+   Current cache-bust version: ?v=3
 
    If you change any RULE, SELECTOR, PROPERTY, or VALUE below,
    you MUST bump the ?v=N query string in every themed HTML
@@ -23,7 +23,7 @@
      - /community/index.html
      - /testimonies-results/index.html
 
-   NEXT EDIT → bump v=2 to v=3  (then update this comment)
+   NEXT EDIT → bump v=3 to v=4  (then update this comment)
    Comment-only edits to this file do NOT require a bump.
 ============================================================ */
 
@@ -223,5 +223,32 @@ html, body {
   .theme-toggle .icon-sun,
   .theme-toggle .icon-moon {
     transition: none !important;
+  }
+}
+
+/* ============================================================
+   PAGE ENTRANCE ANIMATION  (chester.how-style fade + lift)
+   Fires once on every navigation so pages "pop in" instead of
+   snapping. Disabled for users who prefer reduced motion.
+============================================================ */
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+main {
+  animation: page-fade-in 0.42s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+
+/* The floating nav pill gets a slightly faster, smaller lift so it
+   settles before content arrives. */
+.site-nav-inner {
+  animation: page-fade-in 0.32s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main,
+  .site-nav-inner {
+    animation: none !important;
   }
 }
