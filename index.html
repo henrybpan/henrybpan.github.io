@@ -30,27 +30,46 @@
     }
 
     .page {
-      max-width: 1040px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 6vw, 2.4rem) clamp(3rem, 8vw, 5rem);
+      padding: clamp(4rem, 9vw, 7rem) clamp(2rem, 6vw, 5rem) clamp(3rem, 8vw, 5rem);
     }
 
     /* ============================================================
-       TWO-COLUMN HOME LAYOUT
-       Left  = about / hero
-       Right = bookshelf + recent essays sidebar
-       Stacks on narrow viewports.
+       DESKTOP HOME LAYOUT  (chester.how-style — wide + spread out)
+       Left  = bio / hero (sticky-feeling)
+       Right = bookshelf + recent essays, side-by-side on wide
     ============================================================ */
     .home-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: clamp(2.5rem, 6vw, 4.5rem);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+      gap: clamp(4rem, 8vw, 7rem);
       align-items: start;
     }
+
+    /* Right column itself splits into two columns on wide screens */
+    .home-side {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(2.5rem, 5vw, 4rem);
+      padding-top: 0.6rem;
+    }
+
+    /* ===== MOBILE BREAKPOINT — single hard switch =====
+       Below 820px we collapse everything to a single column stack.
+       Desktop styles above are tuned to be wide + breathing; we do
+       NOT use intermediate breakpoints (per design request). */
     @media (max-width: 820px) {
+      .page {
+        padding: clamp(3rem, 8vw, 5rem) 1.4rem clamp(3rem, 6vw, 4rem);
+      }
       .home-grid {
         grid-template-columns: 1fr;
-        gap: clamp(3rem, 8vw, 4.5rem);
+        gap: clamp(3rem, 8vw, 4rem);
+      }
+      .home-side {
+        grid-template-columns: 1fr;
+        gap: clamp(2.4rem, 6vw, 3rem);
       }
     }
 
@@ -79,13 +98,13 @@
 
     .intro {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(1.35rem, 3vw, 1.7rem);
+      font-size: clamp(1.35rem, 1.8vw, 1.85rem);
       font-weight: 400;
-      line-height: 1.45;
+      line-height: 1.5;
       letter-spacing: -0.005em;
       color: var(--fg);
-      margin-bottom: 2.5rem;
-      max-width: 38rem;
+      margin-bottom: 2.8rem;
+      max-width: 32rem;
     }
     .intro p + p { margin-top: 0.85em; }
     .intro a {
@@ -207,15 +226,9 @@
     }
 
     /* ============================================================
-       SIDEBAR — bookshelf + recent essays
+       SIDEBAR BLOCKS  (bookshelf + recent essays)
+       .home-side grid is defined above in the layout block.
     ============================================================ */
-    .home-side {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(2.4rem, 5vw, 3.2rem);
-      padding-top: 0.4rem;
-    }
-
     .side-block-label {
       display: block;
       font-size: 0.7rem;
@@ -250,12 +263,12 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 1.05rem;
+      gap: 1.4rem;
     }
     .shelf-item {
       display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: 0.95rem;
+      grid-template-columns: 60px 1fr;
+      gap: 1.15rem;
       align-items: center;
       text-decoration: none;
       color: inherit;
@@ -264,28 +277,28 @@
     .shelf-item:hover { transform: translateX(2px); }
 
     .shelf-cover {
-      width: 44px;
+      width: 60px;
       height: auto;
       border-radius: 2px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
       transition: transform 0.4s cubic-bezier(.2, .9, .3, 1.25),
                   box-shadow 0.4s ease;
       transform-origin: bottom left;
     }
     .shelf-item:hover .shelf-cover {
       transform: rotate(-2deg) scale(1.06);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
     }
     [data-theme="dark"] .shelf-cover {
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     }
     [data-theme="dark"] .shelf-item:hover .shelf-cover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
     }
 
     .shelf-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.02rem;
+      font-size: 1.12rem;
       font-weight: 500;
       line-height: 1.25;
       color: var(--fg);
@@ -295,11 +308,11 @@
       overflow: hidden;
     }
     .shelf-author {
-      font-size: 0.78rem;
+      font-size: 0.84rem;
       color: var(--fg-mut);
       font-style: italic;
       line-height: 1.3;
-      margin-top: 0.15rem;
+      margin-top: 0.2rem;
     }
 
     /* Essays list */
@@ -309,7 +322,7 @@
       flex-direction: column;
     }
     .home-essay {
-      padding: 0.85rem 0;
+      padding: 1rem 0;
       border-top: 1px solid var(--border);
     }
     .home-essay:first-child { border-top: 0; padding-top: 0; }
@@ -325,7 +338,7 @@
     }
     .home-essay-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.08rem;
+      font-size: 1.18rem;
       font-weight: 500;
       line-height: 1.25;
     }
