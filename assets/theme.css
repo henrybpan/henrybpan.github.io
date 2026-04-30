@@ -227,28 +227,45 @@ html, body {
 }
 
 /* ============================================================
-   PAGE ENTRANCE ANIMATION  (chester.how-style fade + lift)
-   Fires once on every navigation so pages "pop in" instead of
-   snapping. Disabled for users who prefer reduced motion.
+   PAGE ENTRANCE ANIMATION
+   Subtle fade + tiny lift so pages don't snap. Starts at opacity
+   0.7 (not 0) so content is visible immediately and the animation
+   reads as "settle in" rather than "wait for paint".
 ============================================================ */
 @keyframes page-fade-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: none; }
+  from { opacity: 0.7; transform: translateY(3px); }
+  to   { opacity: 1;   transform: none; }
 }
 
 main {
-  animation: page-fade-in 0.42s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+  animation: page-fade-in 0.18s cubic-bezier(0.2, 0.65, 0.3, 1) both;
 }
 
-/* The floating nav pill gets a slightly faster, smaller lift so it
-   settles before content arrives. */
 .site-nav-inner {
-  animation: page-fade-in 0.32s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+  animation: page-fade-in 0.16s cubic-bezier(0.2, 0.65, 0.3, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
   main,
   .site-nav-inner {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   CROSS-DOCUMENT VIEW TRANSITIONS  (Chrome 126+, Safari 18+)
+   Native browser-driven crossfade between page navigations.
+   Falls back gracefully on unsupported browsers (Firefox, older
+   versions) — they just do an instant nav as before.
+============================================================ */
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
     animation: none !important;
   }
 }
