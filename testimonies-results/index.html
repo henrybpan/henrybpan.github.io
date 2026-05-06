@@ -1,52 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}}());</script>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" href="/favicon.png?v=4">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>results. — Henry Pan</title>
+  <title>results — Henry Pan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/theme.css?v=4">
-  <script src="/assets/theme.js?v=4" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/theme.css?v=9">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { -webkit-font-smoothing: antialiased; }
-
-    body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: clamp(1rem, 1.8vw, 1.125rem);
-      line-height: 1.7;
-      min-height: 100dvh;
+    .page-head {
+      max-width: 720px;
+      margin: 0 auto clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      padding: 0 clamp(0.5rem, 2vw, 1.2rem);
     }
-
-    .page {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 6vw, 2rem) clamp(3rem, 6vw, 5rem);
-    }
-
-    h1 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2.4rem, 7vw, 3.4rem);
+    .page-head h1 {
+      font-family: var(--font-display);
+      font-style: italic;
       font-weight: 500;
-      letter-spacing: 0.005em;
-      line-height: 1.05;
-      margin-bottom: 1.2rem;
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 0.7rem;
     }
-
-    .intro {
-      color: var(--fg-mut);
-      font-size: clamp(1.02rem, 1.8vw, 1.1rem);
+    .page-head .intro {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--ink-mut);
+      font-size: clamp(1.05rem, 1.6vw, 1.2rem);
       line-height: 1.6;
-      margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
-      max-width: 34rem;
+      max-width: 36rem;
+      margin: 0 auto;
     }
+    .grid-wrap { max-width: 1000px; margin: 0 auto; padding: 0 clamp(0.5rem, 2vw, 1.5rem); }
 
     /* ── Grid ── */
     .grid {
@@ -58,15 +47,14 @@
       .grid { grid-template-columns: 1fr; }
     }
 
-    /* ── Card ── */
     .card {
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      border-radius: 2px;
+      background: var(--paper);
+      border: 1px solid var(--ink);
       padding: clamp(1.25rem, 3vw, 1.75rem);
       display: flex;
       flex-direction: column;
       gap: 1.1rem;
+      box-shadow: 0 1px 0 rgba(44,58,77,0.05), 0 12px 24px -16px rgba(44,58,77,0.18);
     }
 
     /* ── Card header ── */
@@ -157,26 +145,31 @@
   </style>
 </head>
 <body>
-  <nav class="site-nav">
-    <div class="site-nav-inner">
-      <a href="/" class="nav-home">henry</a>
-      <ul class="nav-links">
-        <li><a href="/essays">essays</a></li>
-        <li><a href="/lindy-library">library</a></li>
-        <li><a href="/contact">contact</a></li>
-      </ul>
-      <div class="nav-right">
-        <button type="button" class="theme-toggle" aria-label="Toggle light or dark mode">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-        </button>
-      </div>
-    </div>
-  </nav>
-  <main class="page">
-    <h1>results.</h1>
-    <p class="intro">Creators I've worked with, and what changed for them. Every testimonial here is unprompted — I asked, they sent, I didn't edit.</p>
+  <main class="sheet">
+    <svg class="corner tl" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="0.8" aria-hidden="true"><path d="M0 11 L11 11 L11 0"/><circle cx="11" cy="11" r="1.4" fill="currentColor" stroke="none"/><path d="M3 11 L11 3" opacity="0.5"/></svg>
+    <svg class="corner tr" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="0.8" aria-hidden="true"><path d="M0 11 L11 11 L11 0"/><circle cx="11" cy="11" r="1.4" fill="currentColor" stroke="none"/><path d="M3 11 L11 3" opacity="0.5"/></svg>
+    <svg class="corner br" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="0.8" aria-hidden="true"><path d="M0 11 L11 11 L11 0"/><circle cx="11" cy="11" r="1.4" fill="currentColor" stroke="none"/><path d="M3 11 L11 3" opacity="0.5"/></svg>
+    <svg class="corner bl" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="0.8" aria-hidden="true"><path d="M0 11 L11 11 L11 0"/><circle cx="11" cy="11" r="1.4" fill="currentColor" stroke="none"/><path d="M3 11 L11 3" opacity="0.5"/></svg>
 
+    <div class="est-badge">EST. MMVI</div>
+
+    <header class="cartouche">
+      <div class="cartouche-name"><a href="/">HENRY <span class="cartouche-dot"></span> PAN</a></div>
+      <nav class="cartouche-nav" aria-label="primary">
+        <a href="/essays">essays</a>
+        <a href="/lindy-library">library</a>
+        <a href="/contact">contact</a>
+      </nav>
+    </header>
+
+    <div class="page-head">
+      <h1>results</h1>
+      <p class="intro">creators i've worked with, and what changed for them. every testimonial here is unprompted — i asked, they sent, i didn't edit.</p>
+    </div>
+
+    <div class="fish" aria-hidden="true"><svg viewBox="0 0 60 30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15 C 12 0, 35 0, 45 15 C 50 11, 55 8, 58 5"/><path d="M2 15 C 12 30, 35 30, 45 15 C 50 19, 55 22, 58 25"/></svg></div>
+
+    <div class="grid-wrap">
     <div class="grid">
 
       <!-- seb.e.kho -->
@@ -333,6 +326,12 @@
       </div>
 
     </div>
+    </div><!-- /.grid-wrap -->
+    <div class="blend-band">PHILOSOPHY &amp; ECONOMICS BLEND</div>
   </main>
+
+  <footer class="colophon">
+    <div class="colophon-line">Set in Cormorant &amp; Garamond. Charlottesville, Virginia — MMXXVI.</div>
+  </footer>
 </body>
 </html>
