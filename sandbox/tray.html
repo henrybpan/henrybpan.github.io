@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Tray corner demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a3a8f;
+      --cream: #f5efe1;
+      --ink: #1a1915;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #efe9da;
+      font-family: 'EB Garamond', Georgia, serif;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+    }
+    .label {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #7b7669;
+    }
+
+    /* === THE TRAY === */
+    .tray {
+      width: min(420px, 100%);
+      aspect-ratio: 3 / 5;
+      background: var(--navy);
+      border-radius: 30px;
+      padding: 16px;
+    }
+    .tray-inner {
+      width: 100%;
+      height: 100%;
+      background: var(--cream);
+      border-radius: 14px;             /* ~ outer 30 - padding 16 */
+      outline: 1px solid var(--navy);
+      outline-offset: -1px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .tray-banner {
+      align-self: stretch;
+      background: var(--navy);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      padding: 6px 0 7px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+    }
+    .tray-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem;
+      letter-spacing: 0.06em;
+      color: var(--navy);
+      font-weight: 600;
+      line-height: 1;
+      margin: 4px 0 6px;
+    }
+    .tray-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.42em;
+      color: var(--navy);
+      font-weight: 500;
+    }
+    .tray-spacer { flex: 1; }
+    .tray-foot {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.42em;
+      color: var(--navy);
+      font-weight: 500;
+      line-height: 1.6;
+    }
+    .tray-foot small {
+      display: block;
+      letter-spacing: 0.5em;
+      font-size: 0.7rem;
+      margin-top: 2px;
+    }
+
+    /* === SECOND TRAY: applied to a "section" use case === */
+    .section-tray {
+      width: min(720px, 100%);
+      background: var(--navy);
+      border-radius: 30px;
+      padding: 16px;
+    }
+    .section-tray-inner {
+      background: var(--cream);
+      border-radius: 14px;
+      outline: 1px solid var(--navy);
+      outline-offset: -1px;
+      padding: 36px 32px;
+    }
+    .section-tray-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 2rem;
+      margin: 0 0 0.4em;
+      color: var(--navy);
+    }
+    .section-tray-inner p {
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    @media (max-width: 680px) {
+      .tray { border-radius: 22px; padding: 12px; }
+      .tray-inner { border-radius: 10px; }
+      .section-tray { border-radius: 22px; padding: 12px; }
+      .section-tray-inner { border-radius: 10px; padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <span class="label">Tray demo · A · Camel-pack proportions</span>
+  <div class="tray">
+    <div class="tray-inner">
+      <div class="tray-banner">SINCE MMXXVI</div>
+      <div class="tray-title">HENRY</div>
+      <div class="tray-sub">PAN</div>
+      <div class="tray-spacer"></div>
+      <div class="tray-foot">PHILOSOPHY &amp; ECONOMICS<small>BLEND</small></div>
+    </div>
+  </div>
+
+  <span class="label">Tray demo · B · Section card use case</span>
+  <div class="section-tray">
+    <div class="section-tray-inner">
+      <h2>whatever you do, work at it with all your heart</h2>
+      <p>I'm 19 and currently studying philosophy and economics at UVA. I'm going to make content into a full time career after college, but I'm not sure how that's going to manifest.</p>
+    </div>
+  </div>
+
+</body>
+</html>

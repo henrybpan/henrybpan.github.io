@@ -3,7 +3,7 @@
    Cream paper + slate ink + Camel-pack engraved frame.
    Light only. Dark mode removed.
 ============================================================
-   Cache-bust: v=9
+   Cache-bust: v=10
    Bump in lockstep across every themed page when this file
    or theme.js changes.
 ============================================================ */
@@ -75,62 +75,72 @@ body {
 a { color: var(--ink); }
 
 /* ============================================================
-   ENGRAVED SHEET — the printed-page frame around every page
+   CAMEL-PACK FRAME — sitewide
+   .pack-frame is the navy bezel; .sheet is the flat cream panel inside;
+   .pack-corner SVGs paint the stepped staircase corners.
 ============================================================ */
-.sheet {
-  max-width: 1180px;
-  margin: 0 auto;
+.pack-frame {
+  --lip: 22px;
+  max-width: 1224px;            /* sheet 1180 + lip*2 */
+  margin: 14px auto 28px;
+  background: var(--ink);
+  padding: var(--lip);
   position: relative;
-  padding: clamp(1.6rem, 4vw, 3rem) clamp(1.6rem, 4vw, 3rem) 0;
-  border: 2.5px solid var(--ink);
-  outline: 0.5px solid var(--ink);
-  outline-offset: 6px;
-  box-shadow:
-    inset 0 0 0 5px var(--paper),
-    inset 0 0 0 6px var(--ink),
-    0 24px 60px -20px rgba(44,58,77,0.22);
   animation: settle 700ms cubic-bezier(0.2, 0.65, 0.3, 1) both;
 }
+.sheet {
+  max-width: none;
+  margin: 0;
+  position: relative;
+  padding: clamp(1.8rem, 4vw, 3rem) clamp(1.8rem, 4vw, 3rem) 0.4rem;
+  background: var(--paper);
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Stepped corners — viewBox 56×40 rendered 1:1 (lip 22 + step zone 34×18). */
+.pack-corner {
+  position: absolute;
+  width: 56px;
+  height: 40px;
+  pointer-events: none;
+  z-index: 5;
+}
+.pack-corner.tl { top: 0; left: 0; }
+.pack-corner.tr { top: 0; right: 0; transform: scaleX(-1); }
+.pack-corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+.pack-corner.br { bottom: 0; right: 0; transform: scale(-1, -1); }
+.pack-corner svg { display: block; width: 100%; height: 100%; }
+.pack-corner .cnr-navy { fill: var(--ink); }
+.pack-corner .cnr-cream { fill: var(--paper); }
+
 @keyframes settle {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: none; }
 }
 
-.corner {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  color: var(--ink);
-  pointer-events: none;
-}
-.corner.tl { top: -11px; left: -11px; }
-.corner.tr { top: -11px; right: -11px; transform: rotate(90deg); }
-.corner.br { bottom: -11px; right: -11px; transform: rotate(180deg); }
-.corner.bl { bottom: -11px; left: -11px; transform: rotate(270deg); }
+.corner { display: none; }
 
-/* Top "EST. MMVI" tab — Camel-pack style filled navy flap */
+/* Top "EST. MMVI" tab — sits on the navy lip, tucks into cream below */
 .est-badge {
   position: absolute;
-  top: -27px;
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--ink);
   color: var(--paper);
   border: 2.5px solid var(--ink);
   border-bottom-color: var(--paper);
-  padding: 8px 22px 9px;
+  padding: 6px 22px 7px;
   font-family: var(--font-caps);
   font-size: 0.7rem;
   letter-spacing: 0.36em;
   text-indent: 0.36em;
   font-weight: 600;
-  z-index: 2;
+  z-index: 6;
   white-space: nowrap;
-  border-radius: 4px 4px 0 0;
-  box-shadow:
-    inset 0 0 0 1px var(--ink),
-    inset 0 1px 0 1.5px var(--paper),
-    0 -1px 0 var(--ink);
+  border-radius: 4px;
 }
 .est-badge::before, .est-badge::after {
   content: '✦';
@@ -234,7 +244,7 @@ a { color: var(--ink); }
 
 /* Bottom navy band — Camel-pack "PHILOSOPHY & ECONOMICS BLEND" */
 .blend-band {
-  margin: clamp(2rem, 4vw, 3rem) calc(-1 * clamp(1.6rem, 4vw, 3rem)) 0;
+  margin: clamp(2rem, 4vw, 3rem) 0 1.5rem;
   background: var(--ink);
   color: var(--paper);
   text-align: center;
@@ -246,6 +256,7 @@ a { color: var(--ink); }
   font-weight: 600;
   border-top: 0.5px solid var(--ink);
   position: relative;
+  border-radius: 0;
 }
 .blend-band::before, .blend-band::after {
   content: '';
