@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Opening on YouTube…</title>
+
+<!-- ============================================================
+     YouTube deep link redirector
+     ------------------------------------------------------------
+     To create a new deep link:
+       1. Copy this folder: cp -r yt/example yt/<your-slug>
+       2. Edit VIDEO_ID below with the 11-char YouTube ID
+       3. (Optional) Update the <title> + the human label
+       4. Share the link: https://henrybpan.com/yt/<your-slug>
+     ============================================================ -->
+<script>
+  // ↓↓↓ EDIT THIS ONLY ↓↓↓
+  var VIDEO_ID = "dQw4w9WgXcQ";
+  // ↑↑↑ EDIT THIS ONLY ↑↑↑
+
+  (function () {
+    var ua = navigator.userAgent || "";
+    var isIOS = /iPhone|iPad|iPod/i.test(ua);
+    var isAndroid = /Android/i.test(ua);
+    var isInstagram = /Instagram/i.test(ua);
+    var isFacebook = /FBAN|FBAV/i.test(ua);
+    var inAppBrowser = isInstagram || isFacebook;
+
+    var webUrl = "https://www.youtube.com/watch?v=" + VIDEO_ID;
+
+    // Instagram / Facebook in-app browsers block custom URL schemes.
+    // Show the user a tap-to-open instruction instead of silently failing.
+    if (inAppBrowser) {
+      document.documentElement.dataset.state = "iab";
+      return;
+    }
+
+    if (isIOS) {
+      // youtube:// opens the YouTube iOS app if installed; otherwise Safari opens the web URL.
+      window.location.replace("youtube://" + VIDEO_ID);
+      setTimeout(function () { window.location.replace(webUrl); }, 1500);
+      return;
+    }
+
+    if (isAndroid) {
+      // Android intent URL: opens YouTube app, falls back to Play Store / web automatically.
+      window.location.replace(
+        "intent://www.youtube.com/watch?v=" + VIDEO_ID +
+        "#Intent;package=com.google.android.youtube;scheme=https;" +
+        "S.browser_fallback_url=" + encodeURIComponent(webUrl) + ";end"
+      );
+      return;
+    }
+
+    // Desktop / everything else: just go to youtube.com
+    window.location.replace(webUrl);
+  })();
+</script>
+
+<style>
+  :root { color-scheme: light dark; }
+  html, body {
+    margin: 0; padding: 0;
+    background: #14130f; color: #ede8de;
+    font-family: "EB Garamond", Georgia, serif;
+    min-height: 100vh;
+  }
+  .wrap {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 2rem; text-align: center;
+  }
+  h1 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 500; font-size: clamp(1.6rem, 5vw, 2.4rem);
+    margin: 0 0 1rem; letter-spacing: -0.01em;
+  }
+  p { font-size: 1.05rem; line-height: 1.55; max-width: 28rem; margin: 0 0 1.25rem; opacity: 0.85; }
+  a.btn {
+    display: inline-block;
+    padding: 0.7rem 1.25rem;
+    border: 1px solid #ede8de;
+    color: #ede8de; text-decoration: none;
+    font-size: 0.95rem; letter-spacing: 0.04em;
+  }
+  a.btn:hover { background: #ede8de; color: #14130f; }
+
+  /* default state: short "opening…" copy for the brief moment before redirect */
+  .iab-only { display: none; }
+  html[data-state="iab"] .iab-only { display: block; }
+  html[data-state="iab"] .default-only { display: none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="default-only">
+      <h1>Opening on YouTube…</h1>
+      <p>If nothing happens, <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" id="fallback">tap here to watch</a>.</p>
+    </div>
+
+    <div class="iab-only">
+      <h1>Open in your browser</h1>
+      <p>Instagram blocks links from opening the YouTube app directly. Tap the <strong>⋯</strong> menu in the top-right, then <strong>Open in external browser</strong>.</p>
+      <a class="btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" id="iab-fallback">…or watch in this browser</a>
+    </div>
+  </div>
+
+<script>
+  // Patch the visible fallback links so they always match VIDEO_ID without you needing to edit them.
+  (function () {
+    var url = "https://www.youtube.com/watch?v=" + VIDEO_ID;
+    var a = document.getElementById("fallback");      if (a) a.href = url;
+    var b = document.getElementById("iab-fallback");  if (b) b.href = url;
+  })();
+</script>
+</body>
+</html>
