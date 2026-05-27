@@ -3,7 +3,7 @@
    Cream paper + slate ink + Camel-pack engraved frame.
    Light only. Dark mode removed.
 ============================================================
-   Cache-bust: v=10
+   Cache-bust: v=13
    Bump in lockstep across every themed page when this file
    or theme.js changes.
 ============================================================ */
@@ -109,11 +109,18 @@ a { color: var(--ink); }
 }
 .pack-corner.tl { top: 0; left: 0; }
 .pack-corner.tr { top: 0; right: 0; transform: scaleX(-1); }
-.pack-corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
-.pack-corner.br { bottom: 0; right: 0; transform: scale(-1, -1); }
+/* Bottom corners removed sitewide — the blend-band carries the bottom edge alone. */
+.pack-corner.bl, .pack-corner.br { display: none; }
 .pack-corner svg { display: block; width: 100%; height: 100%; }
 .pack-corner .cnr-navy { fill: var(--ink); }
 .pack-corner .cnr-cream { fill: var(--paper); }
+
+/* Mobile: shrink the lip + corners so the frame doesn't dominate small screens.
+   Ratio preserved: 36/14 ≈ 56/22, so painted lip in the SVG still lines up with CSS --lip. */
+@media (max-width: 600px) {
+  .pack-frame { --lip: 14px; margin: 10px auto 20px; }
+  .pack-corner { width: 36px; height: 26px; }
+}
 
 @keyframes settle {
   from { opacity: 0; transform: translateY(6px); }
@@ -242,9 +249,10 @@ a { color: var(--ink); }
   .cartouche-nav a { font-size: 0.62rem; padding: 0.32rem 0.55rem; letter-spacing: 0.24em; }
 }
 
-/* Bottom navy band — Camel-pack "PHILOSOPHY & ECONOMICS BLEND" */
+/* Bottom navy band — Camel-pack "PHILOSOPHY & ECONOMICS BLEND".
+   Flush to the sheet's bottom + side edges (pulled out of .sheet's padding). */
 .blend-band {
-  margin: clamp(2rem, 4vw, 3rem) 0 1.5rem;
+  margin: clamp(2rem, 4vw, 3rem) calc(-1 * clamp(1.8rem, 4vw, 3rem)) calc(-1 * 0.4rem);
   background: var(--ink);
   color: var(--paper);
   text-align: center;

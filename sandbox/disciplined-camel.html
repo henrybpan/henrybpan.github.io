@@ -4,24 +4,20 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/favicon.png?v=4">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Henry Pan — philosophy & economics at UVA. Read, write, share what I'm thinking on Instagram and YouTube.">
-  <meta property="og:title" content="Henry Pan">
-  <meta property="og:description" content="philosophy & economics blend — whatever you do, work at it with all your heart.">
-  <meta property="og:image" content="https://henrybpan.com/preview.png?v=4">
-  <meta property="og:url" content="https://henrybpan.com/">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://henrybpan.com/">
-  <title>Henry Pan</title>
+  <title>Henry Pan — disciplined camel mock</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/theme.css?v=13">
+  <link rel="stylesheet" href="/assets/theme.css?v=12">
   <style>
-    /* Page-specific (homepage only) */
+    /* ---- Page-specific ---- */
+
+    /* The only typographic decision: display vs body. No third face. */
     .hero {
       padding: clamp(1rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1.5rem) clamp(0.5rem, 2vw, 1rem);
       text-align: center;
     }
+
     h1.name {
       margin: 0 auto;
       width: 100%;
@@ -37,14 +33,14 @@
       font-size: 22px; fill: var(--ink-mut); letter-spacing: 0.005em;
     }
 
-    /* Shrink cartouche nav so the arched name is the unambiguous focal point */
+    /* ---- Shrink cartouche nav so the arched name is the unambiguous focal point ---- */
     .cartouche-nav a {
       font-size: 0.56rem;
       letter-spacing: 0.26em;
       padding: 0.28rem 0.7rem;
     }
 
-    /* Double-rule section break — the real Camel pack uses pairs of thin rules */
+    /* ---- Double-rule section break — the real Camel pack uses pairs of thin rules ---- */
     .rule-pair {
       max-width: 720px;
       margin: 1.5rem auto;
@@ -59,7 +55,7 @@
     }
     .rule-pair::after { margin-top: 3px; }
 
-    /* Intro: one tight paragraph, video below */
+    /* ---- Intro: one tight paragraph, video below ---- */
     .intro {
       max-width: 640px;
       margin: 0 auto;
@@ -112,7 +108,7 @@
     }
     .video-caption a:hover { color: var(--ember); }
 
-    /* Reading & writing: shared list styling, no thumbnails */
+    /* ---- Reading & writing: shared list styling, no thumbnails ---- */
     .list-block {
       max-width: 640px;
       margin: 0 auto;
@@ -184,6 +180,64 @@
     }
     .more-link:hover { color: var(--ember); }
 
+    /* Bottom corners removed — the band carries the bottom edge alone. */
+    .pack-corner.bl, .pack-corner.br { display: none; }
+
+    /* Bottom Camel stripe — occupies the full bottom of the pack, flush to all three edges. */
+    .blend-band-flush {
+      margin: clamp(1.8rem, 4vw, 2.6rem) calc(-1 * clamp(1.8rem, 4vw, 3rem)) calc(-1 * 0.4rem);
+      padding: 1.05rem 1rem;
+      /* Wabi-sabi: very faint ink misregistration — a 0.5px ember halo offset down-right. */
+      box-shadow: 0.5px 0.5px 0 rgba(201, 137, 104, 0.18);
+    }
+
+    /* ============================================================
+       Wabi-sabi layer — restraint over flourish.
+       The pack is too clean. Three subtle process marks:
+         1. Heavier paper grain on the sheet
+         2. Two off-axis foxing spots (aged paper)
+         3. Double-rule dividers fade out at the ends
+       ============================================================ */
+
+    /* Slightly heavier, warmer paper grain layered over the sheet — only inside the pack. */
+    .sheet {
+      position: relative;
+    }
+    .sheet::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
+      mix-blend-mode: multiply;
+      background-image:
+        /* Foxing spot 1 — upper right, ochre, irregular */
+        radial-gradient(ellipse 120px 90px at 78% 18%, rgba(168, 124, 78, 0.10) 0%, transparent 70%),
+        /* Foxing spot 2 — lower left, smaller, browner */
+        radial-gradient(ellipse 80px 70px at 14% 72%, rgba(120, 84, 52, 0.09) 0%, transparent 75%),
+        /* Fine paper grain — finer than the sitewide one, higher frequency */
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.30 0 0 0 0 0.22 0 0 0 0 0.14 0 0 0 0.10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      background-repeat: no-repeat, no-repeat, repeat;
+      background-size: 100% 100%, 100% 100%, 180px 180px;
+    }
+    /* Make sure all real content sits above the wash. */
+    .sheet > * { position: relative; z-index: 1; }
+
+    /* Rules fade at the ends — printed, not ruled. */
+    .rule-pair::before,
+    .rule-pair::after {
+      border-top: 0;
+      height: 0.5px;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        var(--rule) 18%,
+        var(--rule) 82%,
+        transparent 100%
+      );
+    }
+
     @media (max-width: 600px) {
       .list-block ul a { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
       .item-meta { align-self: flex-start; }
@@ -195,6 +249,8 @@
   <div class="pack-frame">
     <span class="pack-corner tl" aria-hidden="true"><svg viewBox="0 0 56 40" preserveAspectRatio="none"><rect class="cnr-navy" width="56" height="40"/><path class="cnr-cream" d="M 56 22 L 56 40 L 22 40 a 6 6 0 0 1 6 -6 L 36 34 a 6 6 0 0 1 6 -6 L 50 28 a 6 6 0 0 1 6 -6 Z"/></svg></span>
     <span class="pack-corner tr" aria-hidden="true"><svg viewBox="0 0 56 40" preserveAspectRatio="none"><rect class="cnr-navy" width="56" height="40"/><path class="cnr-cream" d="M 56 22 L 56 40 L 22 40 a 6 6 0 0 1 6 -6 L 36 34 a 6 6 0 0 1 6 -6 L 50 28 a 6 6 0 0 1 6 -6 Z"/></svg></span>
+    <span class="pack-corner bl" aria-hidden="true"><svg viewBox="0 0 56 40" preserveAspectRatio="none"><rect class="cnr-navy" width="56" height="40"/><path class="cnr-cream" d="M 56 22 L 56 40 L 22 40 a 6 6 0 0 1 6 -6 L 36 34 a 6 6 0 0 1 6 -6 L 50 28 a 6 6 0 0 1 6 -6 Z"/></svg></span>
+    <span class="pack-corner br" aria-hidden="true"><svg viewBox="0 0 56 40" preserveAspectRatio="none"><rect class="cnr-navy" width="56" height="40"/><path class="cnr-cream" d="M 56 22 L 56 40 L 22 40 a 6 6 0 0 1 6 -6 L 36 34 a 6 6 0 0 1 6 -6 L 50 28 a 6 6 0 0 1 6 -6 Z"/></svg></span>
 
     <main class="sheet">
 
@@ -219,9 +275,9 @@
 
       <section class="intro">
         <p>
-          Philosophy &amp; economics at <a href="https://virginia.edu" target="_blank" rel="noopener noreferrer">UVA</a>.
-          Content strategist at <a href="https://clipcut.com/" target="_blank" rel="noopener noreferrer">Clipcut</a> and content coach at <a href="https://good-marketing.co/" target="_blank" rel="noopener noreferrer">Good Marketing Company</a>.
-          Trying to <a href="/lindy-library">read</a> and <a href="/essays">write</a> more.
+          Studying philosophy &amp; economics at <a href="https://virginia.edu" target="_blank" rel="noopener noreferrer">UVA</a>.
+          Content strategist at <a href="https://clipcut.com/" target="_blank" rel="noopener noreferrer">Clipcut</a> and content coach at Good Marketing Company.
+          I <a href="/lindy-library">read</a>, I <a href="/essays">write</a>, I <a href="/about">try to figure things out</a>.
         </p>
       </section>
 
@@ -256,7 +312,7 @@
         <a href="/essays" class="more-link">all essays</a>
       </section>
 
-      <div class="blend-band">PHILOSOPHY &amp; ECONOMICS BLEND</div>
+      <div class="blend-band blend-band-flush">PHILOSOPHY &amp; ECONOMICS BLEND</div>
 
     </main>
   </div>
@@ -264,10 +320,8 @@
   <footer class="colophon">
     <div class="socials">
       <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="0.85" fill="currentColor" stroke="none"/></svg></a>
-      <a href="https://www.tiktok.com/@henrybpan" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.74a8.16 8.16 0 0 0 4.77 1.52V6.83a4.85 4.85 0 0 1-1.84-.14z"/></svg></a>
       <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
       <a href="https://x.com/henrypanonx" target="_blank" rel="noopener noreferrer" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-      <a href="https://www.linkedin.com/in/henrybpan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></a>
       <a href="mailto:work@henrybpan.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg></a>
     </div>
     <div class="colophon-line">Set in Cormorant &amp; Garamond. Charlottesville, Virginia.</div>
