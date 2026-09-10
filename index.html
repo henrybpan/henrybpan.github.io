@@ -97,27 +97,6 @@
     .video-thumb img.is-loaded { opacity: 1; }
     .video:hover .video-thumb img { transform: scale(1.02); }
 
-    /* Play glyph — a hairline circle, no filled YouTube chrome */
-    .video-play {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      pointer-events: none;
-    }
-    .video-play span {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.9);
-      background: rgba(28,28,28,0.28);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      display: grid;
-      place-items: center;
-    }
-    .video-play svg { width: 15px; height: 15px; fill: #fff; margin-left: 2px; }
-
     .video-title {
       display: block;
       margin-top: 0.8rem;
@@ -224,9 +203,6 @@
       <span class="video-kicker">Watch my latest youtube video</span>
       <span class="video-thumb">
         <img id="latest-video-thumb" src="" alt="">
-        <span class="video-play">
-          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
-        </span>
       </span>
       <span class="video-title" id="latest-video-title"></span>
     </a>

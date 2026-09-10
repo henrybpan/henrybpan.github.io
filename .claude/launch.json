@@ -3,10 +3,9 @@
   "configurations": [
     {
       "name": "site",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["--yes", "serve", "/Users/henrypan/Desktop/henrybpan.github.io"],
-      "port": 4321,
-      "autoPort": true
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4321"],
+      "port": 4321
     }
   ]
 }
