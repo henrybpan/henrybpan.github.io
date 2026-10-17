@@ -13,18 +13,18 @@
   <link rel="canonical" href="https://henrybpan.com/">
   <title>Henry Pan</title>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-  <link rel="preconnect" href="https://img.youtube.com" crossorigin>
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap">
   <link rel="stylesheet" href="/assets/minimal.css?v=1">
   <style>
-    /* ==========================================================
-       LINK PAGE — mobile-first, centered single column.
-       No cards, no bubbles: links are plain text on their own
-       lines, separated by whitespace only.
-    ========================================================== */
-    body { text-align: center; }
+    /* Separate layout owners: edit desktop styles without affecting mobile. */
+    .home-desktop { display: none !important; }
+    @media (min-width: 760px) {
+      .home-mobile { display: none !important; }
+      .home-desktop { display: flex !important; }
+    }
 
-    main.linkpage {
+.home-mobile { text-align: center; }
+.home-mobile.linkpage {
       max-width: 30rem;
       margin: 0 auto;
       padding: clamp(2.5rem, 8vh, 4rem) 1.5rem clamp(3rem, 10vh, 4.5rem);
@@ -32,18 +32,14 @@
       flex-direction: column;
       align-items: center;
     }
-
-    /* ---- Name ---- */
-    .name {
+.home-mobile .name {
       font-size: clamp(1.6rem, 7vw, 2rem);
       font-weight: 700;
       letter-spacing: -0.015em;
       line-height: 1.2;
       margin: 0;
     }
-
-    /* ---- Social icon row ---- */
-    .socials {
+.home-mobile .socials {
       list-style: none;
       display: flex;
       justify-content: center;
@@ -51,26 +47,21 @@
       margin: 0.95rem 0 0;
       padding: 0;
     }
-    .socials a {
+.home-mobile .socials a {
       display: block;
       color: var(--mut);
       padding: 0.35rem;
-      margin: -0.35rem;           /* keeps the 44px tap target without spacing drift */
+      margin: -0.35rem;
       transition: color 0.15s ease, transform 0.15s ease;
     }
-    .socials a:hover,
-    .socials a:focus-visible { color: var(--ink); transform: translateY(-1px); }
-    .socials svg { width: 19px; height: 19px; display: block; fill: currentColor; }
-
-    /* ---- Latest video ---- */
-    .video {
-      display: block;
+.home-mobile .socials a:hover, .home-mobile .socials a:focus-visible { color: var(--ink); transform: translateY(-1px); }
+.home-mobile .socials svg { width: 19px; height: 19px; display: block; fill: currentColor; }
+.home-mobile .video {
       width: 100%;
       margin: clamp(2rem, 6vh, 2.75rem) 0 0;
       color: var(--ink);
-      text-decoration: none;
     }
-    .video-kicker {
+.home-mobile .video-kicker {
       display: block;
       font-size: 0.72rem;
       font-weight: 700;
@@ -79,46 +70,35 @@
       color: var(--mut);
       margin-bottom: 0.85rem;
     }
-    .video-thumb {
-      position: relative;
+.home-mobile .video-player {
       width: 100%;
       aspect-ratio: 16 / 9;
-      overflow: hidden;
       background: #d9d4c6;
     }
-    .video-thumb img {
+.home-mobile .video-player iframe {
       width: 100%;
       height: 100%;
-      object-fit: cover;
       display: block;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.25s ease;
+      border: 0;
     }
-    .video-thumb img.is-loaded { opacity: 1; }
-    .video:hover .video-thumb img { transform: scale(1.02); }
-
-    .video-title {
+.home-mobile .video-link {
       display: block;
       margin-top: 0.8rem;
       font-size: 0.95rem;
       font-weight: 500;
       line-height: 1.4;
       color: var(--ink);
-      max-width: 26rem;
-      margin-left: auto;
-      margin-right: auto;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
-    .video:hover .video-title { text-decoration: underline; text-underline-offset: 3px; }
-
-    /* ---- Link stack: line breaks only, no boxes ---- */
-    .links {
+.home-mobile .links {
       list-style: none;
       margin: clamp(1.6rem, 4.5vh, 2.25rem) 0 0;
       padding: 0;
       width: 100%;
     }
-    .links li { margin: 0; }
-    .links a {
+.home-mobile .links li { margin: 0; }
+.home-mobile .links a {
       display: block;
       padding: 0.6rem 0;
       color: var(--ink);
@@ -128,11 +108,8 @@
       letter-spacing: 0.01em;
       transition: color 0.15s ease, opacity 0.15s ease;
     }
-    .links a:hover,
-    .links a:focus-visible { color: var(--mut); }
-
-    /* ---- Discord CTA ---- */
-    .discord {
+.home-mobile .links a:hover, .home-mobile .links a:focus-visible { color: var(--mut); }
+.home-mobile .discord {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -149,26 +126,148 @@
       letter-spacing: 0.01em;
       transition: background-color 0.15s ease, color 0.15s ease;
     }
-    .discord svg { width: 18px; height: 18px; fill: currentColor; display: block; }
-    .discord:hover,
-    .discord:focus-visible { background: var(--ink); color: var(--paper); }
+.home-mobile .discord svg { width: 18px; height: 18px; fill: currentColor; display: block; }
+.home-mobile .discord:hover, .home-mobile .discord:focus-visible { background: var(--ink); color: var(--paper); }
 
-    /* ---- Desktop / large screens ---- */
+
     @media (min-width: 760px) {
-      main.linkpage { max-width: 34rem; padding-top: clamp(4rem, 12vh, 6rem); }
-      .name { font-size: 2.25rem; }
-      .socials { gap: 1.5rem; }
-      .socials svg { width: 20px; height: 20px; }
-      .links a { font-size: 1.15rem; padding: 0.65rem 0; }
-      .video-title { font-size: 1rem; }
-      .discord { font-size: 1.02rem; padding: 0.75rem 1.6rem; }
+.home-mobile.linkpage { max-width: 34rem; padding-top: clamp(4rem, 12vh, 6rem); }
+.home-mobile .name { font-size: 2.25rem; }
+.home-mobile .socials { gap: 1.5rem; }
+.home-mobile .socials svg { width: 20px; height: 20px; }
+.home-mobile .links a { font-size: 1.15rem; padding: 0.65rem 0; }
+.home-mobile .video-link { font-size: 1rem; }
+.home-mobile .discord { font-size: 1.02rem; padding: 0.75rem 1.6rem; }
     }
 
-    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+    @media (prefers-reduced-motion: reduce) {
+.home-mobile * { transition: none !important; } }
+
+.home-desktop { text-align: center; }
+.home-desktop.linkpage {
+      max-width: 30rem;
+      margin: 0 auto;
+      padding: clamp(2.5rem, 8vh, 4rem) 1.5rem clamp(3rem, 10vh, 4.5rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+.home-desktop .name {
+      font-size: clamp(1.6rem, 7vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      margin: 0;
+    }
+.home-desktop .socials {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.35rem;
+      margin: 0.95rem 0 0;
+      padding: 0;
+    }
+.home-desktop .socials a {
+      display: block;
+      color: var(--mut);
+      padding: 0.35rem;
+      margin: -0.35rem;
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+.home-desktop .socials a:hover, .home-desktop .socials a:focus-visible { color: var(--ink); transform: translateY(-1px); }
+.home-desktop .socials svg { width: 19px; height: 19px; display: block; fill: currentColor; }
+.home-desktop .video {
+      width: 100%;
+      margin: clamp(2rem, 6vh, 2.75rem) 0 0;
+      color: var(--ink);
+    }
+.home-desktop .video-kicker {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mut);
+      margin-bottom: 0.85rem;
+    }
+.home-desktop .video-player {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #d9d4c6;
+    }
+.home-desktop .video-player iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
+.home-desktop .video-link {
+      display: block;
+      margin-top: 0.8rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+.home-desktop .links {
+      list-style: none;
+      margin: clamp(1.6rem, 4.5vh, 2.25rem) 0 0;
+      padding: 0;
+      width: 100%;
+    }
+.home-desktop .links li { margin: 0; }
+.home-desktop .links a {
+      display: block;
+      padding: 0.6rem 0;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 1.075rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.15s ease, opacity 0.15s ease;
+    }
+.home-desktop .links a:hover, .home-desktop .links a:focus-visible { color: var(--mut); }
+.home-desktop .discord {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      margin: clamp(2rem, 5.5vh, 2.75rem) auto 0;
+      padding: 0.7rem 1.4rem;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      color: var(--ink);
+      background: transparent;
+      text-decoration: none;
+      font-size: 0.98rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+.home-desktop .discord svg { width: 18px; height: 18px; fill: currentColor; display: block; }
+.home-desktop .discord:hover, .home-desktop .discord:focus-visible { background: var(--ink); color: var(--paper); }
+
+
+    @media (min-width: 760px) {
+.home-desktop.linkpage { max-width: 34rem; padding-top: clamp(4rem, 12vh, 6rem); }
+.home-desktop .name { font-size: 2.25rem; }
+.home-desktop .socials { gap: 1.5rem; }
+.home-desktop .socials svg { width: 20px; height: 20px; }
+.home-desktop .links a { font-size: 1.15rem; padding: 0.65rem 0; }
+.home-desktop .video-link { font-size: 1rem; }
+.home-desktop .discord { font-size: 1.02rem; padding: 0.75rem 1.6rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+.home-desktop * { transition: none !important; } }
   </style>
 </head>
 <body>
-  <main class="linkpage">
+  <main>
+    <!-- MOBILE: Linktree-style layout. -->
+    <div class="linkpage home-mobile">
     <h1 class="name">Henry Pan</h1>
 
     <ul class="socials">
@@ -204,18 +303,20 @@
       </li>
     </ul>
 
-    <a class="video" id="latest-video" href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer">
+    <section class="video" aria-label="Latest YouTube video">
       <span class="video-kicker">Watch my latest youtube video</span>
-      <span class="video-thumb">
-        <img id="latest-video-thumb" src="" alt="">
-      </span>
-      <span class="video-title" id="latest-video-title"></span>
-    </a>
+      <div class="video-player">
+        <iframe src="https://www.youtube.com/embed/38huYlZqCOE" title="Henry Pan's latest YouTube video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=38huYlZqCOE" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+    </section>
 
     <ul class="links">
       <li><a href="/about/">About</a></li>
       <li><a href="/now/">Now</a></li>
       <li><a href="/newsletter/">Newsletter</a></li>
+      <li><a href="/affiliates/">Affiliates</a></li>
+      <li><a href="/recommendations/">Recommendations</a></li>
       <li><a href="/contact/">Contact</a></li>
       <li><a href="https://calendly.com/henrypaninquiries/creative-strategy-1-1" target="_blank" rel="noopener noreferrer">Content Consulting</a></li>
     </ul>
@@ -224,73 +325,87 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
       <span>Join my Discord</span>
     </a>
+    </div>
+    <!-- DESKTOP: independent markup; current appearance intentionally retained. -->
+    <div class="linkpage home-desktop">
+    <h1 class="name">Henry Pan</h1>
+
+    <ul class="socials">
+      <li>
+        <a href="https://www.instagram.com/henrybpan" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.71-2.13 1.38C1.34 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.71 1.46 1.38 2.13.67.67 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.71 2.13-1.38.67-.67 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.71-1.46-1.38-2.13C21.32 1.34 20.65.93 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/@henrybpan" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81zM9.55 15.57V8.43L15.82 12z"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://henrybpan.substack.com/" target="_blank" rel="noopener noreferrer" aria-label="Substack">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.tiktok.com/@henrybpan" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.74a8.16 8.16 0 0 0 4.77 1.52V6.83a4.85 4.85 0 0 1-1.84-.14z"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/henrybpan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://x.com/henrypanonx" target="_blank" rel="noopener noreferrer" aria-label="X">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </li>
+    </ul>
+
+    <section class="video" aria-label="Latest YouTube video">
+      <span class="video-kicker">Watch my latest youtube video</span>
+      <div class="video-player">
+        <iframe src="https://www.youtube.com/embed/38huYlZqCOE" title="Henry Pan's latest YouTube video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=38huYlZqCOE" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+    </section>
+
+    <ul class="links">
+      <li><a href="/about/">About</a></li>
+      <li><a href="/now/">Now</a></li>
+      <li><a href="/newsletter/">Newsletter</a></li>
+      <li><a href="/affiliates/">Affiliates</a></li>
+      <li><a href="/recommendations/">Recommendations</a></li>
+      <li><a href="/contact/">Contact</a></li>
+      <li><a href="https://calendly.com/henrypaninquiries/creative-strategy-1-1" target="_blank" rel="noopener noreferrer">Content Consulting</a></li>
+    </ul>
+
+    <a class="discord" href="https://discord.gg/yfbmyw4hBG" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      <span>Join my Discord</span>
+    </a>
+    </div>
   </main>
-
   <script>
-    // ---- Latest YouTube video: thumbnail, title, and app deep link ----
+    // Unload the hidden player so a resize cannot leave audio playing offscreen.
     (function () {
-      var link  = document.getElementById('latest-video');
-      var img   = document.getElementById('latest-video-thumb');
-      var title = document.getElementById('latest-video-title');
-      if (!link) return;
-
-      var ua        = navigator.userAgent || '';
-      var isIOS     = /iPhone|iPad|iPod/i.test(ua);
-      var isAndroid = /Android/i.test(ua);
-
-      function setThumb(id) {
-        img.onerror = function () {
-          img.onerror = null;
-          img.src = 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg';
-        };
-        img.onload = function () { img.classList.add('is-loaded'); };
-        img.src = 'https://img.youtube.com/vi/' + id + '/maxresdefault.jpg';
-      }
-
-      // On phones, hand the tap to the YouTube app; fall back to the web URL
-      // if the app isn't installed (or the scheme is blocked).
-      function wireDeepLink(id) {
-        var web = 'https://www.youtube.com/watch?v=' + id;
-        link.href = web;
-        if (!isIOS && !isAndroid) return;
-        link.addEventListener('click', function (e) {
-          if (isAndroid) {
-            e.preventDefault();
-            window.location.href =
-              'intent://www.youtube.com/watch?v=' + id +
-              '#Intent;package=com.google.android.youtube;scheme=https;' +
-              'S.browser_fallback_url=' + encodeURIComponent(web) + ';end';
-          } else {
-            e.preventDefault();
-            var fallback = setTimeout(function () { window.location.href = web; }, 1200);
-            var cancel = function () { clearTimeout(fallback); };
-            window.addEventListener('pagehide', cancel, { once: true });
-            document.addEventListener('visibilitychange', function () {
-              if (document.hidden) cancel();
-            }, { once: true });
-            window.location.href = 'youtube://www.youtube.com/watch?v=' + id;
-          }
+      var desktop = window.matchMedia('(min-width: 760px)');
+      var players = [
+        document.querySelector('.home-mobile iframe'),
+        document.querySelector('.home-desktop iframe')
+      ];
+      var sources = players.map(function (player) { return player.getAttribute('src'); });
+      function syncPlayers() {
+        players.forEach(function (player, index) {
+          var visible = desktop.matches ? index === 1 : index === 0;
+          if (visible && !player.hasAttribute('src')) player.setAttribute('src', sources[index]);
+          if (!visible) player.removeAttribute('src');
         });
       }
-
-      fetch('/assets/data/dates.json', { cache: 'no-cache' })
-        .then(function (r) { if (!r.ok) throw new Error('dates.json ' + r.status); return r.json(); })
-        .then(function (data) {
-          var v = data && data.latestVideo;
-          if (!v || !v.id) throw new Error('no latest video');
-          setThumb(v.id);
-          img.alt = v.title || 'Latest video';
-          title.textContent = v.title || '';
-          wireDeepLink(v.id);
-        })
-        .catch(function () {
-          // No data: keep the channel link, drop the empty thumbnail frame.
-          var frame = link.querySelector('.video-thumb');
-          if (frame) frame.remove();
-          title.textContent = '';
-        });
+      syncPlayers();
+      desktop.addEventListener('change', syncPlayers);
     }());
   </script>
-
 </body>
 </html>
