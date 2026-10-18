@@ -6,7 +6,7 @@
 - `.home-mobile`: shown below 760px.
 - `.home-desktop`: shown from 760px upward.
 
-Each layout has its own scoped CSS and markup inside the same file. Keep page-specific styles inline. The desktop starts with the existing appearance; redesign only its styles and container. When changing shared content such as social URLs, navigation, or the featured video, update both containers. Hidden layouts use `display: none` and are excluded from keyboard navigation and the accessibility tree. The YouTube frames are lazy-loaded.
+Each layout has its own scoped CSS and markup inside the same file. Keep page-specific styles inline. The desktop starts with the existing appearance; redesign only its styles and container. When changing shared content such as social URLs, navigation, or the featured video, update both containers. Hidden layouts use `display: none` and are excluded from keyboard navigation and the accessibility tree. Each layout has a clickable YouTube poster; mobile taps try the YouTube app and fall back to the video URL.
 
 ## Affiliate cards
 
