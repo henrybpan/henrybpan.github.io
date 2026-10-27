@@ -22,9 +22,12 @@
 
     .affiliate-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 23rem), 1fr)); gap: 1.5rem; }
     .affiliate-card { border: 1px solid var(--rule); border-radius: .9rem; overflow: hidden; }
-    .brand-banner { aspect-ratio: 2 / 1; display: grid; place-items: center; padding: 2rem; background: var(--ink); color: var(--paper); }
-    .brand-banner span { font-family: Georgia, serif; font-size: clamp(2rem, 6vw, 3.8rem); letter-spacing: -.04em; text-align: center; }
+    .brand-banner { aspect-ratio: 2 / 1; display: grid; place-items: center; background: var(--ink); }
     .brand-banner img { width: 100%; height: 100%; object-fit: cover; }
+    .brand-banner--launchpoint { background: #e4f2fa; }
+    .brand-banner--launchpoint img { object-fit: contain; }
+    .brand-banner--modera { background: #fff; }
+    .brand-banner--modera img { object-fit: contain; width: min(70%, 14rem); height: auto; }
     .card-copy { padding: clamp(1.4rem, 4vw, 2rem); }
     .card-copy h2 { font-size: 1.5rem; margin-bottom: .7rem; }
     .card-copy p { margin-bottom: 1.5rem; }
@@ -39,18 +42,24 @@
     <p class="intro">Products and services I recommend, with a few perks for you.</p>
     <p class="disclosure">I may earn a commission if you buy through the links on this page.</p>
     <div class="affiliate-grid">
-      <!-- Duplicate this article for another partner. Replace the text banner with an image if supplied. -->
       <article class="affiliate-card">
-        <div class="brand-banner" aria-hidden="true"><span>Modera.nysl</span></div>
+        <div class="brand-banner"><img src="/assets/affiliates/content-academy.jpg" alt="Content Academy: live coaching, content reviews, events, community, courses, and newsletters" width="2560" height="1440" loading="lazy"></div>
         <div class="card-copy">
-          <h2>Modera.nysl</h2>
-          <p>Use code <strong>HENRY PAN</strong> for <strong>10% off.</strong></p>
-          <!-- Add your personal recommendation here when ready. -->
-          <a class="button" href="https://moderanysl.com/?ref=HENRY" target="_blank" rel="sponsored noopener noreferrer">Shop Modera.nysl ↗</a>
+          <h2>Content Academy</h2>
+          <!-- Add personal recommendation copy here when supplied. -->
+          <a class="button" href="https://start.contentacademy.io/class?el=henry" target="_blank" rel="sponsored noopener noreferrer">Explore Content Academy ↗</a>
         </div>
       </article>
       <article class="affiliate-card">
-        <div class="brand-banner" aria-hidden="true"><span>Artec</span></div>
+        <div class="brand-banner brand-banner--launchpoint"><img src="/assets/affiliates/launchpoint.png" alt="Launchpoint banner: media distribution software for hypergrowth companies" width="1128" height="191" loading="lazy"></div>
+        <div class="card-copy">
+          <h2>Launchpoint</h2>
+          <!-- Add personal recommendation copy here when supplied. -->
+          <a class="button" href="https://launchpoint.sh/ios?code=HENRYZKBNPU" target="_blank" rel="sponsored noopener noreferrer">Explore Launchpoint ↗</a>
+        </div>
+      </article>
+      <article class="affiliate-card">
+        <div class="brand-banner"><img src="/assets/affiliates/artec.jpg" alt="Artec: Create more. Work less." width="1200" height="630" loading="lazy"></div>
         <div class="card-copy">
           <h2>Artec</h2>
           <p>The app for every UGC creator. Scripting, filming, editing, coaching, and tracking all in one place.</p>
@@ -58,11 +67,12 @@
         </div>
       </article>
       <article class="affiliate-card">
-        <div class="brand-banner" aria-hidden="true"><span>Content Academy</span></div>
+        <div class="brand-banner brand-banner--modera"><img src="/assets/affiliates/modera.png" alt="Modera.nysl logo" width="225" height="225" loading="lazy"></div>
         <div class="card-copy">
-          <h2>Content Academy</h2>
-          <!-- Add personal recommendation copy here when supplied. -->
-          <a class="button" href="https://start.contentacademy.io/class?el=henry" target="_blank" rel="sponsored noopener noreferrer">Explore Content Academy ↗</a>
+          <h2>Modera.nysl</h2>
+          <p>Use code <strong>HENRY PAN</strong> for <strong>10% off.</strong></p>
+          <!-- Add your personal recommendation here when ready. -->
+          <a class="button" href="https://moderanysl.com/?ref=HENRY" target="_blank" rel="sponsored noopener noreferrer">Shop Modera.nysl ↗</a>
         </div>
       </article>
     </div>
