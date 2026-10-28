@@ -14,7 +14,7 @@
   <title>Henry Pan</title>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap">
-  <link rel="stylesheet" href="/assets/minimal.css?v=1">
+  <link rel="stylesheet" href="/assets/minimal.css?v=2">
   <style>
     /* Separate layout owners: edit desktop styles without affecting mobile. */
     .home-desktop { display: none !important; }
@@ -351,28 +351,8 @@
       background: #1c1c1c;
       overflow: hidden;
     }
-/* hqdefault thumbnails are letterboxed 4:3; scale to crop the black bars. */
-.home-desktop .video-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.34); }
-.home-desktop .video-play {
-      position: absolute;
-      inset: 50% auto auto 50%;
-      width: 3.75rem;
-      height: 3.75rem;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(28, 28, 28, .78);
-      display: grid;
-      place-items: center;
-      transition: background .15s ease, transform .15s ease;
-    }
-.home-desktop .video-play::after {
-      content: '';
-      margin-left: .25rem;
-      border-top: .6rem solid transparent;
-      border-bottom: .6rem solid transparent;
-      border-left: .9rem solid white;
-    }
-.home-desktop .box-video:hover .video-play { background: #1c1c1c; transform: translate(-50%, -50%) scale(1.08); }
+.home-desktop .video-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 90% center; display: block; transition: transform 0.3s ease; }
+.home-desktop .box-video:hover .video-preview img { transform: scale(1.03); }
 .home-desktop .video-caption { display: flex; justify-content: space-between; align-items: baseline; padding: 0.9rem 1.2rem; }
 
     @media (min-width: 760px) and (max-width: 1100px) {
@@ -439,7 +419,7 @@
       <li><a href="/now/">Now</a></li>
       <li><a href="/newsletter/">Newsletter</a></li>
       <li><a href="/affiliates/">Affiliates</a></li>
-      <li><a href="/recommendations/">Recommendations</a></li>
+      <li><a href="/bookshelf/">Bookshelf</a></li>
       <li><a href="/contact/">Contact</a></li>
       <li><a href="https://calendly.com/henrypaninquiries/creative-strategy-1-1" target="_blank" rel="noopener noreferrer">Content Consulting</a></li>
     </ul>
@@ -507,8 +487,7 @@
       <nav class="boxes" aria-label="Sections">
         <a class="box box-video" href="https://www.youtube.com/watch?v=38huYlZqCOE" target="_blank" rel="noopener noreferrer" aria-label="Watch my latest video on YouTube" data-youtube-video="38huYlZqCOE">
           <span class="video-preview">
-            <img src="https://img.youtube.com/vi/38huYlZqCOE/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
-            <span class="video-play" aria-hidden="true"></span>
+            <img src="/assets/home/video.jpg" alt="" loading="lazy" width="956" height="538">
           </span>
           <span class="video-caption">
             <span class="box-title">Latest video</span>
@@ -529,16 +508,16 @@
           <span class="box-media" aria-hidden="true"><svg class="substack-mark" viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></span>
           <span class="box-title">Newsletter</span>
         </a>
-        <a class="box" href="/recommendations/">
-          <span class="box-path">/recommendations</span>
+        <a class="box" href="/bookshelf/">
+          <span class="box-path">/bookshelf</span>
           <span class="box-arrow" aria-hidden="true">→</span>
           <span class="box-media books" aria-hidden="true">
             <img src="/assets/books/zero-to-one.jpg" alt="" loading="lazy">
             <img src="/assets/books/creative-act.jpg" alt="" loading="lazy">
             <img src="/assets/books/antifragile.jpg" alt="" loading="lazy">
-            <img src="/assets/books/blue-lock.jpg" alt="" loading="lazy">
+            <img src="/assets/books/the-shadow-drawing.jpg" alt="" loading="lazy">
           </span>
-          <span class="box-title">Recommendations</span>
+          <span class="box-title">Bookshelf</span>
         </a>
         <a class="box" href="/affiliates/">
           <span class="box-path">/affiliates</span>

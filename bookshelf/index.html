@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Books, reviews, and recommendations from Henry Pan.">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <title>Bookshelf — Henry Pan</title>
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap">
+  <link rel="stylesheet" href="/assets/minimal.css?v=2">
+  <style>
+    .wrap { max-width: 62rem; }
+    .eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--mut); margin-bottom: .6rem; }
+    .intro { max-width: 42rem; color: var(--mut); margin: -.5rem 0 2rem; }
+    .disclosure { color: var(--mut); font-size: .85rem; line-height: 1.6; margin: 1.5rem 0; max-width: 65ch; }
+    .page-nav { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+    .page-nav a { color: var(--ink); text-underline-offset: .2em; }
+    a:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
+    .button { display: inline-block; background: var(--ink); color: var(--paper); padding: .8rem 1.2rem; border-radius: .35rem; font-weight: 700; text-decoration: none; }
+
+    .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr)); gap: 2rem; }
+    .book-cover { aspect-ratio: 3 / 4; display: grid; place-items: center; padding: 1.3rem; background: color-mix(in srgb, var(--paper), white 35%); border: 1px solid var(--rule); border-radius: .5rem; margin-bottom: 1rem; }
+    .book-cover img { width: 100%; height: 100%; min-height: 0; object-fit: contain; filter: drop-shadow(.3rem .5rem .4rem #0002); }
+    .book-card h2 { font-size: 1.1rem; }
+    .book-card p { color: var(--mut); font-size: .9rem; }
+    .book-card a { color: var(--ink); text-decoration: none; }
+    .book-card a:hover h2 { text-decoration: underline; }
+    .status { display: inline-block; font-size: .75rem; margin-top: .7rem; border: 1px solid var(--rule); border-radius: 2rem; padding: .2rem .65rem; color: var(--mut); }
+
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="home-link" href="/">← Henry Pan</a>
+    <h1 class="title">Bookshelf</h1>
+    <p class="intro">Books I’ve read, with my reviews coming soon. You can also browse <a href="/library/" style="color:inherit">my full reading list</a>.</p>
+    <p class="disclosure">I may earn a commission if you buy a book through my links.</p>
+    <div class="book-grid">
+      <!-- Once the review is ready, wrap the cover and title in an anchor to /bookshelf/zero-to-one/. -->
+      <article class="book-card">
+        <div class="book-cover"><img src="/assets/books/zero-to-one.jpg" alt="Cover of Zero to One by Peter Thiel" width="300" height="400" loading="lazy"></div>
+        <h2>Zero to One</h2>
+        <p>Peter Thiel</p>
+        <span class="status">Review coming soon</span>
+      </article>
+    </div>
+    <nav class="page-nav" aria-label="More from Henry"><a href="/">Home</a><a href="/affiliates/">Affiliates</a><a href="/bookshelf/">Bookshelf</a><a href="/library/">Full library</a></nav>
+  </main>
+</body>
+</html>

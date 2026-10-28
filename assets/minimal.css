@@ -114,6 +114,32 @@ body {
   white-space: nowrap;
 }
 
+/* Desktop type theme — Advercase for page titles + subheaders, Satoshi body.
+   Mobile keeps Satoshi throughout. Matches the homepage desktop layout. */
+@font-face {
+  font-family: 'Advercase';
+  src: url('/assets/fonts/advercase-bold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+@media (min-width: 760px) {
+  .title,
+  .wrap h2,
+  .wrap h3 {
+    font-family: 'Advercase', var(--font);
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  .title { font-size: clamp(2.2rem, 3.6vw, 3rem); line-height: 1.05; }
+  .section-label {
+    font-family: 'Advercase', var(--font);
+    font-size: 1.15rem;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
