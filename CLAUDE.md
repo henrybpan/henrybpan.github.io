@@ -21,7 +21,8 @@ The site is a collection of standalone HTML files. Each page is self-contained w
 - `director/welcome/index.html` — Post-payment welcome page (GitHub username capture form). `noindex`.
 - `text/index.html` — SMS list signup page.
 - `community/index.html` — Two rooms (free Bible study + paid content review). `noindex` — hidden until deliverable is defined.
-- `essays/index.html`, `lindy-library/index.html` — chester.how-inspired list pages (writing list, grouped reading list).
+- `essays/index.html` — chester.how-inspired writing list.
+- `library/`, `lindy-library/` — archived; both redirect to `/bookshelf/`. Originals kept in `_archive/`.
 - `testimonies-results/index.html` — video testimonial grid. `noindex` — accessible via direct link from `/director` only, not listed in nav.
 - `work-with-me/index.html` — Instant redirect to `/director` (`<meta http-equiv="refresh">` + JS `location.replace`). Not themed because it never renders for long.
 - Legacy redirects: `essays.html`, `recommendations.html`, `work-with-me.html` may exist alongside the directory versions.

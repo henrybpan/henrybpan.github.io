@@ -101,7 +101,14 @@
     "title": "Zero to One",
     "author": "Peter Thiel",
     "medium": "Book",
-    "status": "Read",
+    "status": "Reading",
+    "lindy": false
+  },
+  {
+    "title": "Siddhartha",
+    "author": "Hermann Hesse",
+    "medium": "Book",
+    "status": "Reading",
     "lindy": false
   },
   {
