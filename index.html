@@ -222,8 +222,9 @@
 .home-desktop .boxes {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      grid-auto-rows: minmax(9.5rem, auto);
+      grid-auto-rows: minmax(10rem, 1fr);
       gap: 1rem;
+      min-height: calc(100vh - 2 * clamp(2.5rem, 6vh, 4.5rem));
     }
 .home-desktop .box {
       position: relative;
@@ -254,6 +255,91 @@
       line-height: 1.1;
     }
 .home-desktop .box-wide { grid-column: span 2; }
+.home-desktop .box-media {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+.home-desktop .books img {
+      width: 3.9rem;
+      height: 5.85rem;
+      object-fit: cover;
+      border-radius: 3px;
+      box-shadow: 0 6px 14px rgba(28, 28, 28, 0.22);
+      margin: 0 -0.55rem;
+      transition: transform 0.2s ease;
+    }
+.home-desktop .books img:nth-child(1) { transform: rotate(-10deg) translateY(6px); }
+.home-desktop .books img:nth-child(2) { transform: rotate(-3deg); z-index: 1; }
+.home-desktop .books img:nth-child(3) { transform: rotate(4deg); z-index: 2; }
+.home-desktop .books img:nth-child(4) { transform: rotate(11deg) translateY(6px); z-index: 3; }
+.home-desktop .box:hover .books img:nth-child(1) { transform: rotate(-14deg) translate(-6px, 4px); }
+.home-desktop .box:hover .books img:nth-child(4) { transform: rotate(15deg) translate(6px, 4px); }
+.home-desktop .affiliates img {
+      position: absolute;
+      width: 72%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 6px 14px rgba(28, 28, 28, 0.22);
+      transition: transform 0.2s ease;
+    }
+.home-desktop .affiliates img:nth-child(1) { transform: translate(-14%, -10%) rotate(-5deg); }
+.home-desktop .affiliates img:nth-child(2) { transform: translate(14%, 12%) rotate(4deg); }
+.home-desktop .box:hover .affiliates img:nth-child(1) { transform: translate(-18%, -12%) rotate(-7deg); }
+.home-desktop .box:hover .affiliates img:nth-child(2) { transform: translate(18%, 14%) rotate(6deg); }
+.home-desktop .avatars { justify-content: flex-start; padding-left: 0.6rem; }
+.home-desktop .avatars img {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--paper);
+      margin-left: -0.6rem;
+    }
+.home-desktop .box-photo { padding: 0; overflow: hidden; gap: 0; }
+.home-desktop .box-photo .photo { position: relative; flex: 1; min-height: 0; }
+.home-desktop .box-photo .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 60%; }
+.home-desktop .box-photo .box-caption { display: flex; justify-content: space-between; align-items: baseline; padding: 0.8rem 1.2rem; }
+.home-desktop .box-photo .box-arrow { color: #fff; }
+
+.home-desktop .emoji {
+      font-size: 3.4rem;
+      line-height: 1;
+      display: inline-block;
+      transform-origin: 70% 80%;
+    }
+.home-desktop .box:hover .emoji { animation: wave 0.9s ease-in-out; }
+@keyframes wave {
+      0%, 100% { transform: rotate(0); }
+      20%, 60% { transform: rotate(16deg); }
+      40%, 80% { transform: rotate(-8deg); }
+    }
+.home-desktop .substack-mark { width: 3.6rem; height: 3.6rem; fill: #ff6719; transition: transform 0.2s ease; }
+.home-desktop .box:hover .substack-mark { transform: rotate(-6deg) scale(1.06); }
+.home-desktop .box-discord {
+      background: #5865f2;
+      border-color: #5865f2;
+      color: #fff;
+      overflow: hidden;
+    }
+.home-desktop .box-discord:hover, .home-desktop .box-discord:focus-visible { background: #4752c4; border-color: #4752c4; }
+.home-desktop .box-discord .box-icon,
+.home-desktop .box-discord .box-arrow { color: rgba(255, 255, 255, 0.85); }
+.home-desktop .box-discord:hover .box-arrow { color: #fff; }
+.home-desktop .chi-rho {
+      position: absolute;
+      right: 12%;
+      top: 50%;
+      height: 78%;
+      transform: translateY(-50%);
+      color: #fff;
+      opacity: 0.95;
+    }
+.home-desktop .box-tagline { display: block; margin-top: 0.35rem; font-size: 0.95rem; color: rgba(255, 255, 255, 0.85); }
 .home-desktop .box-icon { width: 22px; height: 22px; fill: currentColor; display: block; }
 
 .home-desktop .box-video { grid-column: span 2; grid-row: span 2; padding: 0; overflow: hidden; gap: 0; }
@@ -261,10 +347,12 @@
       position: relative;
       display: block;
       flex: 1;
-      min-height: 14rem;
+      min-height: 12rem;
       background: #1c1c1c;
+      overflow: hidden;
     }
-.home-desktop .video-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* hqdefault thumbnails are letterboxed 4:3; scale to crop the black bars. */
+.home-desktop .video-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.34); }
 .home-desktop .video-play {
       position: absolute;
       inset: 50% auto auto 50%;
@@ -291,11 +379,12 @@
 .home-desktop { grid-template-columns: minmax(16rem, 1fr) minmax(0, 1fr); }
 .home-desktop .boxes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .home-desktop .box-video { grid-row: span 1; }
+.home-desktop .box-photo { grid-column: span 2; }
 .home-desktop .box-wide { grid-column: span 2; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-.home-desktop * { transition: none !important; } }
+.home-desktop * { transition: none !important; animation: none !important; } }
   </style>
 </head>
 <body>
@@ -426,40 +515,66 @@
             <span class="box-path">youtube ↗</span>
           </span>
         </a>
-        <a class="box" href="/now/">
-          <span class="box-path">/now</span>
+        <a class="box box-photo" href="/now/">
+          <span class="photo"><img src="/assets/home/now.jpg" alt="" loading="lazy" width="564" height="800"></span>
           <span class="box-arrow" aria-hidden="true">→</span>
-          <span class="box-title">Now</span>
+          <span class="box-caption">
+            <span class="box-title">Now</span>
+            <span class="box-path">/now</span>
+          </span>
         </a>
         <a class="box" href="/newsletter/">
           <span class="box-path">/newsletter</span>
           <span class="box-arrow" aria-hidden="true">→</span>
+          <span class="box-media" aria-hidden="true"><svg class="substack-mark" viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></span>
           <span class="box-title">Newsletter</span>
         </a>
         <a class="box" href="/recommendations/">
           <span class="box-path">/recommendations</span>
           <span class="box-arrow" aria-hidden="true">→</span>
+          <span class="box-media books" aria-hidden="true">
+            <img src="/assets/books/zero-to-one.jpg" alt="" loading="lazy">
+            <img src="/assets/books/creative-act.jpg" alt="" loading="lazy">
+            <img src="/assets/books/antifragile.jpg" alt="" loading="lazy">
+            <img src="/assets/books/blue-lock.jpg" alt="" loading="lazy">
+          </span>
           <span class="box-title">Recommendations</span>
         </a>
         <a class="box" href="/affiliates/">
           <span class="box-path">/affiliates</span>
           <span class="box-arrow" aria-hidden="true">→</span>
+          <span class="box-media affiliates" aria-hidden="true">
+            <img src="/assets/home/content-academy.jpg" alt="" loading="lazy">
+            <img src="/assets/home/artec.jpg" alt="" loading="lazy">
+          </span>
           <span class="box-title">Affiliates</span>
         </a>
         <a class="box" href="/contact/">
           <span class="box-path">/contact</span>
           <span class="box-arrow" aria-hidden="true">→</span>
+          <span class="box-media" aria-hidden="true"><span class="emoji">👋</span></span>
           <span class="box-title">Contact</span>
         </a>
         <a class="box" href="https://calendly.com/henrypaninquiries/creative-strategy-1-1" target="_blank" rel="noopener noreferrer">
           <span class="box-path">calendly</span>
           <span class="box-arrow" aria-hidden="true">↗</span>
+          <span class="box-media avatars" aria-hidden="true">
+            <img src="/testimonials/photos/seb_e_kho.jpg" alt="" loading="lazy">
+            <img src="/testimonials/photos/rohabits.jpg" alt="" loading="lazy">
+            <img src="/testimonials/photos/leogibson_mp4.jpg" alt="" loading="lazy">
+            <img src="/testimonials/photos/jaqoea.jpg" alt="" loading="lazy">
+            <img src="/testimonials/photos/justtonch.jpg" alt="" loading="lazy">
+          </span>
           <span class="box-title">Content Consulting</span>
         </a>
-        <a class="box box-wide" href="https://discord.gg/yfbmyw4hBG" target="_blank" rel="noopener noreferrer">
+        <a class="box box-wide box-discord" href="https://discord.gg/yfbmyw4hBG" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" class="box-icon" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
           <span class="box-arrow" aria-hidden="true">↗</span>
-          <span class="box-title">Join my Discord</span>
+          <svg class="chi-rho" viewBox="0 0 100 140" fill="none" stroke="currentColor" stroke-width="9" aria-hidden="true"><path d="M44 136V9h12a20 20 0 0 1 0 40H44"/><path d="M10 56l70 80M78 56l-70 80"/></svg>
+          <span>
+            <span class="box-title">Join my Discord</span>
+            <span class="box-tagline">Bible Studies Friday 5PM EST</span>
+          </span>
         </a>
       </nav>
     </div>
